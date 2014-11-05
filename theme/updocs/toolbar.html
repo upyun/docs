@@ -1,0 +1,13 @@
+<div class="toolbar clearfix">
+  <ol class="breadcrumb pull-left">
+    <li><a href="{{ homepage_url }}">文档</a></li>
+    <li>{{ current_page.title }}</li>
+  </ol>
+
+  {% if repo_url %}
+    {% if repo_name == 'GitHub' %}
+      <a href="{{ repo_url }}" class="github-edit pull-right"><i class="fa fa-github"></i> Edit on GitHub</a>
+    {% endif %}
+  {% endif %}
+
+</div>

@@ -1,0 +1,45 @@
+site_name: 又拍云文档中心
+site_url: http://docs.upyun.com/
+
+repo_url: https://github.com/upyun/docs/
+
+docs_dir: sources
+
+
+theme_dir: theme/updocs
+theme_center_lead: false
+
+include_search: true
+
+copyright: Copyright &copy; 2014, 又拍云
+
+
+
+pages:
+
+# Home
+- ['index.md', '文档首页', '又拍云文档中心']
+
+# Develop Guide
+- ['guide/index.md', '开发指南', '开发者指南']
+- ['guide/php_rest_guide.md', '开发指南', 'REST API 简易指南（PHP）']
+
+# API
+- ['api/index.md', 'API 文档', 'API 概览']
+- ['api/rest_api.md', 'API 文档', 'HTTP REST API']
+- ['api/form_api.md', 'API 文档', '表单 API']
+- ['api/purge.md', 'API 文档', '缓存刷新']
+- ['api/multipart_upload.md', 'API 文档', '分块上传']
+- ['api/av_pretreatment.md', 'API 文档', '视频处理']
+
+# Downloads
+- ['download/index.md', '资源下载', '资源下载']
+
+# FAQ
+- ['faq/index.md', '常见问题', '常见问题']
+
+
+# Misc **HIDDEN**
+- ['misc/discuz.md', '**HIDDEN**', 'Discuz']
+- ['misc/phpwind.md', '**HIDDEN**', 'PHPWind']
+- ['misc/ueditor.md', '**HIDDEN**', 'UEditor']

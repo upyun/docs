@@ -1,0 +1,35 @@
+<div class="bs-sidebar hidden-print toc"  data-spy="affix" data-offset-top="120" role="complementary">
+  <ul class="nav bs-sidenav">
+    {% for nav_item in nav %}
+      {% if nav_item.children %}
+        {% if nav_item.active %}
+          {% for nav_item in nav_item.children %}
+
+              <li class="{% if nav_item.active %}active{% endif %}">
+                <a class="itm-l1" href="{{ nav_item.url }}">{{ nav_item.title }}</a>
+                {% if nav_item == current_page %}
+                  <ul class="nav">
+                  {% for toc_item in toc %}
+                    <li class="{% if toc_item.active %}active {% endif %}"><a href="{{ toc_item.url }}">{{ toc_item.title }}</a></li>
+                    {% for toc_item in toc_item.children %}
+                      <ul class="nav nav-l2">
+                        <li><a class="itm-l2" href="{{ toc_item.url }}">{{ toc_item.title }}</a></li>
+                      </ul>
+                    {% endfor %}
+                  {% endfor %}
+                  </ul>
+                {% endif %}
+              </li>
+
+          {% endfor %}
+        {% endif %}
+      {% endif %}
+
+    {% endfor %}
+  </ul>
+
+
+</div>
+
+
+

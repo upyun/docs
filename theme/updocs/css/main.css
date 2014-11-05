@@ -1,0 +1,502 @@
+html,
+body {
+  height: 100%;
+  color: rgb(93, 96, 107);
+}
+
+#main-wrapper {
+  height: auto;
+  min-height: 80%;
+}
+
+body {
+  position: relative;
+  background: #fbfefe;
+}
+
+/* Layout */
+
+.container {
+  max-width: 1316px;
+}
+
+.container .toc {
+  position: absolute;
+  top: 120px;
+  width: 20.3%;
+  max-width: 262px;
+}
+.container .toc.affix {
+  position: fixed;
+  top: 10px;
+}
+
+.container .toc.affix-top {
+  top: 120px;
+}
+
+.container .content-body {
+  margin-left: 21.617%;
+  padding-left: 22px;
+  border-left: 1px solid rgba(93, 96, 107, .15);
+}
+
+/* Navbar */
+.navbar {
+  background: #fff;
+  border-bottom: 2px solid #a1ccf7;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
+}
+
+.navbar-brand {
+  display: inline-block;
+  margin-left: 15px !important;
+  height: 58px;
+  width: 140px;
+  line-height: 58px;
+  background: url(../img/upyun_logo.png) left center no-repeat;
+  text-indent: -99999em;
+}
+
+.navbar-upyun .nav>li>a {
+  color: rgb(93, 96, 107);
+}
+.navbar-upyun .nav>li.active>a,
+.navbar-upyun .nav>li>a:hover {
+  background: transparent;
+  color: #4fc3f7;
+}
+
+.navbar .navbar-collapse {
+  position: relative;
+  top: 6px;
+}
+
+.navbar-right {
+  margin-top: 13px;
+}
+.navbar-right li {
+  float: left;
+}
+.navbar-right a {
+  display: inline-block;
+  padding: 2px 0;
+  width: 52px;
+  height: 22px;
+  text-decoration: none;
+  text-align: center;
+}
+.navbar-right .login a {
+  color: rgb(79, 195, 247);
+}
+
+.navbar-right .login a:hover {
+  color: rgb(79, 195, 247);
+}
+
+.navbar-right .reg a {
+  color: #fff;
+  background: rgba(79, 195, 247, .9);
+}
+
+.navbar-right .reg a:hover {
+  color: #fff;
+  background: rgba(79, 195, 247, 1);
+}
+
+.github-edit {
+  position: relative;
+  top: 66px;
+  color: rgb(93, 96, 107);
+}
+
+/* Breadcrumbs */
+.breadcrumb {
+  margin-bottom: 16px;
+  padding: 0 8px;
+  color: rgb(93, 96, 107);
+  background: transparent;
+}
+
+.breadcrumb a {
+  color: rgb(93, 96, 107);
+}
+
+.breadcrumb a:hover {
+  color: #4fc3f7;
+}
+
+
+/* Sidebar */
+.bs-sidebar li a {
+  width: 80%;
+  padding: 2px 8px;
+}
+
+.bs-sidebar li {
+  margin-bottom: 6px;
+}
+
+.bs-sidebar li > a.itm-l1 {
+  color: #4fc3f7;
+}
+
+.bs-sidebar li:hover > a.itm-l1,
+.bs-sidebar li.active > a.itm-l1 {
+  margin-left: -2px;
+  margin-right: 20px;
+  border-left: 2px solid #4fc3f7;
+  background: rgba(0, 183, 238, .1);
+}
+
+.bs-sidebar li li a,
+.bs-sidebar li li a:visited {
+  padding-left: 22px;
+  color: rgb(93, 96, 107);
+}
+
+.bs-sidebar li li.active a,
+.bs-sidebar li li a:hover {
+  color: #4fc3f7;
+  background: transparent;
+}
+
+.bs-sidebar li .nav-l2 li a {
+  padding-left: 40px;
+}
+
+.footer {
+  position: relative;
+  margin-top: 50px;
+  padding-top: 15px;
+  height: 40px;
+  border-top: 1px solid rgba(93, 96, 107, .15);
+}
+.footer li {
+  padding: 0 20px;
+}
+.footer,
+.footer a {
+  color:  rgba(93, 96, 107, .5);
+}
+
+/* content */
+.content-body ul {
+  padding: 10px 0px 10px 20px;
+  list-style-position: inherit;
+  list-style: circle;
+}
+
+.content-body ul li {
+  padding-bottom: 5px;
+}
+
+.content-body ul ul {
+  padding: 10px 0px 10px 40px;
+}
+
+.content-body h1 {
+  display: block !important;
+  font-size: 30px;
+  font-weight: 400;
+  color: rgb(93, 96, 107);
+  line-height: 1.33;
+  margin-bottom: 8px;
+  margin-top: 6px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(93, 96, 107, .15);
+}
+
+.content-body h2 {
+  font-size: 24px;
+  font-weight: 400;
+  color: #4fc3f7;
+  line-height: 1.7;
+  margin-bottom: 4px;
+  margin-top: 10px;
+}
+
+.content-body h3 {
+  font-size: 20px;
+  font-weight: 400;
+  color: #4fc3f7;
+  line-height: 1.7;
+  margin-bottom: 4px;
+  margin-top: 10px;
+}
+
+.content-body h4 {
+  font-size: 18px;
+  font-weight: 400;
+  color: #4fc3f7;
+  line-height: 1.7;
+  margin-bottom: 4px;
+  margin-top: 10px;
+}
+
+.content-body p {
+  font-size: 14px;
+  font-weight: 400;
+  color: rgb(93, 96, 107);
+  line-height: 1.7;
+}
+
+.content-body p code {
+  background-color: #FCFCFC;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border: 1px solid #dbdde0;
+  color: #394d54;
+  padding-left: 6px;
+  padding-right: 6px;
+  margin-bottom: 2px;
+}
+
+.content-body blockquote {
+  margin: 0px !important;
+  margin-bottom: 20px !important;
+  margin-top: 20px !important;
+  font-size: 14px;
+  font-weight: 400;
+  color: #394d54;
+  line-height: 1.7;
+  font-style: italic;
+  border: none;
+  border-left: 4px solid #ade5f9;
+  padding: 10px;
+  padding-left: 15px;
+}
+
+.content-body ul {
+  margin-top: 0px !important;
+}
+
+.content-body blockquote a {
+  color: #24b8eb;
+}
+
+.content-body blockquote a:hover {
+  color: #008bb8;
+}
+
+.content-body ul {
+  margin-top: 0px !important;
+}
+
+.content-body pre {
+  font-family: Monaco, Consolas, "Lucida Console", monospace;
+  background-color: #FCFCFC;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  overflow-x: auto;
+}
+.content-body pre code {
+  overflow-wrap: normal;
+  white-space: pre;
+}
+
+.content-body strong {
+  font-weight: bold;
+}
+
+.content-body table {
+  border: 1px solid #dddddd;
+  width: 100%;
+  margin-bottom: 18px;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.content-body table th {
+  background: #eee;
+  padding: 8px;
+  line-height: 1.428571429;
+  vertical-align: top;
+  border: 1px solid #dddddd;
+}
+
+.content-body table td {
+  padding: 8px;
+  line-height: 1.428571429;
+  vertical-align: top;
+  border: 1px solid #dddddd;
+}
+
+
+
+
+/* Index */
+.content-home h1,
+.content-home .upicon {
+    background-image: url(../img/sprite.png);
+    background-repeat: no-repeat;
+}
+
+
+.content-home h1 {
+  margin: 100px auto 0;
+  height: 76px;
+  width: 871px;
+  background-position: 0 -70px;
+  text-indent: -9999em;
+}
+
+.content-home .betamark {
+  position: relative;
+  top: -50px;
+  left: 820px;
+  color: #ccc;
+}
+
+.content-home .minecraft {
+  margin-top: 100px;
+}
+
+.content-home .section {
+  position: relative;
+  margin: 0 7.63159%;
+  padding-top: 21px;
+  float: left;
+  width: 18.0698%;
+  height: 306px;
+  background: #fdfefe;
+  border: 1px solid transparent;
+  text-align: center;
+}
+
+.content-home .section:hover {
+  border: 1px solid #95dbfa;
+}
+
+.content-home .section .upicon {
+  display: inline-block;
+  position: absolute;
+  left: 50%;
+  top: -28px;
+  margin-left: -28px;
+  width: 56px;
+  height: 56px;
+  background-color: #fbfefe;
+}
+
+.content-home .section:hover .upicon {
+  top: -34px;
+  margin-left: -34px;
+  width: 68px;
+  height: 68px;
+}
+
+.content-home .section-guide .upicon-guide {
+  background-position: -70px 0;
+}
+
+.content-home .section-guide:hover .upicon-guide {
+  background-position: 0 0;
+}
+
+.content-home .section-api .upicon-api {
+  background-position: -210px 0;
+}
+
+.content-home .section-api:hover .upicon-api {
+  background-position: -140px 0;
+}
+
+.content-home .section-download .upicon-download {
+  background-position: -350px 0;
+}
+
+.content-home .section-download:hover .upicon-download {
+  background-position:  -280px 0;
+}
+
+.content-home .section h3 {
+  font-size: 20px;
+  color: rgb(93, 96, 107);
+}
+
+.content-home .section h4 {
+  font-size: 12px;
+  color: #aaa;
+}
+
+.content-home .section ul {
+  margin-top: 35px;
+}
+
+.content-home .section ul li {
+  margin-bottom: 20px;
+}
+
+.content-home .section ul a {
+  color: rgb(93, 96, 107);
+}
+
+.content-home .section ul a:hover {
+  color: #4fc3f7;
+  text-decoration: none;
+}
+
+
+/* Download */
+.content-download {
+}
+.content-download h1 {
+  display: none;
+}
+
+
+.content-download h2 {
+  margin-top: 70px;
+  height: 40px;
+  padding-bottom: 14px;
+  font-size: 26px;
+  color: rgb(93, 96, 107);
+  font-weight: normal;
+  border-bottom: 1px solid rgba(93, 96, 107, .15);
+}
+
+.content-download ul {
+  margin-left: -11px;
+  margin-right: -11px;
+}
+.content-download ul li {
+  display: block;
+  float: left;
+  margin: 20px 11px;
+  width: 18.1072%;
+  height: 102px;
+  text-align: center;
+  border: 1px solid rgba(93, 96, 107, .15);
+}
+
+.content-download ul li strong {
+  display: block;
+  margin: 20px 0;
+  font-size: 16px;
+  color: rgb(93, 96, 107);
+}
+
+.content-download ul li .links {
+  text-align: center;
+}
+
+.content-download ul li a.btn {
+  margin: 0 5px;
+  width: 70px;
+  height: 25px;
+  line-height: 23px;
+  border: 1px solid #4fc3f7;
+}
+
+.content-download ul li a.btn i {
+  margin-right: 5px;
+}
+
+.content-download ul li a.btn:hover {
+  color: #fff;
+  background: #4fc3f7;
+}
