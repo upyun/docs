@@ -6,7 +6,7 @@
         <h4>Developer Guide</h4>
         <ul class="list-unstyled">
             <li><a href="/guide/#_1">基本概念</a></li>
-            <li><a href="/guide/#_2">服务方式</a></li>
+            <li><a href="/guide/#_8">服务方式</a></li>
             <li><a href="/guide/php_rest_guide/">REST API 指南（PHP）</a></li>
             <li><a href="/guide/">查看更多</a></li>
         </ul>
