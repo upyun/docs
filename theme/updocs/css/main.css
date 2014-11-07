@@ -1,7 +1,6 @@
 html,
 body {
   height: 100%;
-  color: rgb(93, 96, 107);
 }
 
 #main-wrapper {
@@ -12,6 +11,7 @@ body {
 body {
   position: relative;
   background: #fbfefe;
+  color: rgb(93, 96, 107);
 }
 
 /* Layout */
@@ -363,7 +363,7 @@ body {
   width: 18.0698%;
   height: 306px;
   background: #fdfefe;
-  border: 1px solid transparent;
+  border: 1px solid rgba(93, 96, 107, .15);
   text-align: center;
 }
 
