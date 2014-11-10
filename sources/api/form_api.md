@@ -20,10 +20,10 @@ UPYUN表单流程如下：
 ## API 基本域名
 
 ```
-`v0.api.upyun.com` //自动判断最优线路
-`v1.api.upyun.com` //电信线路
-`v2.api.upyun.com` //联通（网通）线路
-`v3.api.upyun.com` //移动（铁通）线路
+v0.api.upyun.com //自动判断最优线路
+v1.api.upyun.com //电信线路
+v2.api.upyun.com //联通（网通）线路
+v3.api.upyun.com //移动（铁通）线路
 ```
 根据实际情况任选其一
 
@@ -37,7 +37,7 @@ curl http://v0.api.upyun.com/<bucket-name> \
 
 ```
 
-### Signature和Policy算法 ###
+### Signature 和 Policy 算法 ###
 
 **Policy**
 
