@@ -17,7 +17,7 @@
         <h4>API Reference</h4>
         <ul class="list-unstyled">
             <li><a href="/api/rest_api/">HTTP REST API</a></li>
-            <li><a href="/api/form_api/">FORM API</a></li>
+            <li><a href="/api/form_api/">HTTP FORM API</a></li>
             <li><a href="/api/multipart_upload/">分块上传 API</a></li>
             <li><a href="/api/">查看更多</a></li>
         </ul>

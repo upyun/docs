@@ -27,7 +27,7 @@ pages:
 # API
 - ['api/index.md', 'API 文档', 'API 概览']
 - ['api/rest_api.md', 'API 文档', 'HTTP REST API']
-- ['api/form_api.md', 'API 文档', '表单 API']
+- ['api/form_api.md', 'API 文档', 'HTTP FORM API']
 - ['api/purge.md', 'API 文档', '缓存刷新']
 - ['api/multipart_upload.md', 'API 文档', '分块上传']
 - ['api/av_pretreatment.md', 'API 文档', '视频处理']
