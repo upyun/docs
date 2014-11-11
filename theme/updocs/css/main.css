@@ -12,6 +12,7 @@ body {
   position: relative;
   background: #fbfefe;
   color: rgb(93, 96, 107);
+  font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
 }
 
 /* Layout */
@@ -261,7 +262,6 @@ body {
   font-weight: 400;
   color: #394d54;
   line-height: 1.7;
-  font-style: italic;
   border: none;
   border-left: 4px solid #ade5f9;
   padding: 10px;
