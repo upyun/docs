@@ -6,12 +6,12 @@
       $('#main-wrapper .toolbar').remove();
       $('#main-wrapper .toc').remove();
       $('#main-wrapper .content-body').removeClass('content-body').addClass('content-single').addClass(function() {
-      return 'content-' + (path.length > 1 ? path.split('/')[1] : 'home');
+        return 'content-' + (path.length > 1 && path !== '/index.html'? path.split('/')[1] : 'home');
       });
     }
 
     var path = document.location.pathname;
-    if(path === '/' || path.indexOf('download') >= 0) {
+    if(path === '/' || path === '/index.html' || path.indexOf('download') >= 0) {
       hackDOM(path);
     }
 
