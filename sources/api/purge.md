@@ -1,17 +1,17 @@
 对于 CDN 类型的空间，当源服务器的资源发生变更后，可以调用该 API 接口告知 UPYUN 缓存刷新，从而达到外网访问时获取到的是最新的资源。
 
 
-## API 基本域名
+## API 地址
 
 ```
-purge.upyun.com
+http://purge.upyun.com/purge/
 ```
 
 ## 请求方法
 
 ```
 curl -X POST \
-    http://purge.upyun.com \
+    http://purge.upyun.com/purge/ \
     -H "Authorization: <your_authorization>" \
     -H "Date: <date>" \
     -F purge=<url-list>
