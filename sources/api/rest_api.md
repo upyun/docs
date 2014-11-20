@@ -66,19 +66,19 @@ __签名（signature）算法__
 | CONTENT_LENGTH | 请求内容长度，除 GET 等无实体请求外，需和请求头部的 `Content-Length` 一致                |
 | PASSWORD       | 空间的操作员密码                                                                         |
 
-将上表所注的信息以 `&` 字符进行拼接（按表格从上至下的顺序）即（`METHOD&PATH&DATE&CONTENT-LENGTH&PASSWORD`），并将所得字符串进行 MD5 加密，即得我们所需的 签名（signature）
+将 `PASSWORD` md5 之后（我们暂且将其记作 `PASSWORD_MD5`），上表所注的其他信息以 `&` 字符进行拼接（按表格从上至下的顺序）即（`METHOD&PATH&DATE&CONTENT-LENGTH&PASSWORD_MD5`），并将所得字符串进行 MD5 加密，即得我们所需的 签名（signature）
 
 > **注:**
 > 签名的有效期为30分钟。如果超过30分钟，则需重新生成签名。
 
 如：
 
-请求方式为 *`GET`*，URI 为 *`bucket`* 空间的子目录 *`/sub`*，请求时间 为 *` Wed, 29 Oct 2014 02:26:58 GMT`*，因为是 GET，所以 `CONTENT-LENGTH` 为 *`0`*，假设该空间有一个授权操作员名为 *`operator`*，该操作员密码为 *`password`*，那么：
+请求方式为 *`GET`*，URI 为 *`bucket`* 空间的子目录 *`/sub`*，请求时间 为 *` Wed, 29 Oct 2014 02:26:58 GMT`*，因为是 GET，所以 `CONTENT-LENGTH` 为 *`0`*，假设该空间有一个授权操作员名为 *`operator`*，该操作员密码为 *`password`*（密码 md5 后为 *`5f4dcc3b5aa765d61d8327deb882cf99`*），那么：
 
-签名（signature）即是对字符串 *`GET&bucket/sub&Wed, 29 Oct 2014 02:26:58 GMT&0&password`* 计算 md5 所得，即：*`5574a733d321ccd692099a0a7f2f47e1`*，因此，只需在请求头部加上如下字段即可：
+签名（signature）即是对字符串 *`GET&bucket/sub&Wed, 29 Oct 2014 02:26:58 GMT&0&5f4dcc3b5aa765d61d8327deb882cf99`* 计算 md5 所得，即：*`e4732bad7ea1fd7a23a4ca90d00aa449`*，因此，只需在请求头部加上如下字段即可：
 
 ```
-Authorization: UpYun operator:5574a733d321ccd692099a0a7f2f47e1
+Authorization: UpYun operator:e4732bad7ea1fd7a23a4ca90d00aa449
 ```
 
 
