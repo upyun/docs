@@ -277,7 +277,7 @@ GET /<bucket>/?usage
 |        401 | Need Date Header                | 发起的请求缺少 Date 头信息                                                                        |
 |        401 | Date offset error               | 发起请求的服务器时间错误，请检查服务器时间是否与世界时间一致                                      |
 |        403 | Not Access                      | 权限错误(如非图片文件上传到图片空间)                                                              |
-|        403 | File size too max               | 单个文件超出大小(100Mb 以内)                                                                      |
+|        403 | File size too max               | 单个文件超出大小(1 GB 以内)                                                                      |
 |        403 | Not a Picture File              | 图片类空间错误码，非图片文件或图片文件格式错误。针对图片空间只允许上传 jpg/png/gif/bmp/tif 格式。 |
 |        403 | Picture Size too max            | 图片类空间错误码，图片尺寸太大。针对图片空间，图片总像素在 200000000 以内。                       |
 |        403 | Bucket full                     | 空间已用满                                                                                        |
