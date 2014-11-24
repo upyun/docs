@@ -120,15 +120,17 @@ PUT /<bucket>/path/to/file
 
 |          参数          |                                                说明                                                |
 |------------------------|----------------------------------------------------------------------------------------------------|
-| `x-gmkerl-type`        | 缩略类型（见下表「x-gmkerl-type 值可选列表」）                                                     |
+| `x-gmkerl-type`        | 缩略类型（见下表「`x-gmkerl-type` 值可选列表」）                                                     |
 | `x-gmkerl-value`       | 缩略类型对应的参数值，单位为像素，须搭配 x-gmkerl-type 使用（见下附注「`x-gmkerl-value` 的使用」）|
 | `x-gmkerl-quality `    | **默认 `95`** 图片压缩质量，可选（1~100）                                                          |
 | `x-gmkerl-unsharp`     | **默认 `true`** 图片锐化                                                                           |
 | `x-gmkerl-thumbnail`   | 在 UPYUN 管理平台创建好缩略图版本该缩略方式包含了所需的缩略参数，参数更简洁，使用更方便            |
 | `x-gmkerl-exif-switch` | **默认 `false` 即删除** 是否保留原图的 EXIF 信息                                                   |
+| `x-gmkerl-crop`        | x,y,width,height(如：`0,0,100,200`)，(x,y)（见下附注「`x-gmkerl-crop` 的备注」） |
+| `x-gmkerl-rotate`      | 旋转角度，目前只允许设置：`auto`, `90`, `180`, `270`（见下附注「`x-gmkerl-rotate` 使用」） |
 
 
-**x-gmkerl-type 值可选列表**
+**注：x-gmkerl-type 值可选列表**
 
 |           值           |                含义                |
 |------------------------|------------------------------------|
@@ -144,6 +146,16 @@ PUT /<bucket>/path/to/file
 
 > * 若 `x-gmkerl-type` 指定为 `fix_width_or_height` 或 `fix_both`，则，`x-gmkerl-value` 值的格式为 `<width>x<height>`，如 `480x576`
 > * 若 `x-gmkerl-type`  为其他的类型，则 `x-gmkerl-value` 只需指定单个数字，如 `42`，意为高宽同为 42
+
+**注：x-gmkerl-crop 的备注**
+> * 左上角坐标；width：要裁剪的宽度；height：要裁剪的高度x >= 0 && y >=0 && width > 0 && height > 0 且必须是正整型
+> * 裁剪参数（x,y）若大于原图大小，则将（x,y）重置为（0,0）进行裁剪
+> * width+x 若大于原图的宽度，则只裁剪到原图的最大宽度为止，不进行空白画布填充
+> * heigth+y 若大于原图的高度，则只裁剪到原图的最大高度为止，不进行空白画布填充
+
+**注：x-gmkerl-rotate 的使用**
+> * 若参数设置为“auto”，则根据原图的EXIF信息进行旋转（旋转后将修改原图的EXIF信息）其他参数则进行强制旋转
+> * 旋转失败时若参数为“auto”，则忽略错误进行保存操作；其他参数则直接返回错误信息
 
 
 **返回信息**
