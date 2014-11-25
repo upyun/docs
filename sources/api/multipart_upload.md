@@ -314,6 +314,7 @@ POST，Content-Type: *application/x-www-form-urlencoded*
 | 代码      | 文本内容                      | 描述                             |
 | -----------| ------------------------- | -------------------------------- |
 | 40001      |                           | 参数错误，详情见返回的错误信息|
+| 40101      | Auth failed                | 授权错误                         |
 | 40301      | Form API disabled.         | 表单API被禁用                      |
 | 40302      | Invalid file blocks.       | 文件分块数量超过限制               |
 | 40303      | Invalid file hash.        | 文件hash值错误                      |
