@@ -93,8 +93,11 @@ eyJwYXRoIjoiL2RlbW8ucG5nIiwiZXhwaXJhdGlvbiI6MTQwOTIwMDc1OCwiZmlsZV9ibG9ja3MiOjEs
 POST /<bucket-name>/
 ```
 
-#### 请求方式
-POST, Content-Type : *application/x-www-form-urlencoded*
+#### 请求类型
+
+```
+Content-Type : application/x-www-form-urlencoded
+```
 
 #### 请求参数
 
@@ -166,8 +169,11 @@ POST, Content-Type : *application/x-www-form-urlencoded*
 POST /<bucket-name>/
 ```
 
-#### 请求方式
-POST，Content-Type: *multipart/form-data*
+#### 请求类型
+
+```
+Content-Type: multipart/form-data
+```
 
 #### 请求参数
 
@@ -216,8 +222,11 @@ POST，Content-Type: *multipart/form-data*
 POST /<bucket-name>/
 ```
 
-#### 请求方式
-POST，Content-Type: *application/x-www-form-urlencoded*
+#### 请求类型
+
+```
+Content-Type: application/x-www-form-urlencoded
+```
 
 #### 请求参数
 
