@@ -152,7 +152,7 @@ eyJidWNrZXQiOiJkZW1vYnVja2V0IiwiZXhwaXJhdGlvbiI6MTQwOTIwMDc1OCwic2F2ZS1rZXkiOiIv
 http://yourdomain.com/return/?code=503&message=%E6%8E%88%E6%9D%83%E5%B7%B2%E8%BF%87%E6%9C%9F&url=%2F2011%2F12%2Ffd0e30047f81fa95.bz2&time=1332129461&sign=b11cb84538e884d63e14e52d35a7bd21
 ```
 
-如果是图片类空间，则会额外增加：image-width、image-height、image-frames 和 image-type 四个参数。
+如果是图片类空间，则会额外增加：image-width、image-height、image-frames 和 image-type 四个参数（这四个参数不参与加密签名）。
 
 * 如果设置了 `notify-url`，那么UPYUN处理完上传操作后，服务端将以发送 POST 请求的方式把上传至 `notify-url` 对应的地址，POST 所提交的参数和上述 `return-url` 中的相同
 
