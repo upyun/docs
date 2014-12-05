@@ -140,4 +140,12 @@
             <a href="https://gitcafe.com/ihacklog/Wordpress-plugin-for-UPYUN" class="btn btn-xs" target="_blank"><i class="fa fa-question-circle"></i>查看</a>
         </div>
     </li>
+
+    <li>
+        <strong>又拍云资源管理器（GUI）</strong>
+        <div class="links">
+            <a href="https://github.com/layerssss/manager-for-upyun" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
+            <a href="https://github.com/layerssss/manager-for-upyun#%E4%B8%8B%E8%BD%BD" target="_blank" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
+        </div>
+    </li>
 </ul>
