@@ -1,21 +1,19 @@
-HTTP FORM API（表单 API） 功能允许用户直接上传文件到UPYUN，而不需要通过客户服务器进行中转，从而为客户网站提供了便捷的解决方案，极大的降低了服务器成本。
+HTTP FORM API 允许用户直接上传文件到 UPYUN，而不需要通过客户服务器进行中转。支持 HTTP 和 HTTPS 协议，您可以选择最优的方式提交请求。
 
 普通上传流程如下：
 
 ![普通上传流程](http://our80.b0.upaiyun.com/wiki_pic/form_api/normal_form.png)
 
-UPYUN表单流程如下：
+UPYUN FORM API 流程如下：
 
 ![UPYUN表单流程](http://our80.b0.upaiyun.com/wiki_pic/form_api/upyun_form.png)
 
-对比两种流程方式，UPYUN表单功能具有以下几点**优势**：
+对比两种流程方式，UPYUN FORM API 具有以下几点**优势**：
 
 * 避免了客户服务器的文件中转，减少了不必要的流量、带宽和客户服务器开销
 * UPYUN 自动选择最近最快的节点接收客户端上传的文件，文件上传速度更快
 * 客户服务端无需开发多余的业务代码，减少开发和测试成本，提高开发效率
 
-
-该功能支持多客户端浏览器、客户端软件、手机 APP 等。
 
 ## API 基本域名
 
