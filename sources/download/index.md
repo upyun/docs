@@ -124,7 +124,7 @@
 </ul>
 
 
-<h2 id="third-party">第三方资源</h2>
+<h2 id="third-party">第三方 SDK</h2>
 <ul class="list-unstyled list-inline clearfix">
     <li>
         <strong>co-upyun</strong>
@@ -140,7 +140,10 @@
             <a href="https://github.com/XadillaX/ez-upyun/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
         </div>
     </li>
+</ul>
 
+<h2 id="third-party">第三方插件</h2>
+<ul class="list-unstyled list-inline clearfix">
     <li>
         <strong>WordPress</strong>
         <div class="links">
