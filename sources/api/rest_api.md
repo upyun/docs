@@ -39,7 +39,7 @@ curl -X GET \
 REST API 支持 [HTTP 基本认证](http://zh.wikipedia.org/wiki/HTTP%E5%9F%BA%E6%9C%AC%E8%AE%A4%E8%AF%81)，其中认证所用的用户名即为已授权给你需要操作的空间的某个操作员名，认证口令为该操作员的密码。
 
 ```sh
-curl -u http://vo.api.upyun.com/<bucket>
+curl -u http://v0.api.upyun.com/<bucket>
 ```
 或者，可以自行将操作员名和操作员密码拼接后以 Base64 编码后自行在请求头部加上 `Authorization` 字段：
 
