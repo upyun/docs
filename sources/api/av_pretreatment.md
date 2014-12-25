@@ -133,20 +133,21 @@ POST，需要进行授权验证
 
 1\. 视频转码
 
-| 参数              | 类型 | 必选  | 参数说明                                                                                                     |
-|-------------------|----------|-------|--------------------------------------------------------------------------------------------------------------|
-| type              | string   | true  | 处理类型，进行视频转码时值必须为 *`video`*                                                                   |
-| bitrate           | integer  | false | 视频比特率，单位kbit，默认按照视频原始比特率处理                                                             |
-| scale             | string   | false | 视频分辨率，格式 *`1024:768`* ，默认按照原始分辨率处理                                                         |
-| auto_scale        | boolean  | false | 是否根据分辨率自动调整视频长宽比例，仅当传递了 *`scale`* 参数时有效                                          |
-| frame_rate        | ingeger  | false | 帧率，既每秒显示的帧数，常用帧率："24"、"25"、"30"等， 默认按照原始帧率处理                                  |
-| rotate            | string   | false | 旋转角度，默认按照原始视频角度处理                                                                           |
-| map_metadata      | boolean  | false | 是否保留视频meta信息，默认值 *`true`*                                                                        |
-| disable_audio     | boolean  | false | 是否禁掉音频，默认 *`false`*                                                                                 |
-| disable_video     | boolean  | false | 是否禁掉视频，默认 *`false`*                                                                                 |
-| format            | string   | false | 视频输出格式，支持 mp4/flv，默认按照原始格式输出                                                             |
-| accelerate_factor | float    | false | 设置视频加速的倍数，取值范围［1.0， 10.0］这个值是一个浮点数，可以是"2.5"，表示加速2.5倍                     |
-| save_as           | string   | false | 转码后输出的文件保存路径（同一个空间下），如果没有传递，会根据请求的参数生成一个文件名保存在原始文件同目录下 |
+| 参数              | 类型    | 必选  | 参数说明                                                                                                     |
+|-------------------|---------|-------|--------------------------------------------------------------------------------------------------------------|
+| type              | string  | true  | 处理类型，进行视频转码时值必须为 *`video`*                                                                   |
+| bitrate           | integer | false | 视频比特率，单位kbit，默认按照视频原始比特率处理                                                             |
+| scale             | string  | false | 视频分辨率，格式 *`1024:768`* ，默认按照原始分辨率处理                                                       |
+| auto_scale        | boolean | false | 是否根据分辨率自动调整视频长宽比例，仅当传递了 *`scale`* 参数时有效                                          |
+| frame_rate        | ingeger | false | 帧率，既每秒显示的帧数，常用帧率："24"、"25"、"30"等， 默认按照原始帧率处理                                  |
+| rotate            | string  | false | 旋转角度，默认按照原始视频角度处理                                                                           |
+| map_metadata      | boolean | false | 是否保留视频meta信息，默认值 *`true`*                                                                        |
+| disable_audio     | boolean | false | 是否禁掉音频，默认 *`false`*                                                                                 |
+| disable_video     | boolean | false | 是否禁掉视频，默认 *`false`*                                                                                 |
+| format            | string  | false | 视频输出格式，支持 mp4/flv，默认按照原始格式输出                                                             |
+| accelerate_factor | float   | false | 设置视频加速的倍数，取值范围［1.0， 10.0］这个值是一个浮点数，可以是"2.5"，表示加速2.5倍                     |
+| save_as           | string  | false | 转码后输出的文件保存路径（同一个空间下），如果没有传递，会根据请求的参数生成一个文件名保存在原始文件同目录下 |
+| return_info       | boolean | false | 是否返回视频元数据，仅当处理类型为 *`video`* 时有效，默认 *`false`*                                          |
 
 2\. HLS转码切片
 HLS（[HTTP Live Streaming](http://zh.wikipedia.org/wiki/HTTP_Live_Streaming)） 转码切割处理除了 *`hls_time`* 之外其他参数与普通视频转码一致
@@ -200,7 +201,7 @@ HLS（[HTTP Live Streaming](http://zh.wikipedia.org/wiki/HTTP_Live_Streaming)）
 | path        | array   | 生成的目标文件保存路径                                                                                                   |
 | description | string  | 处理结果描述                                                                                                             |
 | task_id     | integer | 任务对应的 *`task_id`*                                                                                                   |
-| info        | string  | 视频文件的元数据信息，经过 base64 处理过之后的JSON字符串，仅当提视频转码任务中包含 *`return_info`* 且值为*`true`* 时返回 |
+| info        | string  | 视频文件的元数据信息，经过 base64 处理过之后的JSON字符串，仅当提视频转码任务，且处理参数中包含 *`return_info`* 且值为*`true`* 时返回 |
 | signature   | string  | 回调验证签名                                                                                                             |
 
 回调验证签名的计算方法与认证授权的计算方式相同。特别地，因为`path`参数返回的数据是一个数组，
