@@ -62,7 +62,6 @@
     });
 
     console.log('%c UPYUN loves you! :)', 'color: #4fc3f7');
-    console.log('%c Merry Christmas! UPYUNers!', 'color: #ca31be');
   });
 
   // go-top
