@@ -88,7 +88,7 @@ token 防盗链的生成方式如下：
 举例:
 
 ```
-设置图片链接 http://{空间域名}/dir/pic.jpg 10分钟有效
+设置图片链接 http://<bucket>/dir/pic.jpg 10分钟有效
 
 当前Unix 时间 = 1370000000
 etime = 1370000000 + 600 = 1370000600
@@ -97,7 +97,7 @@ sign = MD5(token密匙&etime&URI) = xxxxxxxxxxxxabcdefghyyyyyyyyyyyy
 _upt = MD5(token密匙&etime&URI){中间8位}+etime = abcdefgh1370000600
 
 该签名拼接在 URL 地址或用户 Cookie 中，均可起到防盗链作用:
-URL: http://{空间域名}/dir/pic.jpg?_upt=abcdefgh1370000600
+URL: http://<bucket>/dir/pic.jpg?_upt=abcdefgh1370000600
 Cookie: _upt=abcdefgh1370000600;
 ```
 
@@ -125,11 +125,11 @@ $sign = substr(md5($key.'&'.$etime.'&'.$path), 12,8).$etime;
 
 例如：
 
-```
-空间有自定义版本号名称为： 「200」，
-间隔标识符为：「!」，
-规则为「限定宽度，高度自适应」
-```
+
+空间有自定义版本号名称为： *`200`*
+间隔标识符为：*`!`*，
+规则为 `限定宽度，高度自适应`
+
 那么调用这个版本的缩略图为：
 
 ```
