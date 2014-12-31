@@ -27,7 +27,7 @@ curl -X GET \
 
 ```
 
-
+> * `Authorization`, `Content-Length`, `Date` 这三个参数是必须的
 > * `Authorization` 用于认证授权
 > * `Content-Length` 在 `PUT`、`POST` 请求中必须设置
 > * `Date` 为[格林尼治标准时间](http://zh.wikipedia.org/wiki/%E6%A0%BC%E6%9E%97%E5%B0%BC%E6%B2%BB%E5%B9%B3%E6%97%B6)（GMT 格式）
