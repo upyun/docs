@@ -78,10 +78,10 @@ __签名（signature）算法__
 
 请求方式为 *`GET`*，URI 为 *`bucket`* 空间的子目录 *`/sub`*，请求时间 为 *` Wed, 29 Oct 2014 02:26:58 GMT`*，因为是 GET，所以 `CONTENT-LENGTH` 为 *`0`*，假设该空间有一个授权操作员名为 *`operator`*，该操作员密码为 *`password`*（密码 md5 后为 *`5f4dcc3b5aa765d61d8327deb882cf99`*），那么：
 
-签名（signature）即是对字符串 *`GET&bucket/sub&Wed, 29 Oct 2014 02:26:58 GMT&0&5f4dcc3b5aa765d61d8327deb882cf99`* 计算 md5 所得，即：*`e4732bad7ea1fd7a23a4ca90d00aa449`*，因此，只需在请求头部加上如下字段即可：
+签名（signature）即是对字符串 *`GET&/bucket/sub&Wed, 29 Oct 2014 02:26:58 GMT&0&5f4dcc3b5aa765d61d8327deb882cf99`* 计算 md5 所得，即：*`03db45e2904663c5c9305a9c6ed62af3`*，因此，只需在请求头部加上如下字段即可：
 
 ```
-Authorization: UpYun operator:e4732bad7ea1fd7a23a4ca90d00aa449
+Authorization: UpYun operator:03db45e2904663c5c9305a9c6ed62af3
 ```
 
 
