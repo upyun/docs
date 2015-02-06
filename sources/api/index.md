@@ -2,7 +2,7 @@
 UPYUN 为开发者提供了丰富的 API 接口，用以操作服务器资源，主要包括HTTP REST API和FORM API。当然，您也可以通过 FTP 客户端来操作资源文件。
 
 ## API 域名
-在 [HTTP REST API](/api/rest_api) 以及 [表单 API](/api/form_api) 中，UPYUN 特别地提供了针对国内不同线路优化的 API 域名：
+在 [HTTP REST API](/api/rest_api/) 以及 [表单 API](/api/form_api/) 中，UPYUN 特别地提供了针对国内不同线路优化的 API 域名：
 
 * `v0.api.upyun.com`： 自动判断最优线路
 * `v1.api.upyun.com`： 电信线路
