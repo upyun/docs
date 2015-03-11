@@ -3,6 +3,7 @@
 
   $(function () {
     function hackDOM(path) {
+      $('#disqus_thread').hide();
       $('#main-wrapper .toolbar').remove();
       $('#main-wrapper .toc').remove();
       $('#main-wrapper .content-body').removeClass('content-body').addClass('content-single').addClass(function() {
