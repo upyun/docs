@@ -59,6 +59,7 @@ expiration1409200758file_blocks1file_hashb1143cbc07c8e768d517fa5e73cb79cafile_si
 ```
 expiration1409200758file_blocks1file_hashb1143cbc07c8e768d517fa5e73cb79cafile_size653252path/demo.pngcAnyet74l9hdUag34h2dZu8z7gU=
 ```
+> 注：在分块上传数据和合并文件请求中，需要将此处所用`表单API`替换为上次请求返回的 `token_secret`，再进行 `signature` 计算
 
 第三步，将第二步所得字符计算 md5 后：
 ```
@@ -147,6 +148,7 @@ Content-Type : application/x-www-form-urlencoded
 ```js
 {
   save_token: '68640c7ab4120b4992907cabc6ea2c48',
+  token_secret: "89a3d8d8a26a8adb32a3651a63c0d5cc",
   bucket_name: 'example',
   blocks: 5,
   status: [1,0,1,0,0],
@@ -159,6 +161,7 @@ Content-Type : application/x-www-form-urlencoded
 |参数        |说明          |
 |-----------|-------------|
 |save_token |分块上传索引key，下一步分块上传数据时必须携带本参数  |
+|token_secret| 用于之后请求计算 `policy` 和 `signature` 所用 |
 |bucket_name|文件保存空间                                |
 |blocks     |文件分块数量                                  |
 |status     |分块文件上传状态，`true`表示已完成上传，`false`表示分块未完成上传。数组索引表示分块序号，从0开始；      |
@@ -213,6 +216,7 @@ Content-Type: multipart/form-data
 |参数        |说明          |
 |-----------|-------------|
 |save_token |分块上传索引key，下一步分块上传数据时必须携带本参数  |
+|token_secret| 用于之后请求计算 `policy` 和 `signature` 所用 |
 |bucket_name|文件保存空间                                |
 |blocks     |文件分块数量                                  |
 |status     |分块文件上传状态，`true`表示已完成上传，`false`表示分块未完成上传。数组索引表示分块序号，从0开始；      |
