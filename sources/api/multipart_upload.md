@@ -161,7 +161,7 @@ Content-Type : application/x-www-form-urlencoded
 |参数        |说明          |
 |-----------|-------------|
 |save_token |分块上传索引key，下一步分块上传数据时必须携带本参数  |
-|token_secret| 用于之后请求计算 `policy` 和 `signature` 所用 |
+|token_secret| 用于之后请求计算 `policy` 和 `signature` 所用，代替表单API密钥 |
 |bucket_name|文件保存空间                                |
 |blocks     |文件分块数量                                  |
 |status     |分块文件上传状态，`true`表示已完成上传，`false`表示分块未完成上传。数组索引表示分块序号，从0开始；      |
@@ -216,7 +216,7 @@ Content-Type: multipart/form-data
 |参数        |说明          |
 |-----------|-------------|
 |save_token |分块上传索引key，下一步分块上传数据时必须携带本参数  |
-|token_secret| 用于之后请求计算 `policy` 和 `signature` 所用 |
+|token_secret| 用于之后请求计算 `policy` 和 `signature` 所用，代替表单API密钥 |
 |bucket_name|文件保存空间                                |
 |blocks     |文件分块数量                                  |
 |status     |分块文件上传状态，`true`表示已完成上传，`false`表示分块未完成上传。数组索引表示分块序号，从0开始；      |
