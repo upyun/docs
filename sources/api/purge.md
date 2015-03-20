@@ -9,7 +9,7 @@ http://purge.upyun.com/purge/
 
 ## 请求方法
 
-```
+```sh
 curl -X POST \
     http://purge.upyun.com/purge/ \
     -H "Authorization: <your_authorization>" \
