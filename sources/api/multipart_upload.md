@@ -130,8 +130,8 @@ Content-Type : application/x-www-form-urlencoded
 | content-type         | 否   | UPYUN 默认根据扩展名判断，手动指定可提高精确性                                                      |
 | image-width-range    | 否   | 图片宽度限制，格式：`min,max`，单位：像素，如 `0,1024`，允许上传宽度为 0～1024px 之间               |
 | image-height-range   | 否   | 图片高度限制，格式：`min,max`，单位：像素，如 `0,1024`，允许上传高度在 0～1024px 之间               |
-| notify-url           | 否   | 异步通知 URL，见 [\[表单 API 通知规则\]](/api/form_api/#notify_return)                                                      |
-| return-url           | 否   | 同步通知 URL，见 [\[表单 API 通知规则\]](/api/form_api/#notify_return)                                                      |
+| notify_url           | 否   | 异步通知 URL，见 [\[表单 API 通知规则\]](/api/form_api/#notify_return)                                                      |
+| return_url           | 否   | 同步通知 URL，见 [\[表单 API 通知规则\]](/api/form_api/#notify_return)                                                      |
 | x-gmkerl-thumbnail   | 否   | 缩略图版本名称，仅支持图片类空间，可搭配其他 `x-gmkerl-*` 参数使用 [\[表单 API 注3\]](/api/form_api/#note3) |
 | x-gmkerl-type        | 否   | 缩略类型 [\[表单 API 注4\]](/api/form_api/#note4)                                                           |
 | x-gmkerl-value       | 否   | 缩略类型对应的参数值 [\[表单 API 注4\]](/api/form_api/#note5)                                               |
