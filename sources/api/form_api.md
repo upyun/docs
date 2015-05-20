@@ -143,7 +143,6 @@ __计算 `policy` 相应步骤所得结果如下：__
 ```
 
 第二步，将第一步所得字符串 base64 编码后：
-2.
 ```
 eyJidWNrZXQiOiJkZW1vYnVja2V0IiwiZXhwaXJhdGlvbiI6MTQwOTIwMDc1OCwic2F2ZS1rZXkiOiIvaW1nLmpwZyJ9
 ```
