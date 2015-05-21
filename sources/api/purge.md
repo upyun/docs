@@ -28,7 +28,7 @@ curl -X POST \
 Authorization: UpYun <bucket-name>:<operator-name>:<sign>
 ```
 
-另外，需将待刷新的 URL 列表在以 *`\n`* 连接后以表单字段 `purge` 随请求发送。
+另外，需将待刷新的 URL 列表在以换行符 *`\n`* 连接后以表单字段 `purge` 随请求发送。
 
 
 ## 响应状态
