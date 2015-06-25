@@ -200,7 +200,7 @@ HLS（[HTTP Live Streaming](http://zh.wikipedia.org/wiki/HTTP_Live_Streaming)）
 | status_code | integer | 处理结果状态码，*`200`* 表示成功处理                                                                                     |
 | path        | array   | 生成的目标文件保存路径                                                                                                   |
 | description | string  | 处理结果描述                                                                                                             |
-| task_id     | integer | 任务对应的 *`task_id`*                                                                                                   |
+| task_id     | string  | 任务对应的 *`task_id`*                                                                                                   |
 | info        | string  | 视频文件的元数据信息，经过 base64 处理过之后的JSON字符串，仅当提视频转码任务，且处理参数中包含 *`return_info`* 且值为*`true`* 时返回 |
 | signature   | string  | 回调验证签名                                                                                                             |
 
