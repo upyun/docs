@@ -344,5 +344,35 @@ http://yourdomain.com/return/?code=503&message=%E6%8E%88%E6%9D%83%E5%B7%B2%E8%BF
 <a name="note6"></a>
 #### 注6：sign与non-sign参数说明 ####
 
-* sign 是根据 code、message、url 、time 和表单 API 验证密匙(`form_api_secret`) 使用 `&` 拼接后进行 md5 处理得到。
+* sign 是根据 code、message、url 、time 和表单 API 验证密匙(`form_api_secret`) 使用 `&` 拼接后进行 md5 处理得到。拼接时需注意 url 的编码与解码问题。如果使用了 `ext-param` 参数, 则 `ext-param` 也需加入签名计算中。同样使用 `&` 拼接。
+拼接在 `form_api_secret` 之后即可。
+
+示例:
+
+回调信息
+
+```
+{"code":200,"message":"ok","url":"\/2015\/06\/17\/190623\/upload_QQ\u56fe\u7247201506011111206f7c696f0920f097d7eefd750334003e.png","time":1434539183,"image-width":1024,"image-height":768,"image-frames":1,"image-type":"PNG","sign":"086c46cfedfc22bfa2e4971a77530a76"}
+```
+则有:
+
+code: `200`
+
+message: `'ok'`
+
+url: `'/2015/06/17/190623/upload_QQ图片201506011111206f7c696f0920f097d7eefd750334003e.png'`
+
+time: `1434539183`
+
+form_api_secret: `lGetaXubhGezKp89+6iuOb5IaS3=`
+
+拼接后的字符串为:
+
+```
+200&ok&/2015/06/17/190623/upload_QQ图片201506011111206f7c696f0920f097d7eefd750334003e.png&1434539183&lGetaXubhGezKp89+6iuOb5IaS3=
+
+```
+
+最终的签名为: `'086c46cfedfc22bfa2e4971a77530a76'`
+
 * 如果因发生错误，表单 API 未取得，则会特殊的返回 `non-sign`，其处理方式和上述 `sign` 相同，只是没有表单 API 验证密匙(`form_api_secret`)
