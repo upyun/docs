@@ -128,6 +128,7 @@
     <li>
         <strong>Discuz</strong>
         <div class="links">
+            <a href="https://github.com/upyun/discuz-plugin" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
             <a href="/misc/discuz/" class="btn btn-xs"><i class="fa fa-question-circle"></i>查看</a>
         </div>
     </li>
