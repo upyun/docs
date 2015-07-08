@@ -99,14 +99,22 @@ ftpcmd('delete', 'test/index.htm');
 ## 安装使用 UPYUN 官方插件
 
 
-### Discuz X3
+### Discuz X3、X3.1、X3.2
 
 #### 插件下载
 
-* 最新版插件(v0.1) 下载：[Zip 压缩包](http://our80.b0.upaiyun.com/wiki_download/dz3_upyun_v0.1.zip) | [7z 压缩包](http://our80.b0.upaiyun.com/wiki_download/dz3_upyun_v0.1.7z)
-* 最新版插件(v0.1) 安装使用手册下载：[Word 版](http://our80.b0.upaiyun.com/wiki_download/dz3_readme_v0.1.docx) | [Pdf 版](http://our80.b0.upaiyun.com/wiki_download/dz3_readme_v0.1.pdf)
+* 最新版插件(v1.0) 下载：[Zip 压缩包](http://upyun-assets.b0.upaiyun.com/docs/discuz-plugin/discuz-plugin-master.zip) | [github](https://github.com/upyun/discuz-plugin)
+* 最新版插件(v1.0) 安装使用手册下载：[Pdf 版](http://upyun-assets.b0.upaiyun.com/docs/discuz-plugin/Discuz%20%E8%AE%BA%E5%9D%9B%20UPYUN%20%E6%8F%92%E4%BB%B6%20-%20v1.0.pdf) | [Html 版](http://upyun-assets.b0.upaiyun.com/docs/discuz-plugin/Discuz%20%E8%AE%BA%E5%9D%9B%20UPYUN%20%E6%8F%92%E4%BB%B6-v1.0.zip)
 
 #### 版本更新说明
+** v1.0 更新说明 **
+
+- 不兼容 v0.1 版本
+- 简化配置，不再区分文件和图片空间。UPYUN 合并了文件和图片空间
+- 增加分块上传支持，大大提升上传的稳定性和速度
+- 增加 Discuz X3.1 和 X3.2 版本的支持
+- 取消本地图片和文件的备份
+- 优化 Token 防盗链（需要将论坛域名绑定到 UPYUN 空间）
 
 **v0.1 更新说明**
 
