@@ -70,10 +70,10 @@ UPYUN FORM API 流程如下：
 * UPYUN 自动选择最近最快的节点接收客户端上传的文件，文件上传速度更快
 * 客户服务端无需开发多余的业务代码，减少开发和测试成本，提高开发效率
 
-使用表单API进行文件上传，推荐的采用以下流程：
+使用表单 API 进行文件上传，推荐的采用以下流程：
 
-1. 请求客服服务器，生成、获取上传所需的signature、policy参数。为了提升上传成功率（避免签名过期）、安全性(设置尽可能短的授权有效期)，我们建议在每次执行上传操作之前，都重新执行本步骤获取相关参数；
-2. 请求UPYUN API上传文件，校验返回结果/异步回调通知客服服务器；
+1. 请求客服服务器，生成、获取上传所需的 signature、policy 参数。为了提升上传成功率（避免签名过期）、安全性(设置尽可能短的授权有效期)，我们建议在每次执行上传操作之前，都重新执行本步骤获取相关参数；
+2. 请求 UPYUN API 上传文件，校验返回结果/异步回调通知客服服务器；
 3. 处理常规客户业务流程；
 
 
@@ -121,7 +121,7 @@ Policy 生成步骤：
 Signature 生成步骤：
 
 1. 生成 Policy 字符串
-2. 将第 1 步中所得字符串与您的表单API（可登录 UPYUN 官网获取）字符串用 `&` 拼接
+2. 将第 1 步中所得字符串与您的表单 API（可登录 UPYUN 官网获取）字符串用 `&` 拼接
 3. 将第 2 步中所的的字符串计算 md5，所得即为 Signature
 
 如，假设一个请求所需的的策略参数如下表:
@@ -154,7 +154,7 @@ __计算 `signature` 相应步骤所的结果如下：__
 eyJidWNrZXQiOiJkZW1vYnVja2V0IiwiZXhwaXJhdGlvbiI6MTQwOTIwMDc1OCwic2F2ZS1rZXkiOiIvaW1nLmpwZyJ9
 ```
 
-第二步，第一步结果加上表单API后：
+第二步，第一步结果加上表单 API 后：
 ```
 eyJidWNrZXQiOiJkZW1vYnVja2V0IiwiZXhwaXJhdGlvbiI6MTQwOTIwMDc1OCwic2F2ZS1rZXkiOiIvaW1nLmpwZyJ9&cAnyet74l9hdUag34h2dZu8z7gU=
 ```
@@ -171,41 +171,41 @@ eyJidWNrZXQiOiJkZW1vYnVja2V0IiwiZXhwaXJhdGlvbiI6MTQwOTIwMDc1OCwic2F2ZS1rZXkiOiIv
 |         参数         | 必选 |                                                 说明                                                |
 |----------------------|------|-----------------------------------------------------------------------------------------------------|
 | bucket               | 是   | 保存所上传的文件的 UPYUN 空间名                                                                     |
-| save-key             | 是   | 保存路径，如: '/path/to/file.ext'，可用占位符 [\[注1\]](#note1)                      |
+| save-key             | 是   | 保存路径，如: '/path/to/file.ext'，可用占位符 [\[注 1\]](#note1)                      |
 | expiration           | 是   | 请求的过期时间，UNIX 时间戳（秒）                                                                   |
 | allow-file-type      | 否   | 文件类型限制，制定允许上传的文件扩展名                                                              |
 | content-length-range | 否   | 文件大小限制，格式：`min,max`，单位：字节，如 `102400,1024000`，允许上传 100Kb～1Mb 的文件          |
 | content-md5          | 否   | 所上传的文件的 MD5 校验值，UPYUN 根据此来校验文件上传是否正确                                       |
-| content-secret       | 否   | 原图访问密钥 [\[注2\]](#note2)                                                 |
+| content-secret       | 否   | 原图访问密钥 [\[注 2\]](#note2)                                                 |
 | content-type         | 否   | UPYUN 默认根据扩展名判断，手动指定可提高精确性                                                      |
 | image-width-range    | 否   | 图片宽度限制，格式：`min,max`，单位：像素，如 `0,1024`，允许上传宽度为 0～1024px 之间               |
 | image-height-range   | 否   | 图片高度限制，格式：`min,max`，单位：像素，如 `0,1024`，允许上传高度在 0～1024px 之间               |
 | notify-url           | 否   | 异步通知 URL，见 [\[通知规则\]](#notify_return)                                                      |
 | return-url           | 否   | 同步通知 URL，见 [\[通知规则\]](#notify_return)                                                      |
-| x-gmkerl-thumbnail   | 否   | 缩略图版本名称，仅支持图片类空间，可搭配其他 `x-gmkerl-*` 参数使用 [\[注3\]](#note3) |
-| x-gmkerl-type        | 否   | 缩略类型 [\[注4\]](#note4)                                                           |
-| x-gmkerl-value       | 否   | 缩略类型对应的参数值 [\[注4\]](#note5)                                               |
+| x-gmkerl-thumbnail   | 否   | 缩略图版本名称，仅支持图片类空间，可搭配其他 `x-gmkerl-*` 参数使用 [\[注 3\]](#note3) |
+| x-gmkerl-type        | 否   | 缩略类型 [\[注 4\]](#note4)                                                           |
+| x-gmkerl-value       | 否   | 缩略类型对应的参数值 [\[注 4\]](#note5)                                               |
 | x-gmkerl-quality     | 否   | **默认 95**缩略图压缩质量                                                                           |
 | x-gmkerl-unsharp     | 否   | **默认锐化（true）**是否进行锐化处理                                                                |
 | x-gmkerl-rotate      | 否   | 图片旋转（顺时针），可选：`auto`，`90`，`180`，`270` 之一                                           |
 | x-gmkerl-crop        | 否   | 图片裁剪，格式：`x,y,width,height`，均需为正整型                                                    |
 | x-gmkerl-exif-switch | 否   | 是否保留 exif 信息，仅在搭配 `x-gmkerl-crop`，`x-gmkerl-type`，`x-gmkerl-thumbnail` 时有效。        |
-| ext-param            | 否   | 额外参数，UTF-8 编码，并小于 255 个字符 [\[注5\]](#note5)                            |
+| ext-param            | 否   | 额外参数，UTF-8 编码，并小于 255 个字符 [\[注 5\]](#note5)                            |
 
 
 **注：**
 > * 若在上传非图片文件时使用 `image-width-range`，`image-height-range`，会返回「不是图片」的错误；
 > * 若请求中带有图片处理参数，最终只保存处理后的图片，上传的原图不保存；
 > * 若同时提交旋转和裁剪参数，系统将按照先旋转，后裁剪的顺序进行处理；
-> * 若原图中包含EXIF信息，那么旋转操作后保存的图片中，EXIF信息的图片方向将被修改；
-> * 图片处理参数仅在上传图片时有效，暂不支持对已保存在UPYUN的原图进行图片处理。
+> * 若原图中包含 EXIF 信息，那么旋转操作后保存的图片中，EXIF 信息的图片方向将被修改；
+> * 图片处理参数仅在上传图片时有效，暂不支持对已保存在 UPYUN 的原图进行图片处理。
 
 <a name="notify_return"></a>
 ### 通知规则
 
 * 如果没有设置 `return-url`，那么 UPYUN 处理完上传操作后，将把结果信息返回输出到 body 中。
 * 如果设置了 `return-url`，那么 UPYUN 处理完上传操作后，将会把结果信息以 Query String 的形式追加到 `return-url` 指定的 URL 后，并进行 302 跳转，如，`return-url` 为 *`http://yourdomain.com/return/`* 那么，所跳转的 URL 可能会如下所示：
-* URL 中包括：code、message、url、time 和 sign(或 non-sign) 参数。[\[注6\]](#note6)
+* URL 中包括：code、message、url、time 和 sign(或 non-sign) 参数。[\[注 6\]](#note6)
 
 ```
 http://yourdomain.com/return/?code=503&message=%E6%8E%88%E6%9D%83%E5%B7%B2%E8%BF%87%E6%9C%9F&url=%2F2011%2F12%2Ffd0e30047f81fa95.bz2&time=1332129461&sign=b11cb84538e884d63e14e52d35a7bd21
@@ -213,9 +213,9 @@ http://yourdomain.com/return/?code=503&message=%E6%8E%88%E6%9D%83%E5%B7%B2%E8%BF
 
 如果是图片类空间，则会额外增加：image-width、image-height、image-frames 和 image-type 四个参数（这四个参数不参与加密签名）。
 
-* 如果设置了 `notify-url`，那么UPYUN处理完上传操作后，服务端将以发送 POST 请求的方式把上传至 `notify-url` 对应的地址，POST 所提交的参数和上述 `return-url` 中的相同
+* 如果设置了 `notify-url`，那么 UPYUN 处理完上传操作后，服务端将以发送 POST 请求的方式把上传至 `notify-url` 对应的地址，POST 所提交的参数和上述 `return-url` 中的相同
 
-### 表单API状态代码表
+### 表单 API 状态代码表
 
 | HTTP 状态码 |                 返回代码                |                                       含义                                      |
 |-------------|-----------------------------------------|---------------------------------------------------------------------------------|
@@ -255,13 +255,13 @@ http://yourdomain.com/return/?code=503&message=%E6%8E%88%E6%9D%83%E5%B7%B2%E8%BF
 ### 注释说明
 
 <a name="note1"></a>
-#### 注1：save-key详细说明
+#### 注 1：save-key 详细说明
 
 |  类型  |                  格式                 |                      说明                     |
 |--------|---------------------------------------|-----------------------------------------------|
 | 绝对值 | String                                | 即手动指定具体的路径，如: `/path/to/file.ext` |
 | 时间类 | {year} {mon} {day} {hour} {min} {sec} | 日期、时间相关内容                            |
-| md5类  | {filemd5}                             | 文件内容的 md5 值                             |
+| md5 类  | {filemd5}                             | 文件内容的 md5 值                             |
 | 随机类 | {random} {random32}                   | 16 位或 32 位随机字符和数字                   |
 | 文件名 | {filename} {suffix} {.suffix}         | 上传文件的文件名及扩展名                      |
 
@@ -280,11 +280,11 @@ http://yourdomain.com/return/?code=503&message=%E6%8E%88%E6%9D%83%E5%B7%B2%E8%BF
 
 
 <a name="note2"></a>
-#### 注2：content-secret详细说明 ####
+#### 注 2：content-secret 详细说明 ####
 
 **使用场景：**
 
-原图保存在UPYUN后，不允许直接对外提供访问，仅允许以缩略图的方式，或带有水印的原图对外提供访问时，可以使用 `content-secret` 参数设置一个“访问密钥”。
+原图保存在 UPYUN 后，不允许直接对外提供访问，仅允许以缩略图的方式，或带有水印的原图对外提供访问时，可以使用 `content-secret` 参数设置一个“访问密钥”。
 
 **使用须知：**
 
@@ -300,7 +300,7 @@ http://yourdomain.com/return/?code=503&message=%E6%8E%88%E6%9D%83%E5%B7%B2%E8%BF
   那么该图片的对外访问地址为：http://demobucket.b0.upaiyun.com/dir/sample.jpg!secret
 
 <a name="note3"></a>
-#### 注3：图片缩略详细说明 ####
+#### 注 3：图片缩略详细说明 ####
 
 * 仅支持图片类空间，且只保存处理后的缩略图，不保存原图
 * 在使用缩略图版本参数(`x-gmkerl-thumbnail`)前，需要确保已经存在[[如何创建自定义缩略图|缩略图版本号]]，否则将直接错误返回。
@@ -309,7 +309,7 @@ http://yourdomain.com/return/?code=503&message=%E6%8E%88%E6%9D%83%E5%B7%B2%E8%BF
 
 
 <a name="note4"></a>
-#### 注4：缩略类型详细说明 ####
+#### 注 4：缩略类型详细说明 ####
 
 |         参数        |                说明                |      单位      |             举如            |
 |---------------------|------------------------------------|----------------|-----------------------------|
@@ -323,28 +323,28 @@ http://yourdomain.com/return/?code=503&message=%E6%8E%88%E6%9D%83%E5%B7%B2%E8%BF
 
 
 <a name="note5"></a>
-#### 注5：额外参数详细说明 ####
+#### 注 5：额外参数详细说明 ####
 
 **使用场景：**
 
-当用户使用`return-url`或`notify-url`参数时，upyun 会将表单操作的结果，以同步或异步的方式返回给用户，结果内容包含 code、message、url、time 和 sign(或 non-sign 见[通知规则](#notify_return)，无法回传其他内容。而 `ext-param` 参数可将用户自定义的内容原封不动的返回给用户。
+当用户使用`return-url`或`notify-url`参数时，UPYUN 会将表单操作的结果，以同步或异步的方式返回给用户，结果内容包含 code、message、url、time 和 sign(或 non-sign 见[通知规则](#notify_return)，无法回传其他内容。而 `ext-param` 参数可将用户自定义的内容原封不动的返回给用户。
 
 
 **使用须知：**
 
-仅支持 UTF-8 格式，最长不超过255个字节。
+仅支持 UTF-8 格式，最长不超过 255 个字节。
 
 
 **举例说明：**
 
-设置过`notify-url`的表单请求提交后，upyun 将以异步的方式把操作结果返回给用户。用户在接收到这个结果时可能无法得知是之前的哪个请求的结果，所以，在表单提交前可以给 `ext-param` 参数设置一个clientId_xxx，用户在 upyun 返回的结果中就可以获得这个 clientId_xxx 值并对之前的某个请求做后续的处理了。
+设置过`notify-url`的表单请求提交后，UPYUN 将以异步的方式把操作结果返回给用户。用户在接收到这个结果时可能无法得知是之前的哪个请求的结果，所以，在表单提交前可以给 `ext-param` 参数设置一个 clientId_xxx，用户在 UPYUN 返回的结果中就可以获得这个 clientId_xxx 值并对之前的某个请求做后续的处理了。
 
 
 
 <a name="note6"></a>
-#### 注6：sign与non-sign参数说明 ####
+#### 注 6：sign 与 non-sign 参数说明 ####
 
-* sign 是根据 code、message、url 、time 和表单 API 验证密匙(`form_api_secret`) 使用 `&` 拼接后进行 md5 处理得到。拼接时需注意 url 的编码与解码问题。如果使用了 `ext-param` 参数, 则 `ext-param` 也需加入签名计算中。同样使用 `&` 拼接。
+* sign 是根据 code、message、url、time 和表单 API 验证密匙(`form_api_secret`) 使用 `&` 拼接后进行 md5 处理得到。拼接时需注意 url 的编码与解码问题。如果使用了 `ext-param` 参数, 则 `ext-param` 也需加入签名计算中。同样使用 `&` 拼接。
 拼接在 `form_api_secret` 之后即可。
 
 示例:
