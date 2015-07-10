@@ -1,20 +1,19 @@
 UPYUN 提供了丰富的 API 以及相关的 SDK 供开发者选择和使用，在使用这些资源之前，我们需要先对 UPYUN 产品做一些必要的了解，从而使得在实际操作过程中不会感到手足无措。
 
-
 ## 基本概念
 
 ### 注册帐号/操作员
 
-「注册帐号」及其密码将作为 [UPYUN 用户控制面板](https://www.upyun.com/cp/#/login/)的登录所用，您需要通过「注册帐号」在 [UPYUN 用户控制面板](https://www.upyun.com/cp/#/login/)进行空间的新建，操作员授权，订单购买等操作。
+「注册帐号」及其密码将作为 [UPYUN 用户控制面板](https://console.upyun.com/#/login/)的登录所用，您需要通过「注册帐号」在 [UPYUN 用户控制面板](https://console.upyun.com/#/login/)进行空间的新建，操作员授权，订单购买等操作。
 
-「操作员」，顾名思义，是用来操作您的空间的，通过使用注册帐号登录[UPYUN 用户控制面板](https://www.upyun.com/cp/#/login/)后，您可以创建多个操作员，满足不同的管理需求。
+「操作员」，顾名思义，是用来操作您的空间的，通过使用注册帐号登录[UPYUN 用户控制面板](https://console.upyun.com/#/login/)后，您可以创建多个操作员，满足不同的管理需求。
 
 「操作员」需要被授权至某个空间，才能对该空间进行一些操作（如，上传，下载等）。帮助中心所涉及到的文档中，若无特殊说明，所指的「操作员」、「操作员名」均为已授权至相应空间的操作员。
 
 
 ### 空间
 
-在您使用注册帐号登录[UPYUN 用户控制面板](https://www.upyun.com/cp/#/login/)后，您可以创建不同的空间以方便管理你的文件资源。
+在您使用注册帐号登录[UPYUN 用户控制面板](https://console.upyun.com/#/login/)后，您可以创建不同的空间以方便管理你的文件资源。
 
 > **提示：**
 > 每个空间都可以授权多个操作员，相应的，每个操作员也可以被授权至多个空间
@@ -40,13 +39,13 @@ UPYUN 目前有如下几种空间类型：
 
 又拍云拥有多种防盗链方式，在空间后台左侧就能看见这些防盗链的类型。
 
-#### IP禁止
+#### IP 禁止
 IP 禁止功能，也就是 IP 黑名单，可以禁止指定的 IP 地址访问空间的文件资源。
 具体的操作方式为：
 
 1. 在`用户控制面板-->选择空间-->防盗链-->IP 禁用`开启 IP 禁用，点击保存。
 2. 添加需要禁止访问的 IP 列表，一行填写一个，点击保存。
-3. 支持通配符，例如如 `10.11.12.*` 将禁止 `10.11.12.0～10.11.12.255` 的IP访问。
+3. 支持通配符，例如如 `10.11.12.*` 将禁止 `10.11.12.0～10.11.12.255` 的 IP 访问。
 
 被禁止的 IP 访问空间的资源，又拍云会返回一个 403 Forbidden 的页面。
 
@@ -63,7 +62,7 @@ IP 禁止功能，也就是 IP 黑名单，可以禁止指定的 IP 地址访问
 2. 添加允许访问的域名/禁止访问的域名，一行填写一个，点击保存。
 3. 支持通配符，，比如白名单的 `*upyun.com` 将允许 `www.upyun.com`、`abcupyun.com` 等网站访问。
 
-不在白名单/在黑名单中的网址加载空间的文件的时候，会返回403 Forbidden。
+不在白名单/在黑名单中的网址加载空间的文件的时候，会返回 403 Forbidden。
 
 #### 客户端白名单
 
@@ -81,20 +80,20 @@ Token 防盗链是功能最强的一种防盗链方式，开启防盗链以后�
 
 token 防盗链的生成方式如下：
 
- +  在`用户控制面板-->选择空间-->防盗链-->Token防盗链`开启 Token 防盗链功能, 并且填写一个任意字符串密钥。
+ +  在`用户控制面板-->选择空间-->防盗链-->Token 防盗链`开启 Token 防盗链功能, 并且填写一个任意字符串密钥。
  + Token 防盗链的制作需要如下参数：1.token（上面填写的字符串）2.etime（防盗链的有效时间。单位；秒）3.URI（待加密的文件的 URI，如/dir/pic.jpg）
- + 生成方式:`_upt = MD5(token密匙&etime&URI){中间8位}+etime`
+ + 生成方式:`_upt = MD5(token 密匙&etime&URI){中间 8 位}+etime`
 
 举例:
 
 ```
-设置图片链接 http://<bucket>/dir/pic.jpg 10分钟有效
+设置图片链接 http://<bucket>/dir/pic.jpg 10 分钟有效
 
-当前Unix 时间 = 1370000000
+当前 Unix 时间 = 1370000000
 etime = 1370000000 + 600 = 1370000600
 URI = "/dir/pic.jpg"
-sign = MD5(token密匙&etime&URI) = xxxxxxxxxxxxabcdefghyyyyyyyyyyyy
-_upt = MD5(token密匙&etime&URI){中间8位}+etime = abcdefgh1370000600
+sign = MD5(token 密匙&etime&URI) = xxxxxxxxxxxxabcdefghyyyyyyyyyyyy
+_upt = MD5(token 密匙&etime&URI){中间 8 位}+etime = abcdefgh1370000600
 
 该签名拼接在 URL 地址或用户 Cookie 中，均可起到防盗链作用:
 URL: http://<bucket>/dir/pic.jpg?_upt=abcdefgh1370000600
@@ -106,7 +105,7 @@ Cookie: _upt=abcdefgh1370000600;
 ```php
 <?php
 $etime = time()+600; // 授权十分钟后过期
-$key = 'token密匙';   // token防盗链密钥
+$key = 'token 密匙';   // token 防盗链密钥
 $path = '/dir/pic.jpg'; // 图片相对路径
 $sign = substr(md5($key.'&'.$etime.'&'.$path), 12,8).$etime;
 ?>
@@ -140,9 +139,9 @@ http://demo.b0.upaiyun.com/img/upyun_test.jpg!200
 #### API 图片预处理
 此外，您也可以选择在调用 API 的同时使用图片预处理的功能，如：
 
-原图大小： 400x320
+原图大小：400x320
 
-![pic](http://our80.b0.upaiyun.com/wiki_pic/sample.jpg)
+![pic](http://upyun-assets.b0.upaiyun.com/docs/guide/sample.jpg)
 
 作图参数:
 
@@ -155,13 +154,14 @@ http://demo.b0.upaiyun.com/img/upyun_test.jpg!200
 作图参数在上传的时候传入，原图在空间会自动保存作图以后的图片。
 上传后的图片大小:
 
-![pic](http://our80.b0.upaiyun.com/wiki_pic/pic.jpg)
+![pic](http://upyun-assets.b0.upaiyun.com/docs/guide/pic.jpg)
 
 具体 API 和参数的使用的方式，可以参考 [API 文档](/api/)
 
 ## 服务方式
 
 ### FTP
+
 UPYUN 额外提供了 FTP 的方式，以便用户可以更方便地对空间的资源进行管理。
 
 使用方法如下：
@@ -182,7 +182,7 @@ UPYUN 额外提供了 FTP 的方式，以便用户可以更方便地对空间的
 除了使用简单的 FTP 的方式之外，UPYUN 还提供了多种不同的 API，方便在不同的编程环境下使用 UPYUN 的服务，其中包括：
 
 * [HTTP REST API](/api/rest_api/)：该接口是基于标准 HTTP 协议的 API 接口，具备了文件资源的增删改查功能，建议在服务端使用
-* [表单 API](/api/form_api/)：表单 API 接口更适用于移动 App 开发，丰富的参数接口和回调机制能够直接将终端用户的文件上传至 UPYUN 服务器，而不需要经过客户自己的服务器，大大提高了处理速度和用户体验
+* [HTTP FORM API](/api/form_api/)：表单 API 接口更适用于移动 App 开发，丰富的参数接口和回调机制能够直接将终端用户的文件上传至 UPYUN 服务器，而不需要经过客户自己的服务器，大大提高了处理速度和用户体验
 * [分块上传 API](/api/multipart_upload/)：在表单上传的基础上，在上传大文件的时候，面对有可能因为网络质量等其他原因而造成的上传失败，可以使用分块上传方式上传文件
 * [缓存刷新 API](/api/purge/)：该功能只适用于 CDN 用户或 CDN 类空间。当源服务器的资源发生变更后，可以调用该 API 接口告知 UPYUN 缓存刷新，从而达到外网访问时获取到的是最新的资源
 * [音视频预处理 API](/api/av_pretreatment/)：视频预处理接口是用于处理已经上传到对应存储空间中的视频文件，进行转码、截图等操作。在处理完成之后，异步通知用户处理结果
