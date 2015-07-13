@@ -13,6 +13,17 @@
     </div>
     <div class="section section-api">
         <i class="upicon upicon-api"></i>
+        <h3>CDN</h3>
+        <h4>CDN Documents</h4>
+        <ul class="list-unstyled">
+            <li><a href="/cdn/#_2">CDN 整体架构</a></li>
+            <li><a href="/cdn/">CDN 基础配置</a></li>
+            <li><a href="/cdn/feature/">CDN 高级特性</a></li>
+            <li><a href="/cdn/">查看更多</a></li>
+        </ul>
+    </div>
+    <div class="section section-api">
+        <i class="upicon upicon-api"></i>
         <h3>API 文档</h3>
         <h4>API Reference</h4>
         <ul class="list-unstyled">
