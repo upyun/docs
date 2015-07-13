@@ -51,7 +51,7 @@ UPYUN 内容分发网络（Content Delivery Networt），即 UPYUN CDN， 通过
 
 ## 回源配置
 
-> 管理后台：CDN 设置 > 基本设置
+> 管理后台：CDN 设置 > 基本设置 > CDN 回源配置
 
 > 空间类型：CDN 空间
 
@@ -126,6 +126,21 @@ UPYUN 内容分发网络（Content Delivery Networt），即 UPYUN CDN， 通过
 
 合理设置最大失败次数和静默时间，有助于在后端异常的情况下最大程度减少对线上请求的影响。这里实际上跟 Nginx 核心的 upstream 模块实现机制类似，以下文档可供进一步参考： [http://nginx.org/en/docs/http/ngx_http_upstream_module.html#server](http://nginx.org/en/docs/http/ngx_http_upstream_module.html#server)
 
+## 参数跟随
+
+> 管理后台：CDN 设置 > 基本设置 > 是否允许传参
+
+> 空间类型：动态 CDN 空间
+
+----
+
+功能开启后，将不再过滤请求中的查询字符串，并将查询字符串传递给源站；如果仅加速静态资源，建议关闭该功能。
+
+* 关闭参数跟随：（访问）`/foo.js?a=1&b=2` => （缓存）`/foo.js` => （回源）`/foo.js`
+* 开启参数跟随：（访问）`/foo.js?a=1&b=2` => （缓存）`/foo.js?a=1&b=2` => （回源）`/foo.js?a=1&b=2`
+
+特别地，`静态 CDN 空间` 默认参数均不跟随且暂时也未提供 `参数跟随` 特性支持，`动态 CDN 空间` 则默认开启了参数跟随。
+
 ## 缓存策略
 
 ### 缓存控制逻辑
@@ -187,7 +202,7 @@ UPYUN 内容分发网络（Content Delivery Networt），即 UPYUN CDN， 通过
 
 针对 `动态 CDN 空间`，当没有匹配到自定义缓存规则且源站也没有返回任何有效的缓存头时，我们就会对回源内容进行动静识别，特别地，我们会根据响应头中的 `Content-Type` 字段和 URL 中的文件后缀名来判断是否是静态内容，其中 `Content-Type` 匹配优先级高于文件后缀名，以下是我们维护的一份 `Content-Type` 和文件后缀名列表，若满足匹配我们就认为是静态内容：
 
-> Content-Type 部分
+> Content-Type 列表
 
 
 ```
@@ -226,13 +241,79 @@ video/x-flv
 video/x-m4v
 ```
 
-> 文件后缀名部分
+> 文件后缀名列表
 
-|-|-|-|-|-|-|-|-|-|-|
-|-|-|-|-|-|-|-|-|-|-|
 |css |js |jpg |jpeg |gif |ico |png |bmp |pict |csv |
+|-|-|-|-|-|-|-|-|-|-|
 |doc |pdf |pls |ppt |tif |tiff |eps |ejs |swf |midi |
 |mida |ttf |eot |woff |otf |svg |svgz |webp |docx |xlsx |
 |xls |pptx |ps |class |jar |bz2 |bzip |exe |flv |gzip |
 |rar |rtf |tgz |gz |txt |zip |mp3 |mp4 |ogg |m4a |
 |m4v | | | | | | | | | |
+
+## GZIP 压缩
+
+目前 UPYUN CDN 开启了 GZIP 压缩的相关特性，具体对应的 Nginx 配置如下：
+
+```
+gzip on;
+gzip_min_length 256;
+gzip_types <见下面的列表>;
+gzip_disable "MSIE [1-6]\.";
+gzip_vary on;
+```
+
+触发实际的 GZIP 压缩行为需要同时满足如下条件：
+
+* `Content-Type` 满足以下列表其中之一：
+
+```
+text/plain
+text/javascript
+text/css
+text/xml
+text/x-component
+application/javascript
+application/x-javascript
+application/xml
+application/json
+application/xhtml+xml
+application/rss+xml
+application/atom+xml
+application/x-font-ttf
+application/vnd.ms-fontobject
+image/svg+xml
+image/x-icon
+font/opentype
+
+text/html -- default
+```
+
+* `Content-Length` 大于 256 字节
+* 客户端请求头带了 `Accept-Encoding: gzip`
+
+## 禁止外链
+
+> 管理后台：通用 > 基本设置 > 外链功能设置
+
+通过管理后台，可以一键禁止整个空间下所有资源的访问，特别地，此时会响应 405 状态码给客户端。
+
+## 特殊状态码说明
+
+> 403 Forbidden
+
+当用户设置了例如 `IP 禁用`，`域名防盗链`, `客户端白名单`, `Token 防盗链` 等防盗链配置并且当前的请求与规则不匹配时，即会响应 403 给客户端，表示该次请求被禁止。另外，若该空间设置了自定义 403 提示图，那么此类情况下就会响应一个 302 跳转到相应的图片。
+
+> 405 Not Allowed
+
+存在相应的空间并未处于禁用状态，但空间被人为地设置为禁止外链，此时访问就会响应 405。同样，405 也支持自定义提示图设置。
+
+> 400 Bad Request
+
+以原始域名或绑定域名访问的时候，其相应的空间不存在或已被管理员禁用，其中的不存在可以理解为未创建或已删除，此时访问就会响应 400。特别地，此时 400 响应体是一个带有简单说明文字的 HTML 页面（例如： [http://e.b0.upaiyun.com/](http://e.b0.upaiyun.com/) ），其他情况下的 400 均表示原意，即表示请求格式错误。
+
+## 特殊回源请求头
+
+> `X-Real-IP` 和 `Client-IP`
+
+UPYUN CDN 回客户源的时候会带这个 `X-Real-IP` 的请求头下去，值为用户实际访问 CDN 的来源 IP 地址。特别地，为了兼容部分服务端程序，我们额外还提供了 `Client-IP` 请求头的支持，其值和 `X-Real-IP` 相同。
