@@ -13,7 +13,7 @@
     </div>
     <div class="section section-api">
         <i class="upicon upicon-api"></i>
-        <h3>CDN</h3>
+        <h3>CDN 文档</h3>
         <h4>CDN Documents</h4>
         <ul class="list-unstyled">
             <li><a href="/cdn/#_2">CDN 整体架构</a></li>
