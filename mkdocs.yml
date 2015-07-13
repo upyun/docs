@@ -28,11 +28,12 @@ pages:
 
 # CDN
 
-- ['cdn/index.md', 'CDN 文档', 'CDN 文档']
+- ['cdn/index.md', 'CDN 文档', 'CDN 基础配置']
+- ['cdn/feature.md', 'CDN 文档', 'CDN 高级特性']
 
 # API
 
-- ['api/index.md', 'API 文档', 'API 文档']
+- ['api/index.md', 'API 文档', 'API 概览']
 - ['api/rest_api.md', 'API 文档', 'HTTP REST API']
 - ['api/form_api.md', 'API 文档', 'HTTP FORM API']
 - ['api/purge.md', 'API 文档', '缓存刷新']
