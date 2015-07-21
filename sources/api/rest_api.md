@@ -119,18 +119,18 @@ PUT /<bucket>/path/to/file
 > * 设置密钥后，若需访问原图，需要在 URL 后加上「缩略图间隔符号」和「访问密钥」（如： 当缩略图间隔符为 *`!`*，访问密钥为 *`secret`*，那么，原图访问方式即为： *`http://bucket.b0.upaiyun.com/sample.jpg!secret`*）
 
 #### 图片预处理参数
-当上传图片文件至图片类型的空间时候，除了通用的上传参数外，UPYUN 还提供了以下可选参数，用于对上传的图片进行预处理：
+当上传图片文件至空间时，除了通用的上传参数外，UPYUN 还提供了以下可选参数，用于对上传的图片进行预处理：
 
-|          参数          |                                                说明                                                |
-|------------------------|----------------------------------------------------------------------------------------------------|
-| `x-gmkerl-type`        | 缩略类型（见下表「`x-gmkerl-type` 值可选列表」）                                                     |
-| `x-gmkerl-value`       | 缩略类型对应的参数值，单位为像素，须搭配 x-gmkerl-type 使用（见下附注「`x-gmkerl-value` 的使用」）|
-| `x-gmkerl-quality `    | **默认 `95`** 图片质量，可选（1~100）                                                          |
-| `x-gmkerl-unsharp`     | **默认 `true`** 图片锐化                                                                           |
-| `x-gmkerl-thumbnail`   | 在 UPYUN 管理平台创建好缩略图版本该缩略方式包含了所需的缩略参数，参数更简洁，使用更方便            |
-| `x-gmkerl-exif-switch` | **默认 `false` 即删除** 是否保留原图的 EXIF 信息                                                   |
-| `x-gmkerl-crop`        | x,y,width,height(如：`0,0,100,200`)，(x,y)（见下附注「`x-gmkerl-crop` 的备注」） |
-| `x-gmkerl-rotate`      | 旋转角度，目前只允许设置：`auto`, `90`, `180`, `270`（见下附注「`x-gmkerl-rotate` 使用」） |
+| 参数                             | 说明                                                                                               |
+|----------------------------------|----------------------------------------------------------------------------------------------------|
+| `x-gmkerl-type`                  | 缩略类型（见下表「`x-gmkerl-type` 值可选列表」）                                                   |
+| `x-gmkerl-value`                 | 缩略类型对应的参数值，单位为像素，须搭配 x-gmkerl-type 使用（见下附注「`x-gmkerl-value` 的使用」） |
+| `x-gmkerl-quality `              | **默认 `95`** 图片质量，可选（1~100）                                                              |
+| `x-gmkerl-unsharp`               | **默认 `true`** 图片锐化                                                                           |
+| `x-gmkerl-thumbnail`             | 在 UPYUN 管理平台创建好缩略图版本该缩略方式包含了所需的缩略参数，参数更简洁，使用更方便            |
+| `x-gmkerl-exif-switch`           | **默认 `false` 即删除** 是否保留原图的 EXIF 信息                                                   |
+| `x-gmkerl-crop`                  | x,y,width,height(如：`0,0,100,200`)，(x,y)（见下附注「`x-gmkerl-crop` 的备注」）                   |
+| `x-gmkerl-rotate`                | 旋转角度，目前只允许设置：`auto`, `90`, `180`, `270`（见下附注「`x-gmkerl-rotate` 使用」）         |
 
 
 **注：x-gmkerl-type 值可选列表**
@@ -143,7 +143,7 @@ PUT /<bucket>/path/to/file
 | `fix_both`               | 固定宽度和高度，宽高不足时强行缩放 |
 | `fix_max`                | 限定最长边，短边自适应              |
 | `fix_min`                | 限定最短边。长边自适应              |
-| `fix_scale`              | 等比例缩放（1-99                  |
+| `fix_scale`              | 等比例缩放（1-99）                  |
 
 **注：`x-gmkerl-value` 的使用**
 
@@ -159,6 +159,40 @@ PUT /<bucket>/path/to/file
 **注：x-gmkerl-rotate 的使用**
 > * 若参数设置为“auto”，则根据原图的EXIF信息进行旋转（旋转后将修改原图的EXIF信息）其他参数则进行强制旋转
 > * 旋转失败时若参数为“auto”，则忽略错误进行保存操作；其他参数则直接返回错误信息
+
+#### 水印参数
+在上传图片文件时，可以通过添加下面的参数进行添加文字水印的处理
+
+| 参数                             | 说明                                                                                               |
+|----------------------------------|----------------------------------------------------------------------------------------------------|
+| `x-gmkerl-watermark-text`        | 文字水印内容，必须经过 urlencode 处理                                                                                           |
+| `x-gmkerl-watermark-text-font`   | **默认 `simsun`** 文字水印字体，（见下表「`x-gmkerl-watermark-text-font` 值可选列表」）                                                                                       |
+| `x-gmkerl-watermark-text-size`   | **必选参数** 文字水印尺寸，取值必须为整数，单位像素                                                                                       |
+| `x-gmkerl-watermark-align`       | **默认 `top,left`** 水印对齐方式 （见下表「`x-gmkerl-watermark-align` 值的使用」） |
+| `x-gmkerl-watermark-margin`      | **默认 `20,20`** 水印边距，格式 `x,y`，既 `水平边距,垂直边距`（如 `20,20`），单位像素                                                                                           |
+| `x-gmkerl-watermark-opacity`     | **默认 `0`** 水印透明度，取值范围 0 ~ 100 的整数                                                                                        |
+| `x-gmkerl-watermark-text-color`  | **默认 `#000000`** 文字水印颜色， RGB值                                                                                       |
+| `x-gmkerl-watermark-text-border` | 文字水印边框，默认无边框，（见下附注「`x-gmkerl-watermark-text-border` 备注」）|
+
+**注：x-gmkerl-watermark-align 值的使用**
+> 格式 `y,xy`，既 `垂直对齐,水平对齐`（如 `bottom,right`），可选值包括：
+>
+> * 垂直对齐：top，middle，bottom
+> * 水平对齐：left，middle，right
+
+
+**注意：`x-gmkerl-watermark-text-font` 值可选列表**
+> 目前支持的中文字体包括：
+>
+> * simsun：宋体
+> * simhei：黑体 (simhei)
+> * simkai：楷体 (simkai)
+> * simli：隶书 (simli)
+> * simyou：幼圆 (simyou)
+> * simfang：仿宋 (simfang)
+
+**`x-gmkerl-watermark-text-border` 备注**
+> 格式 `rgb,opacity`，既 `RGB值,透明度`，如 `#cccccc,85`
 
 
 **返回信息**
