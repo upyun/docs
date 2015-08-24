@@ -156,7 +156,7 @@ HLS（[HTTP Live Streaming](http://zh.wikipedia.org/wiki/HTTP_Live_Streaming)）
 | 参数     | 类型 | 必选 | 参数说明                              |
 |----------|----------|------|---------------------------------------|
 | type     | string   | true | 处理类型，进行 hls 切片时值必须为 *`hls`* |
-| hls_time | integer  | true | 指定切割的时间片长度                  |
+| hls_time | string   | true | 指定切割的时间片长度                  |
 
 3\. 视频截图
 
@@ -175,6 +175,17 @@ HLS（[HTTP Live Streaming](http://zh.wikipedia.org/wiki/HTTP_Live_Streaming)）
 | 参数 | 类型 | 必选 | 参数说明                                         |
 |------|----------|------|--------------------------------------------------|
 | type | string   | true | 处理类型，获取视频文件元数据时值必须为 *`probe`* |
+
+5\. 音频转码
+
+| 参数 | 类型 | 必选 | 参数说明                                                     |
+|------|----------|------|----------------------------------------------------------|
+| type          | string  | true  | 处理类型，进行音频转码时值必须为 *`audio`*      |
+| format        | string  | false | 视频输出格式，支持 mp4/mp3，默认按照原始格式输出|
+| audio_channel | integer | false | 声道，默认 *`2`*                                |
+| audio_bitrate | integer | false | 比特率，如 *`64`*                               |
+| audio_vbr     | integer | false | variable bitrate [0-9]                          |
+| map_metadata  | boolean | false | 是否保留视频 meta 信息，默认值 *`true`*         |
 
 ### 返回结果
 成功提交处理请求之后，接口会针对提交的处理任务返回一组唯一的 *`task_id`*，可以根据这个 *`task_id`* 查询处理进度。
