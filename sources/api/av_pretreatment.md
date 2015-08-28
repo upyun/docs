@@ -43,7 +43,7 @@ Authorization: UPYUN <operator>:<signature>
 <operator_name><signature_string><md5_operator_password>
 ```
 
-其中，*`operator_name`* 为用于认证授权的操作员名，*`signature_string`* 为第一步生成的字符称，
+其中，*`operator_name`* 为用于认证授权的操作员名，*`signature_string`* 为第一步生成的字符串，
 *`md5_operator_password`* 为对操作员密码进行 md5 计算之后得到的字符串；
 
 3\. 对第二步生成的字符串做 md5 计算，得到最终的 *`signature`* 值。

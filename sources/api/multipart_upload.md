@@ -204,6 +204,7 @@ Content-Type: multipart/form-data
 ```
 {
   save_token: '68640c7ab4120b4992907cabc6ea2c48',
+  token_secret: "89a3d8d8a26a8adb32a3651a63c0d5cc",
   bucket_name: 'example',
   blocks: 5,
   status: [1,1,1,1,0],
