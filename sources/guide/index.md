@@ -27,7 +27,7 @@ UPYUN 目前有如下几种空间类型：
 更多空间类型的区别，请参阅[空间分几种类型，有哪些区别？](http://docs.upyun.com/faq/#faq)
 
 ### 访问域名
-「空间」创建完成后，系统会自动绑定一个默认域名`<bucket>.b0.upaiyun.com`。比如，当你创建了一个名叫`demo`的空间时，那系统会自动绑定默认域名`demo.b0.upaiyun.com`。因此，如果该空间根目录有一个名为 `file.txt` 的文件，那么，你可以使用 `http://demo.b0.uppaiyun.com/file.txt` 来访问。
+「空间」创建完成后，系统会自动绑定一个默认域名`<bucket>.b0.upaiyun.com`。比如，当你创建了一个名叫`demo`的空间时，那系统会自动绑定默认域名`demo.b0.upaiyun.com`。因此，如果该空间根目录有一个名为 `file.txt` 的文件，那么，你可以使用 `http://demo.b0.upaiyun.com/file.txt` 来访问。
 
 若你拥有**已备案**的域名，则可以绑定自己的独立域名。绑定独立域名后，你可以同时使用默认域名，以及你绑定的域名来访问你的文件。
 
