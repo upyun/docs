@@ -109,7 +109,6 @@ PUT /<bucket>/path/to/file
 
 |      参数      | 必选 |   类型  |                                            说明                                           |
 |----------------|------|---------|-------------------------------------------------------------------------------------------|
-| mkdir          | 否   | Boolean | `true` 或者 `false`，表示是否要自动创建请求路径中不存在的目录                             |
 | Content-MD5    | 否   | String  | 所上传文件的 MD5 校验值，用于 UPYUN 服务端校验                                            |
 | Content-Type   | 否   | String  | 默认使用文件扩展名判断文件类型，可自行设置，保证准确性                                    |
 | Content-Secret | 否   | String  | 对原图保护，若设置过该值，则无法直接访问原图，需要在原图 URL 的基础上加上密钥值才能访问。 |
@@ -166,13 +165,13 @@ PUT /<bucket>/path/to/file
 | 参数                             | 说明                                                                                               |
 |----------------------------------|----------------------------------------------------------------------------------------------------|
 | `x-gmkerl-watermark-text`        | 文字水印内容，必须经过 urlencode 处理                                                                                           |
-| `x-gmkerl-watermark-text-font`   | **默认 `simsun`** 文字水印字体，（见下表「`x-gmkerl-watermark-text-font` 值可选列表」）                                                                                       |
-| `x-gmkerl-watermark-text-size`   | **必选参数** 文字水印尺寸，取值必须为整数，单位像素                                                                                       |
+| `x-gmkerl-watermark-font`   | **默认 `simsun`** 文字水印字体，（见下表「`x-gmkerl-watermark-font` 值可选列表」）                                                                                       |
+| `x-gmkerl-watermark-size`   | **必选参数** 文字水印尺寸，取值必须为整数，单位像素                                                                                       |
 | `x-gmkerl-watermark-align`       | **默认 `top,left`** 水印对齐方式 （见下表「`x-gmkerl-watermark-align` 值的使用」） |
 | `x-gmkerl-watermark-margin`      | **默认 `20,20`** 水印边距，格式 `x,y`，既 `水平边距,垂直边距`（如 `20,20`），单位像素                                                                                           |
 | `x-gmkerl-watermark-opacity`     | **默认 `0`** 水印透明度，取值范围 0 ~ 100 的整数                                                                                        |
-| `x-gmkerl-watermark-text-color`  | **默认 `#000000`** 文字水印颜色， RGB值                                                                                       |
-| `x-gmkerl-watermark-text-border` | 文字水印边框，默认无边框，（见下附注「`x-gmkerl-watermark-text-border` 备注」）|
+| `x-gmkerl-watermark-color`  | **默认 `#000000`** 文字水印颜色， RGB值                                                                                       |
+| `x-gmkerl-watermark-border` | 文字水印边框，默认无边框，（见下附注「`x-gmkerl-watermark-border` 备注」）|
 
 **注：x-gmkerl-watermark-align 值的使用**
 > 格式 `y,xy`，既 `垂直对齐,水平对齐`（如 `bottom,right`），可选值包括：
@@ -181,7 +180,7 @@ PUT /<bucket>/path/to/file
 > * 水平对齐：left，middle，right
 
 
-**注意：`x-gmkerl-watermark-text-font` 值可选列表**
+**注意：`x-gmkerl-watermark-font` 值可选列表**
 > 目前支持的中文字体包括：
 >
 > * simsun：宋体
@@ -191,8 +190,8 @@ PUT /<bucket>/path/to/file
 > * simyou：幼圆 (simyou)
 > * simfang：仿宋 (simfang)
 
-**`x-gmkerl-watermark-text-border` 备注**
-> 格式 `rgb,opacity`，既 `RGB值,透明度`，如 `#cccccc,85`
+**`x-gmkerl-watermark-border` 备注**
+> 格式 `rgba`，既 `RGB值透明度`，如 `#cccccccc`
 
 
 **返回信息**
@@ -262,7 +261,6 @@ POST /<bucket>/path/to/folder
 |  参数  | 必选  | 说明 |
 | ------ | ----- | ----- |
 | folder |  是   | `true` 或者 `false`，`true` 表示当前请求为创建目录 |
-| mkdir  |  否   | `true` 或者 `false`，`true` 表示自动创建不存在的父级目录，最多允许创建 10 级目录 |
 
 
 返回信息:
