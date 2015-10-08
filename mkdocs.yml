@@ -39,6 +39,7 @@ pages:
 - ['api/purge.md', 'API 文档', '缓存刷新']
 - ['api/multipart_upload.md', 'API 文档', '分块上传']
 - ['api/av_pretreatment.md', 'API 文档', '视频处理']
+- ['api/errno.md', 'API 文档', 'API 错误码表']
 
 # Downloads
 

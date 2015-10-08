@@ -97,73 +97,80 @@ curl http://v0.api.upyun.com/<bucket-name> \
 
 ```
 
-### Signature 和 Policy 算法 ###
+**注：**
 
-**Policy**
+> 请确认您上传的表单格式符合 [RFC 1867](https://www.ietf.org/rfc/rfc1867.txt) 协议规范。
 
-用于将上传请求相关的参数，例如保存路径，文件类型，预处理结果等，另外，也包含了上传请求授时间等。
+### policy 算法 ###
 
+policy 用于编码上传请求相关的参数，例如保存路径，文件类型，预处理结果等，另外，也包含了上传请求授权时间等。
 
-Policy 生成步骤：
+policy 生成步骤：
 
 1. 将请求所需的参数键值对转换为 JSON 字符串
-2. 将第 1 步中所得字符串进行 Base64 处理，即得 Policy
+2. 将第 1 步中所得字符串进行 Base64 处理，即得 policy
 
 **注：**
->  Policy 必须是 UTF-8 编码格式，且不包含换行符，否则可能无法通过签名验证。
+>  policy 必须是 **UTF-8** 编码格式，且**不包含换行符**，否则可能无法通过签名验证。
 
-**Signature**
+以下是一个计算 policy 的例子：
+
+>假设一个请求所需的的策略参数如下表:
+>
+>|     键     |     值     |
+>|------------|------------|
+>| bucket     | demobucket |
+>| expiration | 1409200758 |
+>| save-key   | /img.jpg   |
+>
+>第一步，将参数组转换为 JSON 字符串后：
+>
+>```
+>{"bucket":"demobucket","expiration":1409200758,"save-key":"/img.jpg"}
+>```
+>
+>第二步，将第一步所得字符串 base64 编码即得到 policy：
+>
+>```
+>eyJidWNrZXQiOiJkZW1vYnVja2V0IiwiZXhwaXJhdGlvbiI6MTQwOTIwMDc1OCwic2F2ZS1rZXkiOiIvaW1nLmpwZyJ9
+>```
+
+
+### signature 算法
 
 为了保证空间的安全性，UPYUN 表单 API 的上传需要使用到每个空间对应的「表单 API 验证密钥（form_api_secret）」
 
-通过将表单 API 与 Policy 组合，并进行 MD5 计算后，所得的 MD5 值将作为 `Signature` 用于安全校验。
+通过将表单 API 与 policy 组合，并进行 MD5 计算后，所得的 MD5 值将作为 `signature` 用于安全校验。
 
-Signature 生成步骤：
+signature 生成步骤：
 
-1. 生成 Policy 字符串
-2. 将第 1 步中所得字符串与您的表单 API（可登录 UPYUN 官网获取）字符串用 `&` 拼接
-3. 将第 2 步中所的的字符串计算 md5，所得即为 Signature
+1. 生成 `policy` 字符串
+2. 将第 1 步中所得字符串与您的「表单 API 验证密钥」（可登录 UPYUN 官网获取）字符串用 `&` 拼接
+3. 将第 2 步中所的的字符串计算 md5，所得即为 `signature`
 
-如，假设一个请求所需的的策略参数如下表:
 
-|     键     |     值     |
-|------------|------------|
-| bucket     | demobucket |
-| expiration | 1409200758 |
-| save-key   | /img.jpg   |
+以下是一个计算 signature 的例子：
 
-另设，该空间表单 API 为：`cAnyet74l9hdUag34h2dZu8z7gU=`
-
-则，
-__计算 `policy` 相应步骤所得结果如下：__
-
-第一步，将`参数组`转换为 JSON 字符串后：
-```
-{"bucket":"demobucket","expiration":1409200758,"save-key":"/img.jpg"}
-```
-
-第二步，将第一步所得字符串 base64 编码后：
-```
-eyJidWNrZXQiOiJkZW1vYnVja2V0IiwiZXhwaXJhdGlvbiI6MTQwOTIwMDc1OCwic2F2ZS1rZXkiOiIvaW1nLmpwZyJ9
-```
-
-__计算 `signature` 相应步骤所的结果如下：__
-
-第一步，生成 Policy：
-```js
-eyJidWNrZXQiOiJkZW1vYnVja2V0IiwiZXhwaXJhdGlvbiI6MTQwOTIwMDc1OCwic2F2ZS1rZXkiOiIvaW1nLmpwZyJ9
-```
-
-第二步，第一步结果加上表单 API 后：
-```
-eyJidWNrZXQiOiJkZW1vYnVja2V0IiwiZXhwaXJhdGlvbiI6MTQwOTIwMDc1OCwic2F2ZS1rZXkiOiIvaW1nLmpwZyJ9&cAnyet74l9hdUag34h2dZu8z7gU=
-```
-
-第三步，将第二步所得字符计算 md5 后：
-```
-646a6a629c344ce0e6a10cadd49756d4
-```
-
+>假设该空间的「表单 API 验证密钥」为：`cAnyet74l9hdUag34h2dZu8z7gU=`
+>
+>第一步，计算得到相应的 policy 字符串为（见 [policy 算法](#policy)）：
+>
+>```
+>eyJidWNrZXQiOiJkZW1vYnVja2V0IiwiZXhwaXJhdGlvbiI6MTQwOTIwMDc1OCwic2F2ZS1rZXkiOiIvaW1nLmpwZyJ9
+>```
+>
+>第二步，第一步结果与「表单 API 验证密钥」用 `&` 拼接后得到：
+>
+>```
+>eyJidWNrZXQiOiJkZW1vYnVja2V0IiwiZXhwaXJhdGlvbiI6MTQwOTIwMDc1OCwic2F2ZS1rZXkiOiIvaW1nLmpwZyJ9&cAnyet74l9hdUag34h2dZu8z7gU=
+>```
+>
+>第三步，将第二步所得字符串计算 md5 后即得到 `signature`：
+>
+>```
+>646a6a629c344ce0e6a10cadd49756d4
+>```
+>
 
 ### 表单 API 参数
 
@@ -172,21 +179,21 @@ eyJidWNrZXQiOiJkZW1vYnVja2V0IiwiZXhwaXJhdGlvbiI6MTQwOTIwMDc1OCwic2F2ZS1rZXkiOiIv
 |----------------------|------|-----------------------------------------------------------------------------------------------------|
 | bucket               | 是   | 保存所上传的文件的 UPYUN 空间名                                                                     |
 | save-key             | 是   | 保存路径，如: '/path/to/file.ext'，可用占位符 [\[注 1\]](#note1)                      |
-| expiration           | 是   | 请求的过期时间，UNIX 时间戳（秒）                                                                   |
-| allow-file-type      | 否   | 文件类型限制，制定允许上传的文件扩展名                                                              |
-| content-length-range | 否   | 文件大小限制，格式：`min,max`，单位：字节，如 `102400,1024000`，允许上传 100Kb～1Mb 的文件          |
+| expiration           | 是   | 请求的过期时间，**UNIX UTC** 时间戳（秒）                                                                   |
+| allow-file-type      | 否   | 允许上传的文件扩展名，以 `,` 分隔。如 `jpg,jpeg,png`                                                              |
+| content-length-range | 否   | 文件大小限制，格式：`min,max`，单位：字节，如 `102400,1024000`，表示允许上传 100Kb～1Mb 的文件          |
 | content-md5          | 否   | 所上传的文件的 MD5 校验值，UPYUN 根据此来校验文件上传是否正确                                       |
 | content-secret       | 否   | 原图访问密钥 [\[注 2\]](#note2)                                                 |
-| content-type         | 否   | UPYUN 默认根据扩展名判断，手动指定可提高精确性                                                      |
+| content-type         | 否   | UPYUN 默认根据扩展名判断，手动指定可提高精确性。如 `image/jpeg`                                                      |
 | image-width-range    | 否   | 图片宽度限制，格式：`min,max`，单位：像素，如 `0,1024`，允许上传宽度为 0～1024px 之间               |
 | image-height-range   | 否   | 图片高度限制，格式：`min,max`，单位：像素，如 `0,1024`，允许上传高度在 0～1024px 之间               |
 | notify-url           | 否   | 异步通知 URL，见 [\[通知规则\]](#notify_return)                                                      |
 | return-url           | 否   | 同步通知 URL，见 [\[通知规则\]](#notify_return)                                                      |
-| x-gmkerl-thumbnail   | 否   | 缩略图版本名称，仅支持图片类空间，可搭配其他 `x-gmkerl-*` 参数使用 [\[注 3\]](#note3) |
+| x-gmkerl-thumbnail   | 否   | 缩略图版本名称，可搭配其他 `x-gmkerl-*` 参数使用 [\[注 3\]](#note3) |
 | x-gmkerl-type        | 否   | 缩略类型 [\[注 4\]](#note4)                                                           |
 | x-gmkerl-value       | 否   | 缩略类型对应的参数值 [\[注 4\]](#note5)                                               |
-| x-gmkerl-quality     | 否   | **默认 95**缩略图压缩质量                                                                           |
-| x-gmkerl-unsharp     | 否   | **默认锐化（true）**是否进行锐化处理                                                                |
+| x-gmkerl-quality     | 否   | 缩略图压缩质量，**默认 `95`**                                                                           |
+| x-gmkerl-unsharp     | 否   | 是否进行锐化处理，**默认 `true`**                                                                |
 | x-gmkerl-rotate      | 否   | 图片旋转（顺时针），可选：`auto`，`90`，`180`，`270` 之一                                           |
 | x-gmkerl-crop        | 否   | 图片裁剪，格式：`x,y,width,height`，均需为正整型                                                    |
 | x-gmkerl-exif-switch | 否   | 是否保留 exif 信息，仅在搭配 `x-gmkerl-crop`，`x-gmkerl-type`，`x-gmkerl-thumbnail` 时有效。        |
@@ -194,6 +201,8 @@ eyJidWNrZXQiOiJkZW1vYnVja2V0IiwiZXhwaXJhdGlvbiI6MTQwOTIwMDc1OCwic2F2ZS1rZXkiOiIv
 
 
 **注：**
+> * 以上参数名和参数值均 **区分大小写**。
+> * 一次请求只允许上传一个文件。
 > * 若在上传非图片文件时使用 `image-width-range`，`image-height-range`，会返回「不是图片」的错误；
 > * 若请求中带有图片处理参数，最终只保存处理后的图片，上传的原图不保存；
 > * 若同时提交旋转和裁剪参数，系统将按照先旋转，后裁剪的顺序进行处理；
@@ -211,44 +220,15 @@ eyJidWNrZXQiOiJkZW1vYnVja2V0IiwiZXhwaXJhdGlvbiI6MTQwOTIwMDc1OCwic2F2ZS1rZXkiOiIv
 http://yourdomain.com/return/?code=503&message=%E6%8E%88%E6%9D%83%E5%B7%B2%E8%BF%87%E6%9C%9F&url=%2F2011%2F12%2Ffd0e30047f81fa95.bz2&time=1332129461&sign=b11cb84538e884d63e14e52d35a7bd21
 ```
 
-如果是图片类空间，则会额外增加：image-width、image-height、image-frames 和 image-type 四个参数（这四个参数不参与加密签名）。
+如果上传的文件是图片，则会额外增加：image-width、image-height、image-frames 和 image-type 四个参数（这四个参数不参与加密签名）。
 
-* 如果设置了 `notify-url`，那么 UPYUN 处理完上传操作后，服务端将以发送 POST 请求的方式把上传至 `notify-url` 对应的地址，POST 所提交的参数和上述 `return-url` 中的相同
+* 如果设置了 `notify-url`，那么 UPYUN 处理完上传操作后，服务端将以发送 `POST` 请求的方式把上传至 `notify-url` 对应的地址，POST 所提交的参数和上述 `return-url` 中的相同
 
-### 表单 API 状态代码表
 
-| HTTP 状态码 |                 返回代码                |                                       含义                                      |
-|-------------|-----------------------------------------|---------------------------------------------------------------------------------|
-|         200 | OK                                      | 文件上传成功                                                                    |
-|         400 | Is not a multipart request.             | 请求方式错误：非表单形式                                                        |
-|         400 | Form parameter invalid.                 | 请求参数不合法                                                                  |
-|         400 | Not accept, Miss policy.                | 缺少 policy 参数                                                                |
-|         400 | Not accept, Miss signature.             | 缺少 signature 参数                                                             |
-|         400 | Not accept, No file data.               | 没有上传任何文件数据，请检查表单中文件域的名称是否为 file                       |
-|         400 | Not accept, Bucket is null.             | 空间名参数为空                                                                  |
-|         400 | Not accept, Save-key is null.           | 保存路径参数为空                                                                |
-|         400 | Not accept, Expiration is null.         | 授权过期参数为空                                                                |
-|         400 | Not accept, Ext-param too long.         | 额外参数内容长度过长                                                            |
-|         403 | Not accept, POST URI error.             | 表单提交的 URI 错误                                                             |
-|         403 | Authorize has expired.                  | 上传授权已过期(请检查服务器时间或设置的过期时间是否正确)                        |
-|         403 | Not accept, Signature error.            | 签名错误，可能是表单签名密匙不正确                                              |
-|         403 | Not accept, Form API disabled.          | 表单 API 功能未启用                                                             |
-|         403 | Not accept, Content-md5 error.          | 上传文件内容的 md5 校验值错误，客户端传递的 md5 值与服务器端计算的 md5 值不相同 |
-|         403 | Content-Secret only accept [a-zA-Z0-9]. | 原图保护密钥使用了不允许的字符                                                  |
-|         403 | Not accept, File size too small.        | 上传文件过小                                                                    |
-|         403 | Not accept, File size too large.        | 上传文件过大                                                                    |
-|         403 | Not accept, File type Error.            | 上传文件类型不允许，请参考 allow-file-type 参数                                 |
-|         403 | Not accept, Not an image file.          | 上传的不是图片文件，请参考 image-width-range 参数                               |
-|         403 | Not accept, Image width too small.      | 上传的图片宽度过小                                                              |
-|         403 | Not accept, Image width too large.      | 上传的图片宽度过大                                                              |
-|         403 | Not accept, Image height too small.     | 上传的图片高度过小                                                              |
-|         403 | Not accept, Image height too large.     | 上传的图片高度过大                                                              |
-|         403 | Image Rotate Invalid Parameters.        | 图片旋转参数错误                                                                |
-|         403 | Image Crop Invalid Parameters.          | 图片裁剪参数错误                                                                |
-|         403 | Bucket blocked.                         | 空间已被禁用                                                                    |
-|         404 | Bucket does not exist.                  | 空间不存在                                                                      |
-|         404 | Bucket removed.                         | 空间已被删除                                                                    |
-|         503 | System Error, please try again.         | 系统错误，请重试                                                                |
+### 返回信息
+
+1. 上传成功返回 `200` 或执行 302 跳转（见 [通知规则](#_2)）
+2. 上传失败返回相应的出错信息，具体请参阅「[API 错误码表](/api/errno/)」
 
 
 
@@ -260,7 +240,7 @@ http://yourdomain.com/return/?code=503&message=%E6%8E%88%E6%9D%83%E5%B7%B2%E8%BF
 |  类型  |                  格式                 |                      说明                     |
 |--------|---------------------------------------|-----------------------------------------------|
 | 绝对值 | String                                | 即手动指定具体的路径，如: `/path/to/file.ext` |
-| 时间类 | {year} {mon} {day} {hour} {min} {sec} | 日期、时间相关内容                            |
+| 时间类 | {year} {mon} {day} {hour} {min} {sec} | 日期、时间相关内容（UTC 时间）                            |
 | md5 类  | {filemd5}                             | 文件内容的 md5 值                             |
 | 随机类 | {random} {random32}                   | 16 位或 32 位随机字符和数字                   |
 | 文件名 | {filename} {suffix} {.suffix}         | 上传文件的文件名及扩展名                      |
@@ -268,15 +248,19 @@ http://yourdomain.com/return/?code=503&message=%E6%8E%88%E6%9D%83%E5%B7%B2%E8%BF
 **举例说明：**
 
     上传文件名：sample.jpg
-    当前时间：2013-01-01 00:00:00
+    UTC 时间：2013-01-01 00:00:00
     save-key：/{year}/{mon}/{day}/upload_{filename}{.suffix}
     那么最终的保存路径为：/2013/01/01/upload_sample.jpg
 
+    上传文件名：sample
+    文件 md5：3691308f2a4c2f6983f2880d32e29c84
+    UTC 时间：2013-01-01 12:34:56
+    save-key：/{year}/{mon}/{day}/{hour}/{min}/{sec}/upload_{filemd5}{.suffix}
+    那么最终的保存路径为：/2013/01/01/12/34/56/upload_3691308f2a4c2f6983f2880d32e29c84
+
 **提示：**
 
-* 如果你的应用一次授权只允许上传 1 个文件，`save-key `请使用绝对值；
-* 如果你的应用一次授权在过期时间内允许上传多个文件，`save-key `可使用一些命名变量；
-* 上传多个文件时，为避免发生路径重名导致文件被覆盖的现象，建议使用 `random32 `等重复性较低的命名变量。
+> * 上传多个文件时，为避免发生路径重名导致文件被覆盖的现象，建议使用 `random32 `等重复性较低的命名变量。
 
 
 <a name="note2"></a>
@@ -302,10 +286,9 @@ http://yourdomain.com/return/?code=503&message=%E6%8E%88%E6%9D%83%E5%B7%B2%E8%BF
 <a name="note3"></a>
 #### 注 3：图片缩略详细说明 ####
 
-* 仅支持图片类空间，且只保存处理后的缩略图，不保存原图
-* 在使用缩略图版本参数(`x-gmkerl-thumbnail`)前，需要确保已经存在[[如何创建自定义缩略图|缩略图版本号]]，否则将直接错误返回。
+* 仅支持图片文件，且只保存处理后的缩略图，不保存原图
+* 在使用缩略图版本参数(`x-gmkerl-thumbnail`)前，需要确保该缩略图版本已经存在。否则 API 将忽略这个参数。
 * 允许在使用缩略图版本参数(`x-gmkerl-thumbnail)`的同时，再搭配其他 `x-gmkerl-*` 参数对图片进行处理，优先级为 `x-gmkerl-*` 参数 > 缩略图版本中对应参数
-* 因为文件类空间不存在缩略图版本配置，所以如果需要对原图进行缩略处理，可以使用 `x-gmkerl-type` 和 `x-gmkerl-value` 两个参数
 
 
 <a name="note4"></a>
@@ -313,13 +296,13 @@ http://yourdomain.com/return/?code=503&message=%E6%8E%88%E6%9D%83%E5%B7%B2%E8%BF
 
 |         参数        |                说明                |      单位      |             举如            |
 |---------------------|------------------------------------|----------------|-----------------------------|
-| fix_max             | 限定最长边，短边自适应             | 像素值         | 如: 150                     |
-| fix_min             | 限定最短边，长边自适应             | 像素值         | 如: 150                     |
-| fix_width_or_height | 限定宽度和高度，宽高不足时不缩放   | 像素值         | width x height，如: 150x130 |
-| fix_width           | 限定宽度，高度自适应               | 像素值         | 如: 150                     |
-| fix_height          | 限定高度，宽度自适应               | 像素值         | 如: 150                     |
-| fix_both            | 固定宽度和高度，宽高不足时强行缩放 | 像素值         | width x height，如: 150x130 |
-| fix_scale           | 等比例缩放                         | 比例值（1-99） | 如: 50                      |
+| fix_max             | 限定最长边，短边自适应             | 像素值         | 如: `150`                     |
+| fix_min             | 限定最短边，长边自适应             | 像素值         | 如: `150`                     |
+| fix_width_or_height | 限定宽度和高度，宽高不足时不缩放   | 像素值         | `widthxheight`，如: `150x130` |
+| fix_width           | 限定宽度，高度自适应               | 像素值         | 如: `150`                     |
+| fix_height          | 限定高度，宽度自适应               | 像素值         | 如: `150`                     |
+| fix_both            | 固定宽度和高度，宽高不足时强行缩放 | 像素值         | `widthxheight`，如: `150x130` |
+| fix_scale           | 等比例缩放                         | 比例值（1-99） | 如: `50`                      |
 
 
 <a name="note5"></a>

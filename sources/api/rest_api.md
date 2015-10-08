@@ -27,9 +27,11 @@ curl -X GET \
 
 ```
 
-> * `Authorization`, `Content-Length`, `Date` 这三个参数是必须的
+> **注：**
+>
+> * `Authorization`, `Date` 这两个参数是必须的
 > * `Authorization` 用于认证授权
-> * `Content-Length` 在 `PUT`、`POST` 请求中必须设置
+> * `Content-Length` 在 `PUT`、`POST` 请求中必须设置, UPYUN 不支持 chunked 形式上传。
 > * `Date` 为[格林尼治标准时间](http://zh.wikipedia.org/wiki/%E6%A0%BC%E6%9E%97%E5%B0%BC%E6%B2%BB%E5%B9%B3%E6%97%B6)（GMT 格式）
 
 
@@ -71,7 +73,7 @@ __签名（signature）算法__
 
 将 `PASSWORD` md5 之后（我们暂且将其记作 `PASSWORD_MD5`），上表所注的其他信息以 `&` 字符进行拼接（按表格从上至下的顺序）即（`METHOD&PATH&DATE&CONTENT-LENGTH&PASSWORD_MD5`），并将所得字符串进行 MD5 加密，即得我们所需的 签名（signature）
 
-> **注:**
+> **注：**
 > 签名的有效期为 30 分钟。如果超过 30 分钟，则需重新生成签名。
 
 如：
@@ -92,11 +94,9 @@ Authorization: UpYun operator:03db45e2904663c5c9305a9c6ed62af3
 
 * 通用上传参数
 * 图片预处理参数
+* 水印参数
 
-**注：**
-> * 参数都需以 HTTP Header Field 形式传递
-> * 图片类型的空间无法上传非图片类型文件
-
+> **注：** 参数都需以 HTTP Header Field 形式传递
 
 
 ```
@@ -111,10 +111,11 @@ PUT /<bucket>/path/to/file
 |----------------|------|---------|-------------------------------------------------------------------------------------------|
 | Content-MD5    | 否   | String  | 所上传文件的 MD5 校验值，用于 UPYUN 服务端校验                                            |
 | Content-Type   | 否   | String  | 默认使用文件扩展名判断文件类型，可自行设置，保证准确性                                    |
-| Content-Secret | 否   | String  | 对原图保护，若设置过该值，则无法直接访问原图，需要在原图 URL 的基础上加上密钥值才能访问。 |
+| Content-Secret | 否   | String  | 对原图保护，若设置过该值，则无法直接访问原图，需要在原图 URL 的基础上加上密钥值才能访问   |
 
 > **注：**
-> * 设置 `Content-Secret` 密钥后，原图将被保护，不能被直接访问，只有缩略图是允许被直接访问的
+>
+> * 设置 `Content-Secret` 密钥后，原图将被保护，不能被直接访问，只有缩略图是允许被直接访问的。
 > * 设置密钥后，若需访问原图，需要在 URL 后加上「缩略图间隔符号」和「访问密钥」（如： 当缩略图间隔符为 *`!`*，访问密钥为 *`secret`*，那么，原图访问方式即为： *`http://bucket.b0.upaiyun.com/sample.jpg!secret`*）
 
 #### 图片预处理参数
@@ -122,8 +123,8 @@ PUT /<bucket>/path/to/file
 
 | 参数                             | 说明                                                                                               |
 |----------------------------------|----------------------------------------------------------------------------------------------------|
-| `x-gmkerl-type`                  | 缩略类型（见下表「`x-gmkerl-type` 值可选列表」）                                                   |
-| `x-gmkerl-value`                 | 缩略类型对应的参数值，单位为像素，须搭配 x-gmkerl-type 使用（见下附注「`x-gmkerl-value` 的使用」） |
+| `x-gmkerl-type`                  | 缩略类型（见下表「`x-gmkerl-type` 值可选列表」）                                                     |
+| `x-gmkerl-value`                 | 缩略类型对应的参数值，单位为像素，须搭配 `x-gmkerl-type` 使用（见下附注「`x-gmkerl-value` 的使用」） |
 | `x-gmkerl-quality `              | **默认 `95`** 图片质量，可选（1~100）                                                              |
 | `x-gmkerl-unsharp`               | **默认 `true`** 图片锐化                                                                           |
 | `x-gmkerl-thumbnail`             | 在 UPYUN 管理平台创建好缩略图版本该缩略方式包含了所需的缩略参数，参数更简洁，使用更方便            |
@@ -132,8 +133,8 @@ PUT /<bucket>/path/to/file
 | `x-gmkerl-rotate`                | 旋转角度，目前只允许设置：`auto`, `90`, `180`, `270`（见下附注「`x-gmkerl-rotate` 使用」）         |
 
 
-**注：x-gmkerl-type 值可选列表**
-
+> **注：x-gmkerl-type 值可选列表**
+>
 |           值           |                含义                |
 |------------------------|------------------------------------|
 | `fix_width`              | 限定宽度，高度自适应                |
@@ -143,21 +144,23 @@ PUT /<bucket>/path/to/file
 | `fix_max`                | 限定最长边，短边自适应              |
 | `fix_min`                | 限定最短边。长边自适应              |
 | `fix_scale`              | 等比例缩放（1-99）                  |
+>
+>**注：x-gmkerl-value 的使用**
+>
+> * 若 `x-gmkerl-type` 指定为 `fix_width_or_height` 或 `fix_both`，则，`x-gmkerl-value` 值的格式为 `<width>x<height>`，如 `480x576`。
+> * 若 `x-gmkerl-type`  为其他的类型，则 `x-gmkerl-value` 只需指定单个数字，如 `42`，意为高宽同为 42。
 
-**注：`x-gmkerl-value` 的使用**
+>**注：x-gmkerl-crop 的备注**
+>
+> * `(x, y)`左上角坐标；`width`：要裁剪的宽度；`height`：要裁剪的高度。 x >= 0 && y >=0 && width > 0 && height > 0 且必须是正整型。
+> * 裁剪参数`(x,y)`若大于原图大小，则将`(x,y)`重置为`(0,0)`进行裁剪。
+> * `width+x` 若大于原图的宽度，则只裁剪到原图的最大宽度为止，不进行空白画布填充。
+> * `heigth+y` 若大于原图的高度，则只裁剪到原图的最大高度为止，不进行空白画布填充。
 
-> * 若 `x-gmkerl-type` 指定为 `fix_width_or_height` 或 `fix_both`，则，`x-gmkerl-value` 值的格式为 `<width>x<height>`，如 `480x576`
-> * 若 `x-gmkerl-type`  为其他的类型，则 `x-gmkerl-value` 只需指定单个数字，如 `42`，意为高宽同为 42
-
-**注：x-gmkerl-crop 的备注**
-> * 左上角坐标；width：要裁剪的宽度；height：要裁剪的高度 x >= 0 && y >=0 && width > 0 && height > 0 且必须是正整型
-> * 裁剪参数（x,y）若大于原图大小，则将（x,y）重置为（0,0）进行裁剪
-> * width+x 若大于原图的宽度，则只裁剪到原图的最大宽度为止，不进行空白画布填充
-> * heigth+y 若大于原图的高度，则只裁剪到原图的最大高度为止，不进行空白画布填充
-
-**注：x-gmkerl-rotate 的使用**
-> * 若参数设置为“auto”，则根据原图的 EXIF 信息进行旋转（旋转后将修改原图的 EXIF 信息）其他参数则进行强制旋转
-> * 旋转失败时若参数为“auto”，则忽略错误进行保存操作；其他参数则直接返回错误信息
+>**注：x-gmkerl-rotate 的使用**
+>
+> * 若参数设置为`auto`，则根据原图的 EXIF 信息进行旋转（旋转后将修改原图的 EXIF 信息）其他参数则进行强制旋转。
+> * 旋转失败时若参数为`auto`，则忽略错误进行保存操作；其他参数则直接返回错误信息。
 
 #### 水印参数
 在上传图片文件时，可以通过添加下面的参数进行添加文字水印的处理
@@ -166,41 +169,42 @@ PUT /<bucket>/path/to/file
 |----------------------------------|----------------------------------------------------------------------------------------------------|
 | `x-gmkerl-watermark-text`        | 文字水印内容，必须经过 urlencode 处理                                                                                           |
 | `x-gmkerl-watermark-font`   | **默认 `simsun`** 文字水印字体，（见下表「`x-gmkerl-watermark-font` 值可选列表」）                                                                                       |
-| `x-gmkerl-watermark-size`   | **必选参数** 文字水印尺寸，取值必须为整数，单位像素                                                                                       |
+| `x-gmkerl-watermark-size`   | **默认 `32`**；文字水印尺寸，取值必须为整数，单位像素                                                                                       |
 | `x-gmkerl-watermark-align`       | **默认 `top,left`** 水印对齐方式 （见下表「`x-gmkerl-watermark-align` 值的使用」） |
 | `x-gmkerl-watermark-margin`      | **默认 `20,20`** 水印边距，格式 `x,y`，既 `水平边距,垂直边距`（如 `20,20`），单位像素                                                                                           |
 | `x-gmkerl-watermark-opacity`     | **默认 `0`** 水印透明度，取值范围 0 ~ 100 的整数                                                                                        |
 | `x-gmkerl-watermark-color`  | **默认 `#000000`** 文字水印颜色， RGB值                                                                                       |
 | `x-gmkerl-watermark-border` | 文字水印边框，默认无边框，（见下附注「`x-gmkerl-watermark-border` 备注」）|
 
-**注：x-gmkerl-watermark-align 值的使用**
-> 格式 `y,xy`，既 `垂直对齐,水平对齐`（如 `bottom,right`），可选值包括：
+>**注：x-gmkerl-watermark-align 值的使用**
 >
-> * 垂直对齐：top，middle，bottom
-> * 水平对齐：left，middle，right
-
-
-**注意：`x-gmkerl-watermark-font` 值可选列表**
+> 格式 `valign,halign`，既 `垂直对齐,水平对齐`（如 `bottom,right`），可选值包括：
+>
+> * 垂直对齐：`top`，`middle`，`bottom`
+> * 水平对齐：`left`，`middle`，`right`
+>
+>
+>**注：x-gmkerl-watermark-font 值可选列表**
+>
 > 目前支持的中文字体包括：
 >
-> * simsun：宋体
-> * simhei：黑体 (simhei)
-> * simkai：楷体 (simkai)
-> * simli：隶书 (simli)
-> * simyou：幼圆 (simyou)
-> * simfang：仿宋 (simfang)
-
-**`x-gmkerl-watermark-border` 备注**
+> * `simsun`：宋体
+> * `simhei`：黑体 (simhei)
+> * `simkai`：楷体 (simkai)
+> * `simli`：隶书 (simli)
+> * `simyou`：幼圆 (simyou)
+> * `simfang`：仿宋 (simfang)
+>
+>**注：x-gmkerl-watermark-border 值的使用**
+>
 > 格式 `rgba`，既 `RGB值透明度`，如 `#cccccccc`
 
 
 **返回信息**
 
-所有上传请求，均会在请求响应中返回相应的状态码，相应结果的状态码及相关含义，请参阅「[REST API 状态码表](#REST API 状态码表)」
+上传成功时返回 `200`；上传失败时返回相应的出错信息，具体请参阅「[API 错误码表](/api/errno/)」
 
-
-当请求将图片文件上传至图片类型的空间时，响应中会包含相关的预处理信息（如果有设置相关参数的话）
-，例如：
+当上传的文件是图片时，响应中会包含相关的预处理信息（如果有设置相关参数的话），例如：
 
 ```
 > HTTP/1.1 200 OK
@@ -219,8 +223,8 @@ GET /<bucket>/path/to/file
 
 返回信息:
 
-1. 文件存在: 返回 `200`, HTTP body 中返回文件内容
-2. 文件不存在: 返回 `404`
+1. 下载成功: 返回 `200`, HTTP body 中返回文件内容
+2. 下载失败: 返回相应的出错信息，具体请参阅「[API 错误码表](/api/errno/)」
 
 ### 获取文件信息
 
@@ -230,7 +234,7 @@ HEAD /<bucket>/path/to/file
 
 返回信息:
 
-1. 文件存在: 返回 `200`, 返回头信息如下所示:
+1. 获取成功: 返回 `200`, 返回头信息如下所示:
 
     |       参数        |  说明 |
     | ----------------- | ----- |
@@ -238,7 +242,7 @@ HEAD /<bucket>/path/to/file
     | x-upyun-file-size | 文件大小 |
     | x-upyun-file-date | 文件创建时间 |
 
-2. 文件不存在: 返回 `404`
+2. 获取失败: 相应的出错信息，具体请参阅「[API 错误码表](/api/errno/)」
 
 ### 删除文件
 
@@ -248,8 +252,8 @@ DELETE /<bucket>/path/to/file
 
 返回信息:
 
-1. 文件存在: 返回 `200`
-2. 文件不存在: 返回 `404`
+1. 删除成功: 返回 `200`
+2. 删除失败: 返回相应的出错信息，具体请参阅「[API 错误码表](/api/errno/)」
 
 
 ### 创建目录
@@ -266,7 +270,7 @@ POST /<bucket>/path/to/folder
 返回信息:
 
 1. 创建成功: 返回 `200`
-2. 失败: 返回 `403`
+2. 创建失败: 返回相应的出错信息，具体请参阅「[API 错误码表](/api/errno/)」
 
 ### 删除目录
 
@@ -276,8 +280,8 @@ DELETE /<bucket>/path/to/folder
 
 返回信息:
 
-1. 目录存在: 返回 `200`
-2. 目录不存在: 返回 `404`
+1. 删除成功: 返回 `200`
+2. 删除失败: 返回相应的出错信息，具体请参阅「[API 错误码表](/api/errno/)」
 
 > **注：**
 > API 只允许删除空的目录，若非空，则需先删除里面的文件，否则将提示访问被拒绝
@@ -290,7 +294,7 @@ GET /<bucket>/path/to/folder
 
 返回信息:
 
-1. 成功: 返回 `200`。HTTP body 内容为各个文件的属性
+1. 获取成功: 返回 `200`。HTTP body 内容为各个文件的属性
 
 如:
 
@@ -302,7 +306,7 @@ foo.jpg\tN\t4237\t1415096225\nbar\tF\t423404\t1415096260
 > 文件/目录之间以`\n`分隔，属性之间以:「文件\t 类型\t 大小\t 最后修改时间」 顺序以`\t`分隔
 > 类型可选值: `N`(文件), `F`(目录)
 
-2. 文件列表不存在: 返回 `404`
+2. 获取失败: 返回相应的出错信息，具体请参阅「[API 错误码表](/api/errno/)」
 
 ### 获取空间使用情况
 
@@ -312,29 +316,5 @@ GET /<bucket>/?usage
 
 返回信息:
 
-1. 成功: 返回 `200`。HTTP body 内容为空间的使用量（单位为`Byte`）
-2. 文件列表不存在: 返回 `404`
-
-
-### REST API 状态码表
-
-| HTTP 状态码 |             返回代码            |                                                含义                                               |
-|------------|---------------------------------|---------------------------------------------------------------------------------------------------|
-|        200 | OK                              | 操作成功                                                                                          |
-|        400 | Bad Request                     | 错误请求(如 URL 缺少空间名)                                                                       |
-|        401 | Unauthorized                    | 访问未授权                                                                                        |
-|        401 | Sign error                      | 签名错误(操作员和密码,或签名格式错误)                                                             |
-|        401 | Need Date Header                | 发起的请求缺少 Date 头信息                                                                        |
-|        401 | Date offset error               | 发起请求的服务器时间错误，请检查服务器时间是否与世界时间一致                                      |
-|        403 | Not Access                      | 权限错误(如非图片文件上传到图片空间)                                                              |
-|        403 | File size too max               | 单个文件超出大小(1 GB 以内)                                                                      |
-|        403 | Not a Picture File              | 图片类空间错误码，非图片文件或图片文件格式错误。针对图片空间只允许上传 jpg/png/gif/bmp/tif 格式。 |
-|        403 | Picture Size too max            | 图片类空间错误码，图片尺寸太大。针对图片空间，图片总像素在 200000000 以内。                       |
-|        403 | Bucket full                     | 空间已用满                                                                                        |
-|        403 | Bucket blocked                  | 空间被禁用,请联系管理员                                                                           |
-|        403 | User blocked                    | 操作员被禁用                                                                                      |
-|        403 | Image Rotate Invalid Parameters | 图片旋转参数错误                                                                                  |
-|        403 | Image Crop Invalid Parameters   | 图片裁剪参数错误                                                                                  |
-|        404 | Not Found                       | 获取文件或目录不存在；上传文件或目录时上级目录不存在                                              |
-|        406 | Not Acceptable(path)            | 目录错误（创建目录时已存在同名文件；或上传文件时存在同名目录)                                     |
-|        503 | System Error                    | 系统错误                                                                                          |
+1. 获取成功: 返回 `200`。HTTP body 内容为空间的使用量（单位为`Byte`）
+2. 获取失败: 返回相应的出错信息，具体请参阅「[API 错误码表](/api/errno/)」
