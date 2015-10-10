@@ -181,7 +181,7 @@ PUT /<bucket>/path/to/file
 > 格式 `valign,halign`，既 `垂直对齐,水平对齐`（如 `bottom,right`），可选值包括：
 >
 > * 垂直对齐：`top`，`middle`，`bottom`
-> * 水平对齐：`left`，`middle`，`right`
+> * 水平对齐：`left`，`center`，`right`
 >
 >
 >**注：x-gmkerl-watermark-font 值可选列表**
