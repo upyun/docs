@@ -103,7 +103,7 @@ ftpcmd('delete', 'test/index.htm');
 
 #### 插件下载
 
-* 最新版插件(v1.0) 下载：[Zip 压缩包](http://upyun-assets.b0.upaiyun.com/docs/discuz-plugin/discuz-plugin-master.zip) | [Github](https://github.com/upyun/discuz-plugin)
+* 最新版插件(v1.0) 下载：[Github](https://github.com/upyun/discuz-plugin)
 * 最新版插件(v1.0) 安装使用手册下载：[Pdf 版](http://upyun-assets.b0.upaiyun.com/docs/discuz-plugin/Discuz%20%E8%AE%BA%E5%9D%9B%20UPYUN%20%E6%8F%92%E4%BB%B6%20-%20v1.0.pdf) | [Html 版](http://upyun-assets.b0.upaiyun.com/docs/discuz-plugin/Discuz%20%E8%AE%BA%E5%9D%9B%20UPYUN%20%E6%8F%92%E4%BB%B6-v1.0.zip)
 
 #### 版本更新说明
