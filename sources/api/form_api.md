@@ -214,7 +214,7 @@ signature 生成步骤：
 
 * 如果没有设置 `return-url`，那么 UPYUN 处理完上传操作后，将把结果信息返回输出到 body 中。
 * 如果设置了 `return-url`，那么 UPYUN 处理完上传操作后，将会把结果信息以 Query String 的形式追加到 `return-url` 指定的 URL 后，并进行 302 跳转，如，`return-url` 为 *`http://yourdomain.com/return/`* 那么，所跳转的 URL 可能会如下所示：
-* URL 中包括：code、message、url、time 和 sign(或 non-sign) 参数。[\[注 6\]](#note6)
+* URL 中包括：code、message、url、time 和 sign(或 no-sign) 参数。[\[注 6\]](#note6)
 
 ```
 http://yourdomain.com/return/?code=503&message=%E6%8E%88%E6%9D%83%E5%B7%B2%E8%BF%87%E6%9C%9F&url=%2F2011%2F12%2Ffd0e30047f81fa95.bz2&time=1332129461&sign=b11cb84538e884d63e14e52d35a7bd21
@@ -310,7 +310,7 @@ http://yourdomain.com/return/?code=503&message=%E6%8E%88%E6%9D%83%E5%B7%B2%E8%BF
 
 **使用场景：**
 
-当用户使用`return-url`或`notify-url`参数时，UPYUN 会将表单操作的结果，以同步或异步的方式返回给用户，结果内容包含 code、message、url、time 和 sign(或 non-sign 见[通知规则](#notify_return)，无法回传其他内容。而 `ext-param` 参数可将用户自定义的内容原封不动的返回给用户。
+当用户使用`return-url`或`notify-url`参数时，UPYUN 会将表单操作的结果，以同步或异步的方式返回给用户，结果内容包含 code、message、url、time 和 sign(或 no-sign 见[通知规则](#notify_return)，无法回传其他内容。而 `ext-param` 参数可将用户自定义的内容原封不动的返回给用户。
 
 
 **使用须知：**
@@ -325,7 +325,7 @@ http://yourdomain.com/return/?code=503&message=%E6%8E%88%E6%9D%83%E5%B7%B2%E8%BF
 
 
 <a name="note6"></a>
-#### 注 6：sign 与 non-sign 参数说明 ####
+#### 注 6：sign 与 no-sign 参数说明 ####
 
 * sign 是根据 code、message、url、time 和表单 API 验证密匙(`form_api_secret`) 使用 `&` 拼接后进行 md5 处理得到。拼接时需注意 url 的编码与解码问题。如果使用了 `ext-param` 参数, 则 `ext-param` 也需加入签名计算中。同样使用 `&` 拼接。
 拼接在 `form_api_secret` 之后即可。
@@ -358,4 +358,4 @@ form_api_secret: `lGetaXubhGezKp89+6iuOb5IaS3=`
 
 最终的签名为: `'086c46cfedfc22bfa2e4971a77530a76'`
 
-* 如果因发生错误，表单 API 未取得，则会特殊的返回 `non-sign`，其处理方式和上述 `sign` 相同，只是没有表单 API 验证密匙(`form_api_secret`)
+* 如果因发生错误，表单 API 未取得，则会特殊的返回 `no-sign`，其处理方式和上述 `sign` 相同，只是表单 API 验证密匙(`form_api_secret`) 为空字符串 `''`。
