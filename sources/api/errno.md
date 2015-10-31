@@ -63,6 +63,20 @@ API 请求失败时，服务器会返回一个 json 格式的响应体用于定�
 | 400 |  40000012 | wite file to fs error    |
 | 400 |  40000013 | need content-md5 but no body provided    |
 | 400 |  40000014 | need content-md5 but no content provided    |
+| 400 |  40000015 | missing required arguments |
+| 400 |  40000016 | missing file_hash argument |
+| 400 |  40000017 | missing file_blocks argument |
+| 400 |  40000018 | too many file blocks |
+| 400 |  40000019 | missing file_size argument |
+| 400 |  40000020 | missing save_token argument |
+| 400 |  40000021 | missing block_index argument |
+| 400 |  40000022 | missing block_hash argument |
+| 400 |  40000023 | block already exists |
+| 400 |  40000024 | block not finished |
+| 400 |  40000025 | file size not match |
+| 400 |  40000026 | block index out of range |
+| 400 |  40000027 | block size too small, at least 100KB |
+| 400 |  40000028 | block size too large, at most 5MB |
 | 401 |  40100001 | need date header    |
 | 401 |  40100002 | date offset error    |
 | 401 |  40100003 | unknown realm in authorization header    |
@@ -103,9 +117,14 @@ API 请求失败时，服务器会返回一个 json 格式的响应体用于定�
 | 403 |  40300022 | invalid image-width-range    |
 | 403 |  40300023 | invalid image-height-range    |
 | 403 |  40300024 | exceed max size    |
+| 403 |  40300025 | wrong content-type header |
+| 403 |  40300026 | need content-length header |
+| 403 |  40300027 | request body too big |
+| 403 |  40300028 | request has expired |
 | 404 |  40400001 | file or directory not found    |
 | 406 |  40600001 | dir not acceptable    |
 | 406 |  40600002 | folder already exists    |
+| 408 |  40800001 | read client request timeout |
 | 415 |  41500001 | media type error, need content-type    |
 | 429 |  42900001 | too many requests    |
 | 503 |  50300000 | unknown error    |
@@ -127,3 +146,16 @@ API 请求失败时，服务器会返回一个 json 格式的响应体用于定�
 | 503 |  50300018 | failed to new form    |
 | 503 |  50300020 | put file capture error    |
 | 503 |  50300021 | put capture broken pipe    |
+| 503 |  50300022 | new resource error |
+| 503 |  50300023 | connect to db error |
+| 503 |  50300024 | get master failed |
+| 503 |  50300025 | write info error |
+| 503 |  50300026 | get data error |
+| 503 |  50300027 | put file to fs error |
+| 503 |  50300028 | get file from fs error |
+| 503 |  50300029 | unknow error |
+| 503 |  50300030 | upstream closed connection |
+| 503 |  50300031 | read upstream timeout |
+| 503 |  50300032 | wrong data |
+| 503 |  50300033 | new resource error |
+| 503 |  50300034 | get info errors |

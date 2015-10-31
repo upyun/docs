@@ -1,7 +1,7 @@
 > **Beta:**
 > 该 API 仍处于 Beta 阶段
 
-在`上传大文件` 的时候，面对有可能因为网络质量等其他原因而造成的上传失败，使用分块上传和断点续传机制就显得非常有必要。
+在上传大文件的时候，面对有可能因为网络质量等其他原因而造成的上传失败，使用分块上传和断点续传机制就显得非常有必要。
 
 ## API 基本域名
 
@@ -74,7 +74,6 @@ __计算 `policy` 相应步骤所得结果如下：__
 ```
 
 第二步，将第一步所得字符串 base64 编码后：
-2.
 ```
 eyJwYXRoIjoiL2RlbW8ucG5nIiwiZXhwaXJhdGlvbiI6MTQwOTIwMDc1OCwiZmlsZV9ibG9ja3MiOjEsImZpbGVfc2l6ZSI6NjUzMjUyLCJmaWxlX2hhc2giOiJiMTE0M2NiYzA3YzhlNzY4ZDUxN2ZhNWU3M2NiNzljYSJ9
 ```
@@ -114,10 +113,12 @@ Content-Type : application/x-www-form-urlencoded
 | 参数  | 参数说明|
 |----|----|
 |path|文件存储路径|
-|expiration| 授权有效期，Unix 时间戳|
+|expiration| 授权有效期，Unix UTC 时间戳|
 |file_blocks| 本次所上传的文件的分块数目|
 |file_hash|所上传文件整个文件的 md5 hash 值|
 |file_size|所上传文件整个文件的大小(单位 bit)|
+
+> 注：请选取适当的 `file_blocks` 以保证分块的大小** 不超过 5M **，并且除最后一块外其余分块** 不小于 100K **。
 
 其他可选参数如下：
 
@@ -130,8 +131,8 @@ Content-Type : application/x-www-form-urlencoded
 | content-type         | 否   | UPYUN 默认根据扩展名判断，手动指定可提高精确性                                                      |
 | image-width-range    | 否   | 图片宽度限制，格式：`min,max`，单位：像素，如 `0,1024`，允许上传宽度为 0～1024px 之间               |
 | image-height-range   | 否   | 图片高度限制，格式：`min,max`，单位：像素，如 `0,1024`，允许上传高度在 0～1024px 之间               |
-| notify_url           | 否   | 异步通知 URL，见 [\[表单 API 通知规则\]](/api/form_api/#notify_return)                                                      |
-| return_url           | 否   | 同步通知 URL，见 [\[表单 API 通知规则\]](/api/form_api/#notify_return)                                                      |
+| notify-url           | 否   | 异步通知 URL，见 [\[表单 API 通知规则\]](/api/form_api/#notify_return)                                                      |
+| return-url           | 否   | 同步通知 URL，见 [\[表单 API 通知规则\]](/api/form_api/#notify_return)                                                      |
 | x-gmkerl-thumbnail   | 否   | 缩略图版本名称，仅支持图片类空间，可搭配其他 `x-gmkerl-*` 参数使用 [\[表单 API 注 3\]](/api/form_api/#note3) |
 | x-gmkerl-type        | 否   | 缩略类型 [\[表单 API 注 4\]](/api/form_api/#note4)                                                           |
 | x-gmkerl-value       | 否   | 缩略类型对应的参数值 [\[表单 API 注 4\]](/api/form_api/#note5)                                               |
@@ -151,7 +152,7 @@ Content-Type : application/x-www-form-urlencoded
   token_secret: "89a3d8d8a26a8adb32a3651a63c0d5cc",
   bucket_name: 'example',
   blocks: 5,
-  status: [1,0,1,0,0],
+  status: [0,0,0,0,0],
   expired_at: 1401784219
 }
 ```
@@ -164,7 +165,7 @@ Content-Type : application/x-www-form-urlencoded
 |token_secret| 用于之后请求计算 `policy` 和 `signature` 所用，代替表单 API 密钥 |
 |bucket_name|文件保存空间                                |
 |blocks     |文件分块数量                                  |
-|status     |分块文件上传状态，`true`表示已完成上传，`false`表示分块未完成上传。数组索引表示分块序号，从 0 开始；      |
+|status     |分块文件上传状态，`1`表示已完成上传，`0`表示分块未完成上传。数组索引表示分块序号，** 从 0 开始 **；      |
 |expired_at |当前分块上传数据有效期，超过有效期之后数据将会被清理  |
 
 
@@ -193,7 +194,7 @@ Content-Type: multipart/form-data
 |参数|参数说明|
 |---|---|
 |save_token|即初始化上传请求返回结果中的 `save_token`|
-|expiration| Unix 时间戳，授权有效期，超过这个时间之后授权将会失效|
+|expiration| Unix UTC 时间戳，授权有效期，超过这个时间之后授权将会失效|
 | block_index|该分块在完整文件中的分块索引|
 | block_hash|该分块文件的 md5 值|
 
@@ -220,7 +221,7 @@ Content-Type: multipart/form-data
 |token_secret| 用于之后请求计算 `policy` 和 `signature` 所用，代替表单 API 密钥 |
 |bucket_name|文件保存空间                                |
 |blocks     |文件分块数量                                  |
-|status     |分块文件上传状态，`true`表示已完成上传，`false`表示分块未完成上传。数组索引表示分块序号，从 0 开始；      |
+|status     |分块文件上传状态，`1`表示已完成上传，`0`表示分块未完成上传。数组索引表示分块序号，** 从 0 开始 **；      |
 |expired_at |当前分块上传数据有效期，超过有效期之后数据将会被清理  |
 
 ### 文件合并完成上传
@@ -247,16 +248,16 @@ Content-Type: application/x-www-form-urlencoded
 |参数|参数说明|
 |----|----|
 |save_token|即初始化上传请求返回结果中的 `save_token`|
-|expiration|Unix 时间戳，授权有效期，超过这个时间之后授权将会失效|
+|expiration|Unix UTC 时间戳，授权有效期，超过这个时间之后授权将会失效|
 
 
 
 #### 返回结果
 
-表单 API 结合 `return_url` 和 `notify_url` 两个，有三种方式将上传结果返回:
-* HTTP Body 同步返回；在没有传递 `return_url` 时，都会使用这种方式以 JSON 字符串的方式返回数据到客户端；
-* 客户端同步跳转回调；传递 `return_url` 参数时，会通过 HTTP 302 的方式在客户端跳转到回调地址，通过 GET 参数传递；
-* 服务器异步队列通知；传递了 `notify_url` 参数时，会通过 UPYUN 的服务端异步队列发送 POST 请求以标准的*x-www-form-urlencoded*表单进行通知，如果回调通知失败，再重试 10 次（累计一天时间）之后将丢弃这条回调任务；
+表单 API 结合 `return-url` 和 `notify-url` 两个，有三种方式将上传结果返回:
+* HTTP Body 同步返回；在没有传递 `return-url` 时，都会使用这种方式以 JSON 字符串的方式返回数据到客户端；
+* 客户端同步跳转回调；传递 `return-url` 参数时，会通过 HTTP 302 的方式在客户端跳转到回调地址，通过 GET 参数传递；
+* 服务器异步队列通知；传递了 `notify-url` 参数时，会通过 UPYUN 的服务端异步队列发送 POST 请求以标准的*x-www-form-urlencoded*表单进行通知，如果回调通知失败，再重试 10 次（累计一天时间）之后将丢弃这条回调任务；
 
 三种方式将返回/提交一样的数据，签名验证机制也完全一样，以 HTTP Body 返回的数据为例上传成功返回：
 
@@ -264,7 +265,7 @@ Content-Type: application/x-www-form-urlencoded
 {
   bucket_name: 'example',
   path: '/demo.png',
-  content_type: 'image/png',
+  mimetype: 'image/png',
   content_length: 65422,
   image_width: 800,
   image_height: 600,
@@ -279,7 +280,7 @@ Content-Type: application/x-www-form-urlencoded
 |参数          |说明                                                           |
 |-------------|--------------------------------------------------------------|
 |path         |文件保存路径                                                     |
-|content_type |保存文件的 content-type                                           |
+|mimetype |保存文件的 content-type                                           |
 |content_length |文件大小                                                      |
 |image_width  |文件宽度，仅图片空间返回                                           |
 |image_height |文件高度，仅图片空间返回                                           |
@@ -300,43 +301,4 @@ Content-Type: application/x-www-form-urlencoded
 
 ### 错误代码说明
 
-#### HTTP Status Codes
-所有 API 请求都会根据情况返回适当的 HTTP 状态
-
-| 代码      | 文本内容     | 描述                             |
-| --------- | ------------ | -------------------------------- |
-| 200       | OK           | 所有成功的请求都将返回这个状态   |
-| 201       | Created      | 成功创建了新的资源 |
-| 302       | Created      | 成功创建资源并需要进行同步回调跳转时 |
-| 400       | Bad Request  | 无效请求，通常为表单数据封装错误     |
-| 401       | Unauthorized | 参数错误、授权无效或过期                   |
-| 403       | Forbidden    | 文件处理异常 |
-| 404       | NotFound     | 请求的接口或者数据不存在时|
-| 409       | Conflict     | 请求并发冲突 |
-| 500       | Internal Server Error | 程序出现异常、错误时 |
-
-#### 错误消息
-所有接口的错误信息都要 JSON 格式返回，返回值格式
-
-```
-{
-  error_code: "40401",
-  path: '/demo.zip',
-  message : "Bucket NotFound."
-}
-```
-
-#### 错误代码
-| 代码      | 文本内容                      | 描述                             |
-| -----------| ------------------------- | -------------------------------- |
-| 40001      |                           | 参数错误，详情见返回的错误信息|
-| 40101      | Auth failed                | 授权错误                         |
-| 40301      | Form API disabled.         | 表单 API 被禁用                      |
-| 40302      | Invalid file blocks.       | 文件分块数量超过限制               |
-| 40303      | Invalid file hash.        | 文件 hash 值错误                      |
-| 40304      | Missing file.             | 文件分块信息不存在                  |
-| 40305      | Block hash error.          | 文件分块 hash 校验失败         |
-| 40306      | File hash error.          | 文件拼接完成后 hash 校验失败         |
-| 40307      | Process failed.          | 文件处理失败                      |
-| 40401      | Bucket NotFound.           | 空间不存在                         |
-| 40402      | Blocks NotFound.           | 文件分块信息不存在                  |
+请参考 [API 错误码表](/api/errno/)
