@@ -161,11 +161,6 @@
     </li>
 </ul>
 
-
-<h2 id="plugin">插件</h2>
-</ul>
-
-
 <h2 id="plugin">插件</h2>
 
 <ul class="list-unstyled list-inline clearfix">
