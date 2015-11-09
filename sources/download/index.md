@@ -68,6 +68,14 @@
     </li>
 
     <li>
+        <strong>PHP 表单 API SDK</strong>
+       <div class="links">
+            <a href="https://github.com/upyun/php-form-sdk" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
+            <a href="https://github.com/upyun/php-form-sdk/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
+       </div>
+    </li>
+
+    <li>
         <strong>iOS 表单 API SDK</strong>
        <div class="links">
             <a href="https://github.com/upyun/ios-form-sdk" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
@@ -119,8 +127,39 @@
             <a href="https://github.com/upyun/node-av-pretreatment/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
         </div>
     </li>
-</ul>
 
+    <li>
+        <strong>PHP 缓存刷新 SDK</strong>
+        <div class="links">
+            <a href="https://github.com/upyun/php-purge-sdk" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
+            <a href="https://github.com/upyun/php-purge-sdk/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
+        </div>
+    </li>
+
+    <li>
+        <strong>Java 缓存刷新 SDK</strong>
+        <div class="links">
+            <a href="https://github.com/upyun/java-purge-sdk" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
+            <a href="https://github.com/upyun/java-purge-sdk/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
+        </div>
+    </li>
+
+    <li>
+        <strong>Java 生成 token</strong>
+        <div class="links">
+            <a href="https://github.com/upyun/java-token" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
+            <a href="https://github.com/upyun/java-token/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
+        </div>
+    </li>
+
+    <li>
+        <strong>JS 生成 token</strong>
+        <div class="links">
+            <a href="https://github.com/upyun/js-token" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
+            <a href="https://github.com/upyun/js-token/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
+        </div>
+    </li>
+</ul>
 
 <h2 id="plugin">插件</h2>
 
@@ -141,8 +180,15 @@
     <li>
         <strong>UEditor</strong>
         <div class="links">
-            <a href="https://github.com/upyun/ueditor-for-UPYUN" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
-            <a href="https://github.com/upyun/ueditor-for-UPYUN/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
+            <a href="https://github.com/upyun/ueditor" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
+            <a href="https://github.com/upyun/ueditor/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
+        </div>
+    </li>
+    <li>
+        <strong>umeditor</strong>
+        <div class="links">
+            <a href="https://github.com/upyun/umeditor-for-UPYUN" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
+            <a href="https://github.com/upyun/umeditor-for-UPYUN/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
         </div>
     </li>
 </ul>
