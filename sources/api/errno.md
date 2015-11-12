@@ -77,6 +77,9 @@ API 请求失败时，服务器会返回一个 json 格式的响应体用于定�
 | 400 |  40000026 | block index out of range |
 | 400 |  40000027 | block size too small, at least 100KB |
 | 400 |  40000028 | block size too large, at most 5MB |
+| 400 |  40000029 | save-key encoding should be utf8 |
+| 400 |  40000030 | path encoding should be utf8 |
+| 400 |  40000031 | filename should be utf8 |
 | 401 |  40100001 | need date header    |
 | 401 |  40100002 | date offset error    |
 | 401 |  40100003 | unknown realm in authorization header    |
@@ -159,3 +162,4 @@ API 请求失败时，服务器会返回一个 json 格式的响应体用于定�
 | 503 |  50300032 | wrong data |
 | 503 |  50300033 | new resource error |
 | 503 |  50300034 | get info errors |
+| 503 |  50300035 | decode hub body error  |
