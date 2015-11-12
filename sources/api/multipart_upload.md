@@ -270,6 +270,7 @@ Content-Type: application/x-www-form-urlencoded
   image_width: 800,
   image_height: 600,
   image_frames: 1,
+  image_type: 'PNG',
   last_modified: 1402021925,
   signature: 'c0ec4d6b0bb0515b4b889a12436118aa'
 }
@@ -279,14 +280,17 @@ Content-Type: application/x-www-form-urlencoded
 
 |参数          |说明                                                           |
 |-------------|--------------------------------------------------------------|
+|bucket_name  | 空间名                                                      |
 |path         |文件保存路径                                                     |
 |mimetype |保存文件的 content-type                                           |
 |content_length |文件大小                                                      |
-|image_width  |文件宽度，仅图片空间返回                                           |
-|image_height |文件高度，仅图片空间返回                                           |
-|image_frames |文件帧数，仅图片空间返回                                           |
+|image_width  |图片宽度，仅图片返回                                           |
+|image_height |图片高度，仅图片返回                                           |
+|image_frames |图片帧数，仅图片返回                                           |
+|image_type   |图片类型，仅图片返回                                         |
 |last_modified|文件最后修改时间，既本次上传操作成功创建文件的时间                      |
 |signature    |校验签名，用于校验返回数据的合法性 ，生成方式参见签名算法                |
+|ext-param    |初始化时指定的额外参数（如果没有指定则不返回这个字段）              |
 
 
 同步回调方式会通过 HTTP 302 的方式进行跳转：
