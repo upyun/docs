@@ -55,3 +55,8 @@ pages:
 - ['misc/discuz.md', '**HIDDEN**', 'Discuz']
 - ['misc/phpwind.md', '**HIDDEN**', 'PHPWind']
 - ['misc/ueditor.md', '**HIDDEN**', 'UEditor']
+
+# Add permalink for sharing
+markdown_extensions:
+    - toc:
+        permalink: True
