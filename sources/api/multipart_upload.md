@@ -266,7 +266,7 @@ Content-Type: application/x-www-form-urlencoded
   bucket_name: 'example',
   path: '/demo.png',
   mimetype: 'image/png',
-  content_length: 65422,
+  file_size: 65422,
   image_width: 800,
   image_height: 600,
   image_frames: 1,
@@ -283,7 +283,7 @@ Content-Type: application/x-www-form-urlencoded
 |bucket_name  | 空间名                                                      |
 |path         |文件保存路径                                                     |
 |mimetype |保存文件的 content-type                                           |
-|content_length |文件大小                                                      |
+|file_size |文件大小                                                      |
 |image_width  |图片宽度，仅图片返回                                           |
 |image_height |图片高度，仅图片返回                                           |
 |image_frames |图片帧数，仅图片返回                                           |
@@ -300,7 +300,7 @@ Content-Type: application/x-www-form-urlencoded
 > Access-Control-Allow-Origin:*
 > X-Powered-By:Crocodile/0.0.1
 > ...
-> Location: http://www.example.com/callback/return.php?path=%2Fdemo.png&content_type=image%2Fpng&content_length=65422&image_width=800&image_height=600&image_frames=1&last_modified=1402021925&signature=bc0b1ee186486c050146616a6ec74747
+> Location: http://www.example.com/callback/return.php?path=%2Fdemo.png&content_type=image%2Fpng&file_size=65422&image_width=800&image_height=600&image_frames=1&last_modified=1402021925&signature=bc0b1ee186486c050146616a6ec74747
 ```
 
 ### 错误代码说明
