@@ -337,7 +337,7 @@ body {
 
 
 .content-home h1 {
-  margin: 100px auto 0;
+  margin: 50px auto 0; /*revised 2015-11-18*/
   height: 76px;
   width: 871px;
   background-position: 0 -70px;
@@ -352,7 +352,7 @@ body {
 }
 
 .content-home .minecraft {
-  margin-top: 100px;
+  margin-top: 80px; /*revised 2015-11-18*/
 }
 
 .content-home .section {
@@ -520,3 +520,51 @@ body {
 #go-top:hover {
   color: #4fc3f7;
 }
+
+/* 搜索框样式设置--begin */
+.search-docs {
+    width:500px;
+    height:40px;
+    position: relative;
+    top: 18px; /*revised 2015-11-18*/
+    margin:0 auto;
+}
+
+.search_content {
+    display: inline-block;
+    border: 1px solid #b6b6b6;
+    padding: 1px;
+    padding-left: 10px;
+    width: 400px;
+    height: 40px;
+    border-right-width: 0;
+}
+
+.search_content:focus {
+    outline: none;
+    border: 1px solid #4fc3f7;
+    border-right-width: 0;
+}
+
+.search-btn {
+    display: inline-block;
+    width: 100px;
+    height: 40px;
+    vertical-align: top;
+    color: #fff;
+    font-size: 16px;
+    letter-spacing: 1px;
+    background-color: #4fc3f7;
+    border: none;
+    margin-left: -5px;
+}
+
+.search-btn:hover {
+    background-color: #21ABE8;
+    cursor: pointer;
+}
+
+.search-btn:focus {
+    outline: none;
+}
+/* 搜索框样式设置--end */
