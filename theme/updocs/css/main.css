@@ -337,7 +337,7 @@ body {
 
 
 .content-home h1 {
-  margin: 100px auto 0;
+  margin: 50px auto 0; /*revised 2015-11-18*/
   height: 76px;
   width: 871px;
   background-position: 0 -70px;
@@ -352,7 +352,7 @@ body {
 }
 
 .content-home .minecraft {
-  margin-top: 100px;
+  margin-top: 80px; /*revised 2015-11-18*/
 }
 
 .content-home .section {
@@ -526,7 +526,7 @@ body {
     width:500px;
     height:40px;
     position: relative;
-    top: 25px;
+    top: 18px; /*revised 2015-11-18*/
     margin:0 auto;
 }
 
