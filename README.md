@@ -14,11 +14,8 @@
 1\. 安装所需的 MkDocs
 
 ```
-$ pip install 'mkdocs==0.9'
+$ pip install 'mkdocs'
 ```
-
-> *注意*
-> 因为 0.10 以上版本的 mkdocs，修改了相对路径的生成策略，暂时请用 0.9 版本
 
 2\. 进入本项目仓库根目录，并执行 `mkdocs serve`
 
