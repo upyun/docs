@@ -195,7 +195,7 @@ signature 生成步骤：
 | x-gmkerl-quality     | 否   | 缩略图压缩质量，**默认 `95`**                                                                           |
 | x-gmkerl-unsharp     | 否   | 是否进行锐化处理，**默认 `true`**                                                                |
 | x-gmkerl-rotate      | 否   | 图片旋转（顺时针），可选：`auto`，`90`，`180`，`270` 之一                                           |
-| x-gmkerl-crop        | 否   | 图片裁剪，格式：`x,y,width,height`，均需为正整型                                                    |
+| x-gmkerl-crop        | 否   | 图片裁剪，格式：`<w>x<h>a<x>a<y>`。 其中 w, h 分别表示裁剪后的宽和高，x, y 表示左上角坐标。如100x100a0a0。         |
 | x-gmkerl-exif-switch | 否   | 是否保留 exif 信息，仅在搭配 `x-gmkerl-crop`，`x-gmkerl-type`，`x-gmkerl-thumbnail` 时有效。        |
 | ext-param            | 否   | 额外参数，UTF-8 编码，并小于 255 个字符 [\[注 5\]](#note5)                            |
 
