@@ -36,15 +36,19 @@ UPYUN 内容分发网络（Content Delivery Network），即 UPYUN CDN，通过�
 
 以下是关于域名绑定的一些额外（重要）说明：
 
-* 除常规形式的域名外，我们还支持泛域名绑定，比如 `*.yourdomain.com`；特别地，其中 `*` 暂时只支持匹配一层：
+* 除常规形式的域名外（包括顶级域名），我们还支持泛域名绑定，比如 `*.yourdomain.com`；特别地，其中 `*` 最多支持匹配 4 层：
 
 ```
 [v] *.yourdomain.com => foo.yourdomain.com
 [v] *.yourdomain.com => bar.yourdomain.com
-[x] *.yourdomain.com => foo.bar.yourdomain.com
+[v] *.yourdomain.com => foo.bar.yourdomain.com
+[v] *.yourdomain.com => foo.bar.baz.yourdomain.com
+[v] *.yourdomain.com => foo.bar.baz.qux.yourdomain.com
+[x] *.yourdomain.com => foo.bar.baz.qux.quxx.yourdomain.com
 
 [v] *.bar.yourdomain.com => foo.bar.yourdomain.com
-[x] *.bar.yourdomain.com => doc.foo.bar.yourdomain.com
+[v] *.bar.yourdomain.com => baz.foo.bar.yourdomain.com
+[x] *.bar.yourdomain.com => foo.bar.baz.yourdomain.com
 ```
 
 * 添加域名绑定后，需要到域名服务商的 DNS 解析管理中，将域名的 CNAME 解析到 `<bucket>.b0.aicdn.com`。
@@ -249,7 +253,7 @@ video/x-m4v
 |mida |ttf |eot |woff |otf |svg |svgz |webp |docx |xlsx |
 |xls |pptx |ps |class |jar |bz2 |bzip |exe |flv |gzip |
 |rar |rtf |tgz |gz |txt |zip |mp3 |mp4 |ogg |m4a |
-|m4v | | | | | | | | | |
+|m4v | apk | | | | | | | | |
 
 ## GZIP 压缩
 
