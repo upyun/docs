@@ -4,16 +4,16 @@ UPYUN 提供了丰富的 API 以及相关的 SDK 供开发者选择和使用，�
 
 ### 注册帐号/操作员
 
-「注册帐号」及其密码将作为 [UPYUN 用户控制面板](https://console.upyun.com/#/login/)的登录所用，您需要通过「注册帐号」在 [UPYUN 用户控制面板](https://console.upyun.com/#/login/)进行空间的新建，操作员授权，订单购买等操作。
+「注册帐号」及其密码将作为 [UPYUN 用户控制面板](https://console.upyun.com/#/login/)的登录所用，您需要通过「注册帐号」在 [UPYUN 用户控制面板](https://console.upyun.com/#/login/) 进行空间的新建，操作员授权，订单购买等操作。
 
-「操作员」，顾名思义，是用来操作您的空间的，通过使用注册帐号登录[UPYUN 用户控制面板](https://console.upyun.com/#/login/)后，您可以创建多个操作员，满足不同的管理需求。
+「操作员」，顾名思义，是用来操作您的空间的，通过使用注册帐号登录 [UPYUN 用户控制面板](https://console.upyun.com/#/login/) 后，您可以创建多个操作员，满足不同的管理需求。
 
 「操作员」需要被授权至某个空间，才能对该空间进行一些操作（如，上传，下载等）。帮助中心所涉及到的文档中，若无特殊说明，所指的「操作员」、「操作员名」均为已授权至相应空间的操作员。
 
 
 ### 空间
 
-在您使用注册帐号登录[UPYUN 用户控制面板](https://console.upyun.com/#/login/)后，您可以创建不同的空间以方便管理你的文件资源。
+在您使用注册帐号登录 [UPYUN 用户控制面板](https://console.upyun.com/#/login/) 后，您可以创建不同的空间以方便管理你的文件资源。
 
 > **提示：**
 > 每个空间都可以授权多个操作员，相应的，每个操作员也可以被授权至多个空间
@@ -24,7 +24,7 @@ UPYUN 目前有如下几种空间类型：
 * 静态 CDN 空间：资源文件全都存放在源站，无需重新上传至 UPYUN 服务器，适合加速纯静态资源，比如图片、文档、音视频等。拥有「[自定义版本](http://segmentfault.com/blog/yunshu_blog/1190000002400065)」功能。
 * 动态 CDN 空间：资源文件全都存放在源站，无需重新上传至 UPYUN 服务器，适合源站内容动静混用的场景，可实现全站加速。
 
-更多空间类型的区别，请参阅[空间分几种类型，有哪些区别？](http://docs.upyun.com/faq/#faq)
+更多空间类型的区别，请参阅 [空间分几种类型，有哪些区别？](http://docs.upyun.com/faq/#faq)
 
 ### 访问域名
 「空间」创建完成后，系统会自动绑定一个默认域名`<bucket>.b0.upaiyun.com`。比如，当你创建了一个名叫`demo`的空间时，那系统会自动绑定默认域名`demo.b0.upaiyun.com`。因此，如果该空间根目录有一个名为 `file.txt` 的文件，那么，你可以使用 `http://demo.b0.upaiyun.com/file.txt` 来访问。
@@ -36,7 +36,7 @@ UPYUN 目前有如下几种空间类型：
 
 ### 防盗链
 
-又拍云拥有多种防盗链方式，在空间后台左侧就能看见这些防盗链的类型。
+UPYUN 拥有多种防盗链方式，在空间后台左侧就能看见这些防盗链的类型。
 
 #### IP 禁止
 IP 禁止功能，也就是 IP 黑名单，可以禁止指定的 IP 地址访问空间的文件资源。
@@ -46,7 +46,7 @@ IP 禁止功能，也就是 IP 黑名单，可以禁止指定的 IP 地址访问
 2. 添加需要禁止访问的 IP 列表，一行填写一个，点击保存。
 3. 支持通配符，例如如 `10.11.12.*` 将禁止 `10.11.12.0～10.11.12.255` 的 IP 访问。
 
-被禁止的 IP 访问空间的资源，又拍云会返回一个 403 Forbidden 的页面。
+被禁止的 IP 访问空间的资源，UPYUN 会返回一个 403 Forbidden 的页面。
 
 #### 域名防盗链
 
@@ -69,7 +69,7 @@ IP 禁止功能，也就是 IP 黑名单，可以禁止指定的 IP 地址访问
 
 1. 在`用户控制面板-->选择空间-->防盗链-->客户端白名单`开启客户端白名单，点击保存。
 2. 添加 只允许访问的 User Agent 字串，不区分大小写，点击保存。
-3. 支持*通配符
+3. 支持 `*` 通配符
 
 User Agent 白名单防盗链的优先度大于域名白名单和域名黑名单防盗链。
 即，先判断客户端白名单防盗链，然后再判断域名防盗链。
@@ -79,9 +79,9 @@ Token 防盗链是功能最强的一种防盗链方式，开启防盗链以后�
 
 token 防盗链的生成方式如下：
 
- +  在`用户控制面板-->选择空间-->防盗链-->Token 防盗链`开启 Token 防盗链功能, 并且填写一个任意字符串密钥。
- + Token 防盗链的制作需要如下参数：1.token（上面填写的字符串）2.etime（防盗链的有效时间。单位；秒）3.URI（待加密的文件的 URI，如/dir/pic.jpg，/dir/pic.jpg!small）
- + 生成方式:`_upt = MD5(token 密匙&etime&URI){中间 8 位}+etime`
+ +  在`用户控制面板-->选择空间-->防盗链-->Token 防盗链`开启 Token 防盗链功能，并且填写一个任意字符串密钥。
+ + Token 防盗链的制作需要如下参数：1.token（上面填写的字符串）2.etime（防盗链的有效时间。单位；秒）3.URI（待加密的文件的 URI，如 `/dir/pic.jpg，/dir/pic.jpg!small`）
+ + 生成方式:`_upt = MD5(token 密匙&etime&URI){中间 8 位} + etime`
 
 举例:
 
@@ -90,9 +90,9 @@ token 防盗链的生成方式如下：
 
 当前 Unix 时间 = 1370000000
 etime = 1370000000 + 600 = 1370000600
-URI = "/dir/pic.jpg"
+URI = '/dir/pic.jpg'
 sign = MD5(token 密匙&etime&URI) = xxxxxxxxxxxxabcdefghyyyyyyyyyyyy
-_upt = MD5(token 密匙&etime&URI){中间 8 位}+etime = abcdefgh1370000600
+_upt = MD5(token 密匙&etime&URI){中间 8 位} + etime = abcdefgh1370000600
 
 该签名拼接在 URL 地址或用户 Cookie 中，均可起到防盗链作用:
 URL: http://<bucket>/dir/pic.jpg?_upt=abcdefgh1370000600
@@ -103,7 +103,7 @@ Cookie: _upt=abcdefgh1370000600;
 
 ```php
 <?php
-$etime = time()+600; // 授权十分钟后过期
+$etime = time() + 600; // 授权十分钟后过期
 $key = 'token 密匙';   // token 防盗链密钥
 $path = '/dir/pic.jpg'; // 图片相对路径
 $sign = substr(md5($key.'&'.$etime.'&'.$path), 12,8).$etime;
@@ -145,7 +145,7 @@ http://demo.b0.upaiyun.com/img/upyun_test.jpg!200
 作图参数:
 
 ```
-'x-gmkerl-type: fix_width', //限定宽度,高度自适应
+'x-gmkerl-type: fix_width', //限定宽度，高度自适应
 'x-gmkerl-value: 200',      //限定的宽度的值
 'x-gmkerl-unsharp: true',   //图片锐化
 ```

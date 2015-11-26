@@ -1,6 +1,6 @@
-# 又拍云文档中心
+# UPYUN 文档中心
 
-又拍云的文档中心基于 [MkDocs](http://mkdocs.org/) 制作。所有文档的源文件全部位于 `sources/` 目录下，并都为 Markdown 格式。
+UPYUN 的文档中心基于 [MkDocs](http://mkdocs.org/) 制作。所有文档的源文件全部位于 `sources/` 目录下，并都为 Markdown 格式。
 
 所有生成的文档页面全部托管于 [http://docs.upyun.com](http://docs.upyun.com)，并与本项目仓库保持实时同步。
 

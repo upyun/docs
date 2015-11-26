@@ -185,7 +185,7 @@
         </div>
     </li>
     <li>
-        <strong>umeditor</strong>
+        <strong>UMeditor</strong>
         <div class="links">
             <a href="https://github.com/upyun/umeditor-for-UPYUN" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
             <a href="https://github.com/upyun/umeditor-for-UPYUN/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
@@ -222,7 +222,7 @@
     </li>
 
     <li>
-        <strong>又拍云资源管理器（GUI）</strong>
+        <strong>UPYUN 资源管理器（GUI）</strong>
         <div class="links">
             <a href="https://github.com/layerssss/manager-for-upyun" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
             <a href="https://github.com/layerssss/manager-for-upyun#%E4%B8%8B%E8%BD%BD" target="_blank" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
