@@ -229,7 +229,7 @@ http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-architecture.png_/fw/800/f
 | /max/           | 100           | 限定最长边，短边自适应 |
 | /min/           | 100           | 限定最短边，长边自适应 |
 | /scale/         | 50            | 等比例缩小，可选范围 [1, 99] |
-| /gifto/         | true, jpg, png               | 多帧 GIF 图转为单帧的 GIF |
+| /gifto/         | true               | 多帧 GIF 图转为单帧的 GIF |
 | /rotate/        | auto, 90, 180, 270           | 根据设置角度旋转，特别地，`auto` 表示根据 EXIF 自动旋转 |
 | /crop/          | `<width>x<height>a<x>a<y>`（具体请参见注 1） | 裁剪，其中 `w`、`h` 分别表示裁剪后的宽和高，`x`、`y` 表示左上角坐标 |
 | /unsharp/       | true                         | 锐化 |
@@ -238,8 +238,12 @@ http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-architecture.png_/fw/800/f
 | /format/        | jpg, png, webp               | 输出格式 |
 | /gaussblur/     | `<radius>x<sigma>`（具体请参见注 2）         | 高斯模糊，`radius` 为模糊半径，`sigma` 为标准差 |
 | /progressive/   | true                         | 渐进加载 |
+| /canvas/        | `<width>x<height>a<x>a<y>`（具体参见注 1） | 画布，其中 `w`、`h` 分别表示画布的宽和高，`x`、`y` 表示左上角坐标 |
+| /cvscolor/      | RRGGBBAA                     | 画布颜色，前六位为 RGB 值，最后两位为透明度，可选范围 [0, 255]，特比地，参数值都为 16 进制表示 |
+| /border/        | `<width>x<height>`           | 边框， 其中 `w`、`h` 分别表示边框的宽和高 |
+| /brdcolor/      | RRGGBBAA                     | 边框颜色，前六位为 RGB 值，最后两位为透明度，可选范围 [0, 255]，特比地，参数值都为 16 进制表示 |
 
-* 注 1：由于 `/crop/` 参数中的 `+` 会被浏览器转义，这里特别地用 `a` 代替 `+` 字符；`a => add`。
+* 注 1：由于 `/crop/` 和 `/canvas/` 参数中的 `+` 会被浏览器转义，这里特别地用 `a` 代替 `+` 字符；`a => add`。
 * 注 2：高斯模糊参数 `<radius>` 是模糊半径，取值范围是 `[0, 99]`，`<sigma>` 是正态分布的标准差，必须大于 0。
 
 ## 页面优化

@@ -137,9 +137,9 @@ Content-Type: application/x-www-form-urlencoded
 | x-gmkerl-value       | 否   | 缩略类型对应的参数值 [\[表单 API 注 4\]](/api/form_api/#note5)                                               |
 | x-gmkerl-quality     | 否   | **默认 95**缩略图压缩质量                                                                           |
 | x-gmkerl-unsharp     | 否   | **默认锐化（true）**是否进行锐化处理                                                                |
-| x-gmkerl-rotate      | 否   | 图片旋转（顺时针），可选：`auto`，`90`，`180`，`270` 之一                                           |
+| x-gmkerl-rotate      | 否   | 图片旋转（顺时针），可选：`auto，90，180，270` 之一                                           |
 | x-gmkerl-crop        | 否   | 图片裁剪，格式：`<w>x<h>a<x>a<y>`。 其中 w, h 分别表示裁剪后的宽和高，x, y 表示左上角坐标。如 100x100a0a0。         |
-| x-gmkerl-exif-switch | 否   | 是否保留 exif 信息，仅在搭配 `x-gmkerl-crop`，`x-gmkerl-type`，`x-gmkerl-thumbnail` 时有效。        |
+| x-gmkerl-exif-switch | 否   | 是否保留 exif 信息，仅在搭配 `x-gmkerl-crop，x-gmkerl-type，x-gmkerl-thumbnail` 时有效。        |
 | ext-param            | 否   | 额外参数，UTF-8 编码，并小于 255 个字符 [\[表单 API 注 5\]](/api/form_api/#note5)                            |
 
 
