@@ -1,9 +1,9 @@
-site_name: 又拍云文档中心
+site_name: UPYUN 文档中心
 site_url: http://docs.upyun.com/
 repo_url: https://github.com/upyun/docs/
 docs_dir: sources
 theme_dir: theme/updocs
-copyright: Copyright &copy; 2015, 又拍云
+copyright: Copyright &copy; 2015, UPYUN
 
 pages:
 

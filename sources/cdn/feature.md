@@ -74,7 +74,7 @@ Token 防盗链适合下载类网站或应用使用，可设置签名过期时�
 签名：
 
 ```
-_upt = MD5(token 密匙&etime&URI){中间 8 位}+etime
+_upt = MD5(token 密匙&etime&URI){中间 8 位} + etime
 ```
 
 参数：
@@ -88,7 +88,7 @@ _upt = MD5(token 密匙&etime&URI){中间 8 位}+etime
 * 对于使用 Cookie 类无法给每个链接进行单独签名的情况，可使用 / 作为 URI 进行统一的泛签名，如：
 
 ```
-MD5(token 密匙&过期时间&/){中间 8 位}+过期时间
+MD5(token 密匙&过期时间&/){中间 8 位} + 过期时间
 ```
 
 * 注意：泛签名在过期时间内，对空间内的所有链接资源都有效
@@ -231,16 +231,16 @@ http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-architecture.png_/fw/800/f
 | /scale/         | 50            | 等比例缩小，可选范围 [1, 99] |
 | /gifto/         | true, jpg, png               | 多帧 GIF 图转为单帧的 GIF |
 | /rotate/        | auto, 90, 180, 270           | 根据设置角度旋转，特别地，`auto` 表示根据 EXIF 自动旋转 |
-| /crop/          | `<width>x<height>a<x>a<y>`^1 | 裁剪，其中 `w`、`h` 分别表示裁剪后的宽和高，`x`、`y` 表示左上角坐标 |
+| /crop/          | `<width>x<height>a<x>a<y>`（具体请参见注 1） | 裁剪，其中 `w`、`h` 分别表示裁剪后的宽和高，`x`、`y` 表示左上角坐标 |
 | /unsharp/       | true                         | 锐化 |
 | /compress/      | true                         | 压缩优化 |
 | /quality/       | 75                           | 设置压缩质量，可选范围[1, 99] |
 | /format/        | jpg, png, webp               | 输出格式 |
-| /gaussblur/     | `<radius>x<sigma>`^2         | 高斯模糊， `radius` 为模糊半径, `sigma` 为标准差 |
+| /gaussblur/     | `<radius>x<sigma>`（具体请参见注 2）         | 高斯模糊，`radius` 为模糊半径，`sigma` 为标准差 |
 | /progressive/   | true                         | 渐进加载 |
 
 * 注 1：由于 `/crop/` 参数中的 `+` 会被浏览器转义，这里特别地用 `a` 代替 `+` 字符；`a => add`。
-* 注 2：高斯模糊参数 `<radius>` 是模糊半径，取值范围是 [0, 99]， `<sigma>` 是正态分布的标准差，必须大于 0。
+* 注 2：高斯模糊参数 `<radius>` 是模糊半径，取值范围是 `[0, 99]`，`<sigma>` 是正态分布的标准差，必须大于 0。
 
 ## 页面优化
 
@@ -260,7 +260,7 @@ http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-architecture.png_/fw/800/f
 
 ---
 
-云存储空间和 CDN 空间均支持 JS,CSS Combo（组合特性），即可以把多个 JS, CSS 请求合并成一个。演示如下：
+云存储空间和 CDN 空间均支持 JS，CSS Combo（组合特性），即可以把多个 JS, CSS 请求合并成一个。演示如下：
 
 > 特别地，我们以 `!!` 作为分隔符。
 

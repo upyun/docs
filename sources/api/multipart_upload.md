@@ -9,12 +9,11 @@
 m0.api.upyun.com
 ```
 
-
 ## 名称概念
 
 * 文件分块：直接切分二进制文件成小块。具体文件的每个分块的大小以及分块数目，可以根据自己情况调整（eg. 10MB 的文件，可以定每个分块 1MB，则分块数目即为 10 块）
-* 请求参数(Request Params): 即是指常规的请求中所带参数
-* 参数组(Meta Params): 包含文件上传存储及校验相关的必要信息，也是每次请求时候计算 `policy` 和 `signature` 所需的参数组。
+* 请求参数（Request Params）： 即是指常规的请求中所带参数
+* 参数组（Meta Params）： 包含文件上传存储及校验相关的必要信息，也是每次请求时候计算 `policy` 和 `signature` 所需的参数组。
 * signature： 校验签名
 * policy： 存储/校验信息
 
@@ -27,7 +26,7 @@ m0.api.upyun.com
 
 > 注：在分块上传数据和合并文件请求中，需要将此处所用`表单 API`替换为上次请求返回的 `token_secret`，再进行 `signature` 计算
 
-3\. 将第 2 步中所的的字符串计算 md5，所得即为 `signature`
+3\. 将第 2 步中所得的字符串计算 md5，所得即为 `signature`
 
 
 ### `policy`
@@ -98,7 +97,7 @@ POST /<bucket-name>/
 #### 请求类型
 
 ```
-Content-Type : application/x-www-form-urlencoded
+Content-Type: application/x-www-form-urlencoded
 ```
 
 #### 请求参数
@@ -139,7 +138,7 @@ Content-Type : application/x-www-form-urlencoded
 | x-gmkerl-quality     | 否   | **默认 95**缩略图压缩质量                                                                           |
 | x-gmkerl-unsharp     | 否   | **默认锐化（true）**是否进行锐化处理                                                                |
 | x-gmkerl-rotate      | 否   | 图片旋转（顺时针），可选：`auto`，`90`，`180`，`270` 之一                                           |
-| x-gmkerl-crop        | 否   | 图片裁剪，格式：`<w>x<h>a<x>a<y>`。 其中 w, h 分别表示裁剪后的宽和高，x, y 表示左上角坐标。如100x100a0a0。         |
+| x-gmkerl-crop        | 否   | 图片裁剪，格式：`<w>x<h>a<x>a<y>`。 其中 w, h 分别表示裁剪后的宽和高，x, y 表示左上角坐标。如 100x100a0a0。         |
 | x-gmkerl-exif-switch | 否   | 是否保留 exif 信息，仅在搭配 `x-gmkerl-crop`，`x-gmkerl-type`，`x-gmkerl-thumbnail` 时有效。        |
 | ext-param            | 否   | 额外参数，UTF-8 编码，并小于 255 个字符 [\[表单 API 注 5\]](/api/form_api/#note5)                            |
 

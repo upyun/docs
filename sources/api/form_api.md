@@ -103,12 +103,12 @@ curl http://v0.api.upyun.com/<bucket-name> \
 
 ### policy 算法 ###
 
-policy 用于编码上传请求相关的参数，例如保存路径，文件类型，预处理结果等，另外，也包含了上传请求授权时间等。
+policy 用于上传请求相关的参数设置，例如保存路径，文件类型，预处理结果，上传请求授权时间等。
 
 policy 生成步骤：
 
 1. 将请求所需的参数键值对转换为 JSON 字符串
-2. 将第 1 步中所得字符串进行 Base64 处理，即得 policy
+2. 将第 1 步中所得字符串进行 Base64 Encode 处理，即得 policy
 
 **注：**
 >  policy 必须是 **UTF-8** 编码格式，且**不包含换行符**，否则可能无法通过签名验证。
@@ -146,7 +146,7 @@ signature 生成步骤：
 
 1. 生成 `policy` 字符串
 2. 将第 1 步中所得字符串与您的「表单 API 验证密钥」（可登录 UPYUN 官网获取）字符串用 `&` 拼接
-3. 将第 2 步中所的的字符串计算 md5，所得即为 `signature`
+3. 将第 2 步中所得的字符串计算 md5，所得即为 `signature`
 
 
 以下是一个计算 signature 的例子：
@@ -195,7 +195,7 @@ signature 生成步骤：
 | x-gmkerl-quality     | 否   | 缩略图压缩质量，**默认 `95`**                                                                           |
 | x-gmkerl-unsharp     | 否   | 是否进行锐化处理，**默认 `true`**                                                                |
 | x-gmkerl-rotate      | 否   | 图片旋转（顺时针），可选：`auto`，`90`，`180`，`270` 之一                                           |
-| x-gmkerl-crop        | 否   | 图片裁剪，格式：`<w>x<h>a<x>a<y>`。 其中 w, h 分别表示裁剪后的宽和高，x, y 表示左上角坐标。如100x100a0a0。         |
+| x-gmkerl-crop        | 否   | 图片裁剪，格式：`<w>x<h>a<x>a<y>`。 其中 w, h 分别表示裁剪后的宽和高，x, y 表示左上角坐标。如 100x100a0a0。         |
 | x-gmkerl-exif-switch | 否   | 是否保留 exif 信息，仅在搭配 `x-gmkerl-crop`，`x-gmkerl-type`，`x-gmkerl-thumbnail` 时有效。        |
 | ext-param            | 否   | 额外参数，UTF-8 编码，并小于 255 个字符 [\[注 5\]](#note5)                            |
 
@@ -343,7 +343,7 @@ code: `200`
 
 message: `'ok'`
 
-url: `'/2015/06/17/190623/upload_QQ图片201506011111206f7c696f0920f097d7eefd750334003e.png'`
+url: `'/2015/06/17/190623/upload_QQ 图片 201506011111206f7c696f0920f097d7eefd750334003e.png'`
 
 time: `1434539183`
 
@@ -352,7 +352,7 @@ form_api_secret: `lGetaXubhGezKp89+6iuOb5IaS3=`
 拼接后的字符串为:
 
 ```
-200&ok&/2015/06/17/190623/upload_QQ图片201506011111206f7c696f0920f097d7eefd750334003e.png&1434539183&lGetaXubhGezKp89+6iuOb5IaS3=
+200&ok&/2015/06/17/190623/upload_QQ 图片 201506011111206f7c696f0920f097d7eefd750334003e.png&1434539183&lGetaXubhGezKp89+6iuOb5IaS3=
 
 ```
 
