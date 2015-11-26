@@ -568,3 +568,7 @@ body {
     outline: none;
 }
 /* 搜索框样式设置--end */
+
+.headerlink {
+    color: #fafafa;
+}
