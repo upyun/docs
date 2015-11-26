@@ -129,8 +129,8 @@ PUT /<bucket>/path/to/file
 | `x-gmkerl-unsharp`               | 图片锐化，默认 `true` 即开启锐化                                                                           |
 | `x-gmkerl-thumbnail`             | 在 UPYUN 管理平台创建好缩略图版本该缩略方式包含了所需的缩略参数，参数更简洁，使用更方便            |
 | `x-gmkerl-exif-switch`           | 是否保留原图的 EXIF 信息，默认 `false` 即不保留                                                   |
-| `x-gmkerl-crop`                  | 格式为 `x,y,width,height`，如：`0,0,100,200`（具体请参见注 3）                   |
-| `x-gmkerl-rotate`                | 旋转角度，目前只允许设置：`auto`，`90`，`180`，`270`（具体请参见注 4）         |
+| `x-gmkerl-crop`                  | 格式为 `x,y,width,height`，如：`0,0,100,200` （具体请参见注 3）                   |
+| `x-gmkerl-rotate`                | 旋转角度，目前只允许设置：`auto，90，180，270` （具体请参见注 4）         |
 
 
 **注 1：x-gmkerl-type 值可选列表**
