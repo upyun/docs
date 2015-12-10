@@ -140,9 +140,11 @@ UPYUN 的视频处理服务目前支持四种类型的处理请求：
 | bitrate           | integer | false | 视频比特率，单位 kbit，默认按照视频原始比特率处理                                                             |
 | scale             | string  | false | 视频分辨率，格式 `1024:768`，默认按照原始分辨率处理                                                       |
 | auto_scale        | boolean | false | 是否根据分辨率自动调整视频长宽比例，仅当传递了 `scale` 参数时有效                                          |
-| frame_rate        | integer | false | 帧率，既每秒显示的帧数，常用帧率："24"、"25"、"30"等， 默认按照原始帧率处理                                  |
+| frame_rate        | integer | false | 帧率，既每秒显示的帧数，常用帧率："24"、"25"、"30"等，默认按照原始帧率处理                                  |
 | rotate            | string  | false | 旋转角度，默认按照原始视频角度处理                                                                           |
 | map_metadata      | boolean | false | 是否保留视频 meta 信息，默认值 `true`                                                                        |
+| audio_codec       | string  | false | 设置音频编码器,  可选: "libmp3lame", "libfdk_aac", "copy"                                                   |
+| video_codec       | string  | false | 设置视频编码器, 可选: "libx264", "libtheora", "copy"                                                       |
 | disable_audio     | boolean | false | 是否禁掉音频，默认 `false`                                                                                 |
 | disable_video     | boolean | false | 是否禁掉视频，默认 `false`                                                                                 |
 | format            | string  | false | 视频输出格式，支持 mp4/flv，默认按照原始格式输出                                                             |
