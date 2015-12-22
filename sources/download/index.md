@@ -159,6 +159,15 @@
             <a href="https://github.com/upyun/js-token/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
         </div>
     </li>
+
+
+    <li>
+        <strong>PHP 生成 token</strong>
+        <div class="links">
+            <a href="https://github.com/upyun/php-token" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
+            <a href="https://github.com/upyun/php-token/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
+        </div>
+    </li>
 </ul>
 
 <h2 id="plugin">插件</h2>
