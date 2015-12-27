@@ -81,7 +81,7 @@ token 防盗链的生成方式如下：
 
  +  在`服务-->选择空间-->功能配置-->防盗链-->Token 防盗链`开启 Token 防盗链功能，并且填写一个任意字符串密钥。
  + Token 防盗链的制作需要如下参数：1.token（上面填写的字符串）2.etime（防盗链的有效时间，为Unix Timestamp。单位：秒）3.URI（待加密的文件的 URI，如 `/dir/pic.jpg，/dir/pic.jpg!small`）
- + 生成方式:`_upt = MD5(token 密匙&etime&URI){中间 8 位} + etime`
+ + 生成方式:`_upt = MD5(token 密匙 + '&' + etime + '&' + URI){中间 8 位} + etime` // 其中, "+"表示字符串拼接
 
 举例:
 
