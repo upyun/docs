@@ -145,27 +145,10 @@
     </li>
 
     <li>
-        <strong>Java 生成 token</strong>
+        <strong>多语言生成 token 例子</strong>
         <div class="links">
-            <a href="https://github.com/upyun/java-token" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
-            <a href="https://github.com/upyun/java-token/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
-        </div>
-    </li>
-
-    <li>
-        <strong>JS 生成 token</strong>
-        <div class="links">
-            <a href="https://github.com/upyun/js-token" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
-            <a href="https://github.com/upyun/js-token/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
-        </div>
-    </li>
-
-
-    <li>
-        <strong>PHP 生成 token</strong>
-        <div class="links">
-            <a href="https://github.com/upyun/php-token" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
-            <a href="https://github.com/upyun/php-token/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
+            <a href="https://github.com/upyun/token-examples" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
+            <a href="https://github.com/upyun/token-examples/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
         </div>
     </li>
 </ul>
