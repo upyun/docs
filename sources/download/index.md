@@ -204,7 +204,7 @@
     </li>
 </ul>
 
-<h2 id="third-party">第三方插件</h2>
+<h2 id="third-party">第三方插件和工具</h2>
 <ul class="list-unstyled list-inline clearfix">
     <li>
         <strong>WordPress</strong>
