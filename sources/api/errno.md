@@ -60,7 +60,7 @@ API 请求失败时，服务器会返回一个 json 格式的响应体用于定�
 | 400 |  40000009 | decode policy error    |
 | 400 |  40000010 | data too long for ext-param    |
 | 400 |  40000011 | chunked request bodies not supported yet    |
-| 400 |  40000012 | wite file to fs error    |
+| 400 |  40000012 | write file to fs error    |
 | 400 |  40000013 | need content-md5 but no body provided    |
 | 400 |  40000014 | need content-md5 but no content provided    |
 | 400 |  40000015 | missing required arguments |
