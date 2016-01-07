@@ -288,7 +288,7 @@ http://yourdomain.com/return/?code=503&message=%E6%8E%88%E6%9D%83%E5%B7%B2%E8%BF
 
 * 仅支持图片文件，且只保存处理后的缩略图，不保存原图
 * 在使用缩略图版本参数(`x-gmkerl-thumbnail`)前，需要确保该缩略图版本已经存在。否则 API 将忽略这个参数。
-* 允许在使用缩略图版本参数(`x-gmkerl-thumbnail)`的同时，再搭配其他 `x-gmkerl-*` 参数对图片进行处理，优先级为 `x-gmkerl-*` 参数 > 缩略图版本中对应参数
+* 允许在使用缩略图版本参数(`x-gmkerl-thumbnail`)的同时，再搭配其他 `x-gmkerl-*` 参数对图片进行处理，优先级为 `x-gmkerl-*` 参数 > 缩略图版本中对应参数
 
 
 <a name="note4"></a>
@@ -303,7 +303,7 @@ http://yourdomain.com/return/?code=503&message=%E6%8E%88%E6%9D%83%E5%B7%B2%E8%BF
 | fix_height          | 限定高度，宽度自适应               | 像素值         | 如: `150`                     |
 | fix_both            | 固定宽度和高度，宽高不足时强行缩放 | 像素值         | `widthxheight`，如: `150x130`。** 注意是 `x` 不是 `*` ** |
 | fix_scale           | 等比例缩放                         | 比例值（1-99） | 如: `50`                      |
-| get_meta            | 随响应体返回图片的EXIF信息         | (无需x-gmkerl-value)         |                             |
+| get_meta            | 随响应体返回图片的 EXIF 信息         | (无需`x-gmkerl-value`)         |                             |
 
 
 <a name="note5"></a>
