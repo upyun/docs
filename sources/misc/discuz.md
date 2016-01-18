@@ -19,7 +19,7 @@ Discuz 用户需要使用 UPYUN 有以下两个方法：
     目前您可以手动修改代码或跳过测试远程附件即可。 手动添加方法见帖子最后。
 
     在论坛后台找到设置远程附件功能，管理后台 => 全局 => 上传设置（或附件设置） => 远程附件：选择“启用远程附件”，然后设置 FTP 帐号信息，如下图所示：
-    ![](http://upyun-assets.b0.upaiyun.com/docs/misc/dz.png)
+    ![](https://upyun-assets.b0.upaiyun.com/docs/misc/dz.png)
 
 3. 论坛原有的附件处理
 

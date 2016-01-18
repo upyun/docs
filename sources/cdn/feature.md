@@ -73,7 +73,7 @@ Token 防盗链适合下载类网站或应用使用，可设置签名过期时�
 
 > Token 防盗链原理图
 
-![](http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-token.png)
+![](https://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-token.png)
 
 > 签名方式说明
 
