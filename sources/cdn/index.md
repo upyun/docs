@@ -4,7 +4,7 @@ UPYUN 内容分发网络（Content Delivery Network），即 UPYUN CDN，通过�
 
 ## 整体架构
 
-![UPYUN CDN Architecture](http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-architecture.png_/fw/800)
+![UPYUN CDN Architecture](https://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-architecture.png_/fw/800)
 
 ## 源站类型
 
@@ -57,7 +57,7 @@ UPYUN CDN 除了静态内容的分发外也适用于全站加速，即加速的�
 
 ----
 
-![CDN Source Settings](http://upyun-assets.b0.upaiyun.com/docs/cdn/cdn-source-settings.png_/fw/600)
+![CDN Source Settings](https://upyun-assets.b0.upaiyun.com/docs/cdn/cdn-source-settings.png_/fw/600)
 
 ### 回源 Host
 
