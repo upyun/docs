@@ -1,5 +1,5 @@
 site_name: UPYUN 文档中心
-site_url: http://docs.upyun.com/
+site_url: https://docs.upyun.com/
 repo_url: https://github.com/upyun/docs/
 docs_dir: sources
 theme_dir: theme/updocs
