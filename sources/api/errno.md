@@ -80,6 +80,12 @@ API 请求失败时，服务器会返回一个 json 格式的响应体用于定�
 | 400 |  40000029 | save-key encoding should be utf8 |
 | 400 |  40000030 | path encoding should be utf8 |
 | 400 |  40000031 | filename should be utf8 |
+| 400 |  40000032 | ffmpeg args error |
+| 400 |  40000033 | failed to read firstchunk |
+| 400 |  40000034 | client error |
+| 400 |  40000035 | need purge body |
+
+
 | 401 |  40100001 | need date header    |
 | 401 |  40100002 | date offset error    |
 | 401 |  40100003 | unknown realm in authorization header    |
@@ -124,12 +130,14 @@ API 请求失败时，服务器会返回一个 json 格式的响应体用于定�
 | 403 |  40300026 | need content-length header |
 | 403 |  40300027 | request body too big |
 | 403 |  40300028 | request has expired |
+| 403 |  40300029 | purge too much items |
 | 404 |  40400001 | file or directory not found    |
 | 406 |  40600001 | dir not acceptable    |
 | 406 |  40600002 | folder already exists    |
 | 408 |  40800001 | read client request timeout |
 | 415 |  41500001 | media type error, need content-type    |
 | 429 |  42900001 | too many requests    |
+| 429 |  42900002 | too many requests of the same uri    |
 | 503 |  50300000 | unknown error    |
 | 503 |  50300001 | write hub failed    |
 | 503 |  50300002 | decode error    |
