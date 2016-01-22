@@ -84,8 +84,6 @@ API 请求失败时，服务器会返回一个 json 格式的响应体用于定�
 | 400 |  40000033 | failed to read firstchunk |
 | 400 |  40000034 | client error |
 | 400 |  40000035 | need purge body |
-
-
 | 401 |  40100001 | need date header    |
 | 401 |  40100002 | date offset error    |
 | 401 |  40100003 | unknown realm in authorization header    |
