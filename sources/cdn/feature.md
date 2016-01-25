@@ -26,6 +26,7 @@
     * Android 3.0 (Honeycomb) and later
     * Windows Phone 7
 
+**注意：**运行在 Windows XP 上的所有版本的 Internet Explorer 都不支持 SNI 。请参考[这里](http://serverfault.com/questions/109800/multiple-ssl-domains-on-the-same-ip-address-and-same-port)
 ### 强制 HTTPS 跳转
 
 开启强制 HTTPS 跳转后，该域名下所有 HTTP 请求均会 301 跳转成 HTTPS 请求。
