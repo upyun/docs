@@ -187,6 +187,7 @@ signature 生成步骤：
 | content-type         | 否   | UPYUN 默认根据扩展名判断，手动指定可提高精确性。如 `image/jpeg`                                                      |
 | image-width-range    | 否   | 图片宽度限制，格式：`min,max`，单位：像素，如 `0,1024`，允许上传宽度为 0～1024px 之间               |
 | image-height-range   | 否   | 图片高度限制，格式：`min,max`，单位：像素，如 `0,1024`，允许上传高度在 0～1024px 之间               |
+| detect-image-meta    | 否   | 获取图片 meta 信息 |
 | notify-url           | 否   | 异步通知 URL，见 [\[通知规则\]](#notify_return)                                                      |
 | return-url           | 否   | 同步通知 URL，见 [\[通知规则\]](#notify_return)                                                      |
 | x-gmkerl-thumbnail   | 否   | 缩略图版本名称，可搭配其他 `x-gmkerl-*` 参数使用 [\[注 3\]](#note3) |
