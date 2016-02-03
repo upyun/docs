@@ -2,6 +2,22 @@
 
 <ul class="list-unstyled list-inline clearfix">
     <li>
+        <strong>iOS SDK</strong>
+        <div class="links">
+            <a href="https://github.com/upyun/ios-sdk" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
+            <a href="https://github.com/upyun/ios-sdk/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
+        </div>
+    </li>
+
+    <li>
+        <strong>Android SDK</strong>
+        <div class="links">
+            <a href="https://github.com/upyun/android-sdk" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
+            <a href="https://github.com/upyun/android-sdk/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
+        </div>
+    </li>
+
+    <li>
         <strong>PHP SDK</strong>
         <div class="links">
             <a href="https://github.com/upyun/php-sdk" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
@@ -76,32 +92,10 @@
     </li>
 
     <li>
-        <strong>iOS 表单 API SDK</strong>
-       <div class="links">
-            <a href="https://github.com/upyun/ios-form-sdk" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
-            <a href="https://github.com/upyun/ios-form-sdk/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
-       </div>
-    </li>
-
-    <li>
         <strong>分块上传 PHP SDK</strong>
         <div class="links">
             <a href="https://github.com/upyun/multipart-upload-php-sdk" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
             <a href="https://github.com/upyun/multipart-upload-php-sdk/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
-        </div>
-    </li>
-    <li>
-        <strong>分块上传 Android SDK</strong>
-        <div class="links">
-            <a href="https://github.com/upyun/multipart-upload-android-sdk" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
-            <a href="https://github.com/upyun/multipart-upload-android-sdk/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
-        </div>
-    </li>
-    <li>
-        <strong>分块上传 iOS SDK</strong>
-        <div class="links">
-            <a href="https://github.com/upyun/multipart-upload-ios-sdk" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
-            <a href="https://github.com/upyun/multipart-upload-ios-sdk/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
         </div>
     </li>
     <li>
