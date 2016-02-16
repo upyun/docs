@@ -375,3 +375,144 @@ $ curl http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-architecture.png?_u
 ```
 
 注： 除了一般的 ASCII 字符，`_upd` 参数也支持中文文件名。
+
+## Rewrite 规则
+
+Rewrite 规则 DSL 支持函数，变量，字符串常量，用户可以将这些自由组合，完成对请求
+的重写。
+
+### Rewrite 规则说明
+例如：
+
+```
+-- JSON
+[
+  {
+    "rule": "$WHEN($MATCH($LOWER($_HEADER_cache_control), only-if-cached))$DEL_REQ_HEADER(Cache-Control)",
+    "pattern": "",
+    "break": false
+  },
+  {
+    "rule": "/movies/$1",
+    "pattern": "/download/(.*)$",
+    "break": true
+  },
+  {
+    "rule": "$WHEN($EQ($_HOST, 'images.foo.com'))/$1",
+    "pattern": "^/images/(.*)$",
+    "break": true
+  }
+]
+```
+
+其中，`pattern` 为对当前请求 URI 进行匹配的 `PCRE` 正则表达式，匹配后，产生 `$1,
+$2 ...` 这样的变量；`rule` 为当前的 rewrite 规则，`break` 表示如果此次 rewrite
+成功后是否要终止剩下的的 rewrite 过程。
+
+函数
+----
+函数调用以 `$` 开头，后跟一组大写字母，字母之间可以包含下划线 `_`，函数需要的参
+数放在 `()` 中，以 `,` 分隔。和 Lua 中的函数调用一样，rewrite 中的函数参数个数不
+能少于要求的参数个数，否则视为语法错误，然后终止 rewrite 过程，多余的参数会被求
+值，但不影响调用。函数调用是有上下文的，譬如 `$WHEN` 这个函数，参数是 `bool` 类
+型，参数中有不成立的条件（`false`）时，会终止 rewrite 过程。
+
+变量
+----
+变量以 `$_` 开头，这些变量都是对此次请求上下文中一些参数的映射，譬如 `$_HOST` 对
+应此次请求头中的 `Host` 字段，`$_GET_foo` 对应此次请求 URL 参数 foo 的值，等等。
+若将变量内插到重写后的 URL 中，譬如 rewrite `/$_GET_foo/bar`，如果请求参数中没有
+`foo` 则视为此次 rewrite 失败；若将变量放在函数中，则由该函数确定返回的值，例如
+`$NOT($_GET_foo)`，如果参数中包含 `foo`，则返回 `false`，否则返回`true`。
+
+字符串常量
+----------
+字符串常量有两种形式，第一种就是普通的字符串例如 `/foo/bar`，但是如果字符串中包
+含了一些特殊字符，例如空白字符将被省略，例如 `$(),'` 这些字符有特殊的用途，不能
+被直接使用，要使用这些特殊的字符，要加 `\` 前缀对其转义，例如 `/foo/bar\,`；第二
+种是加单引号的字符串 `''`，单引号中的字符只有 `\` 是特殊转义字符前缀，其他的都视
+为普通字符，例如这样一条 rewrite 规则 `/foo/'$\\,\''`，rewrite 过后对应
+`/foo/$\,'`。
+
+break
+-----
+除了能在 `table` 中指定是否 `break`，也可以直接在 rewrite 规则最后加上 `$$` 表示
+`break`。
+
+
+### Rewrite 变量和函数列表
+`$N` 指 `PCRE` 正则匹配到的第 `N` 个分组：
+
+pattern               | rule
+:-------------------- | :-------
+`/(.*).html`          | /$1.html
+`/foo/(.*)/(.*).html` | /$1/$2.html
+
+规则中支持插入变量和函数，目前支持的变量有：
+
+变量                  | 含义
+:-------------------- | :-------
+`$_HOST`              | 请求头中的 Host 字段
+`$_HOST_n`            | `$_HOST_n` 指 Host 中的第 n 个子域，例如对于 foo.bar.baz.com：`$_HOST_1 = foo，$_HOST_2 = bar，$_HOST_3 = baz`
+`$_GET_name`          | 使用 Query String 中的变量（无需 urldecode）
+`$_POST_name`         | 使用 POST 表单中的变量（只支持 www form ）
+`$_HEADER_name`       | 使用 Header 中的值，注意 name 全为小写
+`$_COOKIE_name`       | 使用 Cookie 中的字段值
+`$_RANDOM`            | 随机字符串，字符集为 `[a-zA-Z0-9]`，默认 8 位
+`$_RANDOM_n`          | `n` 位随机字符串，其中 `1 <= n <= 32`
+`$_URI`               | 请求的 URI，不包含参数
+`$_QUERY`             | Query String，不带前缀 '?'
+`$_METHOD`            | GET/POST/PUT
+`$_SCHEME`            | HTTP/HTTPS
+
+支持的函数有：
+
+函数                      | 含义
+:--------------------     | :-------
+`$ENCODE_BASE64(E)`       | 按 base64 编码压缩，例如：`$ENCODE_BASE64($_GET_foo)`
+`$DECODE_BASE64(E)`       | 按 base64 编码解压，例如：`$DECODE_BASE64($_HEADER_foo)`
+`$MD5(E)`                 | 计算 `E` 的 md5 值
+`$SUB(E1, from, to)`      | 字符串截取，从 `from` 到 `to`
+`$GT(E1, E2)`             | 数字比较，是否大于，返回 `true` 或者 `false`
+`$GE(E1, E2)`             | 数字比较，是否大于等于，返回 `true` 或者 `false`
+`$EQ(E1, E2)`             | 字符串是否相等，返回 `true` 或者 `false`
+`$UPPER(E)`               | 将 `E` 转换为大写
+`$LOWER(E)`               | 将 `E` 转换为小写
+`$ALL(E1, E2, ...)`       | 所有条件成立，参数个数不限
+`$ANY(E1, E2, ...)`       | 其中一个条件成立，参数个数不限
+`$MATCH(E1, E2)`          | PCRE 匹配，`E2` 为要匹配的 pattern，返回 `true` 或者 `false`
+`$WHEN(E1, E2, ...)`      | 条件是否成立，成立时才进行 `rewrite`，并返回空字符串
+`$PCALL(E)`               | 保护模式下解析 `E`，失败时返回空字符串
+`$ADD_REQ_HEADER(E1, E2)` | 添加请求头 `E1` 为 `E2`
+`$DEL_REQ_HEADER(E1)`     | 删除请求头 `E1`
+`$ADD_RSP_HEADER(E1, E2)` | 添加响应头 `E1` 为 `E2`
+`$REDIRECT(E1, E2)`       | 重定向地址到 `E1`，状态码为 `E2(301, 302)`
+`$EXIT(E1, E2)`           | 以状态码 `E1` 退出，响应体为 `E2`
+
+其中 `E[n]` 代表合法的表达式，也就是说函数可以相互嵌套，例如规则可以为：
+`/$SUB($DECODE_BASE64($_HEADER_foo), $_GET_from, $_GET_to)/`
+
+使用 `''` 能对变量进行转义，使其不被解释，例如以下规则：
+
+```
+/foo/'$_HOST'
+```
+会被转换为:
+
+```
+/foo/$_HOST
+```
+
+对于含有请求参数的规则，原先的请求参数会附加到后面，如果不希望这样，可以放置一个
+'?' 在规则的最后面，例如这样：
+
+```
+/foo?bar=$1?
+```
+
+### Rewrite 示例
+rewrite 规则                                                       | 含义
+:--------------------                                              | :-------
+`$WHEN($MATCH($_URI, '^/foo/.*'))$ADD_REQ_HEADER(X-Foo, bar)`      | 在请求 URI 匹配 `^/foo/.*` 的情况下，添加请求头 `X-Foo: bar`
+`$WHEN($EQ($_HOST, 'foo.com'))$ADD_REQ_HEADER(X-Foo, bar)`         | 在请求 Host 为 `foo.com` 的情况下，添加请求头 `X-Foo: bar`
+`$WHEN($MATCH($_URI, '^/foo/'), $NOT($_HEADER_referer))$EXIT(403)` | 在请求的 URI 以 `/foo/` 开头并且没有 Referer 请求头时，返回 403
