@@ -378,6 +378,12 @@ $ curl http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-architecture.png?_u
 
 ## Rewrite 规则
 
+> 管理后台：服务 > 高级功能 > Rewrite 配置
+
+> 源站类型：全部
+
+----
+
 Rewrite 规则 DSL 支持函数，变量，字符串常量，用户可以将这些自由组合，完成对请求
 的重写。
 
@@ -409,6 +415,9 @@ Rewrite 规则 DSL 支持函数，变量，字符串常量，用户可以将这�
 $2 ...` 这样的变量；`rule` 为当前的 rewrite 规则，`break` 表示如果此次 rewrite
 成功后是否要终止剩下的的 rewrite 过程。
 
+> 在管理后台对规则进行配置时，`pattern` 对应于 `匹配规则`，`rule` 对应于
+`Rewrite 规则`，`break` 对应于 `break 选项`。
+
 函数
 ----
 函数调用以 `$` 开头，后跟一组大写字母，字母之间可以包含下划线 `_`，函数需要的参
@@ -436,8 +445,8 @@ $2 ...` 这样的变量；`rule` 为当前的 rewrite 规则，`break` 表示如
 
 break
 -----
-除了能在 `table` 中指定是否 `break`，也可以直接在 rewrite 规则最后加上 `$$` 表示
-`break`。
+除了能勾选 `break 选项` 指定是否 `break`，也可以直接在 rewrite 规则最后加上 `$$`
+表示 `break`。
 
 
 ### Rewrite 变量和函数列表
