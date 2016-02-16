@@ -183,17 +183,22 @@
 <h2 id="third-party">第三方 SDK</h2>
 <ul class="list-unstyled list-inline clearfix">
     <li>
-        <strong>co-upyun</strong>
+        <strong>co-upyun - @lisposter</strong>
         <div class="links">
             <a href="https://github.com/lisposter/co-upyun" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
-            <a href="https://github.com/lisposter/co-upyun/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
         </div>
     </li>
     <li>
-        <strong>ez-upyun</strong>
+        <strong>ez-upyun - @XadillaX</strong>
         <div class="links">
             <a href="https://github.com/XadillaX/ez-upyun" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
-            <a href="https://github.com/XadillaX/ez-upyun/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
+        </div>
+    </li>
+
+    <li>
+        <strong>paperclip-upyun - @jhw-dev</strong>
+        <div class="links">
+            <a href="https://github.com/jhw-dev/paperclip-upyun" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
         </div>
     </li>
 </ul>
