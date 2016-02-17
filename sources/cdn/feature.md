@@ -376,6 +376,33 @@ $ curl http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-architecture.png?_u
 
 注： 除了一般的 ASCII 字符，`_upd` 参数也支持中文文件名。
 
+## CORS 跨域配置
+
+> 管理后台：服务 > 高级功能 > CORS 跨域共享
+
+> 源站类型：全部
+
+----
+
+关于 CORS：[HTTP访问控制(CORS)](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS)。
+
+用户可以在 UPYUN 管理后台配置符合自己站点的跨域请求策略。目前可以控制的 CORS 响应头有：
+
+1. Access-Control-Allow-Origin
+2. Access-Control-Allow-Methods
+3. Access-Control-Allow-Headers
+4. Access-Control-Expose-Headers
+5. Access-Control-Max-Age
+
+在管理后台的 CORS 配置面板中有以下选项：
+
+- `允许的域`：表示允许发起跨域请求的域，即对允许的域发起的跨域请求会有 `Access-Control-Allow-Origin: http(s)://your-allow-origin.com` 这个响应头，
+*注意*：在配置 `允许的域` 时，可以使用 `*` 通配符配置域，例如 `*` 表示允许所有的域，`*.upyun.com`，表示允许所有以 `.upyun.com` 结尾的域；如果不使用通配符，则需对域添加上对应的协议，例如 `http://www.upyun.com` 或者 `https://www.upyun.com`
+- `Methods`：表示允许的跨域请求的方法，在当前请求的域被允许后，还要检查当前请求的方法是否被允许
+- `Allow Headers`：对应 `Access-Control-Allow-Headers` 响应头
+- `Expose Headers`：对应 `Access-Control-Expose-Headers` 响应头
+- `缓存时间`：对应 `Access-Control-Max-Age` 响应头
+
 ## Rewrite 规则
 
 > 管理后台：服务 > 高级功能 > Rewrite 配置
