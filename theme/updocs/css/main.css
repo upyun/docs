@@ -129,6 +129,18 @@ body {
 
 
 /* Sidebar */
+.bs-sidebar {
+  width: calc(20.3% - 15px) !important;
+  height: calc(100% - 50px);
+  overflow: hidden;
+}
+
+.bs-sidenav {
+  width: calc(100% + 15px) !important;
+  height: calc(100% - 50px);
+  overflow: auto;
+}
+
 .bs-sidebar li a {
   width: 80%;
   padding: 2px 8px;
@@ -172,6 +184,12 @@ body {
   padding-top: 15px;
   height: 40px;
   border-top: 1px solid rgba(93, 96, 107, .15);
+  z-index: 999;
+  background: #fff;
+
+}
+.footer .container {
+  background: #fff;
 }
 .footer li {
   padding: 0 20px;
