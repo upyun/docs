@@ -183,7 +183,7 @@ HLS（[HTTP Live Streaming](http://zh.wikipedia.org/wiki/HTTP_Live_Streaming)）
 | 参数 | 类型 | 必选 | 参数说明                                                     |
 |------|----------|------|----------------------------------------------------------|
 | type          | string  | true  | 处理类型，进行音频转码时值必须为 `audio`      |
-| format        | string  | false | 视频输出格式，支持 mp4/mp3，默认按照原始格式输出|
+| format        | string  | false | 音频输出格式，支持 mp4/mp3，默认按照原始格式输出|
 | audio_channel | integer | false | 声道，默认 `2`                                |
 | audio_bitrate | integer | false | 比特率，如 `64`                               |
 | audio_vbr     | integer | false | variable bitrate [0-9]                          |
