@@ -441,8 +441,34 @@ Rewrite 规则 DSL 支持函数，变量，字符串常量，用户可以将这�
 $2 ...` 这样的变量；`rule` 为当前的 rewrite 规则，`break` 表示如果此次 rewrite
 成功后是否要终止剩下的的 rewrite 过程。
 
-> 在管理后台对规则进行配置时，`pattern` 对应于 `匹配规则`，`rule` 对应于
-`Rewrite 规则`，`break` 对应于 `break 选项`。
+> 在管理后台对规则进行配置时，`pattern` 对应于 `URI 提取正则`，`rule` 对应于
+`Rewrite 规则`，`break` 对应于 `break 选项`，`调试模式` 选项是默认打开的。
+
+#### 调试模式
+由于 rewrite 过程会对当前请求产生副作用，*这是非常危险的*，例如随意的填写一条 rewrite
+规则：
+
+```
+/foo
+```
+
+此规则会将所有请求的 URI 改写成 `/foo`，这样客户端所有请求的响应就变成 404 了，
+这是您极不愿意看到的结果。我们允许对 rewrite 规则进行调试，即新增加一条规则时，`
+调试模式` 开关会默认打开，这样添加规则后，即使当前请求命中该 rewrite 规则，
+rewrite 过程也不会生效，只有当包含以下请求头时，rewrite 过程才会生效：
+
+```
+X-Upyun-Rewrite-Preview: true
+```
+
+使用命令行工具 `curl` 即可对规则调试：
+
+```
+curl -H "X-Upyun-Rewrite-Preview: true" http://your-domain/foo/bar.html -v
+```
+
+这样经过调试，确定该 rewrite 过程符合预期后，即可将 `调试模式` 关闭，此时该
+rewrite 过程会对所有命中的请求生效。
 
 #### 函数
 函数调用以 `$` 开头，后跟一组大写字母，字母之间可以包含下划线 `_`，函数需要的参
@@ -474,10 +500,11 @@ $2 ...` 这样的变量；`rule` 为当前的 rewrite 规则，`break` 表示如
 ### Rewrite 变量和函数列表
 `$N` 指 `PCRE` 正则匹配到的第 `N` 个分组：
 
-pattern               | rule
-:-------------------- | :-------
-`/(.*).html`          | /$1.html
-`/foo/(.*)/(.*).html` | /$1/$2.html
+ rule          | pattern
+ :---          | :------
+ /html/$1.html | `/(.*).html$`
+ /movies/$1    | `/downloads/(.*\\.mp4)$`
+ /$1/$2        | `/foo/([^/]+)/bar/(.*)`
 
 规则中支持插入变量和函数，目前支持的变量有：
 
