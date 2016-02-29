@@ -226,7 +226,7 @@
     <li>
         <strong>WordPress</strong>
         <div class="links">
-            <a href="https://gitcafe.com/ihacklog/Wordpress-plugin-for-UPYUN" class="btn btn-xs" target="_blank"><i class="fa fa-question-circle"></i>查看</a>
+            <a href="https://github.com/monkey-wenjun/upyun_plugins" class="btn btn-xs" target="_blank"><i class="fa fa-question-circle"></i>查看</a>
         </div>
     </li>
 
