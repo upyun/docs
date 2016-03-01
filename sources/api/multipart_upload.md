@@ -115,7 +115,7 @@ Content-Type: application/x-www-form-urlencoded
 |expiration| 授权有效期，Unix UTC 时间戳|
 |file_blocks| 本次所上传的文件的分块数目|
 |file_hash|所上传文件整个文件的 md5 hash 值|
-|file_size|所上传文件整个文件的大小(单位 bit)|
+|file_size|所上传文件整个文件的大小(单位 Byte)|
 
 > 注：请选取适当的 `file_blocks` 以保证分块的大小** 不超过 5M **，并且除最后一块外其余分块** 不小于 100K **。
 
