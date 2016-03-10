@@ -102,6 +102,7 @@ POST，需要进行授权验证
 | source      | string   | true | 待处理源文件路径                             |
 | notify_url  | string   | true | 异步回调地址，在处理完成之后将会进行异步通知 |
 | tasks       | string   | true | 提交的任务数据，base64 处理之后的字符串       |
+| accept       | string   | false | 如果指定为 `json`，则在回调时会返回 `application/json` 格式的内容，否则返回 `application/x-www-form-urlencoded` 格式的内容      |
 
 `tasks` 参数通过下面三个步骤生成：
 
