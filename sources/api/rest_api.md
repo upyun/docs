@@ -300,7 +300,7 @@ GET /<bucket>/path/to/folder
 |----------------|------|---------|-------------------------------------------------------------------------------------------|
 | X-List-Iter    | 否   | string  | 分页开始位置，由前一次请求的 `x-upyun-list-iter` 响应头返回                                |
 | X-List-Limit   | 否   | string  | 返回的文件数量                                    |
-| X-List-Order | 否   | string  | `asc` 或 `desc`，按时间升序或降序排列。默认 `desc`   |
+| X-List-Order | 否   | string  | `asc` 或 `desc`，按时间升序或降序排列。默认 `asc`   |
 
 > **注：**
 >
