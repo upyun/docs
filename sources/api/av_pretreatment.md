@@ -152,12 +152,12 @@ UPYUN 的视频处理服务目前支持四种类型的处理请求：
 | accelerate_factor | float   | false | 设置视频加速的倍数，取值范围［1.0，10.0］这个值是一个浮点数，可以是 `2.5`，表示加速 2.5 倍                     |
 | save_as           | string  | false | 转码后输出的文件保存路径（同一个空间下），如果没有传递，会根据请求的参数生成一个文件名保存在原始文件同目录下 |
 | return_info       | boolean | false | 是否返回视频元数据，仅当处理类型为 `video` 时有效，默认 `false`                                          |
-| start_time        | string  | false | 视频起始处理时间. 格式 `HH:MM:SS`, 默认为视频开始 |
-| end_time          | string  | false | 视频结束处理时间. 格式 `HH:MM:SS`, 默认为视频结束 |
-| watermark_img     | string  | false | 水印图片路径. 建议使用 png 格式图片, 暂时不支持外链 |                   
-| watermark_gravity | string  | false | 水印图片位置. 支持 `NorthWest`, `North`, `NorthEast`,`West`,`Center`,`East`,`SouthWest`,`South`,`SouthEast`, 默认 `NorthEast` |
-| watermark_dx      | int     | false | 水印图片横坐标偏移量, 单位 px. 当水印位置为 NorthEast 时, 默认值为 -20. 其余情况下默认值为 0 |
-| watermark_dy      | int     | false | 水印图片纵坐标偏移量, 单位 px. 当水印位置为 NorthEast 时, 默认值为 15. 其余情况下默认值为 0 |
+| start_time        | string  | false | 视频起始处理时间，格式 `HH:MM:SS`，默认为视频开始 |
+| end_time          | string  | false | 视频结束处理时间，格式 `HH:MM:SS`，默认为视频结束 |
+| watermark_img     | string  | false | 水印图片路径，建议使用 png 格式图片，暂时不支持外链 |                   
+| watermark_gravity | string  | false | 水印图片位置，支持 `NorthWest`，`North`，`NorthEast`，`West`，`Center`，`East`，`SouthWest`，`South`，`SouthEast`，默认 `NorthEast` |
+| watermark_dx      | int     | false | 水印图片横坐标偏移量，单位 px，当水印位置为 NorthEast 时，默认值为 -20. 其余情况下默认值为 0 |
+| watermark_dy      | int     | false | 水印图片纵坐标偏移量，单位 px，当水印位置为 NorthEast 时，默认值为 15. 其余情况下默认值为 0 |
 
 2\. HLS 转码切片
 HLS（[HTTP Live Streaming](http://zh.wikipedia.org/wiki/HTTP_Live_Streaming)） 转码切割处理除了 `hls_time` 之外其他参数与普通视频转码一致
@@ -195,8 +195,8 @@ HLS（[HTTP Live Streaming](http://zh.wikipedia.org/wiki/HTTP_Live_Streaming)）
 | audio_bitrate | integer | false | 比特率，如 `64`                               |
 | audio_vbr     | integer | false | variable bitrate [0-9]                          |
 | map_metadata  | boolean | false | 是否保留视频 meta 信息，默认值 `true`         |
-| start_time    | string  | false | 音频起始处理时间. 格式 `HH:MM:SS`, 默认为视频开始 |
-| end_time      | string  | false | 音频结束处理时间. 格式 `HH:MM:SS`, 默认为视频结束 |
+| start_time    | string  | false | 音频起始处理时间，格式 `HH:MM:SS`，默认为视频开始 |
+| end_time      | string  | false | 音频结束处理时间，格式 `HH:MM:SS`，默认为视频结束 |
 
 ### 返回结果
 成功提交处理请求之后，接口会针对提交的处理任务返回一组唯一的 `task_id`，可以根据这个 `task_id` 查询处理进度。
