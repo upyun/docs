@@ -195,8 +195,8 @@ HLS（[HTTP Live Streaming](http://zh.wikipedia.org/wiki/HTTP_Live_Streaming)）
 | audio_bitrate | integer | false | 比特率，如 `64`                               |
 | audio_vbr     | integer | false | variable bitrate [0-9]                          |
 | map_metadata  | boolean | false | 是否保留视频 meta 信息，默认值 `true`         |
-| start_time    | string  | false | 视频起始处理时间. 格式 `HH:MM:SS`. 默认为视频开始 |
-| end_time      | string  | false | 视频结束处理时间. 格式 `HH:MM:SS`, 默认为视频结束 |
+| start_time    | string  | false | 音频起始处理时间. 格式 `HH:MM:SS`. 默认为视频开始 |
+| end_time      | string  | false | 音频结束处理时间. 格式 `HH:MM:SS`, 默认为视频结束 |
 
 ### 返回结果
 成功提交处理请求之后，接口会针对提交的处理任务返回一组唯一的 `task_id`，可以根据这个 `task_id` 查询处理进度。
