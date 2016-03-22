@@ -157,7 +157,7 @@ UPYUN 的视频处理服务目前支持四种类型的处理请求：
 | watermark_img     | string  | false | 水印图片路径. 建议使用 png 格式图片. 暂时不支持外链 |                   
 | watermark_gravity | string  | false | 水印图片位置. 支持 `NorthWest`, `North`, `NorthEast`,`West`,`Center`,`East`,`SouthWest`,`South`,`SouthEast`, 默认 `NorthEast` |
 | watermark_dx      | int     | false | 水印图片横坐标偏移量, 单位 px. 当水印位置为 NorthEast 时, 默认值为-20. 其余情况下默认值为0 |
-| watermark_dy      | int     | false | 水印图片纵坐标偏移量, 单位 px. 当水印位置为 NorthEast 时, 默认值为-15. 其余情况下默认值为0 |
+| watermark_dy      | int     | false | 水印图片纵坐标偏移量, 单位 px. 当水印位置为 NorthEast 时, 默认值为15. 其余情况下默认值为0 |
 
 2\. HLS 转码切片
 HLS（[HTTP Live Streaming](http://zh.wikipedia.org/wiki/HTTP_Live_Streaming)） 转码切割处理除了 `hls_time` 之外其他参数与普通视频转码一致
