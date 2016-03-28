@@ -246,7 +246,7 @@
     </li>
 
     <li>
-        <strong>UPYUN常用脚本</strong>
+        <strong>UPYUN 常用脚本</strong>
         <div class="links">
             <a href="https://github.com/monkey-wenjun/upyun-sdk-script" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
         </div>
