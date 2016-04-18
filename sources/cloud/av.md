@@ -181,7 +181,7 @@ md5(<operator_name><operator_password><task_id><timestamp>)
 | `/vn/<disable_video>`      | boolean   | 是否禁掉视频，默认 false                                                                           |
 | `/su/<accelerate_factor>`  | float     | 视频加速倍数，取值范围`[1.0，10.0]`                                                                 |
 
-系统预置转码模板见附件五《预置转码模板列表》。
+系统预置转码模板见[附件一 视频转码预置模板](/cloud/trans_template/)。
 
 ### HLS 切片
 
@@ -194,7 +194,7 @@ md5(<operator_name><operator_password><task_id><timestamp>)
 | `/as/<auto_scale>`  | boolean   | 是否根据分辨率自动调整视频长宽比例，仅当传递了 scale 参数时有效                                             |
 | `/r/<frame_rate>`   | integer   | 视频帧率，既每秒显示的帧数，常用帧率25、30等，默认按照原始帧率处理                                           |
 
-系统预置转码模板见附件五《预置转码模板列表》。
+系统预置转码模板见[附件一 视频转码预置模板](/cloud/trans_template/)。
 
 ### 视频水印
 

@@ -19,9 +19,9 @@ H.264/AVC 、H.263、H.263+、MPEG-1、MPEG-2、MPEG-4、VP8、VP9、Quicktime�
 
 ### 容器格式
 
-视频转码：MP4、FLV、M3U8(TS)
+视频：MP4、FLV、M3U8(TS)
 
-音频转码：MP4、MP3
+音频：MP4、MP3、OGG
 
 ### 音频编码格式
 
