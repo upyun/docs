@@ -22,15 +22,12 @@ pages:
     - '缓存刷新': 'api/purge.md'
     - '视频处理': 'api/av_pretreatment.md'
     - 'API 错误码表': 'api/errno.md'
-- '云处理 文档':
+- '云处理文档':
     - '云处理概述': 'cloud/index.md'
     - '图片处理': 'cloud/image.md'
     - '异步音视频处理': 'cloud/av.md'
     - '实时音频处理': 'cloud/real_time.md'
-    - '附件一 视频转码预置模板': 'cloud/trans_template.md'
-    - '附件二 音视频处理支持格式': 'cloud/format.md'
-    - '附件三 字体支持列表': 'cloud/font.md'
-    - '附件四 返回状态码': 'cloud/status.md'
+    - '附件': 'cloud/attachment.md'
 - '资源下载':
     - '资源下载': 'download/index.md'
 - '常见问题':

@@ -40,8 +40,8 @@
     </div>
     <div class="section section-api">
         <i class="upicon upicon-api"></i>
-        <h3>云处理 文档</h3>
-        <h4>loud Processing</h4>
+        <h3>云处理文档</h3>
+        <h4>Cloud Processing</h4>
         <ul class="list-unstyled">
             <li><a href="/cloud/image/">图片处理</a></li>
             <li><a href="/cloud/av/">异步音视频处理</a></li>
