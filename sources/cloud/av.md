@@ -6,7 +6,7 @@
 
 ### 访问异步音视频处理
 
-以`POST`方式向指定地址 `http://p0.api.upyun.com/pretreatment/` 提交处理请求，系统接受请求后立即返回任务 `task_id`，处理完成后再回调通知用户。用户可以通过 `task_id` 查询任务处理进度、处理结果。
+以 `POST` 方式向指定地址 `http://p0.api.upyun.com/pretreatment/` 提交处理请求，系统接受请求后立即返回任务 `task_id`，处理完成后再回调通知用户。用户可以通过 `task_id` 查询任务处理进度、处理结果。
 
 请求参数
 
@@ -19,24 +19,24 @@
 | accept            | string             | 回调通知内容的MIME类型，取值为：json  |
 
 
-`tasks`（处理任务信息）生成： （如果使用 SDK 不需要关注 tasks 的生成逻辑）
+`tasks`（处理任务信息）生成： （如果使用 SDK 不需要关注 `tasks` 的生成逻辑）
 
 1、处理任务组装。一次最多可以提交10个处理任务。
 
 ```
 [
 	{
-	type:’video’,	//视频转码
-	avopts: /s/240p(4:3)/as/1/r/30,	//处理任务，通过预置模板设置
-         return_info:true,	//返回元数据
-         save_as:/a/b.mp4,	//保存路径
-	…
+	    type:’video’,	//视频转码
+	    avopts: /s/240p(4:3)/as/1/r/30,	//处理任务，通过预置模板设置
+        return_info:true,	//返回元数据
+        save_as:/a/b.mp4,	//保存路径
+	    …
 	},
   	{
-	type:’vconcat’,	//视频拼接
-	avopts:/i/L2EvYi9jLm1wNA==/i/LzEvMi8zLm1wNA==,	//拼接视频列表
-	save_as:/concat/a.mp4
-	…
+	    type:’vconcat’,	//视频拼接
+	    avopts:/i/L2EvYi9jLm1wNA==/i/LzEvMi8zLm1wNA==,	//拼接视频列表
+	    save_as:/concat/a.mp4
+	    …
 	},
 	…
 ]
@@ -98,7 +98,7 @@ operator_testerbucket_nameimtesternotify_urlhttp://www.example.com/notify/source
 
 ### 回调通知
 
-处理完成后，系统根据提交任务时提交的 notify_url 参数，将结果以 HTTP POST 请求方式进行回调通知。
+处理完成后，系统根据提交任务时提交的 `notify_url` 参数，将结果以 `HTTP POST 请求`方式进行回调通知。
 
 回调通知的参数
 
@@ -123,29 +123,29 @@ md5(<operator_name><operator_password><task_id><timestamp>)
 
 ### 音视频上传预处理
 
-通过 FORM API 和 分块 API 上传音视频文件，在上传请求中附加处理参数，文件上传完后，自动开始音视频处理，处理完成后回调通知。
+通过 `FORM API` 和 `分块 API` 上传音视频文件，在上传请求中附加处理参数，文件上传完后，自动开始音视频处理，处理完成后回调通知。
 
 ```
 "save_key": "path/to/save/your/upload/file"，   //音视频保存路径
 "notify_url": "http://callback/url", 	//可选，回调通知
 "apps": [
   {
-"app_name": "naga",			//异步音视频处理，任务1
-"accept": "json",			//必填，回调返回 JSON 格式内容
-"task": {
-	"type": "video",			//视频转码
-      "avopts": "/s/240p(4:3)/as/1/r/30",	//处理任务，通过预置模板设置
-      "save_as": "path/to/save/process/result/file",  //处理结果音视频保存路径
-    	}
+      "app_name": "naga",			//异步音视频处理，任务1
+      "accept": "json",			//必填，回调返回 JSON 格式内容
+      "task": {
+	      "type": "video",			//视频转码
+          "avopts": "/s/240p(4:3)/as/1/r/30",	//处理任务，通过预置模板设置
+          "save_as": "path/to/save/process/result/file",  //处理结果音视频保存路径
+      }
   }，
   {
-	"app_name": "naga",			//异步音视频处理，任务2
- "accept": "json",			//必填，回调返回 JSON 格式内容
-     "task": {
-	"type":"vconcat",				//视频拼接
-	"avopts":"/i/L2EvYi9jLm1wNA==/i/LzEvMi8zLm1wNA==",//拼接视频列表
-	"save_as":"/concat/a.mp4"
-    	}
+      "app_name": "naga",			//异步音视频处理，任务2
+      "accept": "json",			//必填，回调返回 JSON 格式内容
+      "task": {
+	      "type":"vconcat",				//视频拼接
+	      "avopts":"/i/L2EvYi9jLm1wNA==/i/LzEvMi8zLm1wNA==",//拼接视频列表
+	      "save_as":"/concat/a.mp4"
+      }
   }
 ]
 ```
@@ -170,9 +170,9 @@ md5(<operator_name><operator_password><task_id><timestamp>)
 |----------------------------|-----------|------------------------------------------------------------------------------------------------|
 | `/type/`                   | string    | 处理类型，值为 video                                                                             |
 | `/vb/<bitrate>`            | integer   | 视频比特率，单位 kbps，默认按照视频原始比特率处理                                                      |
-| `/s/<scale>`               | string    | 视频分辨率，默认按照原始分辨率处理。格式：预置模板如720p(16:9)，自定义如1820x720，建议使用预置模板[见附件一](/cloud/trans_template/) |
+| `/s/<scale>`               | string    | 视频分辨率，默认按照原始分辨率处理。格式：预置模板如 720p(16:9)，自定义如 1820x720，建议使用预置模板[见附件一](/cloud/trans_template/) |
 | `/as/<auto_scale>`         | boolean   | 是否根据分辨率自动调整视频长宽比例，仅当传递了 scale 参数时有效                                          |
-| `/r/<frame_rate>`          | integer   | 视频帧率，既每秒显示的帧数，常用帧率"25"、"30"等，默认按照原始帧率处理                                    |
+| `/r/<frame_rate>`          | integer   | 视频帧率，既每秒显示的帧数，常用帧率 "25"、"30" 等，默认按照原始帧率处理                                    |
 | `/sp/<rotate>`             | string    | 旋转角度，默认按照原始视频角度处理。可选值：auto（自动扶正），90，180，270。                               |
 | `/sm/<map_metadata>`       | boolean   | 是否保留视频 meta 信息，默认值 true                                                                |
 | `/acodec/<audio_codec>`    | string    | 设置音频编码器，可选："libmp3lame"、 "libfdk_aac"、"copy"，默认按照音频原始编码器处理                    |
@@ -190,7 +190,7 @@ md5(<operator_name><operator_password><task_id><timestamp>)
 | `/type/`            | string    | 处理类型，值为 `hls`                                                                                 |
 | `/ht/<hls_time>`    | string    | 指定切割的时间片长度，单位 s（秒）                                                                      |
 | `/vb/<bitrate>`     | integer   | 视频比特率，单位 kbps，默认按照视频原始比特率处理                                                         |
-| `/s/<scale>`        | string    | 视频分辨率，默认按照原始分辨率处理格式：预置模板如720p(16:9)，自定义如1820x720，建议使用预置模板[见附件一](/cloud/trans_template/)      |
+| `/s/<scale>`        | string    | 视频分辨率，默认按照原始分辨率处理格式：预置模板如 720p(16:9)，自定义如 1820x720，建议使用预置模板[见附件一](/cloud/trans_template/)      |
 | `/as/<auto_scale>`  | boolean   | 是否根据分辨率自动调整视频长宽比例，仅当传递了 scale 参数时有效                                             |
 | `/r/<frame_rate>`   | integer   | 视频帧率，既每秒显示的帧数，常用帧率25、30等，默认按照原始帧率处理                                           |
 
@@ -202,7 +202,7 @@ md5(<operator_name><operator_password><task_id><timestamp>)
 
 |         参数                        |    类型    |    说明                                                  |
 |------------------------------------|-----------|----------------------------------------------------------|
-| `/type/`                           | string    | 处理类型，值为 video                                        |
+| `/type/`                           | string    | 处理类型，值为 `video`                                      |
 | `/wmImg/<watermark_img>`           | string    | 水印图片相对路径                                            |
 | `/wmGravity/<watermark_gravity>`   | string    | 水印图片位置，默认 northeast，详见注1                         |
 | `/wmDx/<watermark_dx>`             | integer   | 水印图片横坐标偏移量，单位px，默认值-20（跟水印图片位置相关）      |
@@ -210,6 +210,7 @@ md5(<operator_name><operator_password><task_id><timestamp>)
 
 
 注1：水印图片的位置：共9个方位
+
 ```
     northwest       |     north      |   northeast
      （西北)         |     （北）      |    （东北）
@@ -321,15 +322,15 @@ md5(<operator_name><operator_password><task_id><timestamp>)
 ```
 {
 	tasks:{
-	35f0148d414a688a275bf915ba7cebb2: 100,
-	98adbaa52b2f63d6d7f327a0ff223348: 20,
-	c3103189fa906a5354d29bd807e8dc51: null,
-	…
+	    35f0148d414a688a275bf915ba7cebb2: 100,
+	    98adbaa52b2f63d6d7f327a0ff223348: 20,
+	    c3103189fa906a5354d29bd807e8dc51: null,
+	    …
 	}
 }
 ```
 
-特别地，当值为 null 时，表示没有查询到相关的任务信息。
+特别地，当值为 `null` 时，表示没有查询到相关的任务信息。
 
 ### 结果查询
 
