@@ -175,8 +175,8 @@ md5(<operator_name><operator_password><task_id><timestamp>)
 | `/r/<frame_rate>`          | integer   | 视频帧率，既每秒显示的帧数，常用帧率 "25"、"30" 等，默认按照原始帧率处理                                    |
 | `/sp/<rotate>`             | string    | 旋转角度，默认按照原始视频角度处理。可选值：auto（自动扶正），90，180，270。                               |
 | `/sm/<map_metadata>`       | boolean   | 是否保留视频 meta 信息，默认值 true                                                                |
-| `/acodec/<audio_codec>`    | string    | 设置音频编码器，可选："libmp3lame"、 "libfdk_aac"、"copy"，默认按照音频原始编码器处理                    |
-| `/vcodec/<video_codec>`    | string    | 设置视频编码器，可选："libx264"、 "libtheora"、"copy"，默认按照视频原始编码器处理                        |
+| `/acodec/<audio_codec>`    | string    | 设置音频编码器，可选："libmp3lame", "libfdk_aac", "copy"，默认按照音频原始编码器处理                    |
+| `/vcodec/<video_codec>`    | string    | 设置视频编码器，可选："libx264", "libtheora", "libx265", "libvpx-vp9", "libvpx", "copy"，默认按照视频原始编码器处理                        |
 | `/an/<disable_audio>`      | boolean   | 是否禁掉音频，默认 false                                                                           |
 | `/vn/<disable_video>`      | boolean   | 是否禁掉视频，默认 false                                                                           |
 | `/su/<accelerate_factor>`  | float     | 视频加速倍数，取值范围`[1.0，10.0]`                                                                 |
@@ -216,7 +216,7 @@ md5(<operator_name><operator_password><task_id><timestamp>)
      （西北)         |     （北）      |    （东北）
   ------------------+----------------+-----------------
        west         |    center      |     east
-      （北）         |     （中)       |    （东）
+      （北）         |    （中）       |    （东）
   ------------------+----------------+-----------------
     southwest       |    south       |   southeast
      （西南)         |    （南)        |    （东南）

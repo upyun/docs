@@ -23,7 +23,7 @@ pages:
     - '视频处理': 'api/av_pretreatment.md'
     - 'API 错误码表': 'api/errno.md'
 - '云处理 文档':
-    - '云处理': 'cloud/index.md'
+    - '云处理概述': 'cloud/index.md'
     - '图片处理': 'cloud/image.md'
     - '异步音视频处理': 'cloud/av.md'
     - '实时音频处理': 'cloud/real_time.md'
