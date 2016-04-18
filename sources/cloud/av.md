@@ -1,9 +1,11 @@
 ## 10分钟了解
 
 又拍云提供基于云的异步音视频处理，通过 API/SDK 使用，功能丰富（支持音视频转码、音视频切片、视频水印、视频截图、音视频剪辑、元数据获取等）。
+
 下面来看看怎么使用。
 
 ### 访问异步音视频处理
+
 以`POST`方式向指定地址 `http://p0.api.upyun.com/pretreatment/` 提交处理请求，系统接受请求后立即返回任务 `task_id`，处理完成后再回调通知用户。用户可以通过 `task_id` 查询任务处理进度、处理结果。
 
 请求参数
@@ -18,6 +20,7 @@
 
 
 `tasks`（处理任务信息）生成： （如果使用 SDK 不需要关注 tasks 的生成逻辑）
+
 1、处理任务组装。一次最多可以提交10个处理任务。
 
 ```
@@ -40,15 +43,21 @@
 ```
 
 2、把组装好的参数转换为 JSON 字符串；
+
 3、对 JSON 字符串进行 base64 编码处理。
 
 ### 授权认证
+
 （如果使用 SDK 不需要关注授权认证逻辑）
+
 请求的授权认证是通过在 `HTTP Request Header` 中添加 `Authorization` 进行验证：
+
 `Authorization:　UPYUN　<operator>:<signature>`
+
 其中，`operator` 是操作员名称，`signature` 是根据参数计算出来的签名
 
 `signature` 计算逻辑：
+
 1、将参数按照参数名称的字典顺序排序；
 
 ```
@@ -73,6 +82,7 @@ bucket_nameimtesternotify_urlhttp://www.example.com/notify/source/video/20130514
 ```
 
 3、将第二步生成字符按下面顺序连接；
+
 ```
 连接顺序：<operator_name><signature_string><md5_operator_password>
 假设操作员名为 operator_tester ，操作员密码为 tester_password
@@ -81,10 +91,13 @@ operator_testerbucket_nameimtesternotify_urlhttp://www.example.com/notify/source
 ```
 
 4、将第三步生成字符串进行 MD5 计算，得到 `signature` 值。
+
 `ad91a9ab81ecc34e973844a6723ce354`
+
 特别地，参数都使用 UTF-8 编码。
 
 ### 回调通知
+
 处理完成后，系统根据提交任务时提交的 notify_url 参数，将结果以 HTTP POST 请求方式进行回调通知。
 
 回调通知的参数
@@ -141,9 +154,11 @@ md5(<operator_name><operator_password><task_id><timestamp>)
 
 
 ## 基本功能
+
 这是一组音视频处理的基础功能。
 
 `通用参数`（支持所有音视频处理功能）
+
 |         参数       |    类型    |    说明                                                             |
 |-------------------|-----------|---------------------------------------------------------------------|
 | save_as           | string    | 输出文件保存路径（同一个空间下），如果没有指定，系统自动生成在同空间同目录下      |
@@ -182,6 +197,7 @@ md5(<operator_name><operator_password><task_id><timestamp>)
 系统预置转码模板见附件五《预置转码模板列表》。
 
 ### 视频水印
+
 为视频添加图片水印。
 
 |         参数                        |    类型    |    说明                                                  |
@@ -206,6 +222,7 @@ md5(<operator_name><operator_password><task_id><timestamp>)
 ```
 
 ### 视频截图
+
 对视频进行截图，可以截单张图，也可以在一段时间内截多张图。
 
 |         参数         |    类型    |    说明                                                        |
@@ -236,6 +253,7 @@ md5(<operator_name><operator_password><task_id><timestamp>)
 | `/i/<videos>`       | list      | 需要拼接的视频文件路径的列表，按列表顺序依次把视频拼接在源视频后。所有视频必须在源视频空间下   |
 
 如果指定 `save_as`（通用参数）格式跟源视频（`source`）格式、拼接视频格式不一致，系统自动转码源视频、拼接视频成  `save_as`  格式；如果未指定 `save_as`，拼接视频跟源视频格式不一致，系统自动转码拼接视频成源视频格式。
+
 特别地，自动转码过程按视频转码计费。
 
 ### 音频转码
@@ -267,6 +285,7 @@ md5(<operator_name><operator_password><task_id><timestamp>)
 | `/i/<medias>`       | list      | 需要拼接的音频文件路径的列表   |
 
 如果指定 `save_as`（通用参数）格式跟源音频（`source`）格式、拼接音频格式不一致，系统自动转码源音频、拼接音频成  `save_as`  格式；如果未指定 `save_as`，拼接音频跟源音频格式不一致，系统自动转码拼接音频成源音频格式。
+
 特别地，自动转码过程按音频转码计费。
 
 
@@ -277,6 +296,7 @@ md5(<operator_name><operator_password><task_id><timestamp>)
 ### 元数据
 
 获取音视频文件的元信息。
+
 |         参数         |    类型    |    说明                  |
 |---------------------|-----------|--------------------------|
 | `/type/`            | string    | 处理类型，值为 `probe`     |

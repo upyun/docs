@@ -6,7 +6,9 @@
 ### 访问图片处理
 
 假设图片路径 `http://demo.b0.upaiyun.com/demo.jpg`，需要对图片旋转90°
+
 图片处理URL 是 `http://demo.b0.upaiyun.com/demo.jpg!/rotate/90`
+
 `/rotate/90` 表示图片旋转90°， `!` 表示间隔标识符。
 
 通过在图片路径后面，以 `/key/value` 的方式追加处理参数，实现图片处理。
@@ -25,10 +27,13 @@
 图片上传时附加图片处理参数，系统会先处理图片，然后再把处理结果图片存储起来，同时删除上传原图。如果没有附加图片处理参数，直接存储原图。
 
 图片处理参数以 `/key/value` 的方式，放入图片上传请求中。
+
 假设转换图片格式为png，参数为： `/format/png`
+
 则上传请求中增加 `x-gmkerl-thumb:/format/png`
 
 假设对上传图片宽度缩小为300px、锐化、压缩质量80、输出格式png，参数为： `/fw/300/unsharp/true/quality/80/format/png`  （多个参数不区分先后顺序）
+
 则上传请求中增加 `x-gmkerl-thumb:/fw/300/unsharp/true/quality/80/format/png`
 
 表单上传图片（HTTP FORM API）异步处理，支持原图保存：
@@ -62,11 +67,12 @@
 使用时，把缩略图版本名称追加在图片URL 后。
 
 图片 URL：`http://demo.b0.upaiyun.com/demo.jpg`，缩略图版本名称 `test`
+
 图片处理的 URL 是：`http://demo.b0.upaiyun.com/demo.jpg!test`
+
 也就是：`test = /fw/300/unsharp/true/quality/80/format/png`
 
-如果是图片上传预处理时使用缩略图版本
-则 `x-gmkerl-thumb: test`
+如果是图片上传预处理时使用缩略图版本，则 `x-gmkerl-thumb: test`
 
 
 ### 高级应用
@@ -74,13 +80,14 @@
 缩略图版本（样式）后加 `/key/value`。听着有些拗口，直接来看个栗子。
 
 图片 URL：`http://demo.b0.upaiyun.com/demo.jpg`
+
 缩略图版本 `test` ，另外还需要对图片进行 `/rotate/auto（自动旋转扶正）`。
+
 则URL 是：`http://demo.b0.upaiyun.com/demo.jpg!test/rotate/auto`
 
 如果 `test` 中也存在旋转，比如 `/rotate/90` ，会与跟在后面的参数 `/rotate/auto` 重复，处理程序会忽略样式 `test`中的 `/rotate/90 `，以最后出现的相同参数为准。
 
-如果是图片上传预处理时使用缩略图版本 + 参数
-则 `x-gmkerl-thumb: test/rotate/auto`
+如果是图片上传预处理时使用缩略图版本 + 参数，则 `x-gmkerl-thumb: test/rotate/auto`
 
 ## 基本功能
 
@@ -111,13 +118,16 @@
 | `/clip/`  | `<width>x<height>a<x>a<y>`如 `300x200a80a60`       | 裁剪，`<width>`、`<height>`分别表示裁剪图片宽、高，`<x>`、`<y>`分别表示左上角坐标 |
 
 建议使用 crop 。crop 先做缩放再裁剪，clip 先做裁剪再缩放。
+
 **注1：`<width>x<height>`中的x，是英文字母 x。**
+
 **注2：`width > 0`，`height > 0` ，`x >= 0` ，`y >= 0`。**
 
 
 ### 水印
 
 #### 图片水印
+
 |  参数          |     值                                    |          说明                                                         |
 |---------------|------------------------------------------ |----------------------------------------------------------------------|
 | `/watermark/` |                                           | 水印类型，可选 image、text                                              |
@@ -147,8 +157,11 @@
 含中文内容时请指定中文字体。
 
 #### 多个水印
+
 对原图打多个图片水印或文字水印。实现就是把多个图片水印或文字水印参数连在一起。
+
 特别地，水印个数越多，耗时越长。建议不要超过 2 个。
+
 ```
 图片水印：/watermark/image/L2EvYi9jLmpwZw==/align/north/margin/15x10
 文字水印：/watermark/text/5L2g5aW9/size/16/font/5a6L5L2T/color/FF0000/border/FF000000/margin/5x5/align/southeast/opacity/90
@@ -157,6 +170,7 @@
 ```
 
 **注1：url 内容、text 内容需要 base64 编码，并把 /（斜杠）替换成 |（竖线），+（加号）、=（等号）不需替换。**
+
 **注2：水印的对齐方式：共9个方位**
 
 ```
@@ -170,7 +184,7 @@
       （西南)         |     （南)        |     （东南）
 ```
 
-注3：RRGGBBAA前面6位RRGGBB表示边框颜色；后2位AA表示不透明度，取值`[0-255]`，值越大越透明，00 表示完全不透明，FF 表示完全透明。
+**注3：RRGGBBAA前面6位RRGGBB表示边框颜色；后2位AA表示不透明度，取值`[0-255]`，值越大越透明，00 表示完全不透明，FF 表示完全透明。**
 
 ### 旋转
 
@@ -186,6 +200,7 @@
 支持源站类型：`UPYUN 存储`
 
 假设文件保护秘钥为 `abc`，图片路径为 `http://demo.b0.upaiyun.com/demo.jpg`。
+
 对原图的访问方式是 `http://demo.b0.upaiyun.com/demo.jpg!abc`， `abc` 表示文件保护秘钥。
 
 如果缩略图版本名称（样式）和原图保护秘钥相同时，原图保护秘钥优先级高于缩略图版本号。
@@ -212,7 +227,9 @@
 | `/gaussblur/` | `<radius>x<sigma>`，如5x2   | 高斯模糊，radius 为模糊半径，sigma 为标准差  |
 
 其中，`<radius>x<sigma>`中的x，是英文字母 x。
+
 **注1：`0 =< radius <= 50` 且 radius 是整数；当`radius = 0`时，raduis 根据 sigma 自动计算产生。**
+
 **注2：sigma是正整数（`sigma > 0 && sigma 是整数`）。**
 
 ### 边框
@@ -223,9 +240,10 @@
 | `/border/`    | `<width>x<height>`，如3x2      | 边框，width表示边框宽度，height表示边框高度     |
 | `/brdcolor/`  | RRGGBBAA，如FF000000(红色不透明) | 边框颜色和透明度，默认值是FFFFFF00（白色不透明） |
 
-注1：RRGGBBAA前面6位RRGGBB表示边框颜色；后2位AA表示不透明度，取值`[0-255]`，值越大越透明，00 表示完全不透明，FF 表示完全透明。
+**注1：RRGGBBAA前面6位RRGGBB表示边框颜色；后2位AA表示不透明度，取值`[0-255]`，值越大越透明，00 表示完全不透明，FF 表示完全透明。**
 
 ### 画布
+
 为图片添加画布，相当于把图片放入背景布中。
 
 |  参数          |     值                                  |          说明                                            |
@@ -233,11 +251,13 @@
 | `/canvas/`    | `<width>x<height>axay`，如600x400a50a20  | 画布，其中width表示画布宽；height表示画布高；x、y表示左上角坐标  |
 | `/cvscolor/`  | RRGGBBAA，如FF000000(红色不透明)           | 边框颜色和透明度，默认值是FFFFFF00（白色不透明）               |
 
-注1：RRGGBBAA前面6位RRGGBB表示边框颜色；后2位AA表示不透明度，取值`[0-255]`，值越大越透明，00 表示完全不透明，FF 表示完全透明。
+**注1：RRGGBBAA前面6位RRGGBB表示边框颜色；后2位AA表示不透明度，取值`[0-255]`，值越大越透明，00 表示完全不透明，FF 表示完全透明。**
 
 
 ### 静态图渐变
+
 为静态图片添加渐变效果。
+
 |  参数             |     值                             |          说明                       |
 |------------------|------------------------------------|------------------------------------|
 | `/gdori/`        | 方向，如top-down（自上而下）           | 渐变方向，取值见注 1                  |
@@ -245,8 +265,9 @@
 | `/gdstartcolor/` | RRGGBBAA，如FF000000(红色不透明)      | 开始位置颜色及透明度，取值见注 2        |
 | `/gdstopcolor/`  | RRGGBBAA，如FF000000(红色不透明)      | 开始位置颜色及透明度，取值见注 2        |
 
-注1：gdori方向： top-down（自上而下）、 bottom-up（自下而上）、left-right（自左向右）、 right-left（自右向左）。
-注2：RRGGBBAA前面6位RRGGBB表示边框颜色；后2位AA表示不透明度，取值`[0-255]`，值越大越透明，00 表示完全不透明，FF 表示完全透明。
+**注1：gdori方向： top-down（自上而下）、 bottom-up（自下而上）、left-right（自左向右）、 right-left（自右向左）。**
+
+**注2：RRGGBBAA前面6位RRGGBB表示边框颜色；后2位AA表示不透明度，取值`[0-255]`，值越大越透明，00 表示完全不透明，FF 表示完全透明。**
 
 ## 属性获取
 
@@ -276,6 +297,7 @@
 | `/exformat/`     | 颜色进制，如 hex         | 返回颜色的进制，默认hex。可选值：dec(十进制)，hex(十六进制)  |
 
 以JSON格式返回颜色。hex（十六进制）表示颜色为 `#RRGGBB`，dec（十进制）表示颜色为xxxxxxxx（八位数字），如 13408614。
+
 特别地，上传预处理通过 `x-gmkerl-type: get_theme_color` 返回。自定义颜色数量通过`x-gmkerl-extract-color-count: 颜色数量` 设置， 自定义颜色进制通过`x-gmkerl-extract-format: hex`  设置。
 
 ## 结果输出
@@ -333,6 +355,7 @@
 | `/exifswitch/` | true (boolean)     | 保留 EXIF 信息               |
 
 保留 EXIF 信息，但不返回 EXIF 信息。如果需要获取 EXIF 信息，请[获取 EXIF 信息](#exif)
+
 特别地，图片处理默认情况下删除 EXIF 信息。
 
 ### 翻转
