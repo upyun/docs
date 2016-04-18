@@ -119,9 +119,9 @@
 
 建议使用 crop 。crop 先做缩放再裁剪，clip 先做裁剪再缩放。
 
-**注1：`<width>x<height>`中的x，是英文字母 x。**
+注1：`<width>x<height>`中的x，是英文字母 x。
 
-**注2：`width > 0`，`height > 0` ，`x >= 0` ，`y >= 0`。**
+注2：`width > 0`，`height > 0` ，`x >= 0` ，`y >= 0`。
 
 
 ### 水印
