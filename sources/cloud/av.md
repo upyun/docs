@@ -209,7 +209,7 @@ md5(<operator_name><operator_password><task_id><timestamp>)
 | `/wmDy/<watermark_dy>`             | integer   | 水印图片纵坐标偏移量，单位px，默认值15（跟水印图片位置相关）       |
 
 
-**注1：水印图片的位置：共9个方位**
+注1：水印图片的位置：共9个方位
 ```
     northwest       |     north      |   northeast
      （西北)         |     （北）      |    （东北）
@@ -301,7 +301,7 @@ md5(<operator_name><operator_password><task_id><timestamp>)
 |---------------------|-----------|--------------------------|
 | `/type/`            | string    | 处理类型，值为 `probe`     |
 
-### 过程查询
+## 过程查询
 
 这是一组关于音视频处理过程的功能。
 

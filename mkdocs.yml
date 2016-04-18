@@ -28,7 +28,7 @@ pages:
     - '异步音视频处理': 'cloud/av.md'
     - '实时音频处理': 'cloud/real_time.md'
     - '附件一 视频转码预置模板': 'cloud/trans_template.md'
-    - '附件二 异步音视频处理格式支持': 'cloud/format.md'
+    - '附件二 音视频处理支持格式': 'cloud/format.md'
     - '附件三 字体支持列表': 'cloud/font.md'
     - '附件四 返回状态码': 'cloud/status.md'
 - '资源下载':

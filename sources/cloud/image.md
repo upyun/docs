@@ -169,9 +169,9 @@
 /watermark/image/L2EvYi9jLmpwZw==/align/northwest/margin/15x10/watermark/text/5L2g5aW9/size/16/font/5a6L5L2T/color/FF0000/border/FF000000/margin/5x5/align/southeast/opacity/90
 ```
 
-**注1：url 内容、text 内容需要 base64 编码，并把 /（斜杠）替换成 |（竖线），+（加号）、=（等号）不需替换。**
+注1：url 内容、text 内容需要 base64 编码，并把 /（斜杠）替换成 |（竖线），+（加号）、=（等号）不需替换。
 
-**注2：水印的对齐方式：共9个方位**
+注2：水印的对齐方式：共9个方位
 
 ```
      northwest       |      north      |    northeast
@@ -184,7 +184,7 @@
       （西南)         |     （南)        |     （东南）
 ```
 
-**注3：RRGGBBAA前面6位RRGGBB表示边框颜色；后2位AA表示不透明度，取值`[0-255]`，值越大越透明，00 表示完全不透明，FF 表示完全透明。**
+注3：RRGGBBAA前面6位RRGGBB表示边框颜色；后2位AA表示不透明度，取值`[0-255]`，值越大越透明，00 表示完全不透明，FF 表示完全透明。
 
 ### 旋转
 
@@ -228,9 +228,9 @@
 
 其中，`<radius>x<sigma>`中的x，是英文字母 x。
 
-**注1：`0 =< radius <= 50` 且 radius 是整数；当`radius = 0`时，raduis 根据 sigma 自动计算产生。**
+注1：`0 =< radius <= 50` 且 radius 是整数；当`radius = 0`时，raduis 根据 sigma 自动计算产生。
 
-**注2：sigma是正整数（`sigma > 0 && sigma 是整数`）。**
+注2：sigma是正整数（`sigma > 0 && sigma 是整数`）。
 
 ### 边框
 为图片添加边框，支持设置边框颜色。
@@ -240,7 +240,7 @@
 | `/border/`    | `<width>x<height>`，如3x2      | 边框，width表示边框宽度，height表示边框高度     |
 | `/brdcolor/`  | RRGGBBAA，如FF000000(红色不透明) | 边框颜色和透明度，默认值是FFFFFF00（白色不透明） |
 
-**注1：RRGGBBAA前面6位RRGGBB表示边框颜色；后2位AA表示不透明度，取值`[0-255]`，值越大越透明，00 表示完全不透明，FF 表示完全透明。**
+注1：RRGGBBAA前面6位RRGGBB表示边框颜色；后2位AA表示不透明度，取值`[0-255]`，值越大越透明，00 表示完全不透明，FF 表示完全透明。
 
 ### 画布
 
@@ -251,7 +251,7 @@
 | `/canvas/`    | `<width>x<height>axay`，如600x400a50a20  | 画布，其中width表示画布宽；height表示画布高；x、y表示左上角坐标  |
 | `/cvscolor/`  | RRGGBBAA，如FF000000(红色不透明)           | 边框颜色和透明度，默认值是FFFFFF00（白色不透明）               |
 
-**注1：RRGGBBAA前面6位RRGGBB表示边框颜色；后2位AA表示不透明度，取值`[0-255]`，值越大越透明，00 表示完全不透明，FF 表示完全透明。**
+注1：RRGGBBAA前面6位RRGGBB表示边框颜色；后2位AA表示不透明度，取值`[0-255]`，值越大越透明，00 表示完全不透明，FF 表示完全透明。
 
 
 ### 静态图渐变
@@ -265,9 +265,9 @@
 | `/gdstartcolor/` | RRGGBBAA，如FF000000(红色不透明)      | 开始位置颜色及透明度，取值见注 2        |
 | `/gdstopcolor/`  | RRGGBBAA，如FF000000(红色不透明)      | 开始位置颜色及透明度，取值见注 2        |
 
-**注1：gdori方向： top-down（自上而下）、 bottom-up（自下而上）、left-right（自左向右）、 right-left（自右向左）。**
+注1：gdori方向： top-down（自上而下）、 bottom-up（自下而上）、left-right（自左向右）、 right-left（自右向左）。
 
-**注2：RRGGBBAA前面6位RRGGBB表示边框颜色；后2位AA表示不透明度，取值`[0-255]`，值越大越透明，00 表示完全不透明，FF 表示完全透明。**
+注2：RRGGBBAA前面6位RRGGBB表示边框颜色；后2位AA表示不透明度，取值`[0-255]`，值越大越透明，00 表示完全不透明，FF 表示完全透明。
 
 ## 属性获取
 
@@ -338,7 +338,7 @@
 |--------------|--------------------|-----------------------------|
 | `/noicc/`    | true (boolean)     | 清除图片 ICC 信息，默认 false  |
 
-**注1：清除 ICC 信息会导致图片轻微的失真。**
+注1：清除 ICC 信息会导致图片轻微的失真。
 
 ## 扩展功能
 
