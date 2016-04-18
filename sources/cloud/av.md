@@ -1,6 +1,6 @@
 ## 10分钟了解
 
-又拍云提供基于云的异步音视频处理，通过 API/SDK 使用，功能丰富（支持音视频转码、音视频切片、视频水印、视频截图、音视频剪辑、元数据获取等）。
+又拍云提供基于云的异步音视频处理服务，可通过 API/SDK 使用，功能丰富（支持音视频转码、音视频切片、视频水印、视频截图、音视频剪辑、元数据获取等）。
 
 下面来看看怎么使用。
 
@@ -10,12 +10,12 @@
 
 请求参数
 
-|         参数       |    类型            |   说明                            |
-|-------------------|--------------------|----------------------------------|
+|        参数       |    类型            |   说明                                |
+|-------------------|--------------------|---------------------------------------|
 | bucket_name       | string             | 文件所在服务名称（空间名称）          |
-| notify_url        | string             | 回调通知地址                       |
-| source            | string             | 待处理文件路径                     |
-| tasks             | string             | 处理任务信息，详见下                |
+| notify_url        | string             | 回调通知地址                          |
+| source            | string             | 待处理文件路径                        |
+| tasks             | string             | 处理任务信息，详见下                  |
 | accept            | string             | 回调通知内容的MIME类型，取值为：json  |
 
 
@@ -26,16 +26,16 @@
 ```
 [
 	{
-	    type:’video’,	//视频转码
-	    avopts: /s/240p(4:3)/as/1/r/30,	//处理任务，通过预置模板设置
-        return_info:true,	//返回元数据
-        save_as:/a/b.mp4,	//保存路径
+	    "type": "video",    //视频转码
+	    "avopts": "/s/240p(4:3)/as/1/r/30",    //处理任务，通过预置模板设置
+        "return_info": true,    //返回元数据
+        "save_as": "/a/b.mp4",    //保存路径
 	    …
 	},
   	{
-	    type:’vconcat’,	//视频拼接
-	    avopts:/i/L2EvYi9jLm1wNA==/i/LzEvMi8zLm1wNA==,	//拼接视频列表
-	    save_as:/concat/a.mp4
+	    "type": "vconcat",    //视频拼接
+	    "avopts": "/i/L2EvYi9jLm1wNA==/i/LzEvMi8zLm1wNA==",    //拼接视频列表
+	    "save_as": "/concat/a.mp4"
 	    …
 	},
 	…
@@ -81,11 +81,11 @@ tasks: 'W3sidHlwZSI6InZpZGVvIiwiYml0cmF0ZSI6IjUwMCIsInJvdGF0ZSI6ImF1dG8iLCJmb3Jt
 bucket_nameimtesternotify_urlhttp://www.example.com/notify/source/video/20130514_190031.mp4tasksW3sidHlwZSI6InZpZGVvIiwiYml0cmF0ZSI6IjUwMCIsInJvdGF0ZSI6ImF1dG8iLCJmb3JtYXQiOiJtcDQifSx7InR5cGUiOiJ0aHVtYm5haWwiLCJ0aHVtYl9zaWdubGUiOmZhbHNlLCJ0aHVtYl9hbW91bnQiOjEwMCwiZm9ybWF0IjoicG5nIn1d
 ```
 
-3、将第二步生成字符按下面顺序连接；
+3、将第二步生成的字符按下面顺序连接；
 
 ```
 连接顺序：<operator_name><signature_string><md5_operator_password>
-假设操作员名为 operator_tester ，操作员密码为 tester_password
+假设操作员名为 operator_tester，操作员密码为 tester_password
 连接结果字符串：
 operator_testerbucket_nameimtesternotify_urlhttp://www.example.com/notify/source/video/20130514_190031.mp4tasksW3sidHlwZSI6InZpZGVvIiwiYml0cmF0ZSI6IjUwMCIsInJvdGF0ZSI6ImF1dG8iLCJmb3JtYXQiOiJtcDQifSx7InR5cGUiOiJ0aHVtYm5haWwiLCJ0aHVtYl9zaWdubGUiOmZhbHNlLCJ0aHVtYl9hbW91bnQiOjEwMCwiZm9ybWF0IjoicG5nIn1d97b5a9d718b7a2064f7e7673c4d8bcb8
 ```
@@ -94,30 +94,30 @@ operator_testerbucket_nameimtesternotify_urlhttp://www.example.com/notify/source
 
 `ad91a9ab81ecc34e973844a6723ce354`
 
-特别地，参数都使用 UTF-8 编码。
+特别地，参数都使用 `UTF-8` 编码。
 
 ### 回调通知
 
-处理完成后，系统根据提交任务时提交的 `notify_url` 参数，将结果以 `HTTP POST 请求`方式进行回调通知。
+处理完成后，系统根据提交任务时提交的 `notify_url` 参数，将结果以 `HTTP POST 请求` 方式进行回调通知。
 
 回调通知的参数
 
-|         参数       |    类型    |    说明                                                                                           |
-|-------------------|-----------|---------------------------------------------------------------------------------------------------|
-| bucket_name       | string    | 文件所在服务名称（空间名称）                                                                           |
-| status_code       | integer   | 处理结果状态码，200 表示成功处理                                                                       |
-| path              | array     | 输出文件保存路径                                                                                     |
-| description       | string    | 处理结果描述                                                                                        |
-| task_id           | string    | 任务对应的 task_id                                                                                  |
+|        参数       |    类型   |    说明                                                                                                      |
+|-------------------|-----------|--------------------------------------------------------------------------------------------------------------|
+| bucket_name       | string    | 文件所在服务名称（空间名称）                                                                                 |
+| status_code       | integer   | 处理结果状态码，200 表示成功处理                                                                             |
+| path              | array     | 输出文件保存路径                                                                                             |
+| description       | string    | 处理结果描述                                                                                                 |
+| task_id           | string    | 任务对应的 task_id                                                                                           |
 | info              | string    | 视频文件的元数据信息。经过 base64 处理过之后的 JSON 字符串，仅当 type 为 video且 return_info 为 true 时返回  |
 | signature         | string    | 回调验证签名，用户端程序可以通过校验签名，判断回调通知的合法性                                               |
-| timestamp         | integer   | 服务器回调此信息时的时间戳                                                                             |
+| timestamp         | integer   | 服务器回调此信息时的时间戳                                                                                   |
 
 
 回调验证签名 `signature` 的计算方法：
 
 ```
-md5(<operator_name><operator_password><task_id><timestamp>)
+md5(<operator_name><operator_password><task_id><timestamp>), 并取中间 16 位。
 // md5 中各字段为字符串，且先后顺序与上保持一致
 ```
 
@@ -142,15 +142,15 @@ md5(<operator_name><operator_password><task_id><timestamp>)
       "app_name": "naga",			//异步音视频处理，任务2
       "accept": "json",			//必填，回调返回 JSON 格式内容
       "task": {
-	      "type":"vconcat",				//视频拼接
-	      "avopts":"/i/L2EvYi9jLm1wNA==/i/LzEvMi8zLm1wNA==",//拼接视频列表
-	      "save_as":"/concat/a.mp4"
+	      "type": "vconcat",				//视频拼接
+	      "avopts": "/i/L2EvYi9jLm1wNA==/i/LzEvMi8zLm1wNA==",//拼接视频列表
+	      "save_as": "/concat/a.mp4"
       }
   }
 ]
 ```
 
-如果 `task` 里面不存在 `save_as` 参数,则文件生成在 `save_key` 所在目录下。如果不存在 `notify_url` 参数,，则不回调。
+如果 `task` 里面不存在 `save_as` 参数，则文件生成在 `save_key` 所在目录下。如果不存在 `notify_url` 参数，则不回调。
 
 
 ## 基本功能
@@ -159,40 +159,45 @@ md5(<operator_name><operator_password><task_id><timestamp>)
 
 `通用参数`（支持所有音视频处理功能）
 
-|         参数       |    类型    |    说明                                                             |
-|-------------------|-----------|---------------------------------------------------------------------|
+|        参数       |    类型   |    说明                                                                           |
+|-------------------|-----------|-----------------------------------------------------------------------------------|
+| type              | string    | 音视频处理类型。不同的处理任务对应不同的 type，详见下方各处理任务说明                  |
 | save_as           | string    | 输出文件保存路径（同一个空间下），如果没有指定，系统自动生成在同空间同目录下      |
-| return_info       | boolean   | 是否返回 JSON 格式元数据，默认 false。支持 type 值为 video 功能            |
+| return_info       | boolean   | 是否返回 JSON 格式元数据，默认 false。支持 type 值为 video 功能                   |
+| avopts            | string    | 音视频处理参数, 格式为 `/key/value/key/value/...`                                    |
+
+> 特别注意的， 在 `avopts` 中使用 0 表示布尔值的 `false`, 1 表示布尔值的 `true`。以下如无特殊情况不做再次申明。
+
 
 ### 视频转码
 
-|         参数                |    类型   |    说明                                                                                         |
-|----------------------------|-----------|------------------------------------------------------------------------------------------------|
-| `/type/`                   | string    | 处理类型，值为 video                                                                             |
-| `/vb/<bitrate>`            | integer   | 视频比特率，单位 kbps，默认按照视频原始比特率处理                                                      |
+|         参数               |    类型   |    说明                                                                                                                                |
+|----------------------------|-----------|----------------------------------------------------------------------------------------------------------------------------------------|
+| `type`                     | string    | 处理类型，值为 video                                                                                                                   |
+| `/vb/<bitrate>`            | integer   | 视频比特率，单位 kbps，默认按照视频原始比特率处理                                                                                      |
 | `/s/<scale>`               | string    | 视频分辨率，默认按照原始分辨率处理。格式：预置模板如 720p(16:9)，自定义如 1820x720，建议使用预置模板[见附件一](/cloud/trans_template/) |
-| `/as/<auto_scale>`         | boolean   | 是否根据分辨率自动调整视频长宽比例，仅当传递了 scale 参数时有效                                          |
-| `/r/<frame_rate>`          | integer   | 视频帧率，既每秒显示的帧数，常用帧率 "25"、"30" 等，默认按照原始帧率处理                                    |
-| `/sp/<rotate>`             | string    | 旋转角度，默认按照原始视频角度处理。可选值：auto（自动扶正），90，180，270。                               |
-| `/sm/<map_metadata>`       | boolean   | 是否保留视频 meta 信息，默认值 true                                                                |
-| `/acodec/<audio_codec>`    | string    | 设置音频编码器，可选："libmp3lame", "libfdk_aac", "copy"，默认按照音频原始编码器处理                    |
-| `/vcodec/<video_codec>`    | string    | 设置视频编码器，可选："libx264", "libtheora", "libx265", "libvpx-vp9", "libvpx", "copy"，默认按照视频原始编码器处理                        |
-| `/an/<disable_audio>`      | boolean   | 是否禁掉音频，默认 false                                                                           |
-| `/vn/<disable_video>`      | boolean   | 是否禁掉视频，默认 false                                                                           |
-| `/su/<accelerate_factor>`  | float     | 视频加速倍数，取值范围`[1.0，10.0]`                                                                 |
+| `/as/<auto_scale>`         | boolean   | 是否根据分辨率自动调整视频长宽比例，仅当传递了 scale 参数时有效                                                                        |
+| `/r/<frame_rate>`          | integer   | 视频帧率，既每秒显示的帧数，常用帧率 "25"、"30" 等，默认按照原始帧率处理                                                               |
+| `/sp/<rotate>`             | string    | 旋转角度，默认按照原始视频角度处理。可选值：auto（自动扶正），90，180，270。                                                           |
+| `/sm/<map_metadata>`       | boolean   | 是否保留视频 meta 信息，默认值 true                                                                                                    |
+| `/acodec/<audio_codec>`    | string    | 设置音频编码器，可选："libmp3lame"，"libfdk_aac"，"copy"，默认按照音频原始编码器处理                                                   |
+| `/vcodec/<video_codec>`    | string    | 设置视频编码器，可选："libx264"，"libtheora"，"libx265"，"libvpx-vp9"，"libvpx"，"copy"，默认按照视频原始编码器处理                    |
+| `/an/<disable_audio>`      | boolean   | 是否禁掉音频，默认 false                                                                                                               |
+| `/vn/<disable_video>`      | boolean   | 是否禁掉视频，默认 false                                                                                                               |
+| `/su/<accelerate_factor>`  | float     | 视频加速倍数，取值范围 `[1.0，10.0]`                                                                                                   |
 
 系统预置转码模板见[附件一 视频转码预置模板](/cloud/trans_template/)。
 
 ### HLS 切片
 
-|         参数         |    类型    |    说明                                                                                           |
-|---------------------|-----------|---------------------------------------------------------------------------------------------------|
-| `/type/`            | string    | 处理类型，值为 `hls`                                                                                 |
-| `/ht/<hls_time>`    | string    | 指定切割的时间片长度，单位 s（秒）                                                                      |
-| `/vb/<bitrate>`     | integer   | 视频比特率，单位 kbps，默认按照视频原始比特率处理                                                         |
+|        参数         |    类型   |    说明                                                                                                                                   |
+|---------------------|-----------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| `type`              | string    | 处理类型，值为 `hls`                                                                                                                      |
+| `/ht/<hls_time>`    | string    | 指定切割的时间片长度，单位 s（秒）                                                                                                        |
+| `/vb/<bitrate>`     | integer   | 视频比特率，单位 kbps，默认按照视频原始比特率处理                                                                                         |
 | `/s/<scale>`        | string    | 视频分辨率，默认按照原始分辨率处理格式：预置模板如 720p(16:9)，自定义如 1820x720，建议使用预置模板[见附件一](/cloud/trans_template/)      |
-| `/as/<auto_scale>`  | boolean   | 是否根据分辨率自动调整视频长宽比例，仅当传递了 scale 参数时有效                                             |
-| `/r/<frame_rate>`   | integer   | 视频帧率，既每秒显示的帧数，常用帧率25、30等，默认按照原始帧率处理                                           |
+| `/as/<auto_scale>`  | boolean   | 是否根据分辨率自动调整视频长宽比例，仅当传递了 scale 参数时有效                                                                           |
+| `/r/<frame_rate>`   | integer   | 视频帧率，既每秒显示的帧数，常用帧率25、30等，默认按照原始帧率处理                                                                        |
 
 系统预置转码模板见[附件一 视频转码预置模板](/cloud/trans_template/)。
 
@@ -200,94 +205,93 @@ md5(<operator_name><operator_password><task_id><timestamp>)
 
 为视频添加图片水印。
 
-|         参数                        |    类型    |    说明                                                  |
-|------------------------------------|-----------|----------------------------------------------------------|
-| `/type/`                           | string    | 处理类型，值为 `video`                                      |
-| `/wmImg/<watermark_img>`           | string    | 水印图片相对路径                                            |
-| `/wmGravity/<watermark_gravity>`   | string    | 水印图片位置，默认 northeast，详见注1                         |
-| `/wmDx/<watermark_dx>`             | integer   | 水印图片横坐标偏移量，单位px，默认值-20（跟水印图片位置相关）      |
-| `/wmDy/<watermark_dy>`             | integer   | 水印图片纵坐标偏移量，单位px，默认值15（跟水印图片位置相关）       |
+|         参数                       |    类型   |    说明                                                            |
+|------------------------------------|-----------|--------------------------------------------------------------------|
+| `type`                             | string    | 处理类型，值为 `video`                                             |
+| `/wmImg/<watermark_img>`           | string    | 水印图片相对路径                                                   |
+| `/wmGravity/<watermark_gravity>`   | string    | 水印图片位置，默认 northeast，详见注1                              |
+| `/wmDx/<watermark_dx>`             | integer   | 水印图片横坐标偏移量，单位px，当 wmGravity 为 northeast 时默认值-20      |
+| `/wmDy/<watermark_dy>`             | integer   | 水印图片纵坐标偏移量，单位px，当 wmGravity 为 northeast 时默认值15       |
 
 
 注1：水印图片的位置：共9个方位
 
 ```
-    northwest       |     north      |   northeast
-     （西北)         |     （北）      |    （东北）
-  ------------------+----------------+-----------------
-       west         |    center      |     east
-      （北）         |    （中）       |    （东）
-  ------------------+----------------+-----------------
-    southwest       |    south       |   southeast
-     （西南)         |    （南)        |    （东南）
+northwest     |     north      |     northeast
+              |                |
+              |                |
+--------------+----------------+--------------
+              |                |
+west          |     center     |          east
+              |                |
+--------------+----------------+--------------
+              |                |
+              |                |
+southwest     |     south      |     southeast
 ```
 
 ### 视频截图
 
 对视频进行截图，可以截单张图，也可以在一段时间内截多张图。
 
-|         参数         |    类型    |    说明                                                        |
-|---------------------|-----------|----------------------------------------------------------------|
-| `/type/`            | string    | 处理类型，值为 `thumbnail`                                       |
-| `/o/<thumb_single>` | boolean   | 是否仅截取单张图片，默认值 `true`                                  |
+|        参数         |    类型   |    说明                                                               |
+|---------------------|-----------|-----------------------------------------------------------------------|
+| `type`              | string    | 处理类型，值为 `thumbnail`                                            |
+| `/o/<thumb_single>` | boolean   | 是否仅截取单张图片，默认值 `true`                                     |
 | `/n/<thumb_amount>` | integer   | 截图数量，当 `thumb_single` 参数的值为 `false` 时，需指定截图数量     |
-| `/ss/<thumb_start>` | string    | 截图开始时间，格式为 `HH:MM:SS`，默认值为 `00:00:00`                |
+| `/ss/<thumb_start>` | string    | 截图开始时间，格式为 `HH:MM:SS`，默认值为 `00:00:00`                  |
 | `/es/<thumb_end>`   | string    | 截图结束时间，格式为  `HH:MM:SS`，默认值为视频结束时间                |
 | `/s/<thumb_scale>`  | string    | 截图尺寸，格式为 `640:480`，默认值为视频原始尺寸                      |
-| `/f/<thumb_format>` | string    | 截图输出格式，支持 `png/jpg` 格式，默认 `jpg`                       |
+| `/f/<thumb_format>` | string    | 截图输出格式，支持 `png/jpg` 格式，默认 `jpg`                         |
 
 
 ### 视频剪辑
 
-|         参数         |    类型    |    说明                                         |
-|---------------------|-----------|-------------------------------------------------|
-| `/type/`            | string    | 处理类型，值为 `video`                             |
+|        参数         |    类型   |    说明                                                 |
+|---------------------|-----------|---------------------------------------------------------|
+| `type`              | string    | 处理类型，值为 `video`                                  |
 | `/ss/<start_time>`  | string    | 剪辑开始时间，格式为 `HH:MM:SS`，默认值为视频开始时间   |
 | `/es/<end_time>`    | string    | 剪辑结束时间，格式为 `HH:MM:SS`，默认值为视频结束时间   |
 
 
 ### 视频拼接
 
-|         参数         |    类型    |    说明                                                                        |
-|---------------------|-----------|--------------------------------------------------------------------------------|
-| `/type/`            | string    | 处理类型，值为 `vconcat`                                                         |
-| `/i/<videos>`       | list      | 需要拼接的视频文件路径的列表，按列表顺序依次把视频拼接在源视频后。所有视频必须在源视频空间下   |
+|        参数         |    类型   |    说明                                                                                               |
+|---------------------|-----------|-------------------------------------------------------------------------------------------------------|
+| `type`              | string    | 处理类型，值为 `vconcat`                                                                              |
+| `/i/<video>`        | string    | 需要拼接的视频文件路径, 视频必须在源视频空间下。可多次接收 `/i/<video>` 参数，如 `/i/<video>/i/<video>` |
 
 如果指定 `save_as`（通用参数）格式跟源视频（`source`）格式、拼接视频格式不一致，系统自动转码源视频、拼接视频成  `save_as`  格式；如果未指定 `save_as`，拼接视频跟源视频格式不一致，系统自动转码拼接视频成源视频格式。
 
-特别地，自动转码过程按视频转码计费。
-
 ### 音频转码
 
-|         参数                |    类型   |    说明                                           |
-|----------------------------|-----------|-------------------------------------------------|
-| `/type/`                   | string    | 处理类型，值为 audio                               |
-| `/ac/<audio_channel>`      | integer   | 声道，默认 2                                      |
-| `/ab/<audio_bitrate>`      | integer   | 比特率，单位 kbps，默认按照音频原始比特率处理           |
-| `/vbr/<audio_vbr>`         | integer   | variable bitrate `[0-9]`，默认按照音频原始 VBR处理   |
+|         参数               |    类型   |    说明                                              |
+|----------------------------|-----------|------------------------------------------------------|
+| `type`                     | string    | 处理类型，值为 audio                                 |
+| `/ac/<audio_channel>`      | integer   | 声道，默认 2                                         |
+| `/ab/<audio_bitrate>`      | integer   | 比特率，单位 kbps，默认按照音频原始比特率处理        |
+| `/vbr/<audio_vbr>`         | integer   | variable bitrate, 范围 `[0-9]`，默认按照音频原始 VBR 处理   |
 | `/sm/<map_metadata>`       | boolean   | 是否保留音频 meta 信息，默认值 true                  |
 
 可以通过 `save_as`（通用参数） 自定义保存路径。
 
 ### 音频剪辑
 
-|         参数         |    类型    |    说明                                         |
-|---------------------|-----------|-------------------------------------------------|
-| `/type/`            | string    | 处理类型，值为 `audio`                             |
+|         参数        |    类型   |    说明                                                 |
+|---------------------|-----------|---------------------------------------------------------|
+| `type`              | string    | 处理类型，值为 `audio`                                  |
 | `/ss/<start_time>`  | string    | 剪辑开始时间，格式为 `HH:MM:SS`，默认值为视频开始时间   |
 | `/es/<end_time>`    | string    | 剪辑结束时间，格式为 `HH:MM:SS`，默认值为视频结束时间   |
 
 
 ### 音频拼接
 
-|         参数         |    类型    |    说明                  |
-|---------------------|-----------|--------------------------|
-| `/type/`            | string    | 处理类型，值为 `aconcat`    |
-| `/i/<medias>`       | list      | 需要拼接的音频文件路径的列表   |
+|         参数        |    类型   |    说明                                                                                                 |
+|---------------------|-----------|---------------------------------------------------------------------------------------------------------|
+| `type`              | string    | 处理类型，值为 `aconcat`                                                                                |
+| `/i/<media>`        | string    | 需要拼接的音频文件路径, 音频必须在源音频空间下。可多次接收 `/i/<media>` 参数，如 `/i/<media>/i/<media>`   |
 
 如果指定 `save_as`（通用参数）格式跟源音频（`source`）格式、拼接音频格式不一致，系统自动转码源音频、拼接音频成  `save_as`  格式；如果未指定 `save_as`，拼接音频跟源音频格式不一致，系统自动转码拼接音频成源音频格式。
-
-特别地，自动转码过程按音频转码计费。
 
 
 ## 属性获取
@@ -298,9 +302,9 @@ md5(<operator_name><operator_password><task_id><timestamp>)
 
 获取音视频文件的元信息。
 
-|         参数         |    类型    |    说明                  |
-|---------------------|-----------|--------------------------|
-| `/type/`            | string    | 处理类型，值为 `probe`     |
+|         参数        |    类型   |    说明                    |
+|---------------------|-----------|----------------------------|
+| `type`              | string    | 处理类型，值为 `probe`     |
 
 ## 过程查询
 
@@ -312,8 +316,8 @@ md5(<operator_name><operator_password><task_id><timestamp>)
 
 查询参数
 
-|         参数       |    类型            |   说明                               |
-|-------------------|--------------------|-------------------------------------|
+|        参数       |    类型            |   说明                                   |
+|-------------------|--------------------|------------------------------------------|
 | bucket_name       | string             | 文件所在服务名称（空间名称）             |
 | task_ids          | string             | 任务 id 以 `,` 作为分隔符，最多 20 个    |
 
@@ -321,10 +325,10 @@ md5(<operator_name><operator_password><task_id><timestamp>)
 
 ```
 {
-	tasks:{
-	    35f0148d414a688a275bf915ba7cebb2: 100,
-	    98adbaa52b2f63d6d7f327a0ff223348: 20,
-	    c3103189fa906a5354d29bd807e8dc51: null,
+	"tasks": {
+	    "35f0148d414a688a275bf915ba7cebb2": 100,
+	    "98adbaa52b2f63d6d7f327a0ff223348": 20,
+	    "c3103189fa906a5354d29bd807e8dc51": null,
 	    …
 	}
 }
