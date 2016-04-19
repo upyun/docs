@@ -1,4 +1,6 @@
-异步音视频处理接口是用于处理**已经上传到对应存储空间**中的视频文件，进行转码、截图等操作。在处理完成之后，异步通知用户处理结果。
+异步音视频处理接口是用于处理**已经上传到对应存储空间**中的视频文件，进行转码、截图等操作。在处理完成之后，异步通知用户处理结果。如果原视频文件不在 UPYUN 存储，需要预先调用文件上传 API 将视频文件上传到 UPYUN 存储中。 
+
+> 注：文中所有 `<>` 标注的字段，均需根据实际情况进行替换。
 
 ## 使用方法
 
@@ -12,43 +14,49 @@
 curl -X POST \
     http://p0.api.upyun.com/pretreatment/ \
     -H "Authorization: UPYUN <operator>:<signature>" \
-    -H "Date: Wed, 29 Oct 2014 02:26:58 GMT"
-    # 其他可选参数...
+    -H "Date: <Wed, 29 Oct 2014 02:26:58 GMT>"
+    -d "accept=json" \
+    -d "bucket_name=<bucket_name>" \
+    -d "notify_url=<notify_url>" \
+    -d "source=<UPYUN 存储空间中的音视频文件路径>" \
+    -d "task=<base64 编码后的任务字符串>"
 ```
 
 ### 请求参数
 
-|        参数       |    类型            |   说明                                |
-|-------------------|--------------------|---------------------------------------|
-| bucket_name       | string             | 文件所在服务名称（空间名称）          |
-| notify_url        | string             | 回调通知地址                          |
-| source            | string             | 待处理文件路径                        |
-| tasks             | string             | 处理任务信息，详见下                  |
-| accept            | string             | 必须指定为 `json`  |
+|        参数       |    类型       | 必选     |   说明                                |
+|-------------------|--------------|------|---------------------------------------|
+| bucket_name       | string       |  是    | 文件所在服务名称（空间名称）          |
+| notify_url        | string       |  是    | 回调通知地址                          |
+| source            | string       |  是   | 待处理文件路径                        |
+| tasks             | string       |  是   | 处理任务信息，详见下                  |
+| accept            | string       |  是    | 必须指定为 `json`  |
 
 
 `tasks` 参数通过下面三个步骤生成：
 
-1\. 组装业务参数。一次最多可以提交10个处理任务。
+1\. 组装业务参数。一次最多可以提交 10 个处理任务。
 
 ```
 [
 	{
 	    "type": "video",                        //视频转码
-	    "avopts": "/s/240p(4:3)/as/1/r/30",     //处理任务，通过预置模板设置
+	    "avopts": "/s/240p(4:3)/as/1/r/30",     //处理参数 [注1]
         "return_info": true,                  //返回元数据
         "save_as": "/a/b.mp4",                //保存路径
 	    …
 	},
   	{
 	    "type": "vconcat",                      //视频拼接
-	    "avopts": "/i/L2EvYi9jLm1wNA==/i/LzEvMi8zLm1wNA==",    //拼接视频列表
+	    "avopts": "/i/L2EvYi9jLm1wNA==/i/LzEvMi8zLm1wNA==",    //处理参数 [注1]
 	    "save_as": "/concat/a.mp4"
 	    …
 	},
 	…
 ]
 ```
+
+> 注 1： `avopts` 是音视频处理参数，具体参数和说明请见 [这里](/cloud/av/#_8)
 
 2\. 把组装好的参数转换为 JSON 字符串。
 
@@ -119,7 +127,7 @@ operator_testerbucket_nameimtesternotify_urlhttp://www.example.com/notify/source
 
 ### 回调通知
 
-处理完成后，系统根据提交任务时提交的 `notify_url` 参数，将结果以 `HTTP POST` 请求进行回调通知。
+处理完成后，系统根据提交任务时的 `notify_url` 参数，将结果以 `HTTP POST` 请求进行回调通知。
 
 ** 回调通知参数 **
 
@@ -209,7 +217,7 @@ curl http://p0.api.upyun.com/result?bucket_name=imtester&task_ids=35f0148d414a68
 |----------------------------|-----------|----------------------------------------------------------|
 | `type`                     | string    | 处理类型，值为 video                                                                                                                   |
 | `/vb/<bitrate>`            | integer   | 视频比特率，单位 kbps，默认按照视频原始比特率处理                                                                                      |
-| `/s/<scale>`               | string    | 视频分辨率，默认按照原始分辨率处理。格式：预置模板如 720p(16:9)，自定义如 1820x720，建议使用预置模板[见附件](/cloud/attachment/#_1) |
+| `/s/<scale>`               | string    | 视频分辨率，默认按照原始分辨率处理。格式：预置模板如 720p(16:9)，自定义如 1820x720，建议使用预置模板 [见附件](/cloud/attachment/#_1) |
 | `/as/<auto_scale>`         | boolean   | 是否根据分辨率自动调整视频长宽比例，仅当传递了 scale 参数时有效                                                                        |
 | `/r/<frame_rate>`          | integer   | 视频帧率，既每秒显示的帧数，常用帧率 "25"、"30" 等，默认按照原始帧率处理                                                               |
 | `/sp/<rotate>`             | string    | 旋转角度，默认按照原始视频角度处理。可选值：auto（自动扶正），90，180，270。                                                           |
@@ -220,7 +228,7 @@ curl http://p0.api.upyun.com/result?bucket_name=imtester&task_ids=35f0148d414a68
 | `/vn/<disable_video>`      | boolean   | 是否禁掉视频，默认 false                                                                                                               |
 | `/su/<accelerate_factor>`  | float     | 视频加速倍数，取值范围 `[1.0，10.0]`                                                                                                   |
 
-系统预置转码模板见[视频转码预置模板](/cloud/attachment/#_1)。
+系统预置转码模板见 [视频转码预置模板](/cloud/attachment/#_1)。
 
 ### HLS 切片
 
@@ -229,11 +237,11 @@ curl http://p0.api.upyun.com/result?bucket_name=imtester&task_ids=35f0148d414a68
 | `type`              | string    | 处理类型，值为 `hls`                                                                                                                      |
 | `/ht/<hls_time>`    | string    | 指定切割的时间片长度，单位 s（秒）                                                                                                        |
 | `/vb/<bitrate>`     | integer   | 视频比特率，单位 kbps，默认按照视频原始比特率处理                                                                                         |
-| `/s/<scale>`        | string    | 视频分辨率，默认按照原始分辨率处理格式：预置模板如 720p(16:9)，自定义如 1820x720，建议使用预置模板[见附件](/cloud/attachment/#_1)      |
+| `/s/<scale>`        | string    | 视频分辨率，默认按照原始分辨率处理格式：预置模板如 720p(16:9)，自定义如 1820x720，建议使用预置模板 [见附件](/cloud/attachment/#_1)      |
 | `/as/<auto_scale>`  | boolean   | 是否根据分辨率自动调整视频长宽比例，仅当传递了 scale 参数时有效                                                                           |
 | `/r/<frame_rate>`   | integer   | 视频帧率，既每秒显示的帧数，常用帧率25、30等，默认按照原始帧率处理                                                                        |
 
-系统预置转码模板见[视频转码预置模板](/cloud/attachment/#_1)。
+系统预置转码模板见 [视频转码预置模板](/cloud/attachment/#_1)。
 
 ### 视频水印
 

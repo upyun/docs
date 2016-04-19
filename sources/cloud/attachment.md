@@ -62,7 +62,7 @@
 | 409         |  图片大小超出限制，限制为 2 亿像素，Limit Exceeded    |
 | 413         |  请求处理超时，A Big Image!    |
 
-更多的错误码，请[点此查看](/api/errno/#api)
+更多的错误码，请 [点此查看](/api/errno/#api)
 
 ### 异步音视频处理
 
@@ -77,7 +77,7 @@
 | 503         |  存储处理结果时错误    |
 
 
-更多的错误码，请[点此查看](/api/errno/#api)
+更多的错误码，请 [点此查看](/api/errno/#api)
 
 ### 实时音频处理
 
@@ -88,4 +88,4 @@
 | 405         |  参数失败，Parameter Error    |
 | 413         |  转码超时，Convert Timeout    |
 
-更多的错误码，请[点此查看](/api/errno/#api)
+更多的错误码，请 [点此查看](/api/errno/#api)

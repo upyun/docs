@@ -15,7 +15,7 @@
 http://demo.b0.upaiyun.com/demo.jpg!/rotate/90/watermark/text/5L2g5aW95Y+I5ouN5LqR/color/00ff00
 ```
 
-详细作图参数请见[这里](/cloud/image/#_5)
+详细作图参数请见 [这里](/cloud/image/#_5)
 
 注：
 > - **间隔标识符** 用于分隔图片 URL 和图片处理参数。可登录又拍云管理平台选择 `!(英文感叹号)` 、 `-` 、 `_` 中的任意一种 ，本文档使用 `!` 作为示例间隔标识符。
@@ -29,7 +29,7 @@ http://demo.b0.upaiyun.com/demo.jpg!/rotate/90/watermark/text/5L2g5aW95Y+I5ouN5L
 
 在上传图片到 UPYUN 的时候，可以在请求中带上相应的图片处理参数，那么 UPYUN 会先根据作图参数对图片进行相应的处理，然后将处理后的图片保存到 UPYUN 存储。
 
-上传作图的参数名为 `x-gmkerl-thumb`，在使用 REST API 进行上传时，该参数需要带在 [http 请求头](/api/rest_api/#_6)里，而在使用表单 API 进行上传时，该参数应该包含在 [policy](/api/form_api/#api_1) 中。参数的值与 URL 作图方式相同。以下为几个上传作图的参数示例：
+上传作图的参数名为 `x-gmkerl-thumb`，在使用 REST API 进行上传时，该参数需要带在 [http 请求头](/api/rest_api/#_6) 里，而在使用表单 API 进行上传时，该参数应该包含在 [policy](/api/form_api/#api_1) 中。参数的值与 URL 作图方式相同。以下为几个上传作图的参数示例：
 
 例1：转换图片格式为 png
 ```
@@ -41,7 +41,7 @@ x-gmkerl-thumb: /format/png
 x-gmkerl-thumb: /fw/300/unsharp/true/quality/80/format/png
 ```
 
-详细作图参数请见[这里](/cloud/image/#_5)
+详细作图参数请见 [这里](/cloud/image/#_5)
 
 
 ### 缩略图版本（样式）
@@ -102,7 +102,7 @@ UPYUN 提供了缩略图版本与作图参数混合的作图方式，允许用�
 
 #### 水印
 
-> 水印参数需要以 `/watermark` 开头，然后加上水印参数。如 `/watermark/text/5L2g5aW977yB`。
+> **水印参数需要以 `/watermark` 开头，然后加上水印参数。**如 `/watermark/text/5L2g5aW977yB`。
 
 ** 图片水印 **
 
@@ -138,7 +138,7 @@ UPYUN 提供了缩略图版本与作图参数混合的作图方式，允许用�
 /watermark/text/5L2g5aW977yB/font/simhei/watermark/image/url/L3BhdGgvdG8vd2F0ZXJtYXJrLnBuZw==/align/center/opacity/50
 ```
 
-就可以打上一个文字水印和一个图片水印。当然，水印个数越多，耗时越长。建议不要超过 2 个。
+就可以打上一个文字水印和一个图片水印。当然，水印个数越多，耗时越长，建议不要超过 2 个。
 
 >
 > 注 1：水印图片必须放在原图所在服务名下，不支持外部链接。`url` 需要 base64 编码，并把 `/`（斜杠）替换成 `|`（竖线）。
@@ -240,15 +240,14 @@ UPYUN 提供了缩略图版本与作图参数混合的作图方式，允许用�
 
 |  参数            |     值                              |          说明                      |
 |------------------|-------------------------------------|------------------------------------|
-| `/gdori/`        | 方向，如 top-down（自上而下）       | 渐变方向，取值见「注1」            |
+| `/gdori/`        | 方向，如 top-down（自上而下）       | 渐变方向，取值见 *「注 1」*            |
 | `/gdpos/`        | 开始位置,结束位置，如 10,100        | 渐变从开始位置至结束位置。单位像素（px）  |
-| `/gdstartcolor/` | RRGGBBAA，如 FF000000（红色不透明） | 开始位置颜色及透明度，取值见「注2」        |
-| `/gdstopcolor/`  | RRGGBBAA，如 FF000000（红色不透明） | 开始位置颜色及透明度，取值见「注2」        |
+| `/gdstartcolor/` | RRGGBBAA，如 FF000000（红色不透明） | 开始位置颜色及透明度，取值见 *「注 2」*        |
+| `/gdstopcolor/`  | RRGGBBAA，如 FF000000（红色不透明） | 开始位置颜色及透明度，取值见 *「注 2」*        |
 
-注：
-> - `gdori` 方向： `top-down`（自上而下）、 `bottom-up`（自下而上）、`left-right`（自左向右）、 `right-left`（自右向左）。
+> 注 1：`gdori` 方向：`top-down`（自上而下）、`bottom-up`（自下而上）、`left-right`（自左向右）、`right-left`（自右向左）。
 >
-> - `RRGGBBAA` 前面 6 位 `RRGGBB` 表示边框颜色；后 2 位 `AA` 表示不透明度，取值 `[0-255]`，值越大越透明，00 表示完全不透明，FF 表示完全透明。
+> 注 2：`RRGGBBAA` 前面 6 位 `RRGGBB` 表示边框颜色；后 2 位 `AA` 表示不透明度，取值 `[0-255]`，值越大越透明，00 表示完全不透明，FF 表示完全透明。
 
 ### 属性获取
 
@@ -306,5 +305,5 @@ UPYUN 提供了缩略图版本与作图参数混合的作图方式，允许用�
 | `/exifswitch/` | true               | 保留 EXIF 信息               |
 
 注：
-> 图片处理默认情况下删除 `EXIF` 信息。如果需要获取 `EXIF` 信息，请[获取 EXIF 信息](#exif)。
+> 图片处理默认情况下删除 `EXIF` 信息。如果需要获取 `EXIF` 信息，请参考 [获取 EXIF 信息](#exif)。
 
