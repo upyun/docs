@@ -183,39 +183,32 @@ signature 生成步骤：
 | allow-file-type      | 否   | 允许上传的文件扩展名，以 `,` 分隔。如 `jpg,jpeg,png`                                                              |
 | content-length-range | 否   | 文件大小限制，格式：`min,max`，单位：字节，如 `102400,1024000`，表示允许上传 100Kb～1Mb 的文件          |
 | content-md5          | 否   | 所上传的文件的 MD5 校验值，UPYUN 根据此来校验文件上传是否正确                                       |
-| content-secret       | 否   | 原图访问密钥 [\[注 2\]](#note2)                                                 |
+| content-secret       | 否   | 文件访问密钥 [\[注 2\]](#note2)                                                 |
 | content-type         | 否   | UPYUN 默认根据扩展名判断，手动指定可提高精确性。如 `image/jpeg`                                                      |
 | image-width-range    | 否   | 图片宽度限制，格式：`min,max`，单位：像素，如 `0,1024`，允许上传宽度为 0～1024px 之间               |
 | image-height-range   | 否   | 图片高度限制，格式：`min,max`，单位：像素，如 `0,1024`，允许上传高度在 0～1024px 之间               |
-| detect-image-meta    | 否   | 获取图片 meta 信息 |
-| notify-url           | 否   | 异步通知 URL，见 [\[通知规则\]](#notify_return)                                                      |
-| return-url           | 否   | 同步通知 URL，见 [\[通知规则\]](#notify_return)                                                      |
-| x-gmkerl-thumbnail   | 否   | 缩略图版本名称，可搭配其他 `x-gmkerl-*` 参数使用 [\[注 3\]](#note3) |
-| x-gmkerl-type        | 否   | 缩略类型 [\[注 4\]](#note4)                                                           |
-| x-gmkerl-value       | 否   | 缩略类型对应的参数值 [\[注 4\]](#note5)                                               |
-| x-gmkerl-quality     | 否   | 缩略图压缩质量，**默认 `95`**                                                                           |
-| x-gmkerl-unsharp     | 否   | 是否进行锐化处理，**默认 `true`**                                                                |
-| x-gmkerl-rotate      | 否   | 图片旋转（顺时针），可选：`auto，90，180，270` 之一                                           |
-| x-gmkerl-crop        | 否   | 图片裁剪，格式：`<w>x<h>a<x>a<y>`。 其中 w, h 分别表示裁剪后的宽和高，x, y 表示左上角坐标。如 100x100a0a0。         |
-| x-gmkerl-exif-switch | 否   | 是否保留 EXIF 信息，仅在搭配 `x-gmkerl-crop，x-gmkerl-type，x-gmkerl-thumbnail` 时有效。        |
-| ext-param            | 否   | 额外参数，UTF-8 编码，并小于 255 个字符 [\[注 5\]](#note5)                            |
+| notify-url           | 否   | 异步通知 URL，见 [通知规则](#notify_return)                                                      |
+| return-url           | 否   | 同步通知 URL，见 [通知规则](#notify_return)                                                      |
+| x-gmkerl-thumb       | 否   | 图片处理参数，见 [上传作图](/cloud/image/#_2) |
+| x-gmkerl-type        | 否   | `get_meta`（获取图片信息）或 `get_theme_color`（主题色提取）                                 |
+| x-gmkerl-extract-color-count       | 否   |     主题色提取颜色数量，默认 `256`                                         |
+| x-gmkerl-extract-format     | 否   |   主题色提取格式，默认 `hex`                                                                           |
+| ext-param            | 否   | 额外参数，UTF-8 编码，并小于 255 个字符 [\[注 3\]](#note3)                            |
 
 
 **注：**
 > * 以上参数名和参数值均 **区分大小写**。
 > * 一次请求只允许上传一个文件。
-> * 若在上传非图片文件时使用 `image-width-range`，`image-height-range`，会返回「不是图片」的错误；
-> * 若请求中带有图片处理参数，最终只保存处理后的图片，上传的原图不保存；
-> * 若同时提交旋转和裁剪参数，系统将按照先旋转，后裁剪的顺序进行处理；
-> * 若原图中包含 EXIF 信息，那么旋转操作后保存的图片中，EXIF 信息的图片方向将被修改；
-> * 图片处理参数仅在上传图片时有效，暂不支持对已保存在 UPYUN 的原图进行图片处理。
+> * 若在上传非图片文件时使用 `image-width-range`，`image-height-range`，会返回「不是图片」的错误。
+> * 若请求中带有图片处理参数（`x-gmkerl-thumb`），最终只保存处理后的图片，上传的原图不保存。
+> * 若设置了 `x-gmkerl-type` 参数，则图片上传完成后会返回原图的 meta 信息或主题色。
 
 <a name="notify_return"></a>
 ### 通知规则
 
 * 如果没有设置 `return-url`，那么 UPYUN 处理完上传操作后，将把结果信息返回输出到 body 中。
 * 如果设置了 `return-url`，那么 UPYUN 处理完上传操作后，将会把结果信息以 Query String 的形式追加到 `return-url` 指定的 URL 后，并进行 302 跳转，如，`return-url` 为 *`http://yourdomain.com/return/`* 那么，所跳转的 URL 可能会如下所示：
-* URL 中包括：code、message、url、time 和 sign(或 no-sign) 参数。[\[注 6\]](#note6)
+* URL 中包括：code、message、url、time 和 sign(或 no-sign) 参数。[\[注 4\]](#note4)
 
 ```
 http://yourdomain.com/return/?code=503&message=%E6%8E%88%E6%9D%83%E5%B7%B2%E8%BF%87%E6%9C%9F&url=%2F2011%2F12%2Ffd0e30047f81fa95.bz2&time=1332129461&sign=b11cb84538e884d63e14e52d35a7bd21
@@ -285,30 +278,7 @@ http://yourdomain.com/return/?code=503&message=%E6%8E%88%E6%9D%83%E5%B7%B2%E8%BF
   那么该图片的对外访问地址为：http://demobucket.b0.upaiyun.com/dir/sample.jpg!secret
 
 <a name="note3"></a>
-#### 注 3：图片缩略详细说明 ####
-
-* 仅支持图片文件，且只保存处理后的缩略图，不保存原图
-* 在使用缩略图版本参数(`x-gmkerl-thumbnail`)前，需要确保该缩略图版本已经存在。否则 API 将忽略这个参数。
-* 允许在使用缩略图版本参数(`x-gmkerl-thumbnail`)的同时，再搭配其他 `x-gmkerl-*` 参数对图片进行处理，优先级为 `x-gmkerl-*` 参数 > 缩略图版本中对应参数
-
-
-<a name="note4"></a>
-#### 注 4：缩略类型详细说明 ####
-
-|         参数        |                说明                |      单位      |             举例            |
-|---------------------|------------------------------------|----------------|-----------------------------|
-| fix_max             | 限定最长边，短边自适应             | 像素值         | 如: `150`                     |
-| fix_min             | 限定最短边，长边自适应             | 像素值         | 如: `150`                     |
-| fix_width_or_height | 限定宽度和高度，宽高不足时不缩放   | 像素值         | `widthxheight`，如: `150x130`。** 注意是 `x` 不是 `*` ** |
-| fix_width           | 限定宽度，高度自适应               | 像素值         | 如: `150`                     |
-| fix_height          | 限定高度，宽度自适应               | 像素值         | 如: `150`                     |
-| fix_both            | 固定宽度和高度，宽高不足时强行缩放 | 像素值         | `widthxheight`，如: `150x130`。** 注意是 `x` 不是 `*` ** |
-| fix_scale           | 等比例缩放                         | 比例值（1-99） | 如: `50`                      |
-| get_meta            | 随响应体返回图片的 EXIF 信息       |          |  (无需 `x-gmkerl-value` )                           |
-
-
-<a name="note5"></a>
-#### 注 5：额外参数详细说明 ####
+#### 注 3：额外参数详细说明 ####
 
 **使用场景：**
 
@@ -326,8 +296,8 @@ http://yourdomain.com/return/?code=503&message=%E6%8E%88%E6%9D%83%E5%B7%B2%E8%BF
 
 
 
-<a name="note6"></a>
-#### 注 6：sign 与 no-sign 参数说明 ####
+<a name="note4"></a>
+#### 注 4：sign 与 no-sign 参数说明 ####
 
 * sign 是根据 code、message、url、time 和表单 API 验证密匙(`form_api_secret`) 使用 `&` 拼接后进行 md5 处理得到。拼接时需注意 url 的编码与解码问题。如果使用了 `ext-param` 参数, 则 `ext-param` 也需加入签名计算中。同样使用 `&` 拼接。
 拼接在 `form_api_secret` 之后即可。
