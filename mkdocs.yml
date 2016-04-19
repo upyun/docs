@@ -26,7 +26,6 @@ pages:
     - '云处理概述': 'cloud/index.md'
     - '图片处理': 'cloud/image.md'
     - '异步音视频处理': 'cloud/av.md'
-    - '实时音频处理': 'cloud/real_time.md'
     - '附件': 'cloud/attachment.md'
 - '资源下载':
     - '资源下载': 'download/index.md'
