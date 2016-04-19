@@ -1,4 +1,4 @@
-异步音视频处理接口是用于处理**已经上传到对应存储空间**中的视频文件，进行转码、截图等操作。在处理完成之后，异步通知用户处理结果。如果原视频文件不在 UPYUN 存储，需要预先调用文件上传 API 将视频文件上传到 UPYUN 存储中。 
+异步音视频处理接口是用于处理**已经上传到对应存储空间**中的视频文件，进行转码、HLS 切片、截图等操作。在处理完成之后，异步通知用户处理结果。如果原视频文件不在 UPYUN 存储，需要预先调用文件上传 API 将视频文件上传到 UPYUN 存储中。 
 
 > 注：文中所有 `<>` 标注的字段，均需根据实际情况进行替换。
 
@@ -19,7 +19,7 @@ curl -X POST \
     -d "bucket_name=<bucket_name>" \
     -d "notify_url=<notify_url>" \
     -d "source=<UPYUN 存储空间中的音视频文件路径>" \
-    -d "task=<base64 编码后的任务字符串>"
+    -d "tasks=<base64 编码后的任务字符串>"
 ```
 
 ### 请求参数
@@ -157,7 +157,9 @@ md5(<operator_name><operator_password><task_id><timestamp>), 并取中间 16 位
 例如：
 
 ```
-curl http://p0.api.upyun.com/status?bucket_name=imtester&task_ids=35f0148d414a688a275bf915ba7cebb2,98adbaa52b2f63d6d7f327a0ff223348,c3103189fa906a5354d29bd807e8dc51
+curl http://p0.api.upyun.com/status?bucket_name=imtester&task_ids=35f0148d414a688a275bf915ba7cebb2,98adbaa52b2f63d6d7f327a0ff223348,c3103189fa906a5354d29bd807e8dc51 \
+    -H "Authorization: UPYUN <operator>:<signature>" \
+    -H "Date: <Wed, 29 Oct 2014 02:26:58 GMT>"
 ```
 
 ** 查询参数 **
@@ -189,7 +191,9 @@ curl http://p0.api.upyun.com/status?bucket_name=imtester&task_ids=35f0148d414a68
 例如：
 
 ```
-curl http://p0.api.upyun.com/result?bucket_name=imtester&task_ids=35f0148d414a688a275bf915ba7cebb2,98adbaa52b2f63d6d7f327a0ff223348,c3103189fa906a5354d29bd807e8dc51
+curl http://p0.api.upyun.com/result?bucket_name=imtester&task_ids=35f0148d414a688a275bf915ba7cebb2,98adbaa52b2f63d6d7f327a0ff223348,c3103189fa906a5354d29bd807e8dc51 \
+    -H "Authorization: UPYUN <operator>:<signature>" \
+    -H "Date: <Wed, 29 Oct 2014 02:26:58 GMT>"
 ```
 
 查询参数与返回数据与 [进度查询](/cloud/av/#_6) 相同
@@ -215,7 +219,7 @@ curl http://p0.api.upyun.com/result?bucket_name=imtester&task_ids=35f0148d414a68
 
 |         参数               |    类型   |   说明                                    |
 |----------------------------|-----------|----------------------------------------------------------|
-| `type`                     | string    | 处理类型，值为 video                                                                                                                   |
+| `type`                     | string    | 处理类型，值为 `video`                                                                                                                   |
 | `/vb/<bitrate>`            | integer   | 视频比特率，单位 kbps，默认按照视频原始比特率处理                                                                                      |
 | `/s/<scale>`               | string    | 视频分辨率，默认按照原始分辨率处理。格式：预置模板如 720p(16:9)，自定义如 1820x720，建议使用预置模板 [见附件](/cloud/attachment/#_1) |
 | `/as/<auto_scale>`         | boolean   | 是否根据分辨率自动调整视频长宽比例，仅当传递了 scale 参数时有效                                                                        |
@@ -309,7 +313,7 @@ southwest     |     south      |     southeast
 
 |         参数               |    类型   |    说明                                              |
 |----------------------------|-----------|------------------------------------------------------|
-| `type`                     | string    | 处理类型，值为 audio                                 |
+| `type`                     | string    | 处理类型，值为 `audio`                                 |
 | `/ac/<audio_channel>`      | integer   | 声道，默认 2                                         |
 | `/ab/<audio_bitrate>`      | integer   | 比特率，单位 kbps，默认按照音频原始比特率处理        |
 | `/vbr/<audio_vbr>`         | integer   | variable bitrate, 范围 `[0-9]`，默认按照音频原始 VBR 处理   |
