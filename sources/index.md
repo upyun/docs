@@ -38,6 +38,17 @@
             <li><a href="/api/">查看更多</a></li>
         </ul>
     </div>
+    <div class="section section-api">
+        <i class="upicon upicon-api"></i>
+        <h3>云处理文档</h3>
+        <h4>Cloud Processing</h4>
+        <ul class="list-unstyled">
+            <li><a href="/cloud/">云处理概述</a></li>
+            <li><a href="/cloud/image/">图片处理</a></li>
+            <li><a href="/cloud/av/">异步音视频处理</a></li>
+            <li><a href="/cloud/">查看更多</a></li>
+        </ul>
+    </div>
     <div class="section section-download">
         <i class="upicon upicon-download"></i>
         <h3>资源下载</h3>
