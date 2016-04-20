@@ -40,12 +40,12 @@ curl -X POST \
 ```
 [
 	{
-		"type": "depress",                       //压缩
+		"type": "depress",                       //解压缩
 		"sources": ["/source/t.zip"],            //UPYUN 存储空间中内文件路径
 		"save_as": "/result/t/",                 //保存路径
 	},
   	{
-		"type": "compress",                          //解压缩
+		"type": "compress",                          //压缩
 		"sources": ["/source/a","/source/b.jpg",],   //UPYUN 存储空间中内文件或目录路径
 		"save_as": "/result/a.zip"                   //保存路径
 	},
