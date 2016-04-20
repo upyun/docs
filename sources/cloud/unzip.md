@@ -18,7 +18,7 @@ curl -X POST \
     -d "bucket_name=<bucket_name>" \
     -d "notify_url=<notify_url>" \
     -d "source=<upyun>" \
-    -d "app_name=unzip"
+    -d "app_name=unzip" \
     -d "tasks=<base64 编码后的任务字符串>"
 ```
 
