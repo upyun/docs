@@ -27,6 +27,8 @@ http://demo.b0.upaiyun.com/demo.jpg!/rotate/90/watermark/text/5L2g5aW95Y+I5ouN5L
 
 ### 上传作图
 
+#### 上传同步作图
+
 在上传图片到 UPYUN 的时候，可以在请求中带上相应的图片处理参数，那么 UPYUN 会先根据作图参数对图片进行相应的处理，然后将处理后的图片保存到 UPYUN 存储。
 
 上传作图的参数名为 `x-gmkerl-thumb`，在使用 REST API 进行上传时，该参数需要带在 [http 请求头](/api/rest_api/#_6) 里，而在使用表单 API 进行上传时，该参数应该包含在 [policy](/api/form_api/#api_1) 中。参数的值与 URL 作图方式相同。以下为几个上传作图的参数示例：
@@ -42,6 +44,33 @@ x-gmkerl-thumb: /fw/300/unsharp/true/quality/80/format/png
 ```
 
 详细作图参数请见 [这里](/cloud/image/#_5)
+
+
+#### 上传异步作图
+
+在 [表单 API](/api/form_api/#api_1) 的 `apps` 参数里添加异步作图任务，并指定任务名称为 `thumb`，即可实现在上传图片之后发起 [异步图片处理任务](/api/form_api/#_4)。特别地，上传异步作图可以通过表单 API 的 `save_key` 参数保存上传的原图。
+
+异步处理任务的参数及说明如下：
+```
+{
+    "name": "thumb",  // 需要指定 name 为 thumb
+    "x-gmkerl-thumb": "<图片处理参数，与上传作图或 URL 作图相同>",
+    "save_as": "<图片处理后的存放地址>",
+    "notify_url": "<异步作图完成后的回调地址>"
+}
+```
+
+异步图片处理完成后的回调信息为 json 格式，字段名及含义如下：
+
+|  字段名       |     示例值             |          说明             |
+|-------------|--------------------|-------------------------- |
+| `taskid`  |  `b52c96bea30646abf8170f333bbd42b9`    | 异步处理任务 id（在上传时返回）                  |
+| `path`    |   `/a/b/c/d.jpg`    |   作图结果保存路径（`save_as`参数指定）         |
+| `type`    |   `jpg`, `png`    |    图片类型        |
+| `width`    |   `100`    |    图片宽度        |
+| `height`    |   `200`    |   图片高度         |
+| `frame`    |   `1`    |     图片桢数       |
+
 
 
 ### 缩略图版本（样式）
