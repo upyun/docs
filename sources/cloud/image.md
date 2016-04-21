@@ -135,7 +135,7 @@ UPYUN 提供了缩略图版本与作图参数混合的作图方式，允许用�
 通过指定多个 `/watermark` 参数，可以在原图上打上多个图片水印或文字水印。例如指定以下参数：
 
 ```
-/watermark/text/5L2g5aW977yB/font/simhei/watermark/image/url/L3BhdGgvdG8vd2F0ZXJtYXJrLnBuZw==/align/center/opacity/50
+/watermark/text/5L2g5aW977yB/font/simhei/watermark/url/L3BhdGgvdG8vd2F0ZXJtYXJrLnBuZw==/align/center/opacity/50
 ```
 
 就可以打上一个文字水印和一个图片水印。当然，水印个数越多，耗时越长，建议不要超过 2 个。
@@ -305,5 +305,5 @@ UPYUN 提供了缩略图版本与作图参数混合的作图方式，允许用�
 | `/exifswitch/` | true               | 保留 EXIF 信息               |
 
 注：
-> 图片处理默认情况下删除 `EXIF` 信息。如果需要获取 `EXIF` 信息，请参考 [获取 EXIF 信息](#exif)。
+> 图片处理默认情况下删除 `EXIF` 信息。如果需要获取 `EXIF` 信息，请参考 [获取 EXIF 信息](/cloud/image/#_19)。
 
