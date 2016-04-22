@@ -275,7 +275,7 @@ curl http://p0.api.upyun.com/result?bucket_name=imtester&task_ids=35f0148d414a68
 |         参数                       |    类型   |    说明                                                            |
 |------------------------------------|-----------|--------------------------------------------------------------------|
 | `type`                             | string    | 处理类型，值为 `video`                                             |
-| `/wmImg/<watermark_img>`           | string    | 水印图片相对路径                                                   |
+| `/wmImg/<watermark_img>`           | string    | 水印图片相对路径，其中 `<watermark_img>` 为进行 url 安全的 base64 编码后的结果                                                   |
 | `/wmGravity/<watermark_gravity>`   | string    | 水印图片位置，默认 northeast，详见注1                              |
 | `/wmDx/<watermark_dx>`             | integer   | 水印图片横坐标偏移量，单位 px，当 wmGravity 为 northeast 时默认值 -20      |
 | `/wmDy/<watermark_dy>`             | integer   | 水印图片纵坐标偏移量，单位 px，当 wmGravity 为 northeast 时默认值 15       |
@@ -326,7 +326,7 @@ southwest     |     south      |     southeast
 |        参数         |    类型   |    说明                                                                                               |
 |---------------------|-----------|-------------------------------------------------------------------------------------------------------|
 | `type`              | string    | 处理类型，值为 `vconcat`                                                                              |
-| `/i/<video>`        | string    | 需要拼接的视频文件路径, 视频必须在源视频空间下。可多次接收 `/i/<video>` 参数，如 `/i/<video>/i/<video>` |
+| `/i/<video>`        | string    | 需要拼接的视频文件路径, 视频必须在源视频空间下。可多次接收 `/i/<video>` 参数，如 `/i/<video>/i/<video>`，其中 `<video>` 为进行 url 安全的 base64 编码后的结果 |
 
 > 如果指定 `save_as`（通用参数）格式跟源视频（`source`）格式、拼接视频格式不一致，系统自动转码源视频、拼接视频成  `save_as`  格式；如果未指定 `save_as`，拼接视频跟源视频格式不一致，系统自动转码拼接视频成源视频格式。
 
