@@ -1,6 +1,6 @@
 HTTP FORM API 允许用户直接上传文件到 UPYUN，而不需要通过客户服务器进行中转。支持 HTTP 和 HTTPS 协议，您可以选择最优的方式提交请求。
 
-普通上传与UPYUN FORM API 上传流程流程如下：
+普通上传与 UPYUN FORM API 上传流程流程如下：
 
 ```
 
@@ -156,8 +156,8 @@ signature 生成步骤：
 | content-type         | 否   | UPYUN 默认根据扩展名判断，手动指定可提高精确性。如 `image/jpeg`                                     |
 | image-width-range    | 否   | 图片宽度限制，格式：`min,max`，单位：像素，如 `0,1024`，允许上传宽度为 0～1024px 之间               |
 | image-height-range   | 否   | 图片高度限制，格式：`min,max`，单位：像素，如 `0,1024`，允许上传高度在 0～1024px 之间               |
-| notify-url           | 否   | 异步通知 URL，见 [通知规则](#notify_return                                                          |
-| return-url           | 否   | 同步通知 URL，见 [通知规则](#notify_return                                                          |
+| notify-url           | 否   | 异步通知 URL，见 [通知规则](#notify_return)                                                         |
+| return-url           | 否   | 同步通知 URL，见 [通知规则](#notify_return)                                                         |
 | x-gmkerl-thumb       | 否   | 图片处理参数，见 [上传作图](/cloud/image/#_2)                                                       |
 | x-gmkerl-type        | 否   | `get_meta`（获取图片信息）或 `get_theme_color`（主题色提取）                                        |
 | x-gmkerl-extract-color-count       | 否   |     主题色提取颜色数量，默认 `256`                                                    |
@@ -234,7 +234,7 @@ apps = [
 |  任务名  |                  说明                     |
 |--------|-------------------------------------------|
 |  `thumb` | [异步作图服务](/cloud/image/#_4)                             |
-|  `naga`  | [异步音视频处理服务](/cloud/av/#_19)                        |
+|  `naga`  | [异步音视频处理服务](/cloud/av/#_8)                        |
 
 
 
