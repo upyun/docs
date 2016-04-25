@@ -304,7 +304,7 @@ southwest     |     south      |     southeast
 |        参数         |    类型   |    说明                                                               |
 |---------------------|-----------|-----------------------------------------------------------------------|
 | `type`              | string    | 处理类型，值为 `thumbnail`                                            |
-| `/o/<thumb_single>` | boolean   | 是否仅截取单张图片，默认值 `true`                                     |
+| `/o/<thumb_single>` | boolean   | 是否仅截取单张图片，必选参数                                          |
 | `/n/<thumb_amount>` | integer   | 截图数量，当 `thumb_single` 参数的值为 `false` 时，需指定截图数量     |
 | `/ss/<thumb_start>` | string    | 截图开始时间，格式为 `HH:MM:SS`，默认值为 `00:00:00`                  |
 | `/es/<thumb_end>`   | string    | 截图结束时间，格式为  `HH:MM:SS`，默认值为视频结束时间                |
