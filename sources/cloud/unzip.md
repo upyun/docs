@@ -17,7 +17,6 @@ curl -X POST \
     -H "Date: <Wed, 29 Oct 2014 02:26:58 GMT>"
     -d "bucket_name=<bucket_name>" \
     -d "notify_url=<notify_url>" \
-    -d "source=upyun" \
     -d "app_name=unzip" \
     -d "tasks=<base64 编码后的任务字符串>"
 ```
@@ -28,9 +27,8 @@ curl -X POST \
 |-------------------|--------------|------|---------------------------------------|
 | bucket_name       | string       |  是   | 文件所在空间名称                     |
 | notify_url        | string       |  是   | 回调通知地址                         |
-| source            | string       |  是   | 可随意填写，并无特殊含义，但不可为空字符串 |
 | tasks             | string       |  是   | 处理任务信息，详见下                 |
-| app_name          | string       |  是   | 任务所对应的云处理程序，若压缩       |
+| app_name          | string       |  是   | 任务所使用的云处理程序，压缩打包为 `compress`，解压为 `depress`      |
 
 
 `tasks` 参数通过下面三个步骤生成：
