@@ -277,7 +277,7 @@ http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-architecture.png_/fw/800/f
 | /brdcolor/      | RRGGBBAA                     | 边框颜色，前六位为 RGB 值，最后两位为透明度，可选范围 [0, 255]，特比地，参数值都为 16 进制表示 |
 
 * 注 1：由于 `/crop/` 和 `/canvas/` 参数中的 `+` 会被浏览器转义，这里特别地用 `a` 代替 `+` 字符；`a => add`。
-* 注 2：高斯模糊参数 `<radius>` 是模糊半径，取值范围是 `[0, 99]`，`<sigma>` 是正态分布的标准差，必须大于 0。
+* 注 2：高斯模糊参数 `<radius>` 是模糊半径，取值范围是 `[0, 50]`，`<sigma>` 是正态分布的标准差，必须大于 0。
 
 ## 页面优化
 
