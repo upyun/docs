@@ -25,7 +25,7 @@
 | 视频编码格式 | H.265、H.264/AVC、H.263、H.263+、MPEG-1、MPEG-2、MPEG-4、VP8、VP9、Quicktime、RealVideo、Windows Media Video 等 | H.264/AVC、VP8、VP9、HEVC 等 |
 | 音频编码格式 | MP1、MP2、MP3、AAC、AC-3、Vorbis、PCM、RealAudio、Windows Media Audio 等 | AAC、MP3 等 |
 
-> 处理特定的格式可能需要使用特定的转码器（/acodec/<audio_codec>、/vcodec/<video_codec>), 详见 (http://ffmpeg.org/general.html#External-libraries)[http://ffmpeg.org/general.html#External-libraries]
+> 处理特定的格式可能需要使用特定的转码器（/acodec/<audio_codec>、/vcodec/<video_codec>), 详见 http://ffmpeg.org/general.html#External-libraries
 
 ## 字体支持列表
 
