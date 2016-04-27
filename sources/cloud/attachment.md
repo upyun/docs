@@ -1,6 +1,6 @@
 ## 视频转码预置模板
 
-存在多种宽高比时，建议选择 16:9 的宽高比。
+存在多种宽高比时，建议选择 16:9 的宽高比。特别地，UPYUN 支持 4K 视频文件。
 
 |  清晰度     |   名称             |    分辨率             |       码率     |
 |------------|-------------------|---------------------|--------------|
@@ -18,12 +18,13 @@
 
 ## 音视频处理支持格式
 
+
 |  类型      |       输入格式       |    输出格式       |
 |------------|----------------------|-------------------|
 | 视频容器格式 | AVI、MP4、FLV、MOV、3GP、ASF、WMV、MPG、F4V、M4V、TS、M3U8、MKV、VOB（SVCD/DVD）等 | MP4、FLV、M3U8(TS) | 
 | 音频容器格式 | MP3、OGG、M4A 等 | MP4、MP3、OGG |
-| 视频编码格式 | MP1、MP2、MP3、AAC、AC-3、Vorbis、PCM、RealAudio、Windows Media Audio 等 | AAC、MP3 |
-| 音频编码格式 | H.264/AVC 、H.263、H.263+、MPEG-1、MPEG-2、MPEG-4、VP8、VP9、Quicktime、RealVideo、Windows Media Video 等 | H.264/AVC |
+| 视频编码格式 | H.264/AVC 、H.263、H.263+、MPEG-1、MPEG-2、MPEG-4、VP8、VP9、Quicktime、RealVideo、Windows Media Video 等 | H.264/AVC、VP8、H.265/HEVC、VP9 |
+| 音频编码格式 | MP1、MP2、MP3、AAC、AC-3、Vorbis、PCM、RealAudio、Windows Media Audio 等 | AAC、MP3 |
 
 
 
