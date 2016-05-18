@@ -21,10 +21,12 @@
 
 |  类型      |       输入格式       |    输出格式       |
 |------------|----------------------|-------------------|
-| 视频容器格式 | AVI、MP4、FLV、MOV、3GP、ASF、WMV、MPG、F4V、M4V、MKV、VOB（SVCD/DVD）等 | MP4、FLV、M3U8(TS) | 
-| 音频容器格式 | MP3、OGG、M4A 等 | MP4、MP3、OGG |
-| 视频编码格式 | H.264/AVC 、H.263、H.263+、MPEG-1、MPEG-2、MPEG-4、VP8、VP9、Quicktime、RealVideo、Windows Media Video 等 | H.264/AVC、VP8、H.265/HEVC、VP9 |
-| 音频编码格式 | MP1、MP2、MP3、AAC、AC-3、Vorbis、PCM、RealAudio、Windows Media Audio 等 | AAC、MP3 |
+| 视频容器格式 | AVI、MP4、FLV、MOV、3GP、ASF、WMV、MPG、F4V、M4V、MKV、VOB（SVCD/DVD）等 | MP4、FLV、M3U8(TS) 等| 
+| 音频容器格式 | MP3、OGG、M4A 等 | MP4、MP3、OGG 等|
+| 视频编码格式 | H.264/AVC 、H.263、H.263+、MPEG-1、MPEG-2、MPEG-4、VP8、VP9、Quicktime、RealVideo、Windows Media Video 等 | H.264/AVC、VP8、H.265/HEVC、VP9 等|
+| 音频编码格式 | MP1、MP2、MP3、AAC、AC-3、Vorbis、PCM、RealAudio、Windows Media Audio 等 | AAC、MP3 等|
+
+更多的支持格式请参考 [ffmpeg 支持格式列表](http://ffmpeg.org/general.html#Supported-File-Formats_002c-Codecs-or-Features)。
 
 
 
