@@ -115,6 +115,7 @@ PUT /<bucket>/path/to/file
 | Content-MD5    | 否   | String  | 所上传文件的 MD5 校验值，用于 UPYUN 服务端校验                                            |
 | Content-Type   | 否   | String  | 默认使用文件扩展名判断文件类型，可自行设置，保证准确性                                    |
 | Content-Secret | 否   | String  | 文件密钥。若设置该值，则无法直接访问原文件，需要在原文件 URL 的基础上加上密钥值才能访问   |
+| X-Upyun-Meta-X | 否   | String  | 用于额外指定文件的元信息，详见 [metadata 参数](/api/rest_api/#metadata)                   |
 
 > **注：**
 >
@@ -122,6 +123,7 @@ PUT /<bucket>/path/to/file
 > * 设置密钥后，若需访问原文件，需要在 URL 后加上「间隔标识符」和「访问密钥」（如： 当间隔符为 *`!`*，访问密钥为 *`secret`*，那么，原文件访问方式即为： *`http://bucket.b0.upaiyun.com/sample.jpg!secret`*）
 > * **间隔标识符** 用于分隔文件 URL 和文件参数。可登录又拍云管理平台选择 `!(英文感叹号)` 、 `-` 、 `_` 中的任意一种 ，本文档使用 `!` 作为示例间隔标识符。
 > * 密钥不能与 [缩略图版本](/cloud/image/#_3) 冲突。
+> * 删除或修改 `Content-Secret` 请见 [metadata 参数](/api/rest_api/#metadata)。
 
 #### 预处理参数
 
@@ -281,3 +283,106 @@ GET /<bucket>/?usage
 
 1. 获取成功: 返回 `200`。HTTP body 内容为空间的使用量（单位为`Byte`）
 2. 获取失败: 返回相应的出错信息，具体请参阅「[API 错误码表](/api/errno/)」
+
+
+## metadata 信息
+
+在上传文件的时候，如果在请求头里带上以 `X-Upyun-Meta-` 开头的参数，那么该参数会被当作文件的元数据存储到 UPYUN。在通过 API GET 文件的时候，UPYUN 会在响应头里返回文件的所有元数据信息。
+
+例如：
+```
+curl -d 'abc' \
+    http://v0.api.upyun.com/<bucket>/abc.txt \
+    -H "Authorization: Basic b3BlcmF0b3I6cGFzc3dvcmQ=" \
+    -H "X-Upyun-Meta-Foo: Bar"
+```
+可以将 `X-Upyun-Meta-Foo: Bar` 这个元信息存储到 UPYUN。
+
+### 修改 metadata 信息
+
+```
+PATCH /<bucket>/path/to/file?metadata=<option>
+```
+返回信息:
+
+1. 修改成功：返回 `200`
+2. 修改失败：返回相应的出错信息，具体请参阅「[API 错误码表](/api/errno/)」
+
+其中，`option` 的取值如下：
+
+|option | 说明 |
+|----|-----|
+|merge（**默认**） |  合并文件元信息, 相同的元信息将被新上传的值替换 |
+|replace | 替换文件元信息为新上传的文件元信息 |
+|delete | 删除文件元信息 |
+
+以下为几个修改元信息的例子以及相应的说明：
+
+
+例 1：合并元信息
+
+```
+curl -d 'abc' http://v0.api.upyun.com/<bucket>/abc.txt -H "Authorization: Basic b3BlcmF0b3I6cGFzc3dvcmQ=" \
+    -H "X-Upyun-Meta-A: 1"
+curl -XPATCH http://v0.api.upyun.com/<bucket>/abc.txt?metadata=merge -H "Authorization: Basic b3BlcmF0b3I6cGFzc3dvcmQ=" \
+    -H "X-Upyun-Meta-A: 2" \
+    -H "X-Upyun-Meta-B: 3"
+```
+以上命令执行后，文件 abc.txt 的元信息为：
+```
+X-Upyun-Meta-A: 2
+X-Upyun-Meta-B: 3
+```
+
+
+例 2：替换元信息
+
+```
+curl -d 'abc' http://v0.api.upyun.com/<bucket>/abc.txt -H "Authorization: Basic b3BlcmF0b3I6cGFzc3dvcmQ=" \
+    -H "X-Upyun-Meta-A: 1" \
+    -H "X-Upyun-Meta-B: 2"
+curl -XPATCH http://v0.api.upyun.com/<bucket>/abc.txt?metadata=replace -H "Authorization: Basic b3BlcmF0b3I6cGFzc3dvcmQ=" \
+    -H "X-Upyun-Meta-A: 3" \
+    -H "X-Upyun-Meta-C: 4"
+```
+以上命令执行后，文件 abc.txt 的元信息为：
+```
+X-Upyun-Meta-A: 3
+X-Upyun-Meta-C: 4
+```
+
+
+例 3：删除元信息
+
+```
+curl -d 'abc' http://v0.api.upyun.com/<bucket>/abc.txt -H "Authorization: Basic b3BlcmF0b3I6cGFzc3dvcmQ=" \
+    -H "X-Upyun-Meta-A: 1" \
+    -H "X-Upyun-Meta-B: 2"
+curl -XPATCH http://v0.api.upyun.com/<bucket>/abc.txt?metadata=delete -H "Authorization: Basic b3BlcmF0b3I6cGFzc3dvcmQ=" \
+    -H "X-Upyun-Meta-A: true"
+```
+以上命令执行后，文件 abc.txt 的元信息为：
+```
+X-Upyun-Meta-B: 2
+```
+
+注 1：
+
+> 修改 metadata 默认不更新文件的 `Last-Modified`，如果要更新请在参数中指定 `update_last_modified=true`。如：
+
+```
+curl -XPATCH http://v0.api.upyun.com/<bucket>/abc.txt?metadata=replace&update_last_modified=true \
+    -H "Authorization: Basic b3BlcmF0b3I6cGFzc3dvcmQ=" \
+    -H "X-Upyun-Meta-A: 3" \
+    -H "X-Upyun-Meta-C: 4"
+```
+
+注 2：
+
+> `Content-Secret` 被存储为文件的 `X-Upyun-Meta-Secret` 元信息，如果要删除或修改请对 `X-Upyun-Meta-Secret` 进行操作。如：
+
+```
+curl -XPATCH http://v0.api.upyun.com/<bucket>/abc.txt?metadata=delete \
+    -H "Authorization: Basic b3BlcmF0b3I6cGFzc3dvcmQ=" \
+    -H "X-Upyun-Meta-Secret: true" \
+```
