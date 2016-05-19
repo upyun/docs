@@ -32,7 +32,7 @@
 
 **如何查看我服务里的文件？**
 
-可以使用 FTP 查看，推荐使用客户端：FileZilla / FtpRush。
+可以使用 FTP 查看，推荐使用客户端：[FileZilla](https://filezilla-project.org/)/[UPYUN资源管理器](https://github.com/layerssss/manager-for-upyun)。
 
 **一个账号最多可以创建多少个操作员？**
 
