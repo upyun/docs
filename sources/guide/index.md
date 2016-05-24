@@ -176,6 +176,7 @@ UPYUN 额外提供了 FTP 的方式，以便用户可以更方便地对服务的
 > **注：**    
 > 编码方式（字符集）：统一使用 UTF-8    
 > 连接方式：选择普通不加密的ftp连接方式，不要选择TLS等加密类型连接ftp
+![](http://techs.b0.upaiyun.com/img/ftp.png)
 
 ### API
 除了使用简单的 FTP 的方式之外，UPYUN 还提供了多种不同的 API，方便在不同的编程环境下使用 UPYUN 的服务，其中包括：
