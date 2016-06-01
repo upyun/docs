@@ -17,7 +17,7 @@ curl -X POST \
     -H "Date: <Wed, 29 Oct 2014 02:26:58 GMT>"
     -d "bucket_name=<bucket_name>" \
     -d "notify_url=<notify_url>" \
-    -d "app_name=unzip" \
+    -d "app_name=<app_name>" \
     -d "tasks=<base64 编码后的任务字符串>"
 ```
 
