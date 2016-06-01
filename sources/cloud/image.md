@@ -55,14 +55,15 @@ x-gmkerl-thumb: /fw/300/unsharp/true/quality/80/format/png
 {
     "name": "thumb",  // 需要指定 name 为 thumb
     "x-gmkerl-thumb": "<图片处理参数，与上传作图或 URL 作图相同>",
-    "x-gmkerl-split": "<图片切割参数，切割后图片宽x高, 即 wxh>",
+    "x-gmkerl-split": "<图片分块参数，分块后图片宽x高, 即 wxh>",
     "save_as": "<图片处理后的存放地址>",
     "notify_url": "<异步作图完成后的回调地址>"
 }
 ```
 
-注:
-> 当输出多个图片时，图片存放路径为 `$save_as+标号+文件后缀名`，例如，`save_as` 为 `/upyun/img.jpg`，图片存放路径为 `/upyun/img.jpg-1.jpg`，`/upyun/img.jpg-2.jpg`，以此类推。
+> 注1：特别的，`x-gmkerl-split` 会在 `x-gmkerl-thumb` 的基础上，对图片进行分块，并且可以根据回调信息中的行号跟列号来确定处理后的图片在原图中的位置。
+
+> 注2：当输出多个图片时，图片存放路径为 `$save_as+标号+文件后缀名`，例如，`save_as` 为 `/upyun/img.jpg`，图片存放路径为 `/upyun/img.jpg-1.jpg`，`/upyun/img.jpg-2.jpg`，以此类推。
 
 异步图片处理完成后的回调信息为 json 格式，字段名及含义如下：
 
@@ -84,8 +85,8 @@ x-gmkerl-thumb: /fw/300/unsharp/true/quality/80/format/png
 | `width`   |  integer  |  图片宽度        |
 | `height`  |  integer  |  图片高度        |
 | `frame`   |  integer  |  图片帧数        |
-| `row`     |  integer  |  相对于左上角的行号，从 0 开始，仅当分割图片时有效 |
-| `column`  |  integer  |  相对于左上角的列号，从 0 开始，仅当分割图片时有效 |
+| `row`     |  integer  |  相对于左上角的行号，从 0 开始，仅当图片分块时有效 |
+| `column`  |  integer  |  相对于左上角的列号，从 0 开始，仅当图片分块时有效 |
 
 输出单张图片信息
 
