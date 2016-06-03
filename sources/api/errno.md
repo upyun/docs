@@ -100,6 +100,7 @@ API 请求失败时，服务器会返回一个 json 格式的响应体用于定�
 | 401 |  40100014 | bucket removed    |
 | 401 |  40100015 | bucket read only    |
 | 401 |  40100016 | invalid date value in header    |
+| 401 |  40100017 | user need permission  |
 | 403 |  40300001 | file name contains invalid chars (\r\n\t)    |
 | 403 |  40300002 | file path too long    |
 | 403 |  40300003 | file name too long    |

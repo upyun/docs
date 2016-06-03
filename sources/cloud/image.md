@@ -55,23 +55,85 @@ x-gmkerl-thumb: /fw/300/unsharp/true/quality/80/format/png
 {
     "name": "thumb",  // 需要指定 name 为 thumb
     "x-gmkerl-thumb": "<图片处理参数，与上传作图或 URL 作图相同>",
+    "x-gmkerl-split": "<图片分块参数，分块后图片宽x高, 即 wxh>",
     "save_as": "<图片处理后的存放地址>",
     "notify_url": "<异步作图完成后的回调地址>"
 }
 ```
 
+> 注1：特别的，`x-gmkerl-split` 会在 `x-gmkerl-thumb` 的基础上，对图片进行分块，并且可以根据回调信息中的行号跟列号来确定处理后的图片在原图中的位置。
+
+> 注2：当输出多个图片时，图片存放路径为 `$save_as+标号+文件后缀名`，例如，`save_as` 为 `/upyun/img.jpg`，图片存放路径为 `/upyun/img.jpg-1.jpg`，`/upyun/img.jpg-2.jpg`，以此类推。
+
 异步图片处理完成后的回调信息为 json 格式，字段名及含义如下：
 
-|  字段名       |     示例值             |          说明             |
-|-------------|--------------------|-------------------------- |
-| `taskid`  |  `b52c96bea30646abf8170f333bbd42b9`    | 异步处理任务 id（在上传时返回）                  |
-| `path`    |   `/a/b/c/d.jpg`    |   作图结果保存路径（`save_as`参数指定）         |
-| `type`    |   `jpg`, `png`    |    图片类型        |
-| `width`    |   `100`    |    图片宽度        |
-| `height`    |   `200`    |   图片高度         |
-| `frame`    |   `1`    |     图片桢数       |
+|  字段名       |   类型    |          说明             |
+|---------------|---------- |---------------------------|
+| `task_id`     |  string   | 异步处理任务 id（在上传时返回）|
+| `bucket_name` |  string   | 文件所在空间名 |
+| `status_code` |  integer  | 处理结果状态码，200 表示成功处理 |
+| `imginfo`     |  map      | 输出单张图片信息 |
+| `imginfos`    |  array    | 输出多张图片信息 |
+| `error`       |  string   | 错误信息     |
 
+`imginfo`, `imginfos`中图片信息字段名及含义如下：
 
+|  字段名   |   类型    |          说明             |
+|-----------|-----------|---------------------------|
+| `path`    |  string   |  作图结果保存路径（`save_as`参数指定）         |
+| `type`    |  string   |  图片类型        |
+| `width`   |  integer  |  图片宽度        |
+| `height`  |  integer  |  图片高度        |
+| `frame`   |  integer  |  图片帧数        |
+| `row`     |  integer  |  相对于左上角的行号，从 0 开始，仅当图片分块时有效 |
+| `column`  |  integer  |  相对于左上角的列号，从 0 开始，仅当图片分块时有效 |
+
+输出单张图片信息
+
+```json
+{
+    "task_id": "b52c96bea30646abf8170f333bbd42b9",
+    "bucket_name": "upyun-demo",
+    "status_code": 200,
+    "imginfo": {
+        "path": "/images/upyun.jpg",
+        "type": "jpg",
+        "width": 720,
+        "height": 360,
+        "frames": 1
+    }
+}
+```
+
+输出多张图片信息
+
+```json
+{
+    "task_id": "b52c96bea30646abf8170f333bbd42b9",
+    "bucket_name": "upyun-demo",
+    "status_code": 200,
+    "imginfos": [
+      {
+        "path": "/images/upyun.jpg-1.jpg",
+        "type": "jpg",
+        "width": 72,
+        "height": 36,
+        "frames": 1,
+        "row": 0,
+        "column": 0
+      },
+      {
+        "path": "/images/upyun.jpg-2.jpg",
+        "type": "jpg",
+        "width": 72,
+        "height": 36,
+        "frames": 1,
+        "row": 0,
+        "column": 1
+      }
+    ]
+}
+```
 
 ### 缩略图版本（样式）
 
