@@ -127,7 +127,7 @@ operator_testerbucket_nameimtesternotify_urlhttp://www.example.com/notify/source
 
 ### 回调通知
 
-处理完成后，系统根据提交任务时的 `notify_url` 参数，将结果以 `HTTP POST` 请求进行回调通知。
+处理完成后，系统根据提交任务时的 `notify_url` 参数，将处理结果转换成 JSON 字符串，并以 `HTTP POST` 请求进行回调通知。
 
 ** 回调通知参数 **
 
