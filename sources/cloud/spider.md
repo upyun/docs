@@ -78,6 +78,6 @@ curl -X POST \
 |        参数       |    类型   |    说明                                                                           |
 |-------------------|-----------|-----------------------------------------------------------------------------------|
 | url               | string    | 需要拉取文件的 url 地址，如 `http://www.upyun.com/index.html`                     |
-| random            | bool      | 是否追加随机数，默认 true  |
-| overwrite         | bool      | 是否覆盖，默认 false |
+| random            | bool      | 是否追加随机数，默认 `true`  |
+| overwrite         | bool      | 是否覆盖，默认 `false` |
 | save_as           | string    | 文件存放路径， 如 `/site/index.html` |
