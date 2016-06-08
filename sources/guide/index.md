@@ -176,7 +176,7 @@ http://demo.b0.upaiyun.com/img/upyun_test.jpg!200
 作图参数在上传的时候传入，原图在服务会自动保存作图以后的图片。
 上传后的图片大小:
 
-![pic](https://upyun-assets.b0.upaiyun.com/docs/guide/pic.jpg!600)
+![pic](https://upyun-assets.b0.upaiyun.com/docs/guide/pic.jpg)
 
 具体 API 和参数的使用的方式，可以参考 [API 文档](/api/)
 
