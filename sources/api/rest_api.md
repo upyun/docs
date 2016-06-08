@@ -14,7 +14,7 @@ v1.api.upyun.com //电信线路
 v2.api.upyun.com //联通（网通）线路
 v3.api.upyun.com //移动（铁通）线路
 ```
-根据实际情况任选其一
+根据实际情况任选其一,默认推荐客户使用`v0.api.upyun.com`
 
 ## 请求方法
 
@@ -50,7 +50,7 @@ curl -u http://v0.api.upyun.com/<bucket>
 
 ```sh
 curl -X GET \
-    http://v0.api.upyun.com/<bucket> \
+    http://v0.api.upyun.com/<bucket>\
     -H "Authorization: Basic b3BlcmF0b3I6cGFzc3dvcmQ="
 ```
 
