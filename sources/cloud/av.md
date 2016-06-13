@@ -39,28 +39,29 @@ curl -X POST \
 
 ```
 [
-	{
-	    "type": "video",                        //视频转码
-	    "avopts": "/s/240p(4:3)/as/1/r/30",     //处理参数 [注1]
-        "return_info": true,                  //返回元数据
-        "save_as": "/a/b.mp4",                //保存路径
-	    …
-	},
-  	{
-	    "type": "vconcat",                      //视频拼接
-	    "avopts": "/i/L2EvYi9jLm1wNA==/i/LzEvMi8zLm1wNA==",    //处理参数 [注1]
-	    "save_as": "/concat/a.mp4"
-	    …
-	},
-	…
+    {
+        "type": "video",                        // 视频转码
+        "avopts": "/s/240p(4:3)/as/1/r/30",     // 处理参数 [注1]
+        "return_info": true,                    // 返回元数据
+        "save_as": "/a/b.mp4"                   // 保存路径
+    },
+    {
+        "type": "vconcat",                                     // 视频拼接
+        "avopts": "/i/L2EvYi9jLm1wNA==/i/LzEvMi8zLm1wNA==",    // 处理参数 [注1]
+        "save_as": "/concat/a.mp4"
+    },
+    …
 ]
 ```
 
-> 注 1： `avopts` 是音视频处理参数，具体参数和说明请见 [这里](/cloud/av/#_8)
+> 注： `avopts` 是音视频处理参数，具体参数和说明请见 [这里](/cloud/av/#_8)
 
 2\. 把组装好的参数转换为 JSON 字符串。
 
-3\. 对 JSON 字符串进行 base64 编码处理。
+3\. 对 JSON 字符串进行 base64 编码处理, 得到以下结果。
+```
+W3siYXZvcHRzIjoiL3MvMjQwcCg0OjMpL2FzLzEvci8zMCIsInJldHVybl9pbmZvIjp0cnVlLCJzYXZlX2FzIjoiL2EvYi5tcDQiLCJ0eXBlIjoidmlkZW8ifSx7ImF2b3B0cyI6Ii9pL0wyRXZZaTlqTG0xd05BPT0vaS9MekV2TWk4ekxtMXdOQT09Iiwic2F2ZV9hcyI6Ii9jb25jYXQvYS5tcDQiLCJ0eXBlIjoidmNvbmNhdCJ9XQ==
+```
 
 ### 授权认证
 
@@ -73,7 +74,7 @@ Authorization:　UPYUN　<operator>:<signature>
 
 `signature` 参数通过下面的方式获得：
 
-1\. 将参数按照参数名称的字典顺序排序后，将参数键值对连接成一个字符串。
+1\. 将参数按照 **参数名称的字典顺序排序** 后，将参数键值对连接成一个字符串。
 
 2\. 将第一步生成的字符串按照下面的规则进行连接，获取待签名字符串：
 
@@ -81,8 +82,8 @@ Authorization:　UPYUN　<operator>:<signature>
 <operator_name><signature_string><md5_operator_password>
 ```
 
->其中，`operator_name` 为用于认证授权的操作员名，`signature_string` 为第一步生成的字符串，
->`md5_operator_password` 为对操作员密码进行 md5 计算之后得到的字符串。
+> 其中，`operator_name` 为用于认证授权的操作员名，`signature_string` 为第一步生成的字符串，
+> `md5_operator_password` 为对操作员密码进行 md5 计算之后得到的字符串。
 
 3\. 对第二步生成的字符串做 md5 计算，得到最终的 `signature` 值。
 
@@ -93,36 +94,38 @@ Authorization:　UPYUN　<operator>:<signature>
 假设接口提交如下参数：
 
 ```
-bucket_name: 'imtester'
-tasks: 'W3sidHlwZSI6InZpZGVvIiwiYml0cmF0ZSI6IjUwMCIsInJvdGF0ZSI6ImF1dG8iLCJmb3JtYXQiOiJtcDQifSx7InR5cGUiOiJ0aHVtYm5haWwiLCJ0aHVtYl9zaWdubGUiOmZhbHNlLCJ0aHVtYl9hbW91bnQiOjEwMCwiZm9ybWF0IjoicG5nIn1d'
-notify_url: 'http://www.example.com/notify/'
-source: '/video/20130514_190031.mp4'
+bucket_name: "demo"
+tasks: "W3siYXZvcHRzIjoiL3MvMjQwcCg0OjMpL2FzLzEvci8zMCIsInJldHVybl9pbmZvIjp0cnVlLCJzYXZlX2FzIjoiL2EvYi5tcDQiLCJ0eXBlIjoidmlkZW8ifSx7ImF2b3B0cyI6Ii9pL0wyRXZZaTlqTG0xd05BPT0vaS9MekV2TWk4ekxtMXdOQT09Iiwic2F2ZV9hcyI6Ii9jb25jYXQvYS5tcDQiLCJ0eXBlIjoidmNvbmNhdCJ9XQ=="
+notify_url: "http://www.example.com/notify/"
+source: "/video/upyun.mp4"
+accept: "json"
 ```
 
-用于授权验证的操作员名为 `operator_tester` ，操作员密码为 `tester_password`。
+用于授权验证的操作员名为 `upyun-operator` ，操作员密码为 `onepiece`。
 
 首先根据参数名称的字段顺序进行排序：
 
 ```
-bucket_name: 'imtester'
-notify_url: 'http://www.example.com/notify/'
-source: '/video/20130514_190031.mp4'
-tasks: 'W3sidHlwZSI6InZpZGVvIiwiYml0cmF0ZSI6IjUwMCIsInJvdGF0ZSI6ImF1dG8iLCJmb3JtYXQiOiJtcDQifSx7InR5cGUiOiJ0aHVtYm5haWwiLCJ0aHVtYl9zaWdubGUiOmZhbHNlLCJ0aHVtYl9hbW91bnQiOjEwMCwiZm9ybWF0IjoicG5nIn1d'
+accept: "json"
+bucket_name: "demo"
+notify_url: "http://www.example.com/notify/"
+source: "/video/upyun.mp4"
+tasks: "W3siYXZvcHRzIjoiL3MvMjQwcCg0OjMpL2FzLzEvci8zMCIsInJldHVybl9pbmZvIjp0cnVlLCJzYXZlX2FzIjoiL2EvYi5tcDQiLCJ0eXBlIjoidmlkZW8ifSx7ImF2b3B0cyI6Ii9pL0wyRXZZaTlqTG0xd05BPT0vaS9MekV2TWk4ekxtMXdOQT09Iiwic2F2ZV9hcyI6Ii9jb25jYXQvYS5tcDQiLCJ0eXBlIjoidmNvbmNhdCJ9XQ=="
 ```
 
 将排序后的参数键值对连接成一个字符串，得到：
 
 ```
-bucket_nameimtesternotify_urlhttp://www.example.com/notify/source/video/20130514_190031.mp4tasksW3sidHlwZSI6InZpZGVvIiwiYml0cmF0ZSI6IjUwMCIsInJvdGF0ZSI6ImF1dG8iLCJmb3JtYXQiOiJtcDQifSx7InR5cGUiOiJ0aHVtYm5haWwiLCJ0aHVtYl9zaWdubGUiOmZhbHNlLCJ0aHVtYl9hbW91bnQiOjEwMCwiZm9ybWF0IjoicG5nIn1d
+acceptjsonbucket_namedemonotify_urlhttp://www.example.com/notify/source/35000_38720_mp4.tstasksW3siYXZvcHRzIjoiL3MvMjQwcCg0OjMpL2FzLzEvci8zMCIsInJldHVybl9pbmZvIjp0cnVlLCJzYXZlX2FzIjoiL2EvYi5tcDQiLCJ0eXBlIjoidmlkZW8ifSx7ImF2b3B0cyI6Ii9pL0wyRXZZaTlqTG0xd05BPT0vaS9MekV2TWk4ekxtMXdOQT09Iiwic2F2ZV9hcyI6Ii9jb25jYXQvYS5tcDQiLCJ0eXBlIjoidmNvbmNhdCJ9XQ==
 ```
 
 连接操作员名和进行 md5 计算之后的操作员密码：
 
 ```
-operator_testerbucket_nameimtesternotify_urlhttp://www.example.com/notify/source/video/20130514_190031.mp4tasksW3sidHlwZSI6InZpZGVvIiwiYml0cmF0ZSI6IjUwMCIsInJvdGF0ZSI6ImF1dG8iLCJmb3JtYXQiOiJtcDQifSx7InR5cGUiOiJ0aHVtYm5haWwiLCJ0aHVtYl9zaWdubGUiOmZhbHNlLCJ0aHVtYl9hbW91bnQiOjEwMCwiZm9ybWF0IjoicG5nIn1d97b5a9d718b7a2064f7e7673c4d8bcb8
+upyun-operatoracceptjsonbucket_namedemonotify_urlhttp://www.example.com/notify/source/35000_38720_mp4.tstasksW3siYXZvcHRzIjoiL3MvMjQwcCg0OjMpL2FzLzEvci8zMCIsInJldHVybl9pbmZvIjp0cnVlLCJzYXZlX2FzIjoiL2EvYi5tcDQiLCJ0eXBlIjoidmlkZW8ifSx7ImF2b3B0cyI6Ii9pL0wyRXZZaTlqTG0xd05BPT0vaS9MekV2TWk4ekxtMXdOQT09Iiwic2F2ZV9hcyI6Ii9jb25jYXQvYS5tcDQiLCJ0eXBlIjoidmNvbmNhdCJ9XQ==e81502a921e78c4ddb017a555586664c
 ```
 
-将得到的字符串进行 md5 计算，得到最终的 `signature` 值为 `ad91a9ab81ecc34e973844a6723ce354`。
+将得到的字符串进行 md5 计算，得到最终的 `signature` 值为 `c6f1aa91e24241debe80858aec299862`。
 
 
 ### 回调通知
@@ -138,7 +141,7 @@ operator_testerbucket_nameimtesternotify_urlhttp://www.example.com/notify/source
 | path              | array     | 输出文件保存路径                                                                                             |
 | description       | string    | 处理结果描述                                                                                                 |
 | task_id           | string    | 任务对应的 task_id                                                                                           |
-| info              | string    | 视频文件的元数据信息。经过 base64 处理过之后的 JSON 字符串，仅当 type 为 video且 return_info 为 true 时返回  |
+| info              | string    | 视频文件的元数据信息。经过 base64 处理过之后的 JSON 字符串，仅当 type 为 video 且 return_info 为 true 时返回  |
 | signature         | string    | 回调验证签名，用户端程序可以通过校验签名，判断回调通知的合法性                                               |
 | timestamp         | integer   | 服务器回调此信息时的时间戳                                                                                   |
 
@@ -146,7 +149,7 @@ operator_testerbucket_nameimtesternotify_urlhttp://www.example.com/notify/source
 回调验证签名 `signature` 的计算方法：
 
 ```
-md5(<operator_name><operator_password><task_id><timestamp>), 并取中间 16 位。
+md5(<operator_name><md5_operator_password><task_id><timestamp>), 并取中间 16 位。
 ```
 
 
@@ -157,7 +160,7 @@ md5(<operator_name><operator_password><task_id><timestamp>), 并取中间 16 位
 例如：
 
 ```
-curl http://p0.api.upyun.com/status?bucket_name=imtester&task_ids=35f0148d414a688a275bf915ba7cebb2,98adbaa52b2f63d6d7f327a0ff223348,c3103189fa906a5354d29bd807e8dc51 \
+curl http://p0.api.upyun.com/status?bucket_name=demo&task_ids=35f0148d414a688a275bf915ba7cebb2,98adbaa52b2f63d6d7f327a0ff223348,c3103189fa906a5354d29bd807e8dc51 \
     -H "Authorization: UPYUN <operator>:<signature>" \
     -H "Date: <Wed, 29 Oct 2014 02:26:58 GMT>"
 ```
@@ -191,7 +194,7 @@ curl http://p0.api.upyun.com/status?bucket_name=imtester&task_ids=35f0148d414a68
 例如：
 
 ```
-curl http://p0.api.upyun.com/result?bucket_name=imtester&task_ids=35f0148d414a688a275bf915ba7cebb2,98adbaa52b2f63d6d7f327a0ff223348,c3103189fa906a5354d29bd807e8dc51 \
+curl http://p0.api.upyun.com/result?bucket_name=demo&task_ids=35f0148d414a688a275bf915ba7cebb2,98adbaa52b2f63d6d7f327a0ff223348,c3103189fa906a5354d29bd807e8dc51 \
     -H "Authorization: UPYUN <operator>:<signature>" \
     -H "Date: <Wed, 29 Oct 2014 02:26:58 GMT>"
 ```
