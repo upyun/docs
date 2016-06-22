@@ -327,7 +327,8 @@ http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-architecture.png_/fw/800/f
 
 > 管理后台：服务 > 高级功能 > 镜像存储（源站资源迁移）
 
-> 源站类型：自主源站
+> 源站类型：自主源站    
+> 注意：镜像迁移的文件缓存时间需要大于24小时，并且源站只支持 `HTTP` 协议。
 
 ----
 
