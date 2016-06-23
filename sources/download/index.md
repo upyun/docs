@@ -147,7 +147,7 @@
     </li>
 </ul>
 
-<h2 id="third-party">直播sdk</h2>
+<h2 id="third-party">直播 SDK </h2>
 <ul class="list-unstyled list-inline clearfix">
     <li>
         <strong> Andriod 流媒体播放器</strong>
