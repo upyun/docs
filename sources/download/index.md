@@ -147,6 +147,29 @@
     </li>
 </ul>
 
+<h2 id="third-party">直播sdk</h2>
+<ul class="list-unstyled list-inline clearfix">
+    <li>
+        <strong>Andriod 流媒体播放器</strong>
+        <div class="links">
+            <a href="https://github.com/upyun/android-player-sdk" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
+        </div>
+    </li>
+    <li>
+        <strong>Andriod 推流SDK</strong>
+        <div class="links">
+            <a href="https://github.com/upyun/android-push-sdk" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
+        </div>
+    </li>
+
+    <li>
+        <strong>iOS推拉流SDK</strong>
+        <div class="links">
+            <a href="https://github.com/upyun/ios-live-sdk" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
+        </div>
+    </li>
+</ul>
+
 <h2 id="third-party">融合 SDK</h2>
 <ul class="list-unstyled list-inline clearfix">
     <li>
@@ -253,3 +276,4 @@
     </li>
 </ul>
 </ul>
+
