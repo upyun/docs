@@ -34,8 +34,8 @@
     <li>
         <strong>Node.js SDK</strong>
         <div class="links">
-            <a href="https://github.com/upyun/node-upyun" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
-            <a href="https://github.com/upyun/node-upyun/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
+            <a href="https://github.com/upyun/node-sdk" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
+            <a href="https://github.com/upyun/node-sdk/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
         </div>
     </li>
     <li>
