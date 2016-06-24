@@ -1,4 +1,4 @@
-使用 REST API，您可以使用任何方式发送 HTTP 请求与 UPYUN 服务器通信。因此，你可以使用任何编程语言来使用 REST API。
+使用 REST API，您可以使用任何方式发送 HTTP 请求与又拍云服务器通信。因此，你可以使用任何编程语言来使用 REST API。
 
 REST API 支持 HTTP 和 HTTPS 协议，您可以选择最优的方式提交请求。
 
@@ -32,13 +32,13 @@ curl -X GET \
 >
 > * `Authorization`, `Date` 这两个参数是必须的
 > * `Authorization` 用于认证授权
-> * `Content-Length` 在 `PUT`、`POST` 请求中必须设置，UPYUN 不支持 chunked 形式上传。
+> * `Content-Length` 在 `PUT`、`POST` 请求中必须设置，又拍云不支持 chunked 形式上传。
 > * `Date` 为[格林尼治标准时间](http://zh.wikipedia.org/wiki/%E6%A0%BC%E6%9E%97%E5%B0%BC%E6%B2%BB%E5%B9%B3%E6%97%B6)（GMT 格式）
 
 
 ## 认证授权
 
-UPYUN 支持 HTTP 基本认证与签名认证两种认证授权方式。请根据需要任选其一。
+又拍云支持 HTTP 基本认证与签名认证两种认证授权方式。请根据需要任选其一。
 
 ### HTTP 基本认证
 REST API 支持 [HTTP 基本认证](http://zh.wikipedia.org/wiki/HTTP%E5%9F%BA%E6%9C%AC%E8%AE%A4%E8%AF%81)，其中认证所用的用户名即为已授权给你需要操作的空间的某个操作员名，认证口令为该操作员的密码。
@@ -143,7 +143,6 @@ PUT /<bucket>/path/to/file
 > x-upyun-file-type: JPEG
 ```
 其中，`x-upyun-` 开头的头部信息即为所上传图片的相关信息。
-
 
 ## 下载文件
 
@@ -386,3 +385,4 @@ curl -XPATCH http://v0.api.upyun.com/<bucket>/abc.txt?metadata=delete \
     -H "Authorization: Basic b3BlcmF0b3I6cGFzc3dvcmQ=" \
     -H "X-Upyun-Meta-Secret: true" \
 ```
+

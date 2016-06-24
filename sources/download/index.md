@@ -254,7 +254,7 @@
     </li>
 
     <li>
-        <strong>UPYUN 资源管理器</strong>
+        <strong>又拍云资源管理器</strong>
         <div class="links">
             <a href="https://github.com/layerssss/manager-for-upyun" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
             <a href="https://github.com/layerssss/manager-for-upyun#%E4%B8%8B%E8%BD%BD" target="_blank" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
@@ -262,14 +262,14 @@
     </li>
 
     <li>
-        <strong>UPYUN 命令行工具</strong>
+        <strong>又拍云命令行工具</strong>
         <div class="links">
             <a href="https://github.com/polym/upx" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
         </div>
     </li>
 
     <li>
-        <strong>UPYUN 常用脚本</strong>
+        <strong>又拍云常用脚本</strong>
         <div class="links">
             <a href="https://github.com/monkey-wenjun/upyun-sdk-script" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
         </div>

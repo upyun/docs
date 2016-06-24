@@ -1,5 +1,4 @@
-> **Beta:**
-> 该 API 仍处于 Beta 阶段
+
 
 在上传大文件的时候，面对有可能因为网络质量等其他原因而造成的上传失败，使用分块上传和断点续传机制就显得非常有必要。
 
@@ -108,9 +107,9 @@ Content-Type: application/x-www-form-urlencoded
 |---|---|---|
 | allow-file-type      | 否   | 文件类型限制，制定允许上传的文件扩展名                                                              |
 | content-length-range | 否   | 文件大小限制，格式：`min,max`，单位：字节，如 `102400,1024000`，允许上传 100Kb～1Mb 的文件          |
-| content-md5          | 否   | 所上传的文件的 MD5 校验值，UPYUN 根据此来校验文件上传是否正确                                       |
+| content-md5          | 否   | 所上传的文件的 MD5 校验值，又拍云根据此来校验文件上传是否正确                                       |
 | content-secret       | 否   | 原图访问密钥 [\[表单 API 注 2\]](/api/form_api/#note2)                                                 |
-| content-type         | 否   | UPYUN 默认根据扩展名判断，手动指定可提高精确性                                                      |
+| content-type         | 否   | 又拍云默认根据扩展名判断，手动指定可提高精确性                                                      |
 | image-width-range    | 否   | 图片宽度限制，格式：`min,max`，单位：像素，如 `0,1024`，允许上传宽度为 0～1024px 之间               |
 | image-height-range   | 否   | 图片高度限制，格式：`min,max`，单位：像素，如 `0,1024`，允许上传高度在 0～1024px 之间               |
 | notify-url           | 否   | 异步通知 URL，见 [\[表单 API 通知规则\]](/api/form_api/#notify_return)                                                      |
@@ -244,7 +243,7 @@ Content-Type: application/x-www-form-urlencoded
 表单 API 结合 `return-url` 和 `notify-url` 两个，有三种方式将上传结果返回:
 * HTTP Body 同步返回；在没有传递 `return-url` 时，都会使用这种方式以 JSON 字符串的方式返回数据到客户端；
 * 客户端同步跳转回调；传递 `return-url` 参数时，会通过 HTTP 302 的方式在客户端跳转到回调地址，通过 GET 参数传递；
-* 服务器异步队列通知；传递了 `notify-url` 参数时，会通过 UPYUN 的服务端异步队列发送 POST 请求以标准的*x-www-form-urlencoded*表单进行通知，如果回调通知失败，再重试 10 次（累计一天时间）之后将丢弃这条回调任务；
+* 服务器异步队列通知；传递了 `notify-url` 参数时，会通过又拍云的服务端异步队列发送 POST 请求以标准的*x-www-form-urlencoded*表单进行通知，如果回调通知失败，再重试 10 次（累计一天时间）之后将丢弃这条回调任务；
 
 三种方式将返回/提交一样的数据，签名验证机制也完全一样，以 HTTP Body 返回的数据为例上传成功返回：
 

@@ -38,11 +38,11 @@ curl -X POST \
 ```
 [
 	{
-		"sources": "/source/t.zip",              //UPYUN 存储空间中内文件路径
+		"sources": "/source/t.zip",              //又拍云存储空间中内文件路径
 		"save_as": "/result/t/",                 //保存路径
 	},
   	{
-		"sources": ["/source/a","/source/b.jpg",],   //UPYUN 存储空间中内文件或目录路径
+		"sources": ["/source/a","/source/b.jpg",],   //又拍云存储空间中内文件或目录路径
 		"save_as": "/result/a.zip"                   //保存路径
 	},
 	…

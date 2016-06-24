@@ -1,4 +1,4 @@
-<span class="betamark">Beta</span>
+<span class="betamark"></span>
 <!-- 添加文档中心搜索功能 -->
 <form class="search-docs" target="_blank" action="http://zhannei.baidu.com/cse/search">
     <input type="text" placeholder="搜索 UPYUN 文档中心" class="search_content" id="bdcsMain" name="q">

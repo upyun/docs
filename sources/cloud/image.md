@@ -29,7 +29,7 @@ http://demo.b0.upaiyun.com/demo.jpg!/rotate/90/watermark/text/5L2g5aW95Y+I5ouN5L
 
 #### 上传同步作图
 
-在上传图片到 UPYUN 的时候，可以在请求中带上相应的图片处理参数，那么 UPYUN 会先根据作图参数对图片进行相应的处理，然后将处理后的图片保存到 UPYUN 存储。
+在上传图片到 UPYUN 的时候，可以在请求中带上相应的图片处理参数，那么又拍云会先根据作图参数对图片进行相应的处理，然后将处理后的图片保存到 UPYUN 存储。
 
 上传作图的参数名为 `x-gmkerl-thumb`，在使用 REST API 进行上传时，该参数需要带在 [http 请求头](/api/rest_api/#_6) 里，而在使用表单 API 进行上传时，该参数应该包含在 [policy](/api/form_api/#api_1) 中。参数的值与 URL 作图方式相同。以下为几个上传作图的参数示例：
 

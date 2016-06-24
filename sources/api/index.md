@@ -1,6 +1,6 @@
 ## 概述
 
-UPYUN 为开发者提供了丰富的 API 接口，用以操作服务器资源，主要包括 HTTP REST API 和 FORM API。当然，您也可以通过 FTP 客户端来操作资源文件。
+又拍云为开发者提供了丰富的 API 接口，用以操作服务器资源，主要包括 HTTP REST API 和 FORM API。当然，您也可以通过 FTP 客户端来操作资源文件。
 
 ## API 域名
 
