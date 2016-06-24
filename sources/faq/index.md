@@ -32,7 +32,7 @@
 
 **如何查看我服务里的文件？**
 
-可以使用 FTP 查看，推荐使用客户端：[FileZilla](https://filezilla-project.org/)/[UPYUN资源管理器](https://github.com/layerssss/manager-for-upyun)。
+可以使用 FTP 查看，推荐使用客户端：[FileZilla](https://filezilla-project.org/)/[又拍云资源管理器](https://github.com/layerssss/manager-for-upyun)。
 
 **一个账号最多可以创建多少个操作员？**
 
@@ -194,7 +194,7 @@
 可能情况：
 
 1. 在上传文件过程中遇到 406 错误，请检查上传文件名是否已经被用于存在的目录；
-2. 在上传文件过程中遇到 406 错误，如有设置 Content-MD5 校验，可能是 UPYUN 服务器端收到的文件内容 MD5 不一致。请检查 API 接口请求时设置的 Content-MD5 值；
+2. 在上传文件过程中遇到 406 错误，如有设置 Content-MD5 校验，可能是又拍云服务器端收到的文件内容 MD5 不一致。请检查 API 接口请求时设置的 Content-MD5 值；
 3. 在创建目录过程中遇到 406 错误，请检查目录名是否已经被用于存在的文件。
 
 **使用 API 上传，提示：503 System Error？**
@@ -203,8 +203,8 @@
 
 可能情况：
 
-1. UPYUN 系统正在维护中；
-2. UPYUN 系统出现故障，请与客服联系。
+1. 又拍云系统正在维护中；
+2. 又拍云系统出现故障，请与客服联系。
 
 ## FTP
 

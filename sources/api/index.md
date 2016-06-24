@@ -4,7 +4,7 @@
 
 ## API 域名
 
-在 [HTTP REST API](/api/rest_api/) 以及 [表单 API](/api/form_api/) 中，UPYUN 特别地提供了针对国内不同线路优化的 API 域名：
+在 [HTTP REST API](/api/rest_api/) 以及 [表单 API](/api/form_api/) 中，又拍云 特别地提供了针对国内不同线路优化的 API 域名：
 
 * `v0.api.upyun.com`： 自动判断最优线路
 * `v1.api.upyun.com`： 电信线路
