@@ -141,7 +141,7 @@ upyun-operatoracceptjsonbucket_namedemonotify_urlhttp://www.example.com/notify/s
 | path              | array     | 输出文件保存路径                                                                                             |
 | description       | string    | 处理结果描述                                                                                                 |
 | task_id           | string    | 任务对应的 task_id                                                                                           |
-| info              | string    | 视频文件的元数据信息。经过 base64 处理过之后的 JSON 字符串，仅当 type 为 video 且 return_info 为 true 时返回  |
+| info              | json      | 音视频文件的元数据信息                                                                                       |
 | signature         | string    | 回调验证签名，用户端程序可以通过校验签名，判断回调通知的合法性                                               |
 | timestamp         | integer   | 服务器回调此信息时的时间戳                                                                                   |
 
@@ -233,10 +233,13 @@ curl http://p0.api.upyun.com/result?bucket_name=demo&task_ids=35f0148d414a688a27
 |-------------------|-----------|-----------------------------------------------------------------------------------|
 | type              | string    | 音视频处理类型。不同的处理任务对应不同的 type，详见下方各处理任务说明                  |
 | save_as           | string    | 输出文件保存路径（同一个空间下），如果没有指定，系统自动生成在同空间同目录下      |
-| return_info       | boolean   | 是否返回 JSON 格式元数据，默认 false。支持 type 值为 video 功能                   |
+| return_info       | boolean   | 是否返回 JSON 格式元数据，默认 false                                             |
 | avopts            | string    | 音视频处理参数, 格式为 `/key/value/key/value/...`                                    |
 
-> 特别的， 在 `avopts` 中使用 0 表示布尔值的 `false`, 1 表示布尔值的 `true`。以下如无特殊情况不做再次申明。
+
+> 在 `avopts` 中使用 0 表示布尔值的 `false`, 1 表示布尔值的 `true`。以下如无特殊情况不做再次申明。
+
+> 关于 `save_as` 参数，需要注意几点，在 **HLS 切片** 任务中，该参数必须以 .m3u8 结尾；在 **视频截图** 任务中，处理多张截图时，输出图片文件名会根据该参数进行推算，例如，`save_as` 为 `/path/to/img.png`，则输出文件名分别为 `/path/to/img1.png`，`/path/to/img2.png`，以此类推；当没有指定输出格式的情况下，`save_as` 的后缀名会决定输出格式。
 
 
 ### 视频转码
