@@ -7,7 +7,7 @@
 | `x-gmkerl-value`                 | 缩略类型对应的参数值，单位为像素，须搭配 `x-gmkerl-type` 使用（具体请参见注 2） |
 | `x-gmkerl-quality `              | 图片质量，默认 `95`，可选（1~100）                                                              |
 | `x-gmkerl-unsharp`               | 图片锐化，默认 `true` 即开启锐化                                                                           |
-| `x-gmkerl-thumbnail`             | 在 UPYUN 管理平台创建好缩略图版本该缩略方式包含了所需的缩略参数，参数更简洁，使用更方便            |
+| `x-gmkerl-thumbnail`             | 在又拍云管理平台创建好缩略图版本该缩略方式包含了所需的缩略参数，参数更简洁，使用更方便            |
 | `x-gmkerl-exif-switch`           | 是否保留原图的 EXIF 信息，默认 `false` 即不保留                                                   |
 | `x-gmkerl-crop`                  | 格式为 `x,y,width,height`，如：`0,0,100,200` （具体请参见注 3）                   |
 | `x-gmkerl-rotate`                | 旋转角度，目前只允许设置：`auto，90，180，270` （具体请参见注 4）         |

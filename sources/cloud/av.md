@@ -1,4 +1,4 @@
-异步音视频处理接口是用于处理**已经上传到对应存储空间**中的视频文件，进行转码、HLS 切片、截图等操作。在处理完成之后，异步通知用户处理结果。如果原视频文件不在又拍云存储，需要预先调用文件上传 API 将视频文件上传到又拍云存储中。
+异步音视频处理服务是对**已经上传到云存储中的音视频文件**进行视频转码、音频转码、HLS 切片、视频截图、视频水印、元信息获取等处理，处理完成后，以回调的方式通知用户处理结果。如果源音视频文件不存在又拍云存储，需要预先调用文件上传 API 将音视频文件上传到又拍云存储中。
 
 > 注：文中所有 `<>` 标注的字段，均需根据实际情况进行替换。
 
@@ -60,7 +60,7 @@ curl -X POST \
 
 3\. 对 JSON 字符串进行 base64 编码处理, 得到以下结果。
 ```
-W3siYXZvcHRzIjoiL3MvMjQwcCg0OjMpL2FzLzEvci8zMCIsInJldHVybl9pbmZvIjp0cnVlLCJzYXZlX2FzIjoiL2EvYi5tcDQiLCJ0eXBlIjoidmlkZW8ifSx7ImF2b3B0cyI6Ii9pL0wyRXZZaTlqTG0xd05BPT0vaS9MekV2TWk4ekxtMXdOQT09Iiwic2F2ZV9hcyI6Ii9jb25jYXQvYS5tcDQiLCJ0eXBlIjoidmNvbmNhdCJ9XQ==
+Ww0KICAgIHsNCiAgICAgICAgInR5cGUiOiAidmlkZW8iLA0KICAgICAgICAiYXZvcHRzIjogIi9zLzI0MHAoNDozKS9hcy8xL3IvMzAiLA0KICAgICAgICAicmV0dXJuX2luZm8iOiB0cnVlLA0KICAgICAgICAic2F2ZV9hcyI6ICIvYS9iLm1wNCINCiAgICB9LA0KICAgIHsNCiAgICAgICAgInR5cGUiOiAidmNvbmNhdCIsDQogICAgICAgICJhdm9wdHMiOiAiL2kvTDJFdllpOWpMbTF3TkE9PS9pL0x6RXZNaTh6TG0xd05BPT0iLA0KICAgICAgICAic2F2ZV9hcyI6ICIvY29uY2F0L2EubXA0Ig0KICAgIH0NCl0=
 ```
 
 ### 授权认证
@@ -74,7 +74,7 @@ Authorization:　UPYUN　<operator>:<signature>
 
 `signature` 参数通过下面的方式获得：
 
-1\. 将参数按照 **参数名称的字典顺序排序** 后，将参数键值对连接成一个字符串。
+1\. 将参数按照 **[参数名称的字典序](https://zh.wikipedia.org/wiki/%E5%AD%97%E5%85%B8%E5%BA%8F)** 排序后，将参数键值对连接成一个字符串。
 
 2\. 将第一步生成的字符串按照下面的规则进行连接，获取待签名字符串：
 
@@ -95,7 +95,7 @@ Authorization:　UPYUN　<operator>:<signature>
 
 ```
 bucket_name: "demo"
-tasks: "W3siYXZvcHRzIjoiL3MvMjQwcCg0OjMpL2FzLzEvci8zMCIsInJldHVybl9pbmZvIjp0cnVlLCJzYXZlX2FzIjoiL2EvYi5tcDQiLCJ0eXBlIjoidmlkZW8ifSx7ImF2b3B0cyI6Ii9pL0wyRXZZaTlqTG0xd05BPT0vaS9MekV2TWk4ekxtMXdOQT09Iiwic2F2ZV9hcyI6Ii9jb25jYXQvYS5tcDQiLCJ0eXBlIjoidmNvbmNhdCJ9XQ=="
+tasks: "Ww0KICAgIHsNCiAgICAgICAgInR5cGUiOiAidmlkZW8iLA0KICAgICAgICAiYXZvcHRzIjogIi9zLzI0MHAoNDozKS9hcy8xL3IvMzAiLA0KICAgICAgICAicmV0dXJuX2luZm8iOiB0cnVlLA0KICAgICAgICAic2F2ZV9hcyI6ICIvYS9iLm1wNCINCiAgICB9LA0KICAgIHsNCiAgICAgICAgInR5cGUiOiAidmNvbmNhdCIsDQogICAgICAgICJhdm9wdHMiOiAiL2kvTDJFdllpOWpMbTF3TkE9PS9pL0x6RXZNaTh6TG0xd05BPT0iLA0KICAgICAgICAic2F2ZV9hcyI6ICIvY29uY2F0L2EubXA0Ig0KICAgIH0NCl0="
 notify_url: "http://www.example.com/notify/"
 source: "/video/upyun.mp4"
 accept: "json"
@@ -103,29 +103,29 @@ accept: "json"
 
 用于授权验证的操作员名为 `upyun-operator` ，操作员密码为 `onepiece`。
 
-首先根据参数名称的字段顺序进行排序：
+首先根据参数名称的字典序进行排序：
 
 ```
 accept: "json"
 bucket_name: "demo"
 notify_url: "http://www.example.com/notify/"
 source: "/video/upyun.mp4"
-tasks: "W3siYXZvcHRzIjoiL3MvMjQwcCg0OjMpL2FzLzEvci8zMCIsInJldHVybl9pbmZvIjp0cnVlLCJzYXZlX2FzIjoiL2EvYi5tcDQiLCJ0eXBlIjoidmlkZW8ifSx7ImF2b3B0cyI6Ii9pL0wyRXZZaTlqTG0xd05BPT0vaS9MekV2TWk4ekxtMXdOQT09Iiwic2F2ZV9hcyI6Ii9jb25jYXQvYS5tcDQiLCJ0eXBlIjoidmNvbmNhdCJ9XQ=="
+tasks: "Ww0KICAgIHsNCiAgICAgICAgInR5cGUiOiAidmlkZW8iLA0KICAgICAgICAiYXZvcHRzIjogIi9zLzI0MHAoNDozKS9hcy8xL3IvMzAiLA0KICAgICAgICAicmV0dXJuX2luZm8iOiB0cnVlLA0KICAgICAgICAic2F2ZV9hcyI6ICIvYS9iLm1wNCINCiAgICB9LA0KICAgIHsNCiAgICAgICAgInR5cGUiOiAidmNvbmNhdCIsDQogICAgICAgICJhdm9wdHMiOiAiL2kvTDJFdllpOWpMbTF3TkE9PS9pL0x6RXZNaTh6TG0xd05BPT0iLA0KICAgICAgICAic2F2ZV9hcyI6ICIvY29uY2F0L2EubXA0Ig0KICAgIH0NCl0="
 ```
 
 将排序后的参数键值对连接成一个字符串，得到：
 
 ```
-acceptjsonbucket_namedemonotify_urlhttp://www.example.com/notify/source/35000_38720_mp4.tstasksW3siYXZvcHRzIjoiL3MvMjQwcCg0OjMpL2FzLzEvci8zMCIsInJldHVybl9pbmZvIjp0cnVlLCJzYXZlX2FzIjoiL2EvYi5tcDQiLCJ0eXBlIjoidmlkZW8ifSx7ImF2b3B0cyI6Ii9pL0wyRXZZaTlqTG0xd05BPT0vaS9MekV2TWk4ekxtMXdOQT09Iiwic2F2ZV9hcyI6Ii9jb25jYXQvYS5tcDQiLCJ0eXBlIjoidmNvbmNhdCJ9XQ==
+acceptjsonbucket_namedemonotify_urlhttp://www.example.com/notify/source/35000_38720_mp4.tstasksWw0KICAgIHsNCiAgICAgICAgInR5cGUiOiAidmlkZW8iLA0KICAgICAgICAiYXZvcHRzIjogIi9zLzI0MHAoNDozKS9hcy8xL3IvMzAiLA0KICAgICAgICAicmV0dXJuX2luZm8iOiB0cnVlLA0KICAgICAgICAic2F2ZV9hcyI6ICIvYS9iLm1wNCINCiAgICB9LA0KICAgIHsNCiAgICAgICAgInR5cGUiOiAidmNvbmNhdCIsDQogICAgICAgICJhdm9wdHMiOiAiL2kvTDJFdllpOWpMbTF3TkE9PS9pL0x6RXZNaTh6TG0xd05BPT0iLA0KICAgICAgICAic2F2ZV9hcyI6ICIvY29uY2F0L2EubXA0Ig0KICAgIH0NCl0=
 ```
 
 连接操作员名和进行 md5 计算之后的操作员密码：
 
 ```
-upyun-operatoracceptjsonbucket_namedemonotify_urlhttp://www.example.com/notify/source/35000_38720_mp4.tstasksW3siYXZvcHRzIjoiL3MvMjQwcCg0OjMpL2FzLzEvci8zMCIsInJldHVybl9pbmZvIjp0cnVlLCJzYXZlX2FzIjoiL2EvYi5tcDQiLCJ0eXBlIjoidmlkZW8ifSx7ImF2b3B0cyI6Ii9pL0wyRXZZaTlqTG0xd05BPT0vaS9MekV2TWk4ekxtMXdOQT09Iiwic2F2ZV9hcyI6Ii9jb25jYXQvYS5tcDQiLCJ0eXBlIjoidmNvbmNhdCJ9XQ==e81502a921e78c4ddb017a555586664c
+upyun-operatoracceptjsonbucket_namedemonotify_urlhttp://www.example.com/notify/source/35000_38720_mp4.tstasksWw0KICAgIHsNCiAgICAgICAgInR5cGUiOiAidmlkZW8iLA0KICAgICAgICAiYXZvcHRzIjogIi9zLzI0MHAoNDozKS9hcy8xL3IvMzAiLA0KICAgICAgICAicmV0dXJuX2luZm8iOiB0cnVlLA0KICAgICAgICAic2F2ZV9hcyI6ICIvYS9iLm1wNCINCiAgICB9LA0KICAgIHsNCiAgICAgICAgInR5cGUiOiAidmNvbmNhdCIsDQogICAgICAgICJhdm9wdHMiOiAiL2kvTDJFdllpOWpMbTF3TkE9PS9pL0x6RXZNaTh6TG0xd05BPT0iLA0KICAgICAgICAic2F2ZV9hcyI6ICIvY29uY2F0L2EubXA0Ig0KICAgIH0NCl0=e81502a921e78c4ddb017a555586664c
 ```
 
-将得到的字符串进行 md5 计算，得到最终的 `signature` 值为 `c6f1aa91e24241debe80858aec299862`。
+将得到的字符串进行 md5 计算，得到最终的 `signature` 值为 `3ae298de832eb24a459fccc57aa43860`。
 
 
 ### 回调通知
