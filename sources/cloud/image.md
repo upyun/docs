@@ -2,7 +2,7 @@
 
 ### URL 作图
 
-将图片处理参数加在图片 URL 后面，就可以访问到图片处理服务，服务根据处理参数对图片进行处理，得到想要效果的图片。
+将图片处理参数加在图片 URL 后面，就可以访问到图片处理服务，处理服务根据处理参数对图片进行处理，返回相应效果的图片。
 
 例如，图片 URL 是:  `http://demo.b0.upaiyun.com/demo.jpg`，需要把图片旋转 90 度
 
@@ -20,7 +20,7 @@ http://demo.b0.upaiyun.com/demo.jpg!/rotate/90
 「图片 URL + 间隔标识符 + 处理参数」
 ```
 
-处理参数是以  `/key/value` 的方式进行使用的，如果有多个处理参数，通过 `/key1/value1/key2/value2/key3/value3` 的方式进行连接。
+特别地，处理参数是以  `/key/value` 的方式进行使用的，如果有多个处理参数，可以按 `/key1/value1/key2/value2/key3/value3` 的方式进行连接。
 
 例如，对图片进行 90 度旋转并且加上绿色的文字水印『你好又拍云』，可以访问以下 URL：
 
@@ -31,8 +31,8 @@ http://demo.b0.upaiyun.com/demo.jpg!/rotate/90/watermark/text/5L2g5aW95Y+I5ouN5L
 注：
 
 
-- 所有处理参数的说明，请见 [作图参数](/cloud/image/#_7)
-- 间隔标识符用于分隔图片 URL 和图片处理参数，有 3 种可选，分别是：`!`（感叹号/默认值）、`-`（中划线）和 `_`（下划线），可登录又拍云控制台，在 「服务」 -> 「功能配置」 -> 「云处理」 中设置。本文档使用 `!` 作为示例间隔标识符。
+- 所有处理参数的说明，请见 [作图参数](/cloud/image/#_7)。
+- 间隔标识符用于分隔图片 URL 和图片处理参数，有 3 种可选，分别是：`!`（感叹号/默认值）、`-`（中划线）和 `_`（下划线），可登录又拍云控制台，在 「服务」 > 「功能配置」 > 「云处理」 中设置。本文档使用 `!` 作为示例间隔标识符。
 - 作图参数需要加在图片文件名后面而不是 URL 参数后面。例如 URL 是 `http://demo.b0.upaiyun.com/demo.jpg?foo=1&bar=2`，则加上作图参数后的 URL 应该是 `http://demo.b0.upaiyun.com/demo.jpg!/rotate/90?foo=1&bar=2`。
 
 
@@ -43,9 +43,9 @@ http://demo.b0.upaiyun.com/demo.jpg!/rotate/90/watermark/text/5L2g5aW95Y+I5ouN5L
 
 如果您需要在图片上传的时候，把图片处理成有相应效果的图片并保存至又拍云存储，可以使用上传同步作图。
 
-它通过在图片的上传请求中附加上图片处理参数，当图片上传完成后，自动进行处理并保存处理后的图片。
+它通过在图片的上传请求中附加图片处理参数，当图片上传完成后，自动进行处理并保存处理后的图片。
 
-上传作图的参数名为 `x-gmkerl-thumb`，在使用 REST API 进行图片上传时，该参数需要带在 [http 请求头](/api/rest_api/#_5) 里，而在使用 FORM API 进行图片上传时，该参数应该包含在 [policy 算法](/api/form_api/#api_1) 中。参数的值与 [URL 作图](/cloud/image/#url) 的处理参数相同。
+上传作图的参数名为 `x-gmkerl-thumb`，在使用 REST API 进行图片上传时，该参数需要带在 [http 请求头](/api/rest_api/#_5) 里，而在使用 FORM API 进行图片上传时，该参数应该包含在 [policy 算法](/api/form_api/#api_1) 中。参数（`x-gmkerl-thumb`）的值与 [URL 作图](/cloud/image/#url) 的处理参数相同。
 
 以下是几个上传同步作图的参数示例：
 
@@ -61,7 +61,7 @@ x-gmkerl-thumb: /format/png
 x-gmkerl-thumb: /fw/300/unsharp/true/quality/80/format/png
 ```
 
-所有处理参数的说明，请见 [作图参数](/cloud/image/#_7)
+所有处理参数的说明，请见 [作图参数](/cloud/image/#_7)。
 
 #### 上传异步作图
 
@@ -69,7 +69,7 @@ x-gmkerl-thumb: /fw/300/unsharp/true/quality/80/format/png
 
 它通过在 [表单 API](/api/form_api/#api_1) 的 `apps` 参数里添加异步作图任务，并指定任务名称 `name` 为 `thumb`，即可实现在图片上传完成之后自动发起 [异步图片处理任务](/api/form_api/#_4)。
 
-至于上传的那张图片（原图）的保存，是通过 `save_key` 参数来设定的。
+特别地，上传的那张图片（原图）的保存，通过表单 API 的 `save_key` 参数来设定。
 
 异步作图任务的参数及说明如下：
 
@@ -161,51 +161,51 @@ x-gmkerl-thumb: /fw/300/unsharp/true/quality/80/format/png
 
 如果您觉得写 `/fw/300/unsharp/true/quality/80/format/png` 这样一串作图参数比较麻烦，可以为它定义一个缩略图版本，使用时通过缩略图版本名称来替代冗长的作图参数。
 
-例如，我们为 `/fw/300/unsharp/true/quality/80/format/png` 配置了一个缩略图版本，名称为 `upyun-test`
+例如，我们为 `/fw/300/unsharp/true/quality/80/format/png` 配置了一个缩略图版本，名称为 `upyun123`
 
-URL 作图使用缩略图版本为： 
+URL 使用缩略图版本为： 
 
 ```
-http://demo.b0.upaiyun.com/demo.jpg!upyun-test
+http://demo.b0.upaiyun.com/demo.jpg!upyun123
 ``` 
 
-上传作图使用缩略图版本为：
+上传使用缩略图版本为：
 
 ```
-x-gmkerl-thumb: upyun-test
+x-gmkerl-thumb: upyun123
 ``` 
 
 注：
 
-- 缩略图版本通过 「又拍云控制台」 -> 「服务」 -> 「功能配置」 -> 「云处理」 -> 「自定义版本」  进行设置。
+- 缩略图版本通过 「又拍云控制台」 > 「服务」 > 「功能配置」 > 「云处理」 > 「自定义版本」  进行设置。
 - 使用缩略图版本与使用原始的作图参数对图片的处理效果是相同的。
-- 作图参数是以 `/` 开头的，如 `/fw/100/quality/90`，缩略图版本不是以 `/` 开头的，上例中如果错误地使用了 `/upyun-test` 会返回 *400 参数错误*。
+- 作图参数是以 `/` 开头的，如 `/fw/100/quality/90`，缩略图版本不是以 `/` 开头的，上例中如果错误地使用了 `/test` 会返回 *400 参数错误*。
 
 
 ### 混合作图
 
-上例中，我们配置了 `upyun-test` 这个缩略图版本，它会对图片进行限定宽度 300px 的操作（`/fw/300`），当某张图片需要限定宽度 100px 而其他都不变时，修改这个缩略图版本可能会影响到其他图片作图的效果，重新创建一个缩略图版本又显得有些麻烦。
+上例中，我们配置了 `upyun123` 这个缩略图版本，它会对图片进行限定宽度 300px 的操作（`/fw/300`），当某张图片需要限定宽度 100px 而其他都不变时，修改这个缩略图版本会影响到其他已经使用这个版本的图片的处理效果，重新创建一个缩略图版本又显得有些麻烦。
 
-针对这种情景，又拍云提供了缩略图版本与作图参数混合的作图方式，在使用缩略图版本时通过作图参数对它进行动态的调整。
+针对这种情景，又拍云提供了缩略图版本与作图参数混合的作图方式，在使用缩略图版本时通过作图参数对它进行动态调整。
 
-例如，通过 `upyun-test` 实现 `/fw/100/unsharp/true/quality/80/format/png` 的作图效果
+例如，通过 `upyun123` 实现 `/fw/100/unsharp/true/quality/80/format/png` 的作图效果
 
-URL 作图使用混合作图为：
+URL 使用混合作图为：
 
 ```
-http://demo.b0.upaiyun.com/demo.jpg!upyun-test/fw/100
+http://demo.b0.upaiyun.com/demo.jpg!upyun123/fw/100
 ``` 
 
-上传作图使用混合作图为： 
+上传使用混合作图为： 
 
 ```
-x-gmkerl-thumb: test/fw/100
+x-gmkerl-thumb: upyun123/fw/100
 ```
 
 注：
 
-- 作图参数只能出现在缩略图版本的后面，如 `upyun-test/fw/100`。
-- 缩略图版本中与作图参数中存在相同的参数时，最后出现的参数优先级最高。如上例中，`upyun-test` 中存在 `/fw/300`，作图参数中存在 `/fw/100`，处理时以最后出现的 `/fw/100` 为准。
+- 作图参数只能出现在缩略图版本的后面，如 `upyun123/fw/100`。
+- 缩略图版本中与作图参数中存在相同的参数时，最后出现的参数优先级最高。如上例中，`upyun123` 中存在 `/fw/300`，作图参数中存在 `/fw/100`，处理时以最后出现的 `/fw/100` 为准。
 
 ## 作图参数
 
