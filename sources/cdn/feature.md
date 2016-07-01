@@ -221,7 +221,7 @@ http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-architecture.png?_upv=02
 
 注：_upv 参数取值范围：只接受 00 - 99，即 2 位 {0 - 9} 的数字，其他任何值都无效。
 
-## 缩略图处理
+## 图片处理
 
 ### 自定义版本
 
@@ -231,28 +231,38 @@ http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-architecture.png?_upv=02
 
 ----
 
-用户可以根据业务需求在管理后台配置不同的自定义缩略图版本，当然也可以创建图片信息版本获取图片 EXIF 等信息。
+用户可以根据业务需要在管理后台配置不同的缩略图版本，对图片进行「缩略图」、「水印」、「旋转」、「格式转换」等处理，当然也可以创建图片信息版本获取图片基本信息和 EXIF 信息。
 
-* 间隔标识符有 3 种可选，分别是：`!`（感叹号）、`-`（中划线）和 `_`（下划线）
-* 自定义版本使用方式： `http://绑定域名/原图路径+间隔标志符+自定义版本名称`
+* 自定义版本的调用格式为： `图片 URL + 间隔标识符 + 自定义版本名称`
+* 间隔标识符有 3 种可选，分别是：`!`（感叹号/默认值）、`-`（中划线）和 `_`（下划线）
 
-### URL 动态缩略图
+例如：
+
+间隔标识符为：*`_`*，缩略图版本名称为： *`width200`*
+
+使用方式为：
+
+```
+http://upyun-assets.b0.upaiyun.com/docs/guide/sample.jpg_width200
+```
+
+### URL 作图
 
 > 源站类型：全部
 
 ----
 
-基于 URL 的动态缩略图功能是对自定义版本号方式的一个补充，它比后者更加灵活和方便。即可以直接在 URL 上进行缩略图具体参数的配置，特别地，为了区别正常的缩略图版本提取逻辑，这里我们规定当间隔符后面紧跟 `/` 的时候，那么其后面（包括 `/` 本身）的字符串即为动态缩略图配置，例如：
+URL 作图是类似自定义版本作图的一种图片处理使用方式，它跟自定义版本作图不一样的是间隔标识符后面跟的是作图参数，用户使用时可以根据需要随意的搭配作图参数，因而，它更加灵活和方便。
+
+例如：
 
 ```
-http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-architecture.png_/fw/800/format/webp
+http://upyun-assets.b0.upaiyun.com/docs/guide/sample.jpg_/fw/200/format/webp
 ```
-
-特别说明：对于设置了原图保护的图片，URL 动态缩路图功能失效。
 
 #### 相关参数说明
 
-| 特殊参数指令  | 示例值 | 说明 |
+| 特殊参数指令     | 示例值         | 说明     |
 | --------        | --------      | -------- |
 | /sq/            | 100           | 方块图，值为其大小 |
 | /fw/            | 100           | 限定宽度，高度自适应 |
@@ -278,6 +288,7 @@ http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-architecture.png_/fw/800/f
 
 * 注 1：由于 `/crop/` 和 `/canvas/` 参数中的 `+` 会被浏览器转义，这里特别地用 `a` 代替 `+` 字符；`a => add`。
 * 注 2：高斯模糊参数 `<radius>` 是模糊半径，取值范围是 `[0, 50]`，`<sigma>` 是正态分布的标准差，必须大于 0。
+* 更多作图参数，请参考 [作图参数](/cloud/image/#_7)；完整的图片处理文档，请参考 [图片处理](/cloud/image/)。
 
 ## 页面优化
 
@@ -386,7 +397,7 @@ $ curl http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-architecture.png?_u
 
 关于 CORS：[HTTP访问控制(CORS)](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS)。
 
-用户可以在又拍云管理后台配置符合自己站点的跨域请求策略。目前可以控制的 CORS 响应头有：
+用户可以在又拍云控制台配置符合自己站点的跨域请求策略。目前可以控制的 CORS 响应头有：
 
 1. Access-Control-Allow-Origin
 2. Access-Control-Allow-Methods

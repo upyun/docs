@@ -315,7 +315,7 @@ text/html -- default
 
 > `X-Real-IP` 和 `Client-IP`
 
-UPYUN CDN 回客户源的时候会带这个 `X-Real-IP` 的请求头下去，值为用户实际访问 CDN 的来源 IP 地址。特别地，为了兼容部分服务端程序，我们额外还提供了 `Client-IP` 请求头的支持，其值和 `X-Real-IP` 相同。
+又拍云 CDN 回客户源的时候会带这个 `X-Real-IP` 的请求头下去，值为用户实际访问 CDN 的来源 IP 地址。特别地，为了兼容部分服务端程序，我们额外还提供了 `Client-IP` 请求头的支持，其值和 `X-Real-IP` 相同。
 
 #### 例1：PHP 代码
 
