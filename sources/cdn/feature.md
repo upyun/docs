@@ -574,3 +574,51 @@ rewrite 规则                                                       | 含义
 `$WHEN($MATCH($_URI, '^/foo/.*'))$ADD_REQ_HEADER(X-Foo, bar)`      | 在请求 URI 匹配 `^/foo/.*` 的情况下，添加请求头 `X-Foo: bar`
 `$WHEN($EQ($_HOST, 'foo.com'))$ADD_REQ_HEADER(X-Foo, bar)`         | 在请求 Host 为 `foo.com` 的情况下，添加请求头 `X-Foo: bar`
 `$WHEN($MATCH($_URI, '^/foo/'), $NOT($_HEADER_referer))$EXIT(403)` | 在请求的 URI 以 `/foo/` 开头并且没有 Referer 请求头时，返回 403
+
+### 案例说明
+
+  假如，用户已经开启了ssl，并且配置了证书，现在客户的需求是：当访问到的文件后缀是js或者css文件时，跳转到 HTTPS,其他文件则正常通过 HTTP 协议访问，那么我们在后台则可以这样配置：
+  
+  Rewrite规则   |  URL提取正则
+  :--------------------                                              | :-------
+`$WHEN($1)$REDIRECT(https://$_HOST$_URI,302)`|`\.(js|css)$`
+
+后台配置截图
+
+![img](https://techs.b0.upaiyun.com/img/rewrite1.png!600)
+
+Rewrite规则建议开启后，先在调试模式下进行测试，确认无误后，在关闭调试模式
+
+```
+➜  ~ curl -H "X-Upyun-Rewrite-Preview: true" http://file.fangwenjun.com/rewrite.html -v
+*   Trying 183.134.101.194...
+* Connected to file.fangwenjun.com (183.134.101.194) port 80 (#0)
+> GET /live.html HTTP/1.1
+> Host: file.fangwenjun.com
+> User-Agent: curl/7.43.0
+> Accept: */*
+> X-Upyun-Rewrite-Preview: true
+>
+< HTTP/1.1 200 OK
+< Server: marco/0.14.0
+< Date: Tue, 12 Jul 2016 08:07:42 GMT
+< Content-Type: text/html
+< Content-Length: 1179
+< Connection: keep-alive
+< Vary: Accept-Encoding
+< X-Request-Id: 89e93136b4116d7808785dd075d8330d; 675b14643a98305121b347081734cc8d
+< X-Source: U/304
+< ETag: "f1926d4155507aec3843074ff27b38a8"
+< Last-Modified: Wed, 30 Mar 2016 02:13:57 GMT
+< Expires: Wed, 13 Jul 2016 23:03:07 GMT
+< Cache-Control: max-age=645975
+< Accept-Ranges: bytes
+< X-Last-Content-Length: 1179
+< Age: 335291
+< X-Cache: HIT from mix-hz-fdi-170; HIT(R) from ctn-zj-lna-196
+< Via: T.101163.H.1, V.mix-hz-fdi-170, T.101195.R.1, M.ctn-zj-lna-196
+<
+<!DOCTYPE html>
+<html lang="en">
+……
+```
