@@ -1,4 +1,4 @@
-异步音视频处理接口是用于处理**已经上传到对应存储空间**中的视频文件，进行转码、HLS 切片、截图等操作。在处理完成之后，异步通知用户处理结果。如果原视频文件不在又拍云存储，需要预先调用文件上传 API 将视频文件上传到又拍云存储中。
+异步音视频处理服务是对**已经上传到云存储中的音视频文件**进行视频转码、音频转码、HLS 切片、视频截图、视频水印、元信息获取等处理，处理完成后，以回调的方式通知用户处理结果。如果待处理音视频文件不存在又拍云存储，需要预先调用文件上传 API 将音视频文件上传到又拍云存储中。
 
 > 注：文中所有 `<>` 标注的字段，均需根据实际情况进行替换。
 
@@ -18,7 +18,7 @@ curl -X POST \
     -d "accept=json" \
     -d "bucket_name=<bucket_name>" \
     -d "notify_url=<notify_url>" \
-    -d "source=<UPYUN 存储空间中的音视频文件路径>" \
+    -d "source=<又拍云存储空间中的音视频文件路径>" \
     -d "tasks=<base64 编码后的任务字符串>"
 ```
 
@@ -74,7 +74,7 @@ Authorization:　UPYUN　<operator>:<signature>
 
 `signature` 参数通过下面的方式获得：
 
-1\. 将参数按照 **参数名称的字典顺序排序** 后，将参数键值对连接成一个字符串。
+1\. 将参数按照 **[参数名称的字典序](https://zh.wikipedia.org/wiki/%E5%AD%97%E5%85%B8%E5%BA%8F)** 排序后，将参数键值对连接成一个字符串。
 
 2\. 将第一步生成的字符串按照下面的规则进行连接，获取待签名字符串：
 
@@ -103,7 +103,7 @@ accept: "json"
 
 用于授权验证的操作员名为 `upyun-operator` ，操作员密码为 `onepiece`。
 
-首先根据参数名称的字段顺序进行排序：
+首先根据参数名称的字典序进行排序：
 
 ```
 accept: "json"
@@ -141,7 +141,7 @@ upyun-operatoracceptjsonbucket_namedemonotify_urlhttp://www.example.com/notify/s
 | path              | array     | 输出文件保存路径                                                                                             |
 | description       | string    | 处理结果描述                                                                                                 |
 | task_id           | string    | 任务对应的 task_id                                                                                           |
-| info              | string    | 视频文件的元数据信息。经过 base64 处理过之后的 JSON 字符串，仅当 type 为 video 且 return_info 为 true 时返回  |
+| info              | json      | 音视频文件的元数据信息                                                                                       |
 | signature         | string    | 回调验证签名，用户端程序可以通过校验签名，判断回调通知的合法性                                               |
 | timestamp         | integer   | 服务器回调此信息时的时间戳                                                                                   |
 
@@ -233,10 +233,13 @@ curl http://p0.api.upyun.com/result?bucket_name=demo&task_ids=35f0148d414a688a27
 |-------------------|-----------|-----------------------------------------------------------------------------------|
 | type              | string    | 音视频处理类型。不同的处理任务对应不同的 type，详见下方各处理任务说明                  |
 | save_as           | string    | 输出文件保存路径（同一个空间下），如果没有指定，系统自动生成在同空间同目录下      |
-| return_info       | boolean   | 是否返回 JSON 格式元数据，默认 false。支持 type 值为 video 功能                   |
+| return_info       | boolean   | 是否返回 JSON 格式元数据，默认 false                                             |
 | avopts            | string    | 音视频处理参数, 格式为 `/key/value/key/value/...`                                    |
 
-> 特别的， 在 `avopts` 中使用 0 表示布尔值的 `false`, 1 表示布尔值的 `true`。以下如无特殊情况不做再次申明。
+
+> 在 `avopts` 中使用 0 表示布尔值的 `false`, 1 表示布尔值的 `true`。以下如无特殊情况不做再次申明。
+
+> 关于 `save_as` 参数，需要注意几点，在 **HLS 切片** 任务中，该参数必须以 .m3u8 结尾；在 **视频截图** 任务中，处理多张截图时，输出图片文件名会根据该参数进行推算，例如，`save_as` 为 `/path/to/img.png`，则输出文件名分别为 `/path/to/img1.png`，`/path/to/img2.png`，以此类推；当没有指定输出格式的情况下，`save_as` 的后缀名会决定输出格式。
 
 
 ### 视频转码
