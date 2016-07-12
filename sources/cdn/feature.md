@@ -592,4 +592,4 @@ rewrite 规则                                                       | 含义
   
   Rewrite规则   |  URL提取正则
   :--------------------                                              | :-------
-`$WHEN($1)$REDIRECT(https://$_HOST$_URI,302)`|`\.(js|css)$`
+`$WHEN($1, $EQ($_SCHEME, http))$REDIRECT(https://$_HOST$_URI,302)`|`\.(js|css)$`
