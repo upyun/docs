@@ -415,7 +415,7 @@ PHPWind 头像存储还需要另外安装插件设置；具体参考安装手册
 您好，REST API的使用以及 JAVA SDK的使用您可以参考:[REST API和 JAVA SDK的使用](https://techs.b0.upaiyun.com/videos/cdnpage/http_rest_api_and_javasdk.html)
 
 
-** 看你们官网的 API 中的Demo用的是CURL,这个工具要怎么使用？**
+** 看你们官网的 API 中的Demo用的是 CURL ,这个工具要怎么使用？**
 
 您好，您可以参考[使用 CURL 调试 HTTP REST API](https://techs.b0.upaiyun.com/videos/cdnpage/curl_http_rest_api.html)视频教程学习。
 
