@@ -435,6 +435,9 @@ PHPWind 头像存储还需要另外安装插件设置；具体参考安装手册
 
 有的，您可以参考:[Python SDK使用教程](https://techs.b0.upaiyun.com/videos/cdnpage/Python_Sdk.html)
 
+** 又拍云除了 FTP 工具上传文件之外，还有其他工具上传吗？**
+
+您好，又拍云除了 FTP 工具外还有又拍云资源管理器，您可参考[如何使用又拍云资源管理器](https://techs.b0.upaiyun.com/videos/cdnpage/upyun_manager.html)
 
 
 
