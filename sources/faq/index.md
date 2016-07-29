@@ -366,3 +366,82 @@ PHPWind 头像存储还需要另外安装插件设置；具体参考安装手册
  可能原因:
 
  这种情况一般是开启了镜像功能导致源站文件被永久保存在了 CDN 中，此时的自助源站已经是一个存储服务，如果误操作，先 FTP 登录到这个服务中删除文件，然后关闭镜像功能后全网刷新。
+
+
+## 视频教程
+
+** 请问怎么使用你们的云存储，怎么通过 FTP 上传文件并且访问呢? **
+
+您也可以点击这里:[创建和使用又拍云存储视频教程](https://techs.b0.upaiyun.com/videos/cdnpage/create_cdn_and_use_storage_services.html)，观看视频教程学习。
+
+**  我自己有服务器，独立的 IP 和 OS，现在希望使用动态加速并提升访问速度，如果实现？**
+
+您可以点击这里:[如何设置自主源站和缓存视频教程](https://techs.b0.upaiyun.com/videos/cdnpage/create_dynamic_cdn_and_cache_setting.html)，观看视频教程学习。
+
+** 我希望将我上传的图片处理成不同格式和大小的多张图片并且加上水印，在又拍云上要怎么实现？**
+
+您可以点击这里:[创建和使用缩略图版本](https://techs.b0.upaiyun.com/videos/cdnpage/Picture_processing.html)，观看视频教程学习。
+
+** 如何设置 SSL 证书，让网站全站通过 HTTPS 协议进行访问 ？**
+
+您可以点击这里:[设置 SSL 证书](https://techs.b0.upaiyun.com/videos/cdnpage/ssl_setting.html)，观看视频教程学习。
+
+** 新上传的文件或者更新过的文件以及缩略图版本 总是访问的是老的文件，如何解决这个问题 **
+
+您可以点击这里:[缓存刷新教程](https://techs.b0.upaiyun.com/videos/cdnpage/chache_Refresh.html)，观看视频教程学习。
+
+** 我使用 Discuz 把文件上传到又拍云，你们有相关的插件吗？ **
+
+您可以点击这里:[设置 Discuz 插件](https://techs.b0.upaiyun.com/videos/cdnpage/Discuz.html)，观看视频教程学习。
+
+** 我希望将一部分域名加入白名单，并且禁止一些访问频率较高的 IP 地址？如何实现这个需求？**
+
+您可以点击这里:[防盗链设置](https://techs.b0.upaiyun.com/videos/cdnpage/Denyurl.html)，观看视频教程学习。
+
+** 我使用的是 WordPress 你们有相关插件吗？ **
+
+有的，您可以点击这里:[设置 WordPress 插件](https://techs.b0.upaiyun.com/videos/cdnpage/wordpress.html)，观看视频教程学习使用。
+
+** 融合云是什么？我要如何使用？**
+
+您好，了解融合云以及如何使用，您可以点击这里:[融合云使用配置教程](https://techs.b0.upaiyun.com/videos/cdnpage/upyun_oss.html)，观看教程学习。
+
+** 我觉得创建缩略图版本太麻烦，不够灵活，你们还有其他图片处理的功能吗？**
+
+您好，您还可以使用 URL 动态做图，具体使用可以参考:[使用 URL 动态做图](https://techs.b0.upaiyun.com/videos/cdnpage/Dynamic_mapping.html)
+
+** 你们的 REST API 怎么使用啊？我用的是 JAVA，如何实现？**
+
+您好，REST API的使用以及 JAVA SDK的使用您可以参考:[REST API和 JAVA SDK的使用](https://techs.b0.upaiyun.com/videos/cdnpage/http_rest_api_and_javasdk.html)
+
+
+** 看你们官网的 API 中的Demo用的是CURL,这个工具要怎么使用？**
+
+您好，您可以参考[使用 CURL 调试 HTTP REST API](https://techs.b0.upaiyun.com/videos/cdnpage/curl_http_rest_api.html)视频教程学习。
+
+** 音视频SDK有使用教程吗？**
+
+有的，您可以参考:[音视频处理SDK的使用](https://techs.b0.upaiyun.com/videos/cdnpage/av-pretreatment-php-sdk.html)
+
+** 我使用七牛或者阿里云的存储，现在想把资源迁移到又拍云，我要如何操作？**
+
+您可以参考:[七牛阿里云镜像使用](https://techs.b0.upaiyun.com/videos/cdnpage/qiuniuoraliossmirror.html)
+
+** 我想配置跨域，你们有相关视频教程吗？**
+
+跨域配置相关您可以参考:[ CORS 跨域设置](https://techs.b0.upaiyun.com/videos/cdnpage/CORS.html)
+
+** Python SDK 有视频教程吗？**
+
+有的，您可以参考:[Python SDK使用教程](https://techs.b0.upaiyun.com/videos/cdnpage/Python_Sdk.html)
+
+
+
+
+
+
+
+
+
+
+
