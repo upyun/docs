@@ -438,6 +438,9 @@ PHPWind 头像存储还需要另外安装插件设置；具体参考安装手册
 ** 又拍云除了 FTP 工具上传文件之外，还有其他工具上传吗？**
 
 您好，又拍云除了 FTP 工具外还有又拍云资源管理器，您可参考[如何使用又拍云资源管理器](https://techs.b0.upaiyun.com/videos/cdnpage/upyun_manager.html)
+** 如何使用又拍云的直播服务？ **
+
+您好，又拍云直播分为又拍云源站和自主源站两种方式，关于又拍云源站模式的配置您可以参考[如何创建和使用又拍云源的直播服务](https://techs.b0.upaiyun.com/videos/cdnpage/upyunzb1.html)，关于自主源站模式的配置您可以参考[如何创建自主源站模式的直播服务](https://techs.b0.upaiyun.com/videos/cdnpage/upyunzzzb.html)
 
 
 
