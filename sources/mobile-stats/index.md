@@ -1,6 +1,6 @@
 ## 概述
 
-本文档适用于阅读者了解如何接入又拍云流量分发平台，以达到第三方企业应用平台与本平台实现数据交互的目的。主要面对双方（又拍云流量分发平台与企业应用）的数据交互模式、约定、实现方式以及对接口的功能、报文格式以及使用场景进行详细的描述。
+本文档适用于阅读者了解如何接入又拍云手机流量平台，以达到第三方企业应用平台与本平台实现数据交互的目的。主要面对双方（又拍云手机流量平台与企业应用）的数据交互模式、约定、实现方式以及对接口的功能、报文格式以及使用场景进行详细的描述。
 
 ## 使用说明
 
@@ -21,18 +21,18 @@
 
 **接口概述:**
 
-又拍云流量分发平台所有的参数传递都是通过标准的JSON格式提交,所有的请求响应都是通过JSON格式返回。
+又拍云手机流量平台所有的参数传递都是通过标准的JSON格式提交,所有的请求响应都是通过JSON格式返回。
 
-又拍云流量分发平台需要与企业应用系统进行信息交换与同步，下图为本API提供的接口方法:
+又拍云手机流量平台需要与企业应用系统进行信息交换与同步，下图为本API提供的接口方法:
 
 
 |接口名称 |对应方法 |对应方向 |接口描述 |
 |-|-|-|-|
 |获取Token |getToken	企业 -> |流量平台	|获取Token（后面接口需要） |
-|下订单 |createOrder |企业 -> 又拍云 |提交流量订单 |
-|查询订单 |getOrderStatus |企业 -> 又拍云	|查询订单的充值状态 |
-|充值状态回调 |- |	又拍云 -> 企业 |	又拍云流量充值平台将订单充值结果返回给企业的应用系统 |
-|号码归属地查询 |getMobileInfo |企业 -> 又拍云 |手机号信息（运营商、归属地） |
+|下订单 |createOrder |企业 -> 流量营销 |提交流量订单 |
+|查询订单 |getOrderStatus |企业 -> 流量营销	|查询订单的充值状态 |
+|充值状态回调 |- |	流量营销 -> 企业 |	又拍云手机流量充值平台将订单充值结果返回给企业的应用系统 |
+|号码归属地查询 |getMobileInfo |企业 -> 流量营销 |手机号信息（运营商、归属地） |
 
 ## 基础接口
 
@@ -49,8 +49,8 @@ header |Content-Type为`application/json`
 
 |Label |Description |Type |Required
 -|-|-|-
-appkey |鉴权账号，由又拍云流量分发平台提供 |`string` |`true`
-appsecret |鉴权密钥，由又拍云流量分发平台提供 |`string` |`true`
+appkey |鉴权账号，由又拍云手机流量平台提供 |`string` |`true`
+appsecret |鉴权密钥，由又拍云手机流量平台提供 |`string` |`true`
 
 
 返回：
@@ -89,7 +89,7 @@ header |Content-Type为`application/json`
 
 |Label |Description |Type |Required
 -|-|-|-
-appkey |鉴权账号，由又拍云流量分发平台提供 |`string` |`true`
+appkey |鉴权账号，由又拍云手机流量平台提供 |`string` |`true`
 phone |需要申请流量包的手机号码，一次只允许一个手机号码，需要进行AES(AES/CBC/PKCS5Padding)加密,加密后的结果通过base64做转码传递，加密的密钥是最新获取的token,加密向量为当前账户的appkey, ([示例程序下载](http://up-static.b0.upaiyun.com/phone-traffic/AESCryptSample.zip)) |`string` |`true`
 pcode |流量包的ID，目前只支持每次一个流量包 |`string` |`true`
 extno |客户自定义的订单号，长度小于30，保证每次唯一	 |`string` |`true`
@@ -111,7 +111,7 @@ pstandard |用于区分网络类型,2g/3g/4g通用套餐为7,2g/3g通用套餐�
 
 描述:
 
-下单接口，企业客户发起流量包订购请求，又拍云流量分发平台完成合法性校验之后，并向运营商发送下单请求，同步返回下单结果。
+下单接口，企业客户发起流量包订购请求，又拍云手机流量平台完成合法性校验之后，并向运营商发送下单请求，同步返回下单结果。
 
 sign签名算法说明：
 
@@ -165,7 +165,7 @@ sign |签名串，签名规则为"code"字符串拼接实际的code值,加上"ex
 
 描述:
 
-  又拍云流量分发平台将运营商的订单充值结果异步返回给客户，客户接收后返回json格式的{'info':'1'}给流量平台以确认接收到回调,如果又拍云流量分发平台平台没有接收到正确格式的确认信息，会每隔1分钟再次回调给客户，最多重新回调3次
+  又拍云手机流量平台将运营商的订单充值结果异步返回给客户，客户接收后返回json格式的{'info':'1'}给流量平台以确认接收到回调,如果又拍云手机流量平台没有接收到正确格式的确认信息，会每隔1分钟再次回调给客户，最多重新回调3次
 
 备注:
 
@@ -191,7 +191,7 @@ info |返回说明信息 |`string` |`true`
 sign |签名串，签名规则为"code"字符串拼接实际的code值,加上"extno"字符串拼接实际的extno值,加上"info"字符串拼接实际的info值,加上"orderno"字符串拼接实际的orderno值, 最后拼接"TOKEN"(大写)串和实际的token值然后将拼接后的字符串进行sha1签名,实例可参考 ([示例程序下载](http://up-static.b0.upaiyun.com/phone-traffic/AESCryptSample.zip)) |`string` |`true`
 
 extno |客户提交的订单流水号 |`string` |`true`
-appkey |鉴权账号，由又拍云流量分发平台提供 |`string` |`true`
+appkey |鉴权账号，由又拍云手机流量平台提供 |`string` |`true`
 sign |签名串，签名规则为"appkey"字符串拼接实际的appkey值,加上"extno"字符串拼接实际的extno值,如果传了ordertime,请加上"ordertime"拼接ordertime的值,如果没有传则无需处理,最后拼接"TOKEN"(大写)串和实际的token值,然后将拼接后的字符串进行sha1签名,实例可参考 ([示例程序下载](http://up-static.b0.upaiyun.com/phone-traffic/AESCryptSample.zip)) |`string` |`true`
 ordertime |该订单创建时间。该参数为可选参数,格式为"YYYY-MM-DD HH:mm:ss",为保证有效性,我们会在给定orderTime前后1个小时范围内查询;如果未传该参数,我们将在最近一周的订单中为你查询	 |`string` |`true`
 
@@ -257,7 +257,7 @@ header |Content-Type为`application/json`
 
 |Label |Description |Type |Required
 -|-|-|-
-appkey |鉴权账号，由又拍云流量分发平台提供 |`string` |`true`
+appkey |鉴权账号，由又拍云手机流量平台提供 |`string` |`true`
 sign |签名串，签名规则为"appkey"字符串拼接实际的appkey值,再拼接"TOKEN"(大写)串和实际的token值,然后将拼接后的字符串进行sha1签名,实例可参考 ([示例程序下载](http://up-static.b0.upaiyun.com/phone-traffic/AESCryptSample.zip))  |`string` |`true`
 
 返回：
