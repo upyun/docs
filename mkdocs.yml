@@ -34,6 +34,8 @@ pages:
     - '资源下载': 'download/index.md'
 - '常见问题':
     - '常见问题': 'faq/index.md'
+- '拇指流量':
+    - '拇指流量API 概览': 'mobile-stats/index.md'
 
 # Add permalink for sharing
 markdown_extensions:
