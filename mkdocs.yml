@@ -24,7 +24,6 @@ pages:
     - 'API 错误码表': 'api/errno.md'
     - '图片处理参数（旧）': 'api/old_thumb.md'
     - '视频处理（旧）': 'api/av_pretreatment.md'
-    - '移动流量API': 'mobile-stats/index.md'
 - '云处理文档':
     - '云处理概述': 'cloud/index.md'
     - '图片处理': 'cloud/image.md'
