@@ -14,7 +14,6 @@ pages:
 - 'CDN 文档':
     - '文件加速': 'cdn/index.md'
     - '高级特性': 'cdn/feature.md'
-    - '直播加速': 'cdn/live.md'
 - 'API 文档':
     - 'API 概览': 'api/index.md'
     - 'HTTP REST API': 'api/rest_api.md'
