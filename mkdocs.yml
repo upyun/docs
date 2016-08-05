@@ -12,7 +12,7 @@ pages:
     - '开发者指南': 'guide/index.md'
     - 'REST API 简易指南(PHP)': 'guide/php_rest_guide.md'
 - 'CDN 文档':
-    - '文件加速': 'cdn/index.md'
+    - '基础特性': 'cdn/index.md'
     - '高级特性': 'cdn/feature.md'
 - 'API 文档':
     - 'API 概览': 'api/index.md'
