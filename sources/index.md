@@ -5,17 +5,6 @@
     <button type="submit" class="search-btn">搜索文档</button>
 </form>
 <div class="minecraft clearfix">
-    <div class="section section-guide">
-        <i class="upicon upicon-guide"></i>
-        <h3>开发指南</h3>
-        <h4>Developer Guide</h4>
-        <ul class="list-unstyled">
-            <li><a href="/guide/#_1">基本概念</a></li>
-            <li><a href="/guide/#_8">服务方式</a></li>
-            <li><a href="/guide/php_rest_guide/">REST API 指南（PHP）</a></li>
-            <li><a href="/guide/">查看更多</a></li>
-        </ul>
-    </div>
     <div class="section section-api">
         <i class="upicon upicon-api"></i>
         <h3>CDN 文档</h3>
@@ -25,6 +14,17 @@
             <li><a href="/cdn/">CDN 基础配置</a></li>
             <li><a href="/cdn/feature/">CDN 高级特性</a></li>
             <li><a href="/cdn/">查看更多</a></li>
+        </ul>
+    </div>
+    <div class="section section-api">
+        <i class="upicon upicon-api"></i>
+        <h3>直播文档</h3>
+        <h4>Live Documents</h4>
+        <ul class="list-unstyled">
+            <li><a href="/live/#_3">直播基础配置</a></li>
+            <li><a href="/live/#_10">直播增值服务</a></li>
+            <li><a href="/live/#ios-sdk_1">IOS 推流 SDK</a></li>
+            <li><a href="/live/">查看更多</a></li>
         </ul>
     </div>
     <div class="section section-api">
