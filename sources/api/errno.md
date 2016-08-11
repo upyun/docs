@@ -8,7 +8,7 @@ API 请求失败时，服务器会返回一个 json 格式的响应体用于定�
 
 * `code`: 错误码。具体含义请见 [API 错误码表](#api)
 * `msg`: 对错误的简单描述。
-* `id`: UPYUN 为该请求生成的唯一 id。
+* `id`: 又拍云为该请求生成的唯一 id。
 
 ## API 错误码表
 
@@ -60,7 +60,7 @@ API 请求失败时，服务器会返回一个 json 格式的响应体用于定�
 | 400 |  40000009 | decode policy error    |
 | 400 |  40000010 | data too long for ext-param    |
 | 400 |  40000011 | chunked request bodies not supported yet    |
-| 400 |  40000012 | wite file to fs error    |
+| 400 |  40000012 | write file to fs error    |
 | 400 |  40000013 | need content-md5 but no body provided    |
 | 400 |  40000014 | need content-md5 but no content provided    |
 | 400 |  40000015 | missing required arguments |
@@ -80,6 +80,10 @@ API 请求失败时，服务器会返回一个 json 格式的响应体用于定�
 | 400 |  40000029 | save-key encoding should be utf8 |
 | 400 |  40000030 | path encoding should be utf8 |
 | 400 |  40000031 | filename should be utf8 |
+| 400 |  40000032 | ffmpeg args error |
+| 400 |  40000033 | failed to read firstchunk |
+| 400 |  40000034 | client error |
+| 400 |  40000035 | need purge body |
 | 401 |  40100001 | need date header    |
 | 401 |  40100002 | date offset error    |
 | 401 |  40100003 | unknown realm in authorization header    |
@@ -96,6 +100,7 @@ API 请求失败时，服务器会返回一个 json 格式的响应体用于定�
 | 401 |  40100014 | bucket removed    |
 | 401 |  40100015 | bucket read only    |
 | 401 |  40100016 | invalid date value in header    |
+| 401 |  40100017 | user need permission  |
 | 403 |  40300001 | file name contains invalid chars (\r\n\t)    |
 | 403 |  40300002 | file path too long    |
 | 403 |  40300003 | file name too long    |
@@ -124,12 +129,14 @@ API 请求失败时，服务器会返回一个 json 格式的响应体用于定�
 | 403 |  40300026 | need content-length header |
 | 403 |  40300027 | request body too big |
 | 403 |  40300028 | request has expired |
+| 403 |  40300029 | purge too much items |
 | 404 |  40400001 | file or directory not found    |
 | 406 |  40600001 | dir not acceptable    |
 | 406 |  40600002 | folder already exists    |
 | 408 |  40800001 | read client request timeout |
 | 415 |  41500001 | media type error, need content-type    |
 | 429 |  42900001 | too many requests    |
+| 429 |  42900002 | too many requests of the same uri    |
 | 503 |  50300000 | unknown error    |
 | 503 |  50300001 | write hub failed    |
 | 503 |  50300002 | decode error    |

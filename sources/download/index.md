@@ -2,6 +2,22 @@
 
 <ul class="list-unstyled list-inline clearfix">
     <li>
+        <strong>iOS SDK</strong>
+        <div class="links">
+            <a href="https://github.com/upyun/ios-sdk" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
+            <a href="https://github.com/upyun/ios-sdk/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
+        </div>
+    </li>
+
+    <li>
+        <strong>Android SDK</strong>
+        <div class="links">
+            <a href="https://github.com/upyun/android-sdk" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
+            <a href="https://github.com/upyun/android-sdk/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
+        </div>
+    </li>
+
+    <li>
         <strong>PHP SDK</strong>
         <div class="links">
             <a href="https://github.com/upyun/php-sdk" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
@@ -18,8 +34,8 @@
     <li>
         <strong>Node.js SDK</strong>
         <div class="links">
-            <a href="https://github.com/upyun/node-upyun" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
-            <a href="https://github.com/upyun/node-upyun/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
+            <a href="https://github.com/upyun/node-sdk" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
+            <a href="https://github.com/upyun/node-sdk/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
         </div>
     </li>
     <li>
@@ -76,32 +92,10 @@
     </li>
 
     <li>
-        <strong>iOS 表单 API SDK</strong>
-       <div class="links">
-            <a href="https://github.com/upyun/ios-form-sdk" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
-            <a href="https://github.com/upyun/ios-form-sdk/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
-       </div>
-    </li>
-
-    <li>
         <strong>分块上传 PHP SDK</strong>
         <div class="links">
             <a href="https://github.com/upyun/multipart-upload-php-sdk" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
             <a href="https://github.com/upyun/multipart-upload-php-sdk/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
-        </div>
-    </li>
-    <li>
-        <strong>分块上传 Android SDK</strong>
-        <div class="links">
-            <a href="https://github.com/upyun/multipart-upload-android-sdk" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
-            <a href="https://github.com/upyun/multipart-upload-android-sdk/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
-        </div>
-    </li>
-    <li>
-        <strong>分块上传 iOS SDK</strong>
-        <div class="links">
-            <a href="https://github.com/upyun/multipart-upload-ios-sdk" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
-            <a href="https://github.com/upyun/multipart-upload-ios-sdk/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
         </div>
     </li>
     <li>
@@ -145,18 +139,52 @@
     </li>
 
     <li>
-        <strong>Java 生成 token</strong>
+        <strong>多语言生成 token 例子</strong>
         <div class="links">
-            <a href="https://github.com/upyun/java-token" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
-            <a href="https://github.com/upyun/java-token/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
+            <a href="https://github.com/upyun/token-examples" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
+            <a href="https://github.com/upyun/token-examples/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
+        </div>
+    </li>
+</ul>
+
+<h2 id="third-party">直播 SDK </h2>
+<ul class="list-unstyled list-inline clearfix">
+    <li>
+        <strong> Andriod 流媒体播放器</strong>
+        <div class="links">
+            <a href="https://github.com/upyun/android-player-sdk" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
+        </div>
+    </li>
+    <li>
+        <strong> Andriod 推流 SDK </strong>
+        <div class="links">
+            <a href="https://github.com/upyun/android-push-sdk" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
         </div>
     </li>
 
     <li>
-        <strong>JS 生成 token</strong>
+        <strong> iOS 推拉流 SDK </strong>
         <div class="links">
-            <a href="https://github.com/upyun/js-token" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
-            <a href="https://github.com/upyun/js-token/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
+            <a href="https://github.com/upyun/ios-live-sdk" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
+        </div>
+    </li>
+</ul>
+
+<h2 id="third-party">融合 SDK</h2>
+<ul class="list-unstyled list-inline clearfix">
+    <li>
+        <strong>iOS Fusion SDK</strong>
+        <div class="links">
+            <a href="https://github.com/upyun/ios-fusion-sdk" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
+            <a href="https://github.com/upyun/ios-fusion-sdk/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
+        </div>
+    </li>
+
+    <li>
+        <strong>Android Fusion SDK</strong>
+        <div class="links">
+            <a href="https://github.com/upyun/android-fusion-sdk" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
+            <a href="https://github.com/upyun/android-fusion-sdk/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
         </div>
     </li>
 </ul>
@@ -185,7 +213,7 @@
         </div>
     </li>
     <li>
-        <strong>umeditor</strong>
+        <strong>UMeditor</strong>
         <div class="links">
             <a href="https://github.com/upyun/umeditor-for-UPYUN" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
             <a href="https://github.com/upyun/umeditor-for-UPYUN/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
@@ -193,39 +221,59 @@
     </li>
 </ul>
 
-
 <h2 id="third-party">第三方 SDK</h2>
 <ul class="list-unstyled list-inline clearfix">
     <li>
-        <strong>co-upyun</strong>
+        <strong>co-upyun - @lisposter</strong>
         <div class="links">
             <a href="https://github.com/lisposter/co-upyun" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
-            <a href="https://github.com/lisposter/co-upyun/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
         </div>
     </li>
     <li>
-        <strong>ez-upyun</strong>
+        <strong>ez-upyun - @XadillaX</strong>
         <div class="links">
             <a href="https://github.com/XadillaX/ez-upyun" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
-            <a href="https://github.com/XadillaX/ez-upyun/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
+        </div>
+    </li>
+
+    <li>
+        <strong>paperclip-upyun - @jhw</strong>
+        <div class="links">
+            <a href="https://github.com/jhw-dev/paperclip-upyun" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
         </div>
     </li>
 </ul>
 
-<h2 id="third-party">第三方插件</h2>
+<h2 id="third-party">第三方插件和工具</h2>
 <ul class="list-unstyled list-inline clearfix">
     <li>
         <strong>WordPress</strong>
         <div class="links">
-            <a href="https://gitcafe.com/ihacklog/Wordpress-plugin-for-UPYUN" class="btn btn-xs" target="_blank"><i class="fa fa-question-circle"></i>查看</a>
+            <a href="https://github.com/monkey-wenjun/upyun_plugins" class="btn btn-xs" target="_blank"><i class="fa fa-question-circle"></i>查看</a>
         </div>
     </li>
 
     <li>
-        <strong>又拍云资源管理器（GUI）</strong>
+        <strong>又拍云资源管理器</strong>
         <div class="links">
             <a href="https://github.com/layerssss/manager-for-upyun" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
             <a href="https://github.com/layerssss/manager-for-upyun#%E4%B8%8B%E8%BD%BD" target="_blank" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
         </div>
     </li>
+
+    <li>
+        <strong>又拍云命令行工具</strong>
+        <div class="links">
+            <a href="https://github.com/polym/upx" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
+        </div>
+    </li>
+
+    <li>
+        <strong>又拍云常用脚本</strong>
+        <div class="links">
+            <a href="https://github.com/monkey-wenjun/upyun-sdk-script" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
+        </div>
+    </li>
 </ul>
+</ul>
+

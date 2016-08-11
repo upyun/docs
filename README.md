@@ -1,4 +1,4 @@
-# 又拍云文档中心
+# UPYUN 文档中心
 
 又拍云的文档中心基于 [MkDocs](http://mkdocs.org/) 制作。所有文档的源文件全部位于 `sources/` 目录下，并都为 Markdown 格式。
 
@@ -14,11 +14,8 @@
 1\. 安装所需的 MkDocs
 
 ```
-$ pip install 'mkdocs==0.9'
+$ pip install 'mkdocs'
 ```
-
-> *注意*
-> 因为 0.10 以上版本的 mkdocs，修改了相对路径的生成策略，暂时请用 0.9 版本
 
 2\. 进入本项目仓库根目录，并执行 `mkdocs serve`
 

@@ -1,9 +1,10 @@
-使用 REST API，您可以使用任何方式发送 HTTP 请求与 UPYUN 服务器通信。因此，你可以使用任何编程语言来使用 REST API。
+使用 REST API，您可以使用任何方式发送 HTTP 请求与又拍云服务器通信。因此，你可以使用任何编程语言来使用 REST API。
 
 REST API 支持 HTTP 和 HTTPS 协议，您可以选择最优的方式提交请求。
 
 > **注：**
-> 文中所有 `<>` 标注的字段，均需根据你的实际情况替换（无需 `<>` 符号，仅作标注之用）
+> - 文中所有 `<>` 标注的字段，均需根据你的实际情况替换（无需 `<>` 符号，仅作标注之用）
+> - 文中请求参数若无特殊说明，均表示通过 HTTP 请求头以 `key: value` 的形式传递
 
 ## API 基本域名
 
@@ -13,7 +14,7 @@ v1.api.upyun.com //电信线路
 v2.api.upyun.com //联通（网通）线路
 v3.api.upyun.com //移动（铁通）线路
 ```
-根据实际情况任选其一
+根据实际情况任选其一,默认推荐客户使用`v0.api.upyun.com`
 
 ## 请求方法
 
@@ -21,7 +22,7 @@ v3.api.upyun.com //移动（铁通）线路
 curl -X GET \
     http://v0.api.upyun.com/<bucket>/<path> \
     -H "Authorization: <your_authorization>" \
-    -H "Date: Wed, 29 Oct 2014 02:26:58 GMT" \
+    -H "Date: <Wed, 29 Oct 2014 02:26:58 GMT>" \
     -H "Content-Length: <content_length>"
     # 其他可选参数...
 
@@ -31,11 +32,13 @@ curl -X GET \
 >
 > * `Authorization`, `Date` 这两个参数是必须的
 > * `Authorization` 用于认证授权
-> * `Content-Length` 在 `PUT`、`POST` 请求中必须设置, UPYUN 不支持 chunked 形式上传。
+> * `Content-Length` 在 `PUT`、`POST` 请求中必须设置，又拍云不支持 chunked 形式上传。
 > * `Date` 为[格林尼治标准时间](http://zh.wikipedia.org/wiki/%E6%A0%BC%E6%9E%97%E5%B0%BC%E6%B2%BB%E5%B9%B3%E6%97%B6)（GMT 格式）
 
 
 ## 认证授权
+
+又拍云支持 HTTP 基本认证与签名认证两种认证授权方式。请根据需要任选其一。
 
 ### HTTP 基本认证
 REST API 支持 [HTTP 基本认证](http://zh.wikipedia.org/wiki/HTTP%E5%9F%BA%E6%9C%AC%E8%AE%A4%E8%AF%81)，其中认证所用的用户名即为已授权给你需要操作的空间的某个操作员名，认证口令为该操作员的密码。
@@ -47,7 +50,7 @@ curl -u http://v0.api.upyun.com/<bucket>
 
 ```sh
 curl -X GET \
-    http://v0.api.upyun.com/<bucket> \
+    http://v0.api.upyun.com/<bucket>\
     -H "Authorization: Basic b3BlcmF0b3I6cGFzc3dvcmQ="
 ```
 
@@ -74,7 +77,9 @@ __签名（signature）算法__
 将 `PASSWORD` md5 之后（我们暂且将其记作 `PASSWORD_MD5`），上表所注的其他信息以 `&` 字符进行拼接（按表格从上至下的顺序）即（`METHOD&PATH&DATE&CONTENT-LENGTH&PASSWORD_MD5`），并将所得字符串进行 MD5 加密，即得我们所需的 签名（signature）
 
 > **注：**
-> 签名的有效期为 30 分钟。如果超过 30 分钟，则需重新生成签名。
+>
+> - 签名的有效期为 30 分钟。如果超过 30 分钟，则需重新生成签名。
+> - GET，DELETE 操作的 CONTENT_LENGTH 为 0。
 
 如：
 
@@ -87,14 +92,12 @@ Authorization: UpYun operator:03db45e2904663c5c9305a9c6ed62af3
 ```
 
 
-## API
+## 上传文件
 
-### 上传文件
-通过上传接口，可以将文件上传至 UPYUN 的空间，并且，在上传文件的同时，可以设置相关的参数，进行对文件的预处理。目前，上传接口的参数分为如下几部分：
+通过上传接口，可以将文件上传至又拍云的空间，并且，在上传文件的同时，可以设置相关的参数，进行对文件的预处理。目前，上传接口的参数分为如下几部分：
 
 * 通用上传参数
-* 图片预处理参数
-* 水印参数
+* 预处理参数
 
 > **注：** 参数都需以 HTTP Header Field 形式传递
 
@@ -109,98 +112,24 @@ PUT /<bucket>/path/to/file
 
 |      参数      | 必选 |   类型  |                                            说明                                           |
 |----------------|------|---------|-------------------------------------------------------------------------------------------|
-| Content-MD5    | 否   | String  | 所上传文件的 MD5 校验值，用于 UPYUN 服务端校验                                            |
+| Content-MD5    | 否   | String  | 所上传文件的 MD5 校验值，用于又拍云服务端校验                                            |
 | Content-Type   | 否   | String  | 默认使用文件扩展名判断文件类型，可自行设置，保证准确性                                    |
-| Content-Secret | 否   | String  | 对原图保护，若设置过该值，则无法直接访问原图，需要在原图 URL 的基础上加上密钥值才能访问   |
+| Content-Secret | 否   | String  | 文件密钥。若设置该值，则无法直接访问原文件，需要在原文件 URL 的基础上加上密钥值才能访问   |
+| X-Upyun-Meta-X | 否   | String  | 用于额外指定文件的元信息，详见 [metadata 参数](/api/rest_api/#metadata)                   |
 
 > **注：**
 >
-> * 设置 `Content-Secret` 密钥后，原图将被保护，不能被直接访问，只有缩略图是允许被直接访问的。
-> * 设置密钥后，若需访问原图，需要在 URL 后加上「缩略图间隔符号」和「访问密钥」（如： 当缩略图间隔符为 *`!`*，访问密钥为 *`secret`*，那么，原图访问方式即为： *`http://bucket.b0.upaiyun.com/sample.jpg!secret`*）
+> * 设置 `Content-Secret` 密钥后，原文件将被保护，不能被直接访问。如果原文件是一张图片，则加上 [作图参数](/cloud/image/#url) 或 [缩略图版本](/cloud/image/#_3) 之后的图片是可以访问的。
+> * 设置密钥后，若需访问原文件，需要在 URL 后加上「间隔标识符」和「访问密钥」（如： 当间隔符为 *`!`*，访问密钥为 *`secret`*，那么，原文件访问方式即为： *`http://bucket.b0.upaiyun.com/sample.jpg!secret`*）
+> * **间隔标识符** 用于分隔文件 URL 和文件参数。可登录又拍云管理平台选择 `!(英文感叹号)` 、 `-` 、 `_` 中的任意一种 ，本文档使用 `!` 作为示例间隔标识符。
+> * 密钥不能与 [缩略图版本](/cloud/image/#_3) 冲突。
+> * 删除或修改 `Content-Secret` 请见 [metadata 参数](/api/rest_api/#metadata)。
 
-#### 图片预处理参数
-当上传图片文件至空间时，除了通用的上传参数外，UPYUN 还提供了以下可选参数，用于对上传的图片进行预处理：
+#### 预处理参数
 
-| 参数                             | 说明                                                                                               |
-|----------------------------------|----------------------------------------------------------------------------------------------------|
-| `x-gmkerl-type`                  | 缩略类型（见下表「`x-gmkerl-type` 值可选列表」）                                                     |
-| `x-gmkerl-value`                 | 缩略类型对应的参数值，单位为像素，须搭配 `x-gmkerl-type` 使用（见下附注「`x-gmkerl-value` 的使用」） |
-| `x-gmkerl-quality `              | **默认 `95`** 图片质量，可选（1~100）                                                              |
-| `x-gmkerl-unsharp`               | **默认 `true`** 图片锐化                                                                           |
-| `x-gmkerl-thumbnail`             | 在 UPYUN 管理平台创建好缩略图版本该缩略方式包含了所需的缩略参数，参数更简洁，使用更方便            |
-| `x-gmkerl-exif-switch`           | **默认 `false` 即删除** 是否保留原图的 EXIF 信息                                                   |
-| `x-gmkerl-crop`                  | x,y,width,height(如：`0,0,100,200`)，(x,y)（见下附注「`x-gmkerl-crop` 的备注」）                   |
-| `x-gmkerl-rotate`                | 旋转角度，目前只允许设置：`auto`, `90`, `180`, `270`（见下附注「`x-gmkerl-rotate` 使用」）         |
+对于图片文件，加上 `x-gmkerl-thumb` 参数可以将上传图片进行预处理后的结果存储到又拍云。具体参数用法和说明请见 [上传作图](/cloud/image/#_2)。
 
-
-> **注：x-gmkerl-type 值可选列表**
->
-|           值           |                含义                |
-|------------------------|------------------------------------|
-| `fix_width`              | 限定宽度，高度自适应                |
-| `fix_height`             | 限定高度，宽度自适应                |
-| `fix_width_or_height`    | 限定宽度和高度，宽高不足时不缩放   |
-| `fix_both`               | 固定宽度和高度，宽高不足时强行缩放 |
-| `fix_max`                | 限定最长边，短边自适应              |
-| `fix_min`                | 限定最短边。长边自适应              |
-| `fix_scale`              | 等比例缩放（1-99）                  |
->
->**注：x-gmkerl-value 的使用**
->
-> * 若 `x-gmkerl-type` 指定为 `fix_width_or_height` 或 `fix_both`，则，`x-gmkerl-value` 值的格式为 `<width>x<height>`，如 `480x576`。
-> * 若 `x-gmkerl-type`  为其他的类型，则 `x-gmkerl-value` 只需指定单个数字，如 `42`，意为高宽同为 42。
-
->**注：x-gmkerl-crop 的备注**
->
-> * `(x, y)`左上角坐标；`width`：要裁剪的宽度；`height`：要裁剪的高度。 x >= 0 && y >=0 && width > 0 && height > 0 且必须是正整型。
-> * 裁剪参数`(x,y)`若大于原图大小，则将`(x,y)`重置为`(0,0)`进行裁剪。
-> * `width+x` 若大于原图的宽度，则只裁剪到原图的最大宽度为止，不进行空白画布填充。
-> * `heigth+y` 若大于原图的高度，则只裁剪到原图的最大高度为止，不进行空白画布填充。
-
->**注：x-gmkerl-rotate 的使用**
->
-> * 若参数设置为`auto`，则根据原图的 EXIF 信息进行旋转（旋转后将修改原图的 EXIF 信息）其他参数则进行强制旋转。
-> * 旋转失败时若参数为`auto`，则忽略错误进行保存操作；其他参数则直接返回错误信息。
-
-#### 水印参数
-在上传图片文件时，可以通过添加下面的参数进行添加文字水印的处理
-
-| 参数                             | 说明                                                                                               |
-|----------------------------------|----------------------------------------------------------------------------------------------------|
-| `x-gmkerl-watermark-text`        | 文字水印内容，必须经过 urlencode 处理                                                                                           |
-| `x-gmkerl-watermark-font`   | **默认 `simsun`** 文字水印字体，（见下表「`x-gmkerl-watermark-font` 值可选列表」）                                                                                       |
-| `x-gmkerl-watermark-size`   | **默认 `32`**；文字水印尺寸，取值必须为整数，单位像素                                                                                       |
-| `x-gmkerl-watermark-align`       | **默认 `top,left`** 水印对齐方式 （见下表「`x-gmkerl-watermark-align` 值的使用」） |
-| `x-gmkerl-watermark-margin`      | **默认 `20,20`** 水印边距，格式 `x,y`，既 `水平边距,垂直边距`（如 `20,20`），单位像素                                                                                           |
-| `x-gmkerl-watermark-opacity`     | **默认 `0`** 水印透明度，取值范围 0 ~ 100 的整数                                                                                        |
-| `x-gmkerl-watermark-color`  | **默认 `#000000`** 文字水印颜色， RGB值                                                                                       |
-| `x-gmkerl-watermark-border` | 文字水印边框，默认无边框，（见下附注「`x-gmkerl-watermark-border` 备注」）|
-
->**注：x-gmkerl-watermark-align 值的使用**
->
-> 格式 `valign,halign`，既 `垂直对齐,水平对齐`（如 `bottom,right`），可选值包括：
->
-> * 垂直对齐：`top`，`middle`，`bottom`
-> * 水平对齐：`left`，`center`，`right`
->
->
->**注：x-gmkerl-watermark-font 值可选列表**
->
-> 目前支持的中文字体包括：
->
-> * `simsun`：宋体
-> * `simhei`：黑体 (simhei)
-> * `simkai`：楷体 (simkai)
-> * `simli`：隶书 (simli)
-> * `simyou`：幼圆 (simyou)
-> * `simfang`：仿宋 (simfang)
->
->**注：x-gmkerl-watermark-border 值的使用**
->
-> 格式 `rgba`，既 `RGB值透明度`，如 `#cccccccc`
-
-
-**返回信息**
+#### 返回信息
 
 上传成功时返回 `200`；上传失败时返回相应的出错信息，具体请参阅「[API 错误码表](/api/errno/)」
 
@@ -215,7 +144,7 @@ PUT /<bucket>/path/to/file
 ```
 其中，`x-upyun-` 开头的头部信息即为所上传图片的相关信息。
 
-### 下载文件
+## 下载文件
 
 ```
 GET /<bucket>/path/to/file
@@ -226,7 +155,8 @@ GET /<bucket>/path/to/file
 1. 下载成功: 返回 `200`, HTTP body 中返回文件内容
 2. 下载失败: 返回相应的出错信息，具体请参阅「[API 错误码表](/api/errno/)」
 
-### 获取文件信息
+
+## 获取文件信息
 
 ```
 HEAD /<bucket>/path/to/file
@@ -244,11 +174,17 @@ HEAD /<bucket>/path/to/file
 
 2. 获取失败: 相应的出错信息，具体请参阅「[API 错误码表](/api/errno/)」
 
-### 删除文件
+
+## 删除文件
 
 ```
 DELETE /<bucket>/path/to/file
 ```
+
+|  参数  | 必选  | 说明 |
+| ------ | ----- | ----- |
+| x-upyun-async |  否   | `true` 表示进行异步删除，不设置表示同步删除（默认） |
+
 
 返回信息:
 
@@ -256,7 +192,13 @@ DELETE /<bucket>/path/to/file
 2. 删除失败: 返回相应的出错信息，具体请参阅「[API 错误码表](/api/errno/)」
 
 
-### 创建目录
+> **注：**
+>
+> - 同步删除会有频率限制，如果有大量删除操作请在请求头里加上 `x-upyun-async: true` 进行异步删除（无频率限制）。
+> - 异步删成功会返回 200。但文件删除操作会延期执行。
+
+
+## 创建目录
 
 ```
 POST /<bucket>/path/to/folder
@@ -272,7 +214,7 @@ POST /<bucket>/path/to/folder
 1. 创建成功: 返回 `200`
 2. 创建失败: 返回相应的出错信息，具体请参阅「[API 错误码表](/api/errno/)」
 
-### 删除目录
+## 删除目录
 
 ```
 DELETE /<bucket>/path/to/folder
@@ -286,29 +228,51 @@ DELETE /<bucket>/path/to/folder
 > **注：**
 > API 只允许删除空的目录，若非空，则需先删除里面的文件，否则将提示访问被拒绝
 
-### 获取目录文件列表
+
+## 获取目录文件列表
 
 ```
 GET /<bucket>/path/to/folder
 ```
 
+#### 分页参数
+
+如果目录中文件数量过多，可以加以下 HTTP 请求头进行分页获取：
+
+|      参数      | 必选 |   类型  |                                            说明                                           |
+|----------------|------|---------|-------------------------------------------------------------------------------------------|
+| X-List-Iter    | 否   | string  | 分页开始位置，由前一次请求的 `x-upyun-list-iter` 响应头返回                                |
+| X-List-Limit   | 否   | string  | 返回的文件数量                                    |
+| X-List-Order | 否   | string  | `asc` 或 `desc`，按时间升序或降序排列。默认 `asc`   |
+
+> **注：**
+>
+> * 第一次请求时不需要 `X-List-Iter` 参数。
+> * 一次请求的最大 `X-List-Limit` 值为 10000。
+
 返回信息:
 
-1. 获取成功: 返回 `200`。HTTP body 内容为各个文件的属性
+1. 获取成功: 返回 `200`。HTTP 头部的 `x-upyun-list-iter` 字段返回下一次分页开始的位置，HTTP body 内容为各个文件的属性。
 
 如:
 
 ```
+> HTTP/1.1 200 OK
+> x-upyun-list-iter: c2Rmc2Rsamdvc2pnb3dlam9pd2Vmd2Z3Zg==
 foo.jpg\tN\t4237\t1415096225\nbar\tF\t423404\t1415096260
 ```
 
 > **注：**
-> 文件/目录之间以`\n`分隔，属性之间以:「文件\t 类型\t 大小\t 最后修改时间」 顺序以`\t`分隔
-> 类型可选值: `N`(文件), `F`(目录)
+>
+> * 文件/目录之间以`\n`分隔，属性之间以:「文件\t 类型\t 大小\t 最后修改时间」 顺序以`\t`分隔。
+> * 类型可选值: `N`(文件), `F`(目录)。
+> * `x-upyun-list-iter` 为 `g2gCZAAEbmV4dGQAA2VvZg` 时表示**已经返回最后一个分页**，后面没有更多数据了。
+
 
 2. 获取失败: 返回相应的出错信息，具体请参阅「[API 错误码表](/api/errno/)」
 
-### 获取空间使用情况
+
+## 获取空间使用情况
 
 ```
 GET /<bucket>/?usage
@@ -318,3 +282,107 @@ GET /<bucket>/?usage
 
 1. 获取成功: 返回 `200`。HTTP body 内容为空间的使用量（单位为`Byte`）
 2. 获取失败: 返回相应的出错信息，具体请参阅「[API 错误码表](/api/errno/)」
+
+
+## metadata 信息
+
+在上传文件的时候，如果在请求头里带上以 `X-Upyun-Meta-` 开头的参数，那么该参数会被当作文件的元数据存储到又拍云。在通过 API GET 文件的时候，又拍云会在响应头里返回文件的所有元数据信息。
+
+例如：
+```
+curl -d 'abc' \
+    http://v0.api.upyun.com/<bucket>/abc.txt \
+    -H "Authorization: Basic b3BlcmF0b3I6cGFzc3dvcmQ=" \
+    -H "X-Upyun-Meta-Foo: Bar"
+```
+可以将 `X-Upyun-Meta-Foo: Bar` 这个元信息存储到又拍云。
+
+### 修改 metadata 信息
+
+```
+PATCH /<bucket>/path/to/file?metadata=<option>
+```
+返回信息:
+
+1. 修改成功：返回 `200`
+2. 修改失败：返回相应的出错信息，具体请参阅「[API 错误码表](/api/errno/)」
+
+其中，`option` 的取值如下：
+
+|option | 说明 |
+|----|-----|
+|merge（**默认**） |  合并文件元信息, 相同的元信息将被新上传的值替换 |
+|replace | 替换文件元信息为新上传的文件元信息 |
+|delete | 删除文件元信息 |
+
+以下为几个修改元信息的例子以及相应的说明：
+
+
+例 1：合并元信息
+
+```
+curl -d 'abc' http://v0.api.upyun.com/<bucket>/abc.txt -H "Authorization: Basic b3BlcmF0b3I6cGFzc3dvcmQ=" \
+    -H "X-Upyun-Meta-A: 1"
+curl -XPATCH http://v0.api.upyun.com/<bucket>/abc.txt?metadata=merge -H "Authorization: Basic b3BlcmF0b3I6cGFzc3dvcmQ=" \
+    -H "X-Upyun-Meta-A: 2" \
+    -H "X-Upyun-Meta-B: 3"
+```
+以上命令执行后，文件 abc.txt 的元信息为：
+```
+X-Upyun-Meta-A: 2
+X-Upyun-Meta-B: 3
+```
+
+
+例 2：替换元信息
+
+```
+curl -d 'abc' http://v0.api.upyun.com/<bucket>/abc.txt -H "Authorization: Basic b3BlcmF0b3I6cGFzc3dvcmQ=" \
+    -H "X-Upyun-Meta-A: 1" \
+    -H "X-Upyun-Meta-B: 2"
+curl -XPATCH http://v0.api.upyun.com/<bucket>/abc.txt?metadata=replace -H "Authorization: Basic b3BlcmF0b3I6cGFzc3dvcmQ=" \
+    -H "X-Upyun-Meta-A: 3" \
+    -H "X-Upyun-Meta-C: 4"
+```
+以上命令执行后，文件 abc.txt 的元信息为：
+```
+X-Upyun-Meta-A: 3
+X-Upyun-Meta-C: 4
+```
+
+
+例 3：删除元信息
+
+```
+curl -d 'abc' http://v0.api.upyun.com/<bucket>/abc.txt -H "Authorization: Basic b3BlcmF0b3I6cGFzc3dvcmQ=" \
+    -H "X-Upyun-Meta-A: 1" \
+    -H "X-Upyun-Meta-B: 2"
+curl -XPATCH http://v0.api.upyun.com/<bucket>/abc.txt?metadata=delete -H "Authorization: Basic b3BlcmF0b3I6cGFzc3dvcmQ=" \
+    -H "X-Upyun-Meta-A: true"
+```
+以上命令执行后，文件 abc.txt 的元信息为：
+```
+X-Upyun-Meta-B: 2
+```
+
+注 1：
+
+> 修改 metadata 默认不更新文件的 `Last-Modified`，如果要更新请在参数中指定 `update_last_modified=true`。如：
+
+```
+curl -XPATCH http://v0.api.upyun.com/<bucket>/abc.txt?metadata=replace&update_last_modified=true \
+    -H "Authorization: Basic b3BlcmF0b3I6cGFzc3dvcmQ=" \
+    -H "X-Upyun-Meta-A: 3" \
+    -H "X-Upyun-Meta-C: 4"
+```
+
+注 2：
+
+> `Content-Secret` 被存储为文件的 `X-Upyun-Meta-Secret` 元信息，如果要删除或修改请对 `X-Upyun-Meta-Secret` 进行操作。如：
+
+```
+curl -XPATCH http://v0.api.upyun.com/<bucket>/abc.txt?metadata=delete \
+    -H "Authorization: Basic b3BlcmF0b3I6cGFzc3dvcmQ=" \
+    -H "X-Upyun-Meta-Secret: true" \
+```
+

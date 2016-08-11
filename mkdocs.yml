@@ -1,60 +1,41 @@
 site_name: 又拍云文档中心
-site_url: http://docs.upyun.com/
-
+site_url: https://docs.upyun.com/
 repo_url: https://github.com/upyun/docs/
-
 docs_dir: sources
-
-
 theme_dir: theme/updocs
-theme_center_lead: false
-
-include_search: true
-
-copyright: Copyright &copy; 2015, 又拍云
-
-
+copyright: Copyright &copy; 2016, 又拍云
 
 pages:
 
-# Home
-
-- ['index.md', '文档首页', '又拍云文档中心']
-
-# Develop Guide
-
-- ['guide/index.md', '开发指南', '开发者指南']
-- ['guide/php_rest_guide.md', '开发指南', 'REST API 简易指南（PHP）']
-
-# CDN
-
-- ['cdn/index.md', 'CDN 文档', 'CDN 基础配置']
-- ['cdn/feature.md', 'CDN 文档', 'CDN 高级特性']
-
-# API
-
-- ['api/index.md', 'API 文档', 'API 概览']
-- ['api/rest_api.md', 'API 文档', 'HTTP REST API']
-- ['api/form_api.md', 'API 文档', 'HTTP FORM API']
-- ['api/purge.md', 'API 文档', '缓存刷新']
-- ['api/multipart_upload.md', 'API 文档', '分块上传']
-- ['api/av_pretreatment.md', 'API 文档', '视频处理']
-- ['api/errno.md', 'API 文档', 'API 错误码表']
-
-# Downloads
-
-- ['download/index.md', '资源下载', '资源下载']
-
-# FAQ
-
-- ['faq/index.md', '常见问题', '常见问题']
-
-
-# Misc **HIDDEN**
-
-- ['misc/discuz.md', '**HIDDEN**', 'Discuz']
-- ['misc/phpwind.md', '**HIDDEN**', 'PHPWind']
-- ['misc/ueditor.md', '**HIDDEN**', 'UEditor']
+- '文档首页': 'index.md'
+- '开发指南':
+    - '开发者指南': 'guide/index.md'
+    - 'REST API 简易指南(PHP)': 'guide/php_rest_guide.md'
+- 'CDN 文档':
+    - '基础特性': 'cdn/index.md'
+    - '高级特性': 'cdn/feature.md'
+- '直播文档':
+    - '直播文档': 'live/index.md'
+- 'API 文档':
+    - 'API 概览': 'api/index.md'
+    - 'HTTP REST API': 'api/rest_api.md'
+    - 'HTTP FORM API': 'api/form_api.md'
+    - '分块上传': 'api/multipart_upload.md'
+    - '缓存刷新': 'api/purge.md'
+    - 'API 错误码表': 'api/errno.md'
+    - '图片处理参数（旧）': 'api/old_thumb.md'
+    - '视频处理（旧）': 'api/av_pretreatment.md'
+- '云处理文档':
+    - '云处理概述': 'cloud/index.md'
+    - '图片处理': 'cloud/image.md'
+    - '异步音视频处理': 'cloud/av.md'
+    - '压缩解压缩': 'cloud/unzip.md'
+    - '异步文件拉取': 'cloud/spider.md'
+    - '附件': 'cloud/attachment.md'
+- '资源下载':
+    - '资源下载': 'download/index.md'
+- '常见问题':
+    - '常见问题': 'faq/index.md'
 
 # Add permalink for sharing
 markdown_extensions:
