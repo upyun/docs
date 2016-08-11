@@ -114,7 +114,7 @@ expire_ts：过期时间，超过过期时间将推流失败，必须是 UNIX TI
 推流 URL 为 rtmp://push.com/live/stream，  
 则 domain = push.com，  
 假设约定 secret = a1b2c3d4e53gxwb07，过期时间 expired_ts = 1465244082，  
-那么 token = MD5(push.com/live/stream1465244082a1b2c3d4e53gxwb07) = 01bba135ee88d6e4e9053ed716e938c3 ，注意 MD5 后计算出的 token 值是32位的，必须小写。  
+那么 token = MD5(push.com/live/stream1465244082a1b2c3d4e53gxwb07) = 01bba135ee88d6e4e9053ed716e938c3 ，注意 MD5 后计算出的 token 值是 32 位的，必须小写。  
 则 rtmp://push.com/live/stream?domain=push.com&token=01bba135ee88d6e4e9053ed716e938c3
 &expired_ts=1465244082， 推流在未超过 2016/6/7 4:14:43 之前均可以正常推流。  
 
