@@ -90,7 +90,7 @@ policy 生成步骤：
 >|------------|------------|
 >| bucket     | demobucket |
 >| expiration | 1409200758 |
->| save_key   | /img.jpg   |
+>| save-key   | /img.jpg   |
 >
 >第一步，将参数组转换为 JSON 字符串后：
 >

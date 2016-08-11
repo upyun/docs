@@ -14,6 +14,8 @@ pages:
 - 'CDN 文档':
     - '基础特性': 'cdn/index.md'
     - '高级特性': 'cdn/feature.md'
+- '直播文档':
+    - '直播文档': 'live/index.md'
 - 'API 文档':
     - 'API 概览': 'api/index.md'
     - 'HTTP REST API': 'api/rest_api.md'
