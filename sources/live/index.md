@@ -106,10 +106,10 @@ rtmp://push.com/live/stream?domain={domain}&token={token}&expired_ts={expired_ts
 token =  MD5(domain + expire_ts + secret)  
 ```
 参数说明：  
+secret：密钥，用户与又拍约定。  
 domain：域名，开启 token 防盗链的域名。  
 expire_ts：过期时间，超过过期时间将推流失败，必须是 UNIX TIME 格式，如 1465244082，表示 2016/6/7 4:14:43。  
-secret：密钥，用户与又拍约定。  
-
+  
 示例：  
 推流 URL 为 rtmp://push.com/live/stream，  
 则 domain = push.com，  
