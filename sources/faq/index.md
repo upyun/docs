@@ -453,12 +453,12 @@ PHPWind 头像存储还需要另外安装插件设置；具体参考安装手册
 
 ** 为什么的服务下删除文件提示550，提示权限有问题？ **
 
-这可能是由于您的操作员设置了不能删除文件的权限导致的，您可以参考:[设置阿里云安全组](https://techs.b0.upaiyun.com/videos/cdnpage/caozyunyuan.html)
+这可能是由于您的操作员设置了不能删除文件的权限导致的，您可以参考:[操作员权限设置](https://techs.b0.upaiyun.com/videos/cdnpage/caozyunyuan.html)
 
 
 ** 为什么感觉我的网站访问量并不是特别大，但是从你们的 CDN 上看每天都好几十个G？ **
 
-您好，如果网站访问流量异常，您可以通过日志分析查看热门 IP，并将 IP 添加到服务所在的 IP 黑名单，您可以参考:[设置阿里云安全组](https://techs.b0.upaiyun.com/videos/cdnpage/upyunlog.html)
+您好，如果网站访问流量异常，您可以通过日志分析查看热门 IP，并将 IP 添加到服务所在的 IP 黑名单，您可以参考:[日志分析和日志下载](https://techs.b0.upaiyun.com/videos/cdnpage/upyunlog.html)
 
 
 
