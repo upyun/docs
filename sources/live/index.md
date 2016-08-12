@@ -95,7 +95,7 @@
 开启该配置后，可通过 http://play.com/app/stream.m3u8 对 rtmp://push.com/app/stream 的推流进行播放。
 
 ### 推流防盗链 
-> 配置需提供密钥  
+> 配置需提供密钥    
 
 Token 防盗链可以对推流的请求进行校验，可设置 token 过期时间来控制推流的时限。  
 
@@ -106,7 +106,7 @@ rtmp://push.com/live/stream?domain={domain}&token={token}&expired_ts={expired_ts
 token =  MD5(domain + expire_ts + secret)  
 ```
 参数说明：  
-secret：密钥，用户与又拍约定。  
+secret：密钥（32 位以内的数字或英文组合），用户与又拍约定。  
 domain：域名，开启 token 防盗链的域名。  
 expire_ts：过期时间，超过过期时间将推流失败，必须是 UNIX TIME 格式，如 1465244082，表示 2016/6/7 4:14:43。  
   
@@ -114,7 +114,8 @@ expire_ts：过期时间，超过过期时间将推流失败，必须是 UNIX TI
 推流 URL 为 rtmp://push.com/live/stream，  
 则 domain = push.com，  
 假设约定 secret = a1b2c3d4e53gxwb07，过期时间 expired_ts = 1465244082，  
-那么 token = MD5(push.com/live/stream1465244082a1b2c3d4e53gxwb07) = 01bba135ee88d6e4e9053ed716e938c3 ，注意 MD5 后计算出的 token 值是 32 位的，必须小写。  
+那么 token = MD5(push.com/live/stream1465244082a1b2c3d4e53gxwb07) = 01bba135ee88d6e4e9053ed716e938c3 ，  
+注意 MD5 后计算出的 token 值是 32 位的，必须小写。  
 则 rtmp://push.com/live/stream?domain=push.com&token=01bba135ee88d6e4e9053ed716e938c3
 &expired_ts=1465244082， 推流在未超过 2016/6/7 4:14:43 之前均可以正常推流。  
 
