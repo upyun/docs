@@ -20,7 +20,6 @@
 ![pic](http://up-static.b0.upaiyun.com/phone-traffic/example.jpg)
 
 
-
 **接口概述:**
 
 又拍云手机流量平台所有的参数传递都是通过标准的JSON格式提交,所有的请求响应都是通过JSON格式返回。
