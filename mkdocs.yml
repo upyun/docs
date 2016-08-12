@@ -28,7 +28,7 @@ pages:
 - '云处理文档':
     - '云处理概述': 'cloud/index.md'
     - '图片处理': 'cloud/image.md'
-    - '异步音视频处理': 'cloud/av.md'
+    - '音视频处理': 'cloud/av.md'
     - '压缩解压缩': 'cloud/unzip.md'
     - '异步文件拉取': 'cloud/spider.md'
     - '附件': 'cloud/attachment.md'

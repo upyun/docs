@@ -38,8 +38,8 @@ curl -X POST \
 ```
 [
 	{
-		"sources": ["/abc/1.pdf","/abc/2.doc"],     //需要压缩的文件路径
-		"save_as": "/result/abc.zip"                		//保存路径
+		"sources": ["/a/1.pdf","/a/b/"],     //需要压缩的文件路径
+		"save_as": "/result/abc.zip"         //保存路径
 	},
   	{
 		"sources": ["/e/f","/e/g.jpg"],   		//需要压缩的文件或目录路径
@@ -90,8 +90,7 @@ curl -X POST \
 
 - `sources` 内包含的文件最大数量 10000 个，总文件大小 1G。
 - 压缩算法: 目前仅支持 `zip`，因此， `save_as` 中文件需要以 `.zip` 作为后缀。
-
-#### home_dir 参数说明
+- `home_dir` 会去除指定父目录及父目录下文件，压缩目录层级较深的文件时，可以通过它去除父目录及父目录下文件的干扰。
 
 例如，任务的提交参数如下:
 
@@ -101,11 +100,11 @@ curl -X POST \
 		"sources": ["/a/b/c/source/1.jpg","/a/b/c/source/2.jpg"],
 		"save_as": "/result/t.zip",
 		"home_dir": "a/b/c"	//压缩时，不包含的目录
-	},
+	}
 ]
 ```
 
-则，压缩文件的目录结构如下:
+则，压缩文件的目录结构如下:（ `a/b/c` 父目录已经不存在了，直接放在 `a/b` 父目录下的文件也已经不存在了）
 
 ```
 source
@@ -123,7 +122,9 @@ source
 | sources           | string    | 压缩文件的路径                                  |
 | save_as           | string    | 文件解压缩后的保存路径（需要为目录），如 `/result/`    |
 
-注
-> - `sources` 内包含的文件最大大小为 5G。
-> - 解压算法: 目前仅支持 `zip`，因此， `sources` 指定压缩文件须是 zip 文件。
+注：
+
+- `sources` 内包含的文件最大大小为 5G。
+- 解压算法: 目前仅支持 `zip`，因此， `sources` 指定压缩文件须是 zip 文件。
+- 解压缩后的目录中，会增加一个以 `task_id` 命名的记录了所有解压文件信息的文件。
 
