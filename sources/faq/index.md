@@ -453,7 +453,7 @@ PHPWind 头像存储还需要另外安装插件设置；具体参考安装手册
 
 ** 为什么的服务下删除文件提示550，提示权限有问题？ **
 
-这可能是由于您的操作员设置了不能删除文件的权限导致的，您可以参考:[操作员权限设置](https://techs.b0.upaiyun.com/videos/cdnpage/caozyunyuan.html)
+这可能是由于您的操作员设置了不能删除文件的权限导致的，您可以参考:[操作员权限设置](https://techs.b0.upaiyun.com/videos/cdnpage/caozuoyuan.html)
 
 
 ** 为什么感觉我的网站访问量并不是特别大，但是从你们的 CDN 上看每天都好几十个G？ **
