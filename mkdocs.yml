@@ -12,8 +12,10 @@ pages:
     - '开发者指南': 'guide/index.md'
     - 'REST API 简易指南(PHP)': 'guide/php_rest_guide.md'
 - 'CDN 文档':
-    - 'CDN 基础配置': 'cdn/index.md'
-    - 'CDN 高级特性': 'cdn/feature.md'
+    - '基础特性': 'cdn/index.md'
+    - '高级特性': 'cdn/feature.md'
+- '直播文档':
+    - '直播文档': 'live/index.md'
 - 'API 文档':
     - 'API 概览': 'api/index.md'
     - 'HTTP REST API': 'api/rest_api.md'
@@ -23,11 +25,10 @@ pages:
     - 'API 错误码表': 'api/errno.md'
     - '图片处理参数（旧）': 'api/old_thumb.md'
     - '视频处理（旧）': 'api/av_pretreatment.md'
-    - '移动流量API': 'mobile-stats/index.md'
 - '云处理文档':
     - '云处理概述': 'cloud/index.md'
     - '图片处理': 'cloud/image.md'
-    - '异步音视频处理': 'cloud/av.md'
+    - '音视频处理': 'cloud/av.md'
     - '压缩解压缩': 'cloud/unzip.md'
     - '异步文件拉取': 'cloud/spider.md'
     - '附件': 'cloud/attachment.md'

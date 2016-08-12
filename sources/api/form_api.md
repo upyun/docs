@@ -1,6 +1,6 @@
 HTTP FORM API 允许用户直接上传文件到又拍云，而不需要通过客户服务器进行中转。支持 HTTP 和 HTTPS 协议，您可以选择最优的方式提交请求。
 
-普通上传与又拍云 FORM API 上传流程流程如下：
+普通上传与又拍云 FORM API 上传流程如下：
 
 ```
 
@@ -90,7 +90,7 @@ policy 生成步骤：
 >|------------|------------|
 >| bucket     | demobucket |
 >| expiration | 1409200758 |
->| save_key   | /img.jpg   |
+>| save-key   | /img.jpg   |
 >
 >第一步，将参数组转换为 JSON 字符串后：
 >

@@ -321,6 +321,10 @@ PHPWind 头像存储还需要另外安装插件设置；具体参考安装手册
 
 检查配置信息是否正确，清理 PHPWind 缓存。
 
+**怎么通过日志看动态请求还是静态请求**
+
+后台下载日志后，打开日志查看 Static 字段就是静态，反之 Dynamic 就是动态的。
+
 **为什么下载又拍云官方的 UEditor 编辑器，配置以后，上传不了？**
 
 检查 UEditor 的权限问题，UEditor 下附件目录 uploads 至少要有写的权限。
@@ -442,6 +446,19 @@ PHPWind 头像存储还需要另外安装插件设置；具体参考安装手册
 ** 如何使用又拍云的直播服务？ **
 
 您好，又拍云直播分为又拍云源站和自主源站两种方式，关于又拍云源站模式的配置您可以参考[如何创建和使用又拍云源的直播服务](https://techs.b0.upaiyun.com/videos/cdnpage/upyunzb1.html)，关于自主源站模式的配置您可以参考[如何创建自主源站模式的直播服务](https://techs.b0.upaiyun.com/videos/cdnpage/upyunzzzb.html)
+
+** 源站阿里云经常报503，类似 `connection refused` 如何解决？**
+
+这是由于阿里云屏蔽了又拍云的回源IP导致的，您可以参考:[设置阿里云安全组](https://techs.b0.upaiyun.com/videos/cdnpage/yundun.html)
+
+** 为什么的服务下删除文件提示550，提示权限有问题？ **
+
+这可能是由于您的操作员设置了不能删除文件的权限导致的，您可以参考:[操作员权限设置](https://techs.b0.upaiyun.com/videos/cdnpage/caozuoyuan.html)
+
+
+** 为什么感觉我的网站访问量并不是特别大，但是从你们的 CDN 上看每天都好几十个G？ **
+
+您好，如果网站访问流量异常，您可以通过日志分析查看热门 IP，并将 IP 添加到服务所在的 IP 黑名单，您可以参考:[日志分析和日志下载](https://techs.b0.upaiyun.com/videos/cdnpage/upyunlog.html)
 
 
 
