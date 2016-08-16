@@ -346,7 +346,7 @@ http://upyun-assets.b0.upaiyun.com/docs/guide/sample.jpg_/fw/200/format/webp
 
 > 管理后台：服务 > 高级功能 > 镜像存储（源站资源迁移）
 
-> 源站类型：自主源站    
+> 源站类型：自主源站
 > 注意：镜像迁移的文件缓存时间需要大于24小时。
 ----
 
@@ -541,33 +541,42 @@ rewrite 过程会对所有命中的请求生效。
 `$_QUERY`             | Query String，不带前缀 '?'
 `$_METHOD`            | GET/POST/PUT
 `$_SCHEME`            | HTTP/HTTPS
+`$_TIME`              | 当前的 UNIX 时间（秒）
 
 支持的函数有：
 
-函数                      | 含义
-:--------------------     | :-------
-`$ENCODE_BASE64(E)`       | 按 base64 编码压缩，例如：`$ENCODE_BASE64($_GET_foo)`
-`$DECODE_BASE64(E)`       | 按 base64 编码解压，例如：`$DECODE_BASE64($_HEADER_foo)`
-`$MD5(E)`                 | 计算 `E` 的 md5 值
-`$SUB(E1, from, to)`      | 字符串截取，从 `from` 到 `to`
-`$GT(E1, E2)`             | 数字比较，是否大于，返回 `true` 或者 `false`
-`$GE(E1, E2)`             | 数字比较，是否大于等于，返回 `true` 或者 `false`
-`$EQ(E1, E2)`             | 字符串是否相等，返回 `true` 或者 `false`
-`$UPPER(E)`               | 将 `E` 转换为大写
-`$LOWER(E)`               | 将 `E` 转换为小写
-`$ALL(E1, E2, ...)`       | 所有条件成立，参数个数不限
-`$ANY(E1, E2, ...)`       | 其中一个条件成立，参数个数不限
-`$MATCH(E1, E2)`          | PCRE 匹配，`E2` 为要匹配的 pattern，返回 `true` 或者 `false`
-`$WHEN(E1, E2, ...)`      | 条件是否成立，成立时才进行 `rewrite`，并返回空字符串
-`$PCALL(E)`               | 保护模式下解析 `E`，失败时返回空字符串
-`$ADD_REQ_HEADER(E1, E2)` | 添加请求头 `E1` 为 `E2`
-`$DEL_REQ_HEADER(E1)`     | 删除请求头 `E1`
-`$ADD_RSP_HEADER(E1, E2)` | 添加响应头 `E1` 为 `E2`
-`$REDIRECT(E1, E2)`       | 重定向地址到 `E1`，状态码为 `E2(301, 302)`
-`$EXIT(E1, E2)`           | 以状态码 `E1` 退出，响应体为 `E2`
+函数                          | 含义
+:--------------------         | :-------
+`$WHEN(E1, E2, ...)`          | 所有条件都成立时才进行 `rewrite`，并返回空字符串
+`$NOT(E)`                     | `E` 不成立时返回 `true`， 否则返回 `false`
+`$ALL(E1, E2, ...)`           | 所有条件都成立时返回 `true`，否则返回 `false`，参数个数不限
+`$ANY(E1, E2, ...)`           | 其中一个条件成立时返回 `true`，否则返回 `false`，参数个数不限
+`$OR(E1, E2, ...)`            | 值为第一个为真的表达式
+`$SELECT(E1, E2, E3)`         | `E1` 为真时值为 `E2`，否则为 `E3`
+`$ENCODE_BASE64(E)`           | 按 base64 编码压缩，例如：`$ENCODE_BASE64($_GET_foo)`
+`$DECODE_BASE64(E)`           | 按 base64 编码解压，例如：`$DECODE_BASE64($_HEADER_foo)`
+`$MD5(E)`                     | 计算 `E` 的 md5 值
+`$SUB(E1, from, to)`          | 字符串截取，从 `from` 到 `to`
+`$GT(E1, E2)`                 | 数字比较，是否大于，返回 `true` 或者 `false`
+`$GE(E1, E2)`                 | 数字比较，是否大于等于，返回 `true` 或者 `false`
+`$EQ(E1, E2)`                 | 字符串是否相等，返回 `true` 或者 `false`
+`$UPPER(E)`                   | 将 `E` 转换为大写
+`$LOWER(E)`                   | 将 `E` 转换为小写
+`$MATCH(E1, E2, E3)`          | PCRE 匹配，`E2` 为要匹配的 pattern，返回 `true` 或者 `false`，`E3` 不为空时表示忽略大小写
+`$PCALL(E)`                   | 保护模式下解析 `E`，失败时返回空字符串
+`$ADD_REQ_HEADER(E1, E2)`     | 添加请求头 `E1` 为 `E2`
+`$DEL_REQ_HEADER(E1)`         | 删除请求头 `E1`
+`$ADD_RSP_HEADER(E1, E2, E3)` | 添加响应头 `E1` 为 `E2`, `E3` 不为空时表示会覆盖掉已有的响应头
+`$DEL_RSP_HEADER(E1)`         | 删除响应头 `E1`
+`$DEL_ARG(E1)`                | 删除请求参数 `E1`
+`$REDIRECT(E1, E2)`           | 重定向地址到 `E1`，状态码为 `E2(301, 302)`
+`$EXIT(E1, E2)`               | 以状态码 `E1` 退出，响应体为 `E2`
+`$RANDI(E1, E2)`              | 随机返回 `[E1, E2]` 之间的整数，`E2` 为空时，返回 `[0, E1]` 之间的整数
 
 其中 `E[n]` 代表合法的表达式，也就是说函数可以相互嵌套，例如规则可以为：
-`/$SUB($DECODE_BASE64($_HEADER_foo), $_GET_from, $_GET_to)/`
+`/$SUB($DECODE_BASE64($_HEADER_foo), $_GET_from, $_GET_to)/`；布尔函数包括 `WHEN
+, ALL, ANY` 都是短路的，譬如 `$WHEN($ALL(), $EXIT(403))` 不会返回 `403`，因为
+`$ALL()` 的值为 `false`
 
 使用 `''` 能对变量进行转义，使其不被解释，例如以下规则：
 
@@ -596,8 +605,13 @@ rewrite 规则                                                       | 含义
 
 ### 案例说明
 
-  假如，用户已经开启了ssl，并且配置了证书，现在客户的需求是：当访问到的文件后缀是js或者css文件时，跳转到 HTTPS,其他文件则正常通过 HTTP 协议访问，那么我们在后台则可以这样配置：
-  
-  Rewrite规则   |  URL提取正则
-  :--------------------                                              | :-------
-`$WHEN($1, $EQ($_SCHEME, 'http'))$REDIRECT(https://$_HOST$_URI,302)`|`\.(js|css)$`
+自定义强制 HTTPS
+----
+
+假如用户已经开启了 ssl，并且配置了证书，现在客户的需求是：当访问到的文件后缀是
+js 或者 css 文件时，跳转到 HTTPS，其他文件则正常通过 HTTP 协议访问，那么我们在后
+台则可以这样配置：
+
+Rewrite 规则                                                        | URI 提取正则
+:--------------------                                               | :-------
+`$WHEN($1, $EQ($_SCHEME, http))$REDIRECT(https://$_HOST$_URI, 302)` | `\.(js|css)$`
