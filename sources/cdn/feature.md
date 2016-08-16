@@ -603,9 +603,9 @@ rewrite 规则                                                       | 含义
 `$WHEN($EQ($_HOST, 'foo.com'))$ADD_REQ_HEADER(X-Foo, bar)`         | 在请求 Host 为 `foo.com` 的情况下，添加请求头 `X-Foo: bar`
 `$WHEN($MATCH($_URI, '^/foo/'), $NOT($_HEADER_referer))$EXIT(403)` | 在请求的 URI 以 `/foo/` 开头并且没有 Referer 请求头时，返回 403
 
-### 案例说明
+#### 案例说明
 
-自定义强制 HTTPS
+#####自定义强制 HTTPS
 ----
 
 假如用户已经开启了 ssl，并且配置了证书，现在客户的需求是：当访问到的文件后缀是
