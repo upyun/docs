@@ -23,7 +23,7 @@
         <ul class="list-unstyled">
             <li><a href="/live/#_3">直播基础配置</a></li>
             <li><a href="/live/#_10">直播增值服务</a></li>
-            <li><a href="/live/#ios-sdk_1">IOS 推流 SDK</a></li>
+            <li><a href="/live/#ios-sdk_1">移动端 SDK</a></li>
             <li><a href="/live/">查看更多</a></li>
         </ul>
     </div>
