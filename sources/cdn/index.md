@@ -172,7 +172,7 @@
 
 ----
 
-> 特别地，自定义缓存规则只影响大于等于 200 小于 400 的这类正常的状态码响应。
+> 特别地，自定义缓存规则只影响大于等于 200 小于 400 （特别地，301 和 302 除外）的这类正常的状态码响应。
 
 自定义缓存规则目前只支持 URL 的路径（PATH）和参数（ARGS）部分，暂不支持协议和域名部分，路径部分支持 4 种形式：
 
@@ -321,28 +321,17 @@ text/html -- default
 
 ```
    <?php
-
-
-
         $ip = $_SERVER["HTTP_X_REAL_IP"];
-
         echo $ip;
-```     
+```
 
 #### 例2: Nginx 配置
 
 
 ```
 server
-
     {
-
         listen 80;
-
-       ……
-
-        root  /home/wwwroot/www.v5linux.com;
-
         add_header X-Real-IP $http_x_real_ip; #增加响应头
+    }
 ```
-
