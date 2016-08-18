@@ -638,4 +638,17 @@ Rewrite 规则                                                        | URI 提�
 :--------------------                                               | :-------
 `$WHEN($1)$_URI!nrimg` | `^(/)d/new/[^!]+$`
 
+##### 4. 对某个域名下特定规则的 `URL` 进行限速设置
+----
+
+有如下链接
+
+    http://test.upyun.com/E5FE74240A5EFF409C33DC5901307461-10.mp4
+
+匹配 `test.upyun.com` 这个域名下所有文件名为 `10.mp4` 这样的文件, 设置最大速度下载了 `20M` 以后然后限速到 `100KB/s`
+
+Rewrite 规则                                                        | URI 提取正则
+:--------------------                                               | :-------
+`$WHEN($1, $EQ($_HOST, 'aup.test.com'))$LIMIT_RATE_AFTER(20, m)$LIMIT_RATE(100, k)` | `^(/).+-10\.mp4$`
+
 
