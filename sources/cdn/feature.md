@@ -649,6 +649,6 @@ Rewrite 规则                                                        | URI 提�
 
 Rewrite 规则                                                        | URI 提取正则
 :--------------------                                               | :-------
-`$WHEN($1, $EQ($_HOST, 'aup.test.com'))$LIMIT_RATE_AFTER(20, m)$LIMIT_RATE(100, k)` | `^(/).+-10\.mp4$`
+`$WHEN($1, $EQ($_HOST, 'test.upyun.com'))$LIMIT_RATE_AFTER(20, m)$LIMIT_RATE(100, k)` | `^(/).+-10\.mp4$`
 
 
