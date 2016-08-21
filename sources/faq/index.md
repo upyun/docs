@@ -460,6 +460,11 @@ PHPWind 头像存储还需要另外安装插件设置；具体参考安装手册
 
 您好，如果网站访问流量异常，您可以通过日志分析查看热门 IP，并将 IP 添加到服务所在的 IP 黑名单，您可以参考:[日志分析和日志下载](https://techs.b0.upaiyun.com/videos/cdnpage/upyunlog.html)
 
+** 阿里云回源报503错误，如何设置云盾白名单 **
+
+您好，您可以参考:[云盾白名单设置](https://techs.b0.upaiyun.com/videos/cdnpage/yundun.html)
+
+
 
 
 
