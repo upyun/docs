@@ -435,7 +435,7 @@ x-gmkerl-thumb: upyun123/fw/100
 
 |  参数       |     值             |          说明             |
 |-------------|--------------------|-------------------------- |
-| `/format/`  |  jpg、png、webp    | 输出格式 <br />支持的输入图片格式是 jpg、jpeg、png、webp、gif、动态 gif、bmp、svg 等                  |
+| `/format/`  |  jpg、png、webp    | 输出格式 <br />支持的输入格式有 jpg、jpeg、png、webp、gif、动态 gif、bmp、svg 等                  |
 | `/quality/` | 整数值，如 75      | 设置压缩质量，可选范围`[1-99]`  *[注 1]* |
 | `/compress/` | true               | 大小压缩优化，支持格式：JPG、PNG     *[注 2]*     |
 | `/progressive/` | true               | JPG 图片渐进式加载，图片加载从模糊到清晰 |
