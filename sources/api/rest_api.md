@@ -1,4 +1,4 @@
-使用 REST API，您可以使用任何方式发送 HTTP 请求与 UPYUN 服务器通信。因此，你可以使用任何编程语言来使用 REST API。
+使用 REST API，您可以使用任何方式发送 HTTP 请求与又拍云服务器通信。因此，你可以使用任何编程语言来使用 REST API。
 
 REST API 支持 HTTP 和 HTTPS 协议，您可以选择最优的方式提交请求。
 
@@ -14,7 +14,7 @@ v1.api.upyun.com //电信线路
 v2.api.upyun.com //联通（网通）线路
 v3.api.upyun.com //移动（铁通）线路
 ```
-根据实际情况任选其一
+根据实际情况任选其一,默认推荐客户使用`v0.api.upyun.com`
 
 ## 请求方法
 
@@ -32,13 +32,13 @@ curl -X GET \
 >
 > * `Authorization`, `Date` 这两个参数是必须的
 > * `Authorization` 用于认证授权
-> * `Content-Length` 在 `PUT`、`POST` 请求中必须设置，UPYUN 不支持 chunked 形式上传。
+> * `Content-Length` 在 `PUT`、`POST` 请求中必须设置，又拍云不支持 chunked 形式上传。
 > * `Date` 为[格林尼治标准时间](http://zh.wikipedia.org/wiki/%E6%A0%BC%E6%9E%97%E5%B0%BC%E6%B2%BB%E5%B9%B3%E6%97%B6)（GMT 格式）
 
 
 ## 认证授权
 
-UPYUN 支持 HTTP 基本认证与签名认证两种认证授权方式。请根据需要任选其一。
+又拍云支持 HTTP 基本认证与签名认证两种认证授权方式。请根据需要任选其一。
 
 ### HTTP 基本认证
 REST API 支持 [HTTP 基本认证](http://zh.wikipedia.org/wiki/HTTP%E5%9F%BA%E6%9C%AC%E8%AE%A4%E8%AF%81)，其中认证所用的用户名即为已授权给你需要操作的空间的某个操作员名，认证口令为该操作员的密码。
@@ -50,7 +50,7 @@ curl -u http://v0.api.upyun.com/<bucket>
 
 ```sh
 curl -X GET \
-    http://v0.api.upyun.com/<bucket> \
+    http://v0.api.upyun.com/<bucket>\
     -H "Authorization: Basic b3BlcmF0b3I6cGFzc3dvcmQ="
 ```
 
@@ -94,7 +94,7 @@ Authorization: UpYun operator:03db45e2904663c5c9305a9c6ed62af3
 
 ## 上传文件
 
-通过上传接口，可以将文件上传至 UPYUN 的空间，并且，在上传文件的同时，可以设置相关的参数，进行对文件的预处理。目前，上传接口的参数分为如下几部分：
+通过上传接口，可以将文件上传至又拍云的空间，并且，在上传文件的同时，可以设置相关的参数，进行对文件的预处理。目前，上传接口的参数分为如下几部分：
 
 * 通用上传参数
 * 预处理参数
@@ -112,9 +112,10 @@ PUT /<bucket>/path/to/file
 
 |      参数      | 必选 |   类型  |                                            说明                                           |
 |----------------|------|---------|-------------------------------------------------------------------------------------------|
-| Content-MD5    | 否   | String  | 所上传文件的 MD5 校验值，用于 UPYUN 服务端校验                                            |
+| Content-MD5    | 否   | String  | 所上传文件的 MD5 校验值，用于又拍云服务端校验                                            |
 | Content-Type   | 否   | String  | 默认使用文件扩展名判断文件类型，可自行设置，保证准确性                                    |
 | Content-Secret | 否   | String  | 文件密钥。若设置该值，则无法直接访问原文件，需要在原文件 URL 的基础上加上密钥值才能访问   |
+| X-Upyun-Meta-X | 否   | String  | 用于额外指定文件的元信息，详见 [metadata 参数](/api/rest_api/#metadata)                   |
 
 > **注：**
 >
@@ -122,10 +123,11 @@ PUT /<bucket>/path/to/file
 > * 设置密钥后，若需访问原文件，需要在 URL 后加上「间隔标识符」和「访问密钥」（如： 当间隔符为 *`!`*，访问密钥为 *`secret`*，那么，原文件访问方式即为： *`http://bucket.b0.upaiyun.com/sample.jpg!secret`*）
 > * **间隔标识符** 用于分隔文件 URL 和文件参数。可登录又拍云管理平台选择 `!(英文感叹号)` 、 `-` 、 `_` 中的任意一种 ，本文档使用 `!` 作为示例间隔标识符。
 > * 密钥不能与 [缩略图版本](/cloud/image/#_3) 冲突。
+> * 删除或修改 `Content-Secret` 请见 [metadata 参数](/api/rest_api/#metadata)。
 
 #### 预处理参数
 
-对于图片文件，加上 `x-gmkerl-thumb` 参数可以将上传图片进行预处理后的结果存储到 UPYUN。具体参数用法和说明请见 [上传作图](/cloud/image/#_2)。
+对于图片文件，加上 `x-gmkerl-thumb` 参数可以将上传图片进行预处理后的结果存储到又拍云。具体参数用法和说明请见 [上传作图](/cloud/image/#_2)。
 
 #### 返回信息
 
@@ -141,7 +143,6 @@ PUT /<bucket>/path/to/file
 > x-upyun-file-type: JPEG
 ```
 其中，`x-upyun-` 开头的头部信息即为所上传图片的相关信息。
-
 
 ## 下载文件
 
@@ -281,3 +282,107 @@ GET /<bucket>/?usage
 
 1. 获取成功: 返回 `200`。HTTP body 内容为空间的使用量（单位为`Byte`）
 2. 获取失败: 返回相应的出错信息，具体请参阅「[API 错误码表](/api/errno/)」
+
+
+## metadata 信息
+
+在上传文件的时候，如果在请求头里带上以 `X-Upyun-Meta-` 开头的参数，那么该参数会被当作文件的元数据存储到又拍云。在通过 API GET 文件的时候，又拍云会在响应头里返回文件的所有元数据信息。
+
+例如：
+```
+curl -d 'abc' \
+    http://v0.api.upyun.com/<bucket>/abc.txt \
+    -H "Authorization: Basic b3BlcmF0b3I6cGFzc3dvcmQ=" \
+    -H "X-Upyun-Meta-Foo: Bar"
+```
+可以将 `X-Upyun-Meta-Foo: Bar` 这个元信息存储到又拍云。
+
+### 修改 metadata 信息
+
+```
+PATCH /<bucket>/path/to/file?metadata=<option>
+```
+返回信息:
+
+1. 修改成功：返回 `200`
+2. 修改失败：返回相应的出错信息，具体请参阅「[API 错误码表](/api/errno/)」
+
+其中，`option` 的取值如下：
+
+|option | 说明 |
+|----|-----|
+|merge（**默认**） |  合并文件元信息, 相同的元信息将被新上传的值替换 |
+|replace | 替换文件元信息为新上传的文件元信息 |
+|delete | 删除文件元信息 |
+
+以下为几个修改元信息的例子以及相应的说明：
+
+
+例 1：合并元信息
+
+```
+curl -d 'abc' http://v0.api.upyun.com/<bucket>/abc.txt -H "Authorization: Basic b3BlcmF0b3I6cGFzc3dvcmQ=" \
+    -H "X-Upyun-Meta-A: 1"
+curl -XPATCH http://v0.api.upyun.com/<bucket>/abc.txt?metadata=merge -H "Authorization: Basic b3BlcmF0b3I6cGFzc3dvcmQ=" \
+    -H "X-Upyun-Meta-A: 2" \
+    -H "X-Upyun-Meta-B: 3"
+```
+以上命令执行后，文件 abc.txt 的元信息为：
+```
+X-Upyun-Meta-A: 2
+X-Upyun-Meta-B: 3
+```
+
+
+例 2：替换元信息
+
+```
+curl -d 'abc' http://v0.api.upyun.com/<bucket>/abc.txt -H "Authorization: Basic b3BlcmF0b3I6cGFzc3dvcmQ=" \
+    -H "X-Upyun-Meta-A: 1" \
+    -H "X-Upyun-Meta-B: 2"
+curl -XPATCH http://v0.api.upyun.com/<bucket>/abc.txt?metadata=replace -H "Authorization: Basic b3BlcmF0b3I6cGFzc3dvcmQ=" \
+    -H "X-Upyun-Meta-A: 3" \
+    -H "X-Upyun-Meta-C: 4"
+```
+以上命令执行后，文件 abc.txt 的元信息为：
+```
+X-Upyun-Meta-A: 3
+X-Upyun-Meta-C: 4
+```
+
+
+例 3：删除元信息
+
+```
+curl -d 'abc' http://v0.api.upyun.com/<bucket>/abc.txt -H "Authorization: Basic b3BlcmF0b3I6cGFzc3dvcmQ=" \
+    -H "X-Upyun-Meta-A: 1" \
+    -H "X-Upyun-Meta-B: 2"
+curl -XPATCH http://v0.api.upyun.com/<bucket>/abc.txt?metadata=delete -H "Authorization: Basic b3BlcmF0b3I6cGFzc3dvcmQ=" \
+    -H "X-Upyun-Meta-A: true"
+```
+以上命令执行后，文件 abc.txt 的元信息为：
+```
+X-Upyun-Meta-B: 2
+```
+
+注 1：
+
+> 修改 metadata 默认不更新文件的 `Last-Modified`，如果要更新请在参数中指定 `update_last_modified=true`。如：
+
+```
+curl -XPATCH http://v0.api.upyun.com/<bucket>/abc.txt?metadata=replace&update_last_modified=true \
+    -H "Authorization: Basic b3BlcmF0b3I6cGFzc3dvcmQ=" \
+    -H "X-Upyun-Meta-A: 3" \
+    -H "X-Upyun-Meta-C: 4"
+```
+
+注 2：
+
+> `Content-Secret` 被存储为文件的 `X-Upyun-Meta-Secret` 元信息，如果要删除或修改请对 `X-Upyun-Meta-Secret` 进行操作。如：
+
+```
+curl -XPATCH http://v0.api.upyun.com/<bucket>/abc.txt?metadata=delete \
+    -H "Authorization: Basic b3BlcmF0b3I6cGFzc3dvcmQ=" \
+    -H "X-Upyun-Meta-Secret: true" \
+```
+

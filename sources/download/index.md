@@ -34,8 +34,8 @@
     <li>
         <strong>Node.js SDK</strong>
         <div class="links">
-            <a href="https://github.com/upyun/node-upyun" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
-            <a href="https://github.com/upyun/node-upyun/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
+            <a href="https://github.com/upyun/node-sdk" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
+            <a href="https://github.com/upyun/node-sdk/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
         </div>
     </li>
     <li>
@@ -147,6 +147,29 @@
     </li>
 </ul>
 
+<h2 id="third-party">直播 SDK </h2>
+<ul class="list-unstyled list-inline clearfix">
+    <li>
+        <strong> Andriod 流媒体播放器</strong>
+        <div class="links">
+            <a href="https://github.com/upyun/android-player-sdk" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
+        </div>
+    </li>
+    <li>
+        <strong> Andriod 推流 SDK </strong>
+        <div class="links">
+            <a href="https://github.com/upyun/android-push-sdk" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
+        </div>
+    </li>
+
+    <li>
+        <strong> iOS 推拉流 SDK </strong>
+        <div class="links">
+            <a href="https://github.com/upyun/ios-live-sdk" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
+        </div>
+    </li>
+</ul>
+
 <h2 id="third-party">融合 SDK</h2>
 <ul class="list-unstyled list-inline clearfix">
     <li>
@@ -231,7 +254,7 @@
     </li>
 
     <li>
-        <strong>UPYUN 资源管理器</strong>
+        <strong>又拍云资源管理器</strong>
         <div class="links">
             <a href="https://github.com/layerssss/manager-for-upyun" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
             <a href="https://github.com/layerssss/manager-for-upyun#%E4%B8%8B%E8%BD%BD" target="_blank" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
@@ -239,17 +262,18 @@
     </li>
 
     <li>
-        <strong>UPYUN 命令行工具</strong>
+        <strong>又拍云命令行工具</strong>
         <div class="links">
             <a href="https://github.com/polym/upx" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
         </div>
     </li>
 
     <li>
-        <strong>UPYUN 常用脚本</strong>
+        <strong>又拍云常用脚本</strong>
         <div class="links">
             <a href="https://github.com/monkey-wenjun/upyun-sdk-script" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
         </div>
     </li>
 </ul>
 </ul>
+

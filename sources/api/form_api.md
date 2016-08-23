@@ -1,6 +1,6 @@
-HTTP FORM API 允许用户直接上传文件到 UPYUN，而不需要通过客户服务器进行中转。支持 HTTP 和 HTTPS 协议，您可以选择最优的方式提交请求。
+HTTP FORM API 允许用户直接上传文件到又拍云，而不需要通过客户服务器进行中转。支持 HTTP 和 HTTPS 协议，您可以选择最优的方式提交请求。
 
-普通上传与 UPYUN FORM API 上传流程流程如下：
+普通上传与又拍云 FORM API 上传流程如下：
 
 ```
 
@@ -33,16 +33,16 @@ HTTP FORM API 允许用户直接上传文件到 UPYUN，而不需要通过客户
 
 ```
 
-对比两种流程方式，UPYUN FORM API 具有以下几点**优势**：
+对比两种流程方式，又拍云 FORM API 具有以下几点**优势**：
 
 * 避免了客户服务器的文件中转，减少了不必要的流量、带宽和客户服务器开销
-* UPYUN 自动选择最近最快的节点接收客户端上传的文件，文件上传速度更快
+* 又拍云自动选择最近最快的节点接收客户端上传的文件，文件上传速度更快
 * 客户服务端无需开发多余的业务代码，减少开发和测试成本，提高开发效率
 
 使用表单 API 进行文件上传，推荐的采用以下流程：
 
 1. 请求客户服务器，生成、获取上传所需的 signature、policy 参数。为了提升上传成功率（避免签名过期）、安全性(设置尽可能短的授权有效期)，我们建议在每次执行上传操作之前，都重新执行本步骤获取相关参数；
-2. 请求 UPYUN API 上传文件，校验返回结果/异步回调通知客户服务器；
+2. 请求又拍云 API 上传文件，校验返回结果/异步回调通知客户服务器；
 3. 处理常规客户业务流程。
 
 
@@ -107,14 +107,14 @@ policy 生成步骤：
 
 ### signature 算法
 
-为了保证空间的安全性，UPYUN 表单 API 的上传需要使用到每个空间对应的「表单 API 验证密钥（form_api_secret）」
+为了保证空间的安全性，又拍云表单 API 的上传需要使用到每个空间对应的「表单 API 验证密钥（form_api_secret）」
 
 通过将表单 API 与 policy 组合，并进行 MD5 计算后，所得的 MD5 值将作为 `signature` 用于安全校验。
 
 signature 生成步骤：
 
 1. 生成 `policy` 字符串
-2. 将第 1 步中所得字符串与您的「表单 API 验证密钥」（可登录 UPYUN 官网获取）字符串用 `&` 拼接
+2. 将第 1 步中所得字符串与您的「表单 API 验证密钥」（可登录又拍云官网获取）字符串用 `&` 拼接
 3. 将第 2 步中所得的字符串计算 md5，所得即为 `signature`
 
 
@@ -146,14 +146,14 @@ signature 生成步骤：
 
 |         参数         | 必选 |                                                 说明                                                |
 |----------------------|------|-----------------------------------------------------------------------------------------------------|
-| bucket               | 是   | 保存所上传的文件的 UPYUN 空间名                                                                     |
+| bucket               | 是   | 保存所上传的文件的又拍云空间名                                                                     |
 | save-key             | 是   | 保存路径，如: '/path/to/file.ext'，可用占位符 [\[注 1\]](#note1)                                    |
 | expiration           | 是   | 请求的过期时间，**UNIX UTC** 时间戳（秒）                                                           |
 | allow-file-type      | 否   | 允许上传的文件扩展名，以 `,` 分隔。如 `jpg,jpeg,png`                                                |
 | content-length-range | 否   | 文件大小限制，格式：`min,max`，单位：字节，如 `102400,1024000`，表示允许上传 100Kb～1Mb 的文件      |
-| content-md5          | 否   | 所上传的文件的 MD5 校验值，UPYUN 根据此来校验文件上传是否正确                                       |
+| content-md5          | 否   | 所上传的文件的 MD5 校验值，又拍云根据此来校验文件上传是否正确                                       |
 | content-secret       | 否   | 文件访问密钥 [\[注 2\]](#note2)                                                                     |
-| content-type         | 否   | UPYUN 默认根据扩展名判断，手动指定可提高精确性。如 `image/jpeg`                                     |
+| content-type         | 否   | 又拍云默认根据扩展名判断，手动指定可提高精确性。如 `image/jpeg`                                     |
 | image-width-range    | 否   | 图片宽度限制，格式：`min,max`，单位：像素，如 `0,1024`，允许上传宽度为 0～1024px 之间               |
 | image-height-range   | 否   | 图片高度限制，格式：`min,max`，单位：像素，如 `0,1024`，允许上传高度在 0～1024px 之间               |
 | notify-url           | 否   | 异步通知 URL，见 [通知规则](#notify_return)                                                         |
@@ -164,6 +164,14 @@ signature 生成步骤：
 | x-gmkerl-extract-format     | 否   |   主题色提取格式，默认 `hex`                                                                 |
 | apps                 | 否   | json 格式的异步处理任务列表。见 [异步处理任务](/api/form_api/#_4)                                   |
 | ext-param            | 否   | 额外参数，UTF-8 编码，并小于 255 个字符 [\[注 3\]](#note3)                                          |
+| *x-gmkerl-thumbnail* **DEPRECATED**   | *否*   | *缩略图版本名称，仅支持图片类空间，可搭配其他 `x-gmkerl-*` 参数使用* |
+| *x-gmkerl-type*  **DEPRECATED**       | *否*   | *缩略类型*                                                           |
+| *x-gmkerl-value*  **DEPRECATED**      | *否*   | *缩略类型对应的参数值*                                               |
+| *x-gmkerl-quality*  **DEPRECATED**    | *否*   | ***默认 95**缩略图压缩质量*                                                                           |
+| *x-gmkerl-unsharp*   **DEPRECATED**   | *否*   | ***默认锐化（true）**是否进行锐化处理*                                                                |
+| *x-gmkerl-rotate*  **DEPRECATED**     | *否*   | *图片旋转（顺时针），可选：`auto，90，180，270` 之一*                                           |
+| *x-gmkerl-crop*  **DEPRECATED**       | *否*   | *图片裁剪，格式：`<w>x<h>a<x>a<y>`。 其中 w, h 分别表示裁剪后的宽和高，x, y 表示左上角坐标。如 100x100a0a0。*         |
+| *x-gmkerl-exif-switch* **DEPRECATED** | *否*   | *是否保留 EXIF 信息，仅在搭配 `x-gmkerl-crop，x-gmkerl-type，x-gmkerl-thumbnail` 时有效。*        |
 
 
 **注：**
@@ -176,8 +184,8 @@ signature 生成步骤：
 <a name="notify_return"></a>
 ### 通知规则
 
-* 如果没有设置 `return-url`，那么 UPYUN 处理完上传操作后，将把结果信息返回输出到 body 中。
-* 如果设置了 `return-url`，那么 UPYUN 处理完上传操作后，将会把结果信息以 Query String 的形式追加到 `return-url` 指定的 URL 后，并进行 302 跳转，如，`return-url` 为 *`http://yourdomain.com/return/`* 那么，所跳转的 URL 可能会如下所示：
+* 如果没有设置 `return-url`，那么又拍云处理完上传操作后，将把结果信息返回输出到 body 中。
+* 如果设置了 `return-url`，那么又拍云处理完上传操作后，将会把结果信息以 Query String 的形式追加到 `return-url` 指定的 URL 后，并进行 302 跳转，如，`return-url` 为 *`http://yourdomain.com/return/`* 那么，所跳转的 URL 可能会如下所示：
 * URL 中包括：code、message、url、time 和 sign(或 no-sign) 参数。[\[注 4\]](#note4)
 
 ```
@@ -186,7 +194,7 @@ http://yourdomain.com/return/?code=503&message=%E6%8E%88%E6%9D%83%E5%B7%B2%E8%BF
 
 如果上传的文件是图片，则会额外增加：image-width、image-height、image-frames 和 image-type 四个参数（这四个参数不参与加密签名）。
 
-* 如果设置了 `notify-url`，那么 UPYUN 处理完上传操作后，服务端将以发送 `POST` 请求的方式把上传至 `notify-url` 对应的地址，POST 所提交的参数和上述 `return-url` 中的相同
+* 如果设置了 `notify-url`，那么又拍云处理完上传操作后，服务端将以发送 `POST` 请求的方式把上传至 `notify-url` 对应的地址，POST 所提交的参数和上述 `return-url` 中的相同
 
 
 ### 返回信息
@@ -197,7 +205,7 @@ http://yourdomain.com/return/?code=503&message=%E6%8E%88%E6%9D%83%E5%B7%B2%E8%BF
 
 ### 异步处理任务
 
-如果指定了 `apps` 参数，那么在文件上传到 UPYUN 之后，UPYUN 会发起相应的异步处理任务。目前，UPYUN 支持**异步图片处理**和**异步音视频处理**服务。
+如果指定了 `apps` 参数，那么在文件上传到又拍云之后，又拍云会发起相应的异步处理任务。目前，又拍云支持**异步图片处理**和**异步音视频处理**服务。
 
 `apps` 参数为 json 格式的任务列表，结构及说明示例如下：
 
@@ -227,7 +235,7 @@ apps = [
 > - 异步处理的源文件路径为表单参数 `save-key` 指定的路径
 > - 任务参数中可以指定任务完成后的回调地址，如果没有指定，则使用表单参数中的 `notify_url`
 
-异步任务提交成功后，UPYUN 会在返回信息和回调信息里带上 `task_ids` 字段，里面包含每个任务的 `task_id`。异步任务处理完成后，UPYUN 会往 `notify_url` （如果设置了这个参数的话）以回调的形式发送处理结果，回调信息里包含相应的 `task_id` 等信息。
+异步任务提交成功后，又拍云会在返回信息和回调信息里带上 `task_ids` 字段，里面包含每个任务的 `task_id`。异步任务处理完成后，又拍云 会往 `notify_url` （如果设置了这个参数的话）以回调的形式发送处理结果，回调信息里包含相应的 `task_id` 等信息。
 
 #### 异步任务名称
 
@@ -274,7 +282,7 @@ apps = [
 
 **使用场景：**
 
-原图保存在 UPYUN 后，不允许直接对外提供访问，仅允许以缩略图的方式，或带有水印的原图对外提供访问时，可以使用 `content-secret` 参数设置一个“访问密钥”。
+原图保存在又拍云后，不允许直接对外提供访问，仅允许以缩略图的方式，或带有水印的原图对外提供访问时，可以使用 `content-secret` 参数设置一个“访问密钥”。
 
 **使用须知：**
 
@@ -294,7 +302,7 @@ apps = [
 
 **使用场景：**
 
-当用户使用`return-url`或`notify-url`参数时，UPYUN 会将表单操作的结果，以同步或异步的方式返回给用户，结果内容包含 code、message、url、time 和 sign(或 no-sign 见[通知规则](#notify_return)，无法回传其他内容。而 `ext-param` 参数可将用户自定义的内容原封不动的返回给用户。
+当用户使用`return-url`或`notify-url`参数时，又拍云会将表单操作的结果，以同步或异步的方式返回给用户，结果内容包含 code、message、url、time 和 sign(或 no-sign 见[通知规则](#notify_return)，无法回传其他内容。而 `ext-param` 参数可将用户自定义的内容原封不动的返回给用户。
 
 
 **使用须知：**
@@ -304,7 +312,7 @@ apps = [
 
 **举例说明：**
 
-设置过`notify-url`的表单请求提交后，UPYUN 将以异步的方式把操作结果返回给用户。用户在接收到这个结果时可能无法得知是之前的哪个请求的结果，所以，在表单提交前可以给 `ext-param` 参数设置一个 clientId_xxx，用户在 UPYUN 返回的结果中就可以获得这个 clientId_xxx 值并对之前的某个请求做后续的处理了。
+设置过`notify-url`的表单请求提交后，又拍云将以异步的方式把操作结果返回给用户。用户在接收到这个结果时可能无法得知是之前的哪个请求的结果，所以，在表单提交前可以给 `ext-param` 参数设置一个 clientId_xxx，用户在又拍云返回的结果中就可以获得这个 clientId_xxx 值并对之前的某个请求做后续的处理了。
 
 
 

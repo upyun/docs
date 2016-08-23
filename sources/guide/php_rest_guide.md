@@ -1,14 +1,14 @@
-这一部分将说明如何快速使用`PHP`向 UPYUN 空间上传一份文件，通过这个例子，你将学会如何生成签名并调用我们的`REST API`进行工作。
+这一部分将说明如何快速使用`PHP`向又拍云上创建的服务上传一份文件，通过这个例子，你将学会如何生成签名并调用我们的`REST API`进行工作。
 
-讲解例子之前，假设你已经注册了 UPYUN 的帐号，并创建了空间，分配了操作员。示例中我们架设使用一下空间和操作员（虚构，请先自行注册和创建 UPYUN 空间）：
+讲解例子之前，假设你已经注册了又拍云的帐号，并创建了服务，分配了操作员。示例中我们架设使用一下服务和操作员（虚构，请先自行注册和创建又拍云服务）：
 
-- 空间名:`demobucket`
+- 服务名:`demobucket`
 - 操作员帐号:`operator`
 - 操作员密码:`operatorpassword`
 
 
 ## 准备文件
-本示例目标是将本地文件 `assets/bar.txt` 上传到 `demobucket` 空间，并重命名为 `foo.txt`。
+本示例目标是将本地文件 `assets/bar.txt` 上传到 `demobucket` 服务，并重命名为 `foo.txt`。
 所以最终的服务端路径是 `$uri = '/demobucket/foo.txt'`。
 
 ```php
@@ -109,6 +109,6 @@
     curl_close($ch);
 ```
 
-至此，您已经学会了如何基于 PHP，使用 UPYUN 的 HTTP REST API 上传文件了，您可以访问 [HTTP REST API 文档](/api/rest_api/) 深入学习 REST API 的其他功能和参数。
+至此，您已经学会了如何基于 PHP，使用又拍云的 HTTP REST API 上传文件了，您可以访问 [HTTP REST API 文档](/api/rest_api/) 深入学习 REST API 的其他功能和参数。
 
 或者，您也可以前往 [资源下载](/download/#sdk) 页面下载我们所提供的 SDK，来加速你的开发流程。
