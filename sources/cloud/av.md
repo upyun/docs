@@ -199,7 +199,33 @@ curl http://p0.api.upyun.com/result?bucket_name=demo&task_ids=35f0148d414a688a27
     -H "Date: <Wed, 29 Oct 2014 02:26:58 GMT>"
 ```
 
-查询参数与返回数据与 [进度查询](/cloud/av/#_6) 相同
+查询参数与 [进度查询](/cloud/av/#_6) 相同, 返回数据与 [回调通知](/cloud/av/#_5) 相同。
+
+** 返回数据 **
+
+```
+{
+    "40a4163488cfecf229acd430a5a54e79": "{
+        'bucket_name': 'bucket',
+        'description': 'OK',
+        'task_id': '40a4163488cfecf229acd430a5a54e79',
+        'path': ['/foo.mp4'],
+        'status_code': 200,
+        'signature': 'a48f9d1a7cb379d0',
+        'timestamp': 1471917494
+    }",
+    "fcc993495f512dcbb1b762e4fdac71bf": "{
+        'bucket_name': 'bucket',
+        'description': 'OK',
+        'task_id': 'fcc993495f512dcbb1b762e4fdac71bf',
+        'path': ['/path/to/file.flv'],
+        'status_code': 200,
+        'signature': '9cf228cc64b47d0b',
+        'timestamp': 1471916681
+    }"
+    ...
+}
+```
 
 
 ### 上传预处理
