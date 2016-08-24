@@ -205,24 +205,24 @@ curl http://p0.api.upyun.com/result?bucket_name=demo&task_ids=35f0148d414a688a27
 
 ```
 {
-    "40a4163488cfecf229acd430a5a54e79": "{
-        \"bucket_name\": \"bucket\",
-        \"description\": \"OK\",
-        \"task_id\": \"40a4163488cfecf229acd430a5a54e79\",
-        \"path\": [\"/foo.mp4\"],
-        \"status_code\": 200,
-        \"signature\": \"a48f9d1a7cb379d0\",
-        \"timestamp\": 1471917494
-    }",
-    "fcc993495f512dcbb1b762e4fdac71bf": "{
-        \"bucket_name\": \"bucket\",
-        \"description\": \"OK\",
-        \"task_id\": \"fcc993495f512dcbb1b762e4fdac71bf\",
-        \"path\": [\"/path/to/file.flv\"],
-        \"status_code\": 200,
-        \"signature\": \"9cf228cc64b47d0b\",
-        \"timestamp\": 1471916681
-    }"
+    "9d9c32b63a1034834e77672c6f51f661": {
+        "path": ["/v2.mp4"],
+        "signature": "4042c1f07f546d28",
+        "status_code": 200,
+        "bucket_name": "bucket",
+        "description": "OK",
+        "task_id": "9d9c32b63a1034834e77672c6f51f661",
+        "timestamp": 1472010905
+    },
+    "3438a54b4991e8d4a46a003bc15e9867": {
+        "path": ["/v2.mp4"],
+        "signature": "1c49be9b672394ff",
+        "status_code": 200,
+        "bucket_name": "bucket",
+        "description": "OK",
+        "task_id": "3438a54b4991e8d4a46a003bc15e9867",
+        "timestamp": 1472010684
+    }
     …
 }
 ```
