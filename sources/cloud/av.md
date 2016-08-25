@@ -199,7 +199,33 @@ curl http://p0.api.upyun.com/result?bucket_name=demo&task_ids=35f0148d414a688a27
     -H "Date: <Wed, 29 Oct 2014 02:26:58 GMT>"
 ```
 
-查询参数与返回数据与 [进度查询](/cloud/av/#_6) 相同
+查询参数与 [进度查询](/cloud/av/#_6) 相同, 返回数据与 [回调通知](/cloud/av/#_5) 相同。
+
+** 返回数据 **
+
+```
+{
+    "9d9c32b63a1034834e77672c6f51f661": {
+        "path": ["/v2.mp4"],
+        "signature": "4042c1f07f546d28",
+        "status_code": 200,
+        "bucket_name": "bucket",
+        "description": "OK",
+        "task_id": "9d9c32b63a1034834e77672c6f51f661",
+        "timestamp": 1472010905
+    },
+    "3438a54b4991e8d4a46a003bc15e9867": {
+        "path": ["/v2.mp4"],
+        "signature": "1c49be9b672394ff",
+        "status_code": 200,
+        "bucket_name": "bucket",
+        "description": "OK",
+        "task_id": "3438a54b4991e8d4a46a003bc15e9867",
+        "timestamp": 1472010684
+    }
+    …
+}
+```
 
 
 ### 上传预处理
@@ -232,7 +258,7 @@ curl http://p0.api.upyun.com/result?bucket_name=demo&task_ids=35f0148d414a688a27
 |        参数       |    类型   |    说明                                                                           |
 |-------------------|-----------|-----------------------------------------------------------------------------------|
 | type              | string    | 音视频处理类型。不同的处理任务对应不同的 type，详见下方各处理任务说明                  |
-| save_as           | string    | 输出文件保存路径（同一个服务名下）<br /> 如果没有指定，文件默认保存在输入文件同目录下，文件名称为随机文件名+输入文件的后缀      |
+| save_as           | string    | 输出文件保存路径，如果没有指定，系统将按照一定命名规则自动生成在同目录下，可通过 [结果查询](/cloud/av/#_7) 与 [回调通知](/cloud/av/#_5) 获取该路径    |
 | return_info       | boolean   | 是否返回 JSON 格式元数据，默认 false                                             |
 | avopts            | string    | 音视频处理参数, 格式为 `/key/value/key/value/...`                                    |
 
