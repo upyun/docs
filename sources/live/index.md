@@ -152,8 +152,8 @@ token = MD5(domain/live/stream + expired_ts + secret)
 upyun-live-recorder.b0.upaiyun.com/play.com/live/stream/recorder20160604163702.mp4  
 
 其中 upyun-live-recorder 为存储空间， upyun-live-recorder.b0.upaiyun.com 为录制文件默认播放域名,  
-play.com 为直播拉流  域名，live 为接入点，stream 为流名，recorder 系统默认标识符名，  
-20160604163702为录制完成时间，mp4 为文件类型。录制完成后可以通过 post 方式回调给用户提供的回调地址。  
+play.com 为直播拉流域名，live 为接入点，stream 为流名，recorder 系统默认标识符名，  
+20160604163702 为录制完成时间，mp4 为文件类型。录制完成后可以通过 post 方式回调给用户提供的回调地址。  
 
 ```
 录制系统会将录制文件默认保存在该空间以这条流 URL 为路径的目录下，  
