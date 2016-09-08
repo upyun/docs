@@ -84,8 +84,8 @@ curl -X POST \
 |-------------------|-----------|--------------------------------------------------------------------|
 | url               | string    | 需要拉取文件的 url 地址，如 `http://www.upyun.com/index.html`         |
 | x-gmkerl-thumb    | string    | 图片处理参数，非必填项，默认为空。详见 [上传作图](/cloud/image/#_2)      |
-| random            | bool      | 是否追加随机数，默认 `true`                                           |
-| overwrite         | bool      | 是否覆盖，默认 `false`                                               |
+| random            | bool      | 是否追加随机数，默认 `false`                                           |
+| overwrite         | bool      | 是否覆盖，默认 `true`                                               |
 | save_as           | string    | 文件存放路径，必填项， 如 `/site/index.html`                          |
 
 注：
