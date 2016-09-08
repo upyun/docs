@@ -76,7 +76,7 @@
 
 开启该配置后，可通过 http://play.com/live/stream.m3u8 对 rtmp://push.com/live/stream 的推流进行播放。
 
-> 要将 RTMP 推流进行 HLS 转协议播放，推流的视频格式仅支持 H264，音频支持 AAC，MP3。hls+ 支持纯音频输出，暂需人工配置。
+> 要将 RTMP 推流进行 HLS 转协议播放，推流的视频格式仅支持 H264，音频支持 AAC，MP3。hls+ 支持纯音频输出，暂需又拍人工配置。
 
 ### 推流防盗链 
 > 配置需提供密钥   
@@ -101,7 +101,8 @@ expire_ts：截止时间，截止时间到后，服务器主动断开已建立�
 推流 URL 为 rtmp://push.com/live/stream，  
 则 domain = push.com，  
 假设约定 secret = a1b2c3d4e53gxwb07，有效时间 valid_ts = 1472659200，截止时间 expired_ts = 1465244082，  
-那么 token = MD5(push.com/live/stream14726592001465244082a1b2c3d4e53gxwb07) = 67905e046efc00996da3d87552824aa7 ，  
+那么 token = MD5(push.com/live/stream14726592001465244082a1b2c3d4e53gxwb07) 
+           = 67905e046efc00996da3d87552824aa7    
 则 rtmp://push.com/live/stream?domain=push.com&token=67905e046efc00996da3d87552824aa7&valid_ts=1472659200    
 &expired_ts=1465244082， 该 token 防盗链在 2016/9/1 00:00:00 之前推流都有效，而时间到 2016/9/5 00:00:00 后，  
 所有的推流连接都将被服务器断开。  
@@ -140,20 +141,23 @@ token = MD5(domain/live/stream + expired_ts + secret)
 > 录制方式：触发或定时录制    
 
 录播的主要作用是将推流内容录制成文件，最终用于点播。
-现支持录制成 MP4、FLV、TS、M3u8，默认录制成 mp4  格式文件，上传到又拍云存储，客户可以自定义上传到哪个存储服务（暂不支持，接口未开放，现在是默认云存储为 live-recorder）。
+现支持录制成 MP4、FLV、TS、M3u8，默认录制成 mp4  格式文件，上传到又拍云存储，客户可以自定义上传到哪个存储服务（暂不支持，接口未开放，现在是默认云存储为 upyun-live-recorder）。
 
 又拍录制系统会自动将录制下来的内容上传到又拍云存储后，可以根据云存储获取目录文件列表 来获取相关录制文件列表。
 如果对录制文件格式有其他要求，可在又拍云处理中心对其进行相关处理，比如格式处理，视频拼接，详细请见[云处理文档](http://docs.upyun.com/cloud/)。
 
 如果需要将 rtmp://play.com/live/stream 这条流进行录制，录制后文件具体路径为：  
-```
-live-recorder.b0.upaiyun.com/play.com/live/stream/recorder20160604163702.mp4  
 
-其中 live-recorder 为存储空间，recorder20160604163702.mp4 为具体的录制文件名，  
-recorder 为标识字符，20160604163702 为录制完成时间，mp4 为文件类型。
+```
+upyun-live-recorder.b0.upaiyun.com/play.com/live/stream/recorder20160604163702.mp4  
+
+其中 upyun-live-recorder 为存储空间， upyun-live-recorder.b0.upaiyun.com 为录制文件默认播放域名,  
+play.com 为直播拉流  域名，live 为接入点，stream 为流名，recorder 系统默认标识符名，  
+20160604163702为录制完成时间，mp4 为文件类型。录制完成后可以通过 post 方式回调给用户提供的回调地址。  
+
 ```
 录制系统会将录制文件默认保存在该空间以这条流 URL 为路径的目录下，  
-即 live-recorder.b0.upaiyun.com/play.com/live/stream/，使用又拍文件加速服务，直接可通过   http://client.com/play.com/live/stream/recorder20160604163702.mp4 来访问，client.com 为客户点播域名，需绑定在录制文件所有的云存储空间，该过程即对存储内容进行点播。
+即 upyun-live-recorder.b0.upaiyun.com/play.com/live/stream/，使用又拍文件加速服务，直接可通过   http://client.com/play.com/live/stream/recorder20160604163702.mp4 来访问，client.com 为客户点播域名，需绑定在录制文件所有的云存储空间，该过程即对存储内容进行点播。
 
 录制支持触发录制与定时录制两种方式，并且支持网络闪断重连后的文件合并，具体需要多长时间内的闪断进行合并，可配置，如要进行合并，断流前后的直播流分辨率需要保持一致。
 
