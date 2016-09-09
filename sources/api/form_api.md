@@ -160,18 +160,18 @@ signature 生成步骤：
 | return-url           | 否   | 同步通知 URL，见 [通知规则](#notify_return)                                                         |
 | x-gmkerl-thumb       | 否   | 图片处理参数，见 [上传作图](/cloud/image/#_2)                                                       |
 | x-gmkerl-type        | 否   | `get_meta`（获取图片信息）或 `get_theme_color`（主题色提取）                                        |
-| x-gmkerl-extract-color-count       | 否   |     主题色提取颜色数量，默认 `256`                                                    |
+| x-gmkerl-extract-color-count   | 否   |     主题色提取颜色数量，默认 `256`                                                    |
 | x-gmkerl-extract-format     | 否   |   主题色提取格式，默认 `hex`                                                                 |
 | apps                 | 否   | json 格式的异步处理任务列表。见 [异步处理任务](/api/form_api/#_4)                                   |
 | ext-param            | 否   | 额外参数，UTF-8 编码，并小于 255 个字符 [\[注 3\]](#note3)                                          |
-| *x-gmkerl-thumbnail* **DEPRECATED**   | *否*   | *缩略图版本名称，仅支持图片类空间，可搭配其他 `x-gmkerl-*` 参数使用* |
-| *x-gmkerl-type*  **DEPRECATED**       | *否*   | *缩略类型*                                                           |
-| *x-gmkerl-value*  **DEPRECATED**      | *否*   | *缩略类型对应的参数值*                                               |
-| *x-gmkerl-quality*  **DEPRECATED**    | *否*   | ***默认 95**缩略图压缩质量*                                                                           |
-| *x-gmkerl-unsharp*   **DEPRECATED**   | *否*   | ***默认锐化（true）**是否进行锐化处理*                                                                |
-| *x-gmkerl-rotate*  **DEPRECATED**     | *否*   | *图片旋转（顺时针），可选：`auto，90，180，270` 之一*                                           |
-| *x-gmkerl-crop*  **DEPRECATED**       | *否*   | *图片裁剪，格式：`<w>x<h>a<x>a<y>`。 其中 w, h 分别表示裁剪后的宽和高，x, y 表示左上角坐标。如 100x100a0a0。*         |
-| *x-gmkerl-exif-switch* **DEPRECATED** | *否*   | *是否保留 EXIF 信息，仅在搭配 `x-gmkerl-crop，x-gmkerl-type，x-gmkerl-thumbnail` 时有效。*        |
+| x-gmkerl-thumbnail | 否   | 缩略图版本名称，可搭配其他 `x-gmkerl-*` 参数使用
+                                            |
+| x-gmkerl-value    | 否   | 缩略类型对应的参数值                                              |
+| x-gmkerl-quality     | 否   | 默认 95，缩略图压缩质量                                                                         |
+| x-gmkerl-unsharp    | 否   |默认锐化（true）是否进行锐化处理                                                             |
+| x-gmkerl-rotate    | 否   | 图片旋转（顺时针），可选：`auto，90，180，270` 之一                                      |
+| x-gmkerl-crop   | 否  | 图片裁剪，格式：`<w>x<h>a<x>a<y>`。 其中 w, h 分别表示裁剪后的宽和高，x, y 表示左上角坐标。如 100x100a0a0       |
+| x-gmkerl-exif-switch | 否   | 是否保留 EXIF 信息，仅在搭配 `x-gmkerl-crop，x-gmkerl-type，x-gmkerl-thumbnail` 时有效      |
 
 
 **注：**
