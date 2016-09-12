@@ -389,6 +389,8 @@ PHPWind 头像存储还需要另外安装插件设置；具体参考安装手册
 ** 我刚给帐号充值了，怎么开发票呢？**  
 
 联系您的销售经理帮您开发票，若您不知道销售经理的联系方式，可以联系客服 `QQ200576786` ，提供您的帐号和联系方式，客服会联系您的销售经理给您开发票的。
+** 注册账号时，手机收不到验证码。**
+您先查看下手机是否出于正常服务状态，没有欠费，且通信正常。如果手机是处于正常服务中，且收发其他短信都正常，请联系客服QQ200576786查看具体原因。
 
 
 ## 视频教程
@@ -483,6 +485,18 @@ PHPWind 头像存储还需要另外安装插件设置；具体参考安装手册
 
 您好，您可以参考:[云盾白名单设置](https://techs.b0.upaiyun.com/videos/cdnpage/yundun.html)
 
+** 我想知道我 CDN 服务的一个访问和回源情况，比如有没有访问错误，有没有命中等，并且我想知道我在某个地区的一个错误率和命中率，怎么看？ **
+
+您好，您可以通过我们后台的监控和统计查看，具体查看方法参考[又拍云统计功能简介](https://techs.b0.upaiyun.com/videos/cdnpage/upyuncount.html)以及[又拍云监控系统简介](https://techs.b0.upaiyun.com/videos/cdnpage/jiankong.html)
+
+
+** 我不知道你们的rewrite规则怎么用? **
+
+您好，您可以查看[又拍云Rewrite规则使用指南](https://techs.b0.upaiyun.com/videos/cdnpage/rewrite.html)视频教程学习
+
+** 我刚注册你们的账号，无法上传文件是怎么回事？ **
+
+您好，您首先确认您是否进行实名认证或企业认证了，如果没有是无法上传文件的，具体如何进行操作，参考[如何进行实名认证](https://techs.b0.upaiyun.com/videos/cdnpage/gerenrenzheng.html)学习
 
 
 
