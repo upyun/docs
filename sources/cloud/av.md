@@ -276,7 +276,8 @@ curl http://p0.api.upyun.com/result?bucket_name=demo&task_ids=35f0148d414a688a27
 | `/f/<format>`              | string    | 视频格式，默认按照原始视频后缀名作为输出格式                                                                                      |
 | `/vb/<bitrate>`            | integer   | 视频比特率，单位 kbps，默认按照视频原始比特率处理                                                                                      |
 | `/s/<scale>`               | string    | 视频分辨率，默认按照原始分辨率处理。格式：预置模板如 720p(16:9)，自定义如 1820x720，建议使用预置模板 [见附件](/cloud/attachment/#_1) |
-| `/as/<auto_scale>`         | boolean   | 是否根据分辨率自动调整视频长宽比例，仅当传递了 scale 参数时有效                                                                        |
+| `/as/<auto_scale>`         | boolean   | 是否根据分辨率自动调整视频长宽比例（将保留原始视频竖屏或横屏状态），仅当传递了 scale 参数时有效                                        |
+| `/ar/<audio_sample_rate>`  | integer   | 音频采样率，单位 Hz，可选值：44100，48000，32000，22050，24000，16000，0                                                            |
 | `/r/<frame_rate>`          | integer   | 视频帧率，既每秒显示的帧数，常用帧率 "25"、"30" 等，默认按照原始帧率处理                                                               |
 | `/sp/<rotate>`             | string    | 旋转角度，默认按照原始视频角度处理。可选值：auto（自动扶正），90，180，270。                                                           |
 | `/sm/<map_metadata>`       | boolean   | 是否保留视频 meta 信息，默认值 true                                                                                                    |
