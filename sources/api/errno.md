@@ -49,6 +49,18 @@ API 请求失败时，服务器会返回一个 json 格式的响应体用于定�
 | 400 |  40011032 | invalid x-gmkerl-extract-palette    |
 | 400 |  40011033 | invalid x-gmkerl-canvas    |
 | 400 |  40011034 | invalid x-gmkerl-canvas-color    |
+| 400 |  40011051 | invalid x-upyun-part-id                  |
+| 400 |  40011052 |invalid x-upyun-multi-length                 |
+| 400 |  40011053 |invalid x-upyun-multi-type                 |
+| 400 |  40011054 | invalid x-upyun-part-size                 |
+| 400 |  40011055 | invalid invalid multipart stage              |
+| 400 |  40011056 | invalid invalid x-upyun-multi-uuid         |
+| 400 |  40011057 | invalid UTF8 Key                      |
+| 400 |  40011058 | invalid x-upyun-multi-uuid not found    |
+| 400 |  40011059 | file md5 not match                   |
+| 400 |  40011060 | invalid x-upyun-part-size                 |
+| 400 |  40011061 | part id error                       |
+| 400 |  40011062 | part already complete                  | 
 | 400 |  40000001 | need save-key    |
 | 400 |  40000002 | need body    |
 | 400 |  40000003 | need bucket name    |
