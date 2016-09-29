@@ -499,6 +499,8 @@ curl -T /local_img.jpg http://v0.api.upyun.com/bucket/img.jpg -u operator:operat
 | CDN  | [Rewrite规则的使用](https://techs.b0.upaiyun.com/videos/cdnpage/rewrite.html) | 4分03秒  |
 | 账号   | [实名认证](https://techs.b0.upaiyun.com/videos/cdnpage/gerenrenzheng.html) | 2分     |
 | CDN |[HTTP2简介](https://techs.b0.upaiyun.com/videos/cdnpage/HTTP2.html)|2分49秒|
+|工具|[Wireshark的使用](https://techs.b0.upaiyun.com/videos/cdnpage/wireshark.html)|5分58秒|
+|工具|[Tcpudmp的使用](https://techs.b0.upaiyun.com/videos/cdnpage/tcpdump.html)|8分56秒|
 
 ### 直播服务
 
