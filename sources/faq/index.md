@@ -471,6 +471,8 @@ curl -T /local_img.jpg http://v0.api.upyun.com/bucket/img.jpg -u operator:operat
 
 ## 视频教程
 
+### CDN 服务
+
 ** 请问怎么使用你们的云存储，怎么通过 FTP 上传文件并且访问呢? **
 
 您也可以点击这里:[创建和使用又拍云存储视频教程](https://techs.b0.upaiyun.com/videos/cdnpage/create_cdn_and_use_storage_services.html)，观看视频教程学习。
@@ -540,15 +542,6 @@ curl -T /local_img.jpg http://v0.api.upyun.com/bucket/img.jpg -u operator:operat
 
 您好，又拍云除了 FTP 工具外还有又拍云资源管理器，您可参考[如何使用又拍云资源管理器](https://techs.b0.upaiyun.com/videos/cdnpage/upyun_manager.html)
 
-** 如何使用又拍云的直播服务？ **
-
-您好，又拍云直播分为又拍云源站和自主源站两种方式，关于又拍云源站模式的配置您可以参考[如何创建和使用又拍云源的直播服务](https://techs.b0.upaiyun.com/videos/cdnpage/upyunzb1.html)，关于自主源站模式的配置您可以参考[如何创建自主源站模式的直播服务](https://techs.b0.upaiyun.com/videos/cdnpage/upyunzzzb.html)
-
-** 又拍云直播怎么录制视频和转码？ **
-
-您好，您可以参考我们的视频录制和转码视频教程[直播转码录制指南](https://techs.b0.upaiyun.com/videos/cdnpage/zb-format.html)
-
-
 ** 源站阿里云经常报 `503`，类似 `connection refused` 如何解决？**
 
 这是由于阿里云屏蔽了又拍云的回源IP导致的，您可以参考:[设置阿里云安全组](https://techs.b0.upaiyun.com/videos/cdnpage/yundun.html)
@@ -579,6 +572,20 @@ curl -T /local_img.jpg http://v0.api.upyun.com/bucket/img.jpg -u operator:operat
 
 您好，您首先确认您是否进行实名认证或企业认证了，如果没有是无法上传文件的，具体如何进行操作，参考[如何进行实名认证](https://techs.b0.upaiyun.com/videos/cdnpage/gerenrenzheng.html)学习
 
+
+### 直播服务
+
+** 如何使用又拍云的直播服务？ **
+
+您好，又拍云直播分为又拍云源站和自主源站两种方式，关于又拍云源站模式的配置您可以参考[如何创建和使用又拍云源的直播服务](https://techs.b0.upaiyun.com/videos/cdnpage/upyunzb1.html)，关于自主源站模式的配置您可以参考[如何创建自主源站模式的直播服务](https://techs.b0.upaiyun.com/videos/cdnpage/upyunzzzb.html)
+
+** 又拍云直播怎么录制视频和转码？ **
+
+您好，您可以参考我们的视频录制和转码视频教程[直播转码录制指南](https://techs.b0.upaiyun.com/videos/cdnpage/zb-format.html)
+
+** 安卓的拉流播放器我要如何使用？**
+
+您好，您可以参考[安卓播发器使用指南](https://techs.b0.upaiyun.com/videos/cdnpage/andriod-player-sdk.html)去使用
 
 
 
