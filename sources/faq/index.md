@@ -473,119 +473,40 @@ curl -T /local_img.jpg http://v0.api.upyun.com/bucket/img.jpg -u operator:operat
 
 ### CDN 服务
 
-** 请问怎么使用你们的云存储，怎么通过 FTP 上传文件并且访问呢? **
-
-您也可以点击这里:[创建和使用又拍云存储视频教程](https://techs.b0.upaiyun.com/videos/cdnpage/create_cdn_and_use_storage_services.html)，观看视频教程学习。
-
-**  我自己有服务器，独立的 IP 和 OS，现在希望使用动态加速并提升访问速度，如果实现？**
-
-您可以点击这里:[如何设置自主源站和缓存视频教程](https://techs.b0.upaiyun.com/videos/cdnpage/create_dynamic_cdn_and_cache_setting.html)，观看视频教程学习。
-
-** 我希望将我上传的图片处理成不同格式和大小的多张图片并且加上水印，在又拍云上要怎么实现？**
-
-您可以点击这里:[创建和使用缩略图版本](https://techs.b0.upaiyun.com/videos/cdnpage/Picture_processing.html)，观看视频教程学习。
-
-** 如何设置 SSL 证书，让网站全站通过 HTTPS 协议进行访问 ？**
-
-您可以点击这里:[设置 SSL 证书](https://techs.b0.upaiyun.com/videos/cdnpage/ssl_setting.html)，观看视频教程学习。
-
-** 新上传的文件或者更新过的文件以及缩略图版本 总是访问的是老的文件，如何解决这个问题 **
-
-您可以点击这里:[缓存刷新教程](https://techs.b0.upaiyun.com/videos/cdnpage/chache_Refresh.html)，观看视频教程学习。
-
-** 我使用 Discuz 把文件上传到又拍云，你们有相关的插件吗？ **
-
-您可以点击这里:[设置 Discuz 插件](https://techs.b0.upaiyun.com/videos/cdnpage/Discuz.html)，观看视频教程学习。
-
-** 我希望将一部分域名加入白名单，并且禁止一些访问频率较高的 IP 地址？如何实现这个需求？**
-
-您可以点击这里:[防盗链设置](https://techs.b0.upaiyun.com/videos/cdnpage/Denyurl.html)，观看视频教程学习。
-
-** 我使用的是 WordPress 你们有相关插件吗？ **
-
-有的，您可以点击这里:[设置 WordPress 插件](https://techs.b0.upaiyun.com/videos/cdnpage/wordpress.html)，观看视频教程学习使用。
-
-** 融合云是什么？我要如何使用？**
-
-您好，了解融合云以及如何使用，您可以点击这里:[融合云使用配置教程](https://techs.b0.upaiyun.com/videos/cdnpage/upyun_oss.html)，观看教程学习。
-
-** 我觉得创建缩略图版本太麻烦，不够灵活，你们还有其他图片处理的功能吗？**
-
-您好，您还可以使用 URL 动态做图，具体使用可以参考:[使用 URL 动态做图](https://techs.b0.upaiyun.com/videos/cdnpage/Dynamic_mapping.html)
-
-** 你们的 REST API 怎么使用啊？我用的是 JAVA，如何实现？**
-
-您好，REST API的使用以及 JAVA SDK的使用您可以参考:[REST API和 JAVA SDK的使用](https://techs.b0.upaiyun.com/videos/cdnpage/http_rest_api_and_javasdk.html)
-
-
-** 看你们官网的 API 中的Demo用的是 CURL ,这个工具要怎么使用？**
-
-您好，您可以参考[使用 CURL 调试 HTTP REST API](https://techs.b0.upaiyun.com/videos/cdnpage/curl_http_rest_api.html)视频教程学习。
-
-** 音视频SDK有使用教程吗？**
-
-有的，您可以参考:[音视频处理SDK的使用](https://techs.b0.upaiyun.com/videos/cdnpage/av-pretreatment-php-sdk.html)
-
-** 我使用七牛或者阿里云的存储，现在想把资源迁移到又拍云，我要如何操作？**
-
-您可以参考:[七牛阿里云镜像使用](https://techs.b0.upaiyun.com/videos/cdnpage/qiuniuoraliossmirror.html)
-
-** 我想配置跨域，你们有相关视频教程吗？**
-
-跨域配置相关您可以参考:[ CORS 跨域设置](https://techs.b0.upaiyun.com/videos/cdnpage/CORS.html)
-
-** Python SDK 有视频教程吗？**
-
-有的，您可以参考:[Python SDK使用教程](https://techs.b0.upaiyun.com/videos/cdnpage/Python_Sdk.html)
-
-** 又拍云除了 FTP 工具上传文件之外，还有其他工具上传吗？**
-
-您好，又拍云除了 FTP 工具外还有又拍云资源管理器，您可参考[如何使用又拍云资源管理器](https://techs.b0.upaiyun.com/videos/cdnpage/upyun_manager.html)
-
-** 源站阿里云经常报 `503`，类似 `connection refused` 如何解决？**
-
-这是由于阿里云屏蔽了又拍云的回源IP导致的，您可以参考:[设置阿里云安全组](https://techs.b0.upaiyun.com/videos/cdnpage/yundun.html)
-
-** 为什么的服务下删除文件提示550，提示权限有问题？ **
-
-这可能是由于您的操作员设置了不能删除文件的权限导致的，您可以参考:[操作员权限设置](https://techs.b0.upaiyun.com/videos/cdnpage/caozuoyuan.html)
-
-
-** 为什么感觉我的网站访问量并不是特别大，但是从你们的 CDN 上看每天都好几十个G？ **
-
-您好，如果网站访问流量异常，您可以通过日志分析查看热门 IP，并将 IP 添加到服务所在的 IP 黑名单，您可以参考:[日志分析和日志下载](https://techs.b0.upaiyun.com/videos/cdnpage/upyunlog.html)
-
-** 阿里云回源报`503`错误，如何设置云盾白名单? **
-
-您好，您可以参考:[云盾白名单设置](https://techs.b0.upaiyun.com/videos/cdnpage/yundun.html)
-
-** 我想知道我 CDN 服务的一个访问和回源情况，比如有没有访问错误，有没有命中等，并且我想知道我在某个地区的一个错误率和命中率，怎么看？ **
-
-您好，您可以通过我们后台的监控和统计查看，具体查看方法参考[又拍云统计功能简介](https://techs.b0.upaiyun.com/videos/cdnpage/upyuncount.html)以及[又拍云监控系统简介](https://techs.b0.upaiyun.com/videos/cdnpage/jiankong.html)
-
-
-** 我不知道你们的rewrite规则怎么用? **
-
-您好，您可以查看[又拍云Rewrite规则使用指南](https://techs.b0.upaiyun.com/videos/cdnpage/rewrite.html)视频教程学习
-
-** 我刚注册你们的帐号，无法上传文件是怎么回事？ **
-
-您好，您首先确认您是否进行实名认证或企业认证了，如果没有是无法上传文件的，具体如何进行操作，参考[如何进行实名认证](https://techs.b0.upaiyun.com/videos/cdnpage/gerenrenzheng.html)学习
-
+| 视频类别 | 视频名称                                     | 时长     |
+| ---- | ---------------------------------------- | ------ |
+| CDN  | [创建和使用CDN存储服务](https://techs.b0.upaiyun.com/videos/cdnpage/create_cdn_and_use_storage_services.html) | 9分24秒  |
+| CDN  | [创建动态CDN和设置缓存](https://techs.b0.upaiyun.com/videos/cdnpage/create_dynamic_cdn_and_cache_setting.html) | 15分04秒 |
+| CDN  | [创建和使用缩略图](https://techs.b0.upaiyun.com/videos/cdnpage/Picture_processing.html) | 8分03秒  |
+| CDN  | [设置SSL证书](https://techs.b0.upaiyun.com/videos/cdnpage/ssl_setting.html) | 5分54秒  |
+| CDN  | [缓存刷新功能](https://techs.b0.upaiyun.com/videos/cdnpage/chache_Refresh.html) | 3分42秒  |
+| 插件   | [设置 Discuz 插件](https://techs.b0.upaiyun.com/videos/cdnpage/Discuz.html) | 8分29秒  |
+| CDN  | [设置防盗链](https://techs.b0.upaiyun.com/videos/cdnpage/Denyurl.html) | 12分43秒 |
+| 插件   | [设置 WordPress 插件](https://techs.b0.upaiyun.com/videos/cdnpage/wordpress.html) | 4分43秒  |
+| CDN  | [融合云配置](https://techs.b0.upaiyun.com/videos/cdnpage/upyun_oss.html) | 5分     |
+| CDN  | [URL动态作图](https://techs.b0.upaiyun.com/videos/cdnpage/Dynamic_mapping.html) | 2分41秒  |
+| SDK  | [HTTP REST API的介绍和JAVA SDK的使用](https://techs.b0.upaiyun.com/videos/cdnpage/http_rest_api_and_javasdk.html) | 10分23秒 |
+| SDK  | [curl 操作 HTTP](https://techs.b0.upaiyun.com/videos/cdnpage/curl_http_rest_api.html) | 7分15秒  |
+| SDK  | [音视频处理SDK](https://techs.b0.upaiyun.com/videos/cdnpage/av-pretreatment-php-sdk.html) | 6分09秒  |
+| CDN  | [七牛镜像回源功能使用](https://techs.b0.upaiyun.com/videos/cdnpage/qiuniuoraliossmirror.html) | 6分19秒  |
+| CDN  | [CORS 跨域功能使用](https://techs.b0.upaiyun.com/videos/cdnpage/CORS.html) | 3分01秒  |
+| SDK  | [Python SDK的使用 ](https://techs.b0.upaiyun.com/videos/cdnpage/Python_Sdk.html) | 17分25秒 |
+| FTP  | [又拍云资源管理器的使用](https://techs.b0.upaiyun.com/videos/cdnpage/upyun_manager.html) | 2分38秒  |
+| CDN  | [阿里云云盾设置](https://techs.b0.upaiyun.com/videos/cdnpage/yundun.html) | 1分04秒  |
+| 日志   | [日志分析和日志下载](https://techs.b0.upaiyun.com/videos/cdnpage/upyunlog.html)                    | 7分2    |
+| CDN  | [又拍云的统计功能](https://techs.b0.upaiyun.com/videos/cdnpage/upyuncount.html) | 3分35秒  |
+| CDN  | [又拍云监控系统简介](https://techs.b0.upaiyun.com/videos/cdnpage/jiankong.html) | 3分05秒  |
+| CDN  | [Rewrite规则的使用](https://techs.b0.upaiyun.com/videos/cdnpage/rewrite.html) | 4分03秒  |
+| 账号   | [实名认证](https://techs.b0.upaiyun.com/videos/cdnpage/gerenrenzheng.html) | 2分     |
 
 ### 直播服务
 
-** 如何使用又拍云的直播服务？ **
-
-您好，又拍云直播分为又拍云源站和自主源站两种方式，关于又拍云源站模式的配置您可以参考[如何创建和使用又拍云源的直播服务](https://techs.b0.upaiyun.com/videos/cdnpage/upyunzb1.html)，关于自主源站模式的配置您可以参考[如何创建自主源站模式的直播服务](https://techs.b0.upaiyun.com/videos/cdnpage/upyunzzzb.html)
-
-** 又拍云直播怎么录制视频和转码？ **
-
-您好，您可以参考我们的视频录制和转码视频教程[直播转码录制指南](https://techs.b0.upaiyun.com/videos/cdnpage/zb-format.html)
-
-** 安卓的拉流播放器我要如何使用？**
-
-您好，您可以参考[安卓播发器使用指南](https://techs.b0.upaiyun.com/videos/cdnpage/andriod-player-sdk.html)去使用
+| 视频类别 | 视频名称                                     | 时长     |
+| ---- | ---------------------------------------- | ------ |
+| 直播   | [创建和使用又拍云自主源站的直播服务](https://techs.b0.upaiyun.com/videos/cdnpage/upyunzb1.html) | 10分    |
+| 直播   | [创建和使用自主源直播服务](https://techs.b0.upaiyun.com/videos/cdnpage/upyunzzzb.html) | 4分51秒  |
+| 直播   | [直播转码和录制](https://techs.b0.upaiyun.com/videos/cdnpage/zb-format.html) | 10分23秒 |
+| 直播   | [安卓拉流播放器使用指南](https://techs.b0.upaiyun.com/videos/cdnpage/andriod-player-sdk.html) | 3分32秒  |
 
 
 
