@@ -486,7 +486,7 @@ curl -T /local_img.jpg http://v0.api.upyun.com/bucket/img.jpg -u operator:operat
 | CDN  | [融合云配置](https://techs.b0.upaiyun.com/videos/cdnpage/upyun_oss.html) | 5分     |
 | CDN  | [URL动态作图](https://techs.b0.upaiyun.com/videos/cdnpage/Dynamic_mapping.html) | 2分41秒  |
 | SDK  | [HTTP REST API的介绍和JAVA SDK的使用](https://techs.b0.upaiyun.com/videos/cdnpage/http_rest_api_and_javasdk.html) | 10分23秒 |
-| SDK  | [curl 操作 HTTP](https://techs.b0.upaiyun.com/videos/cdnpage/curl_http_rest_api.html) | 7分15秒  |
+| SDK  | [CURL 操作 HTTP](https://techs.b0.upaiyun.com/videos/cdnpage/curl_http_rest_api.html) | 7分15秒  |
 | SDK  | [音视频处理SDK](https://techs.b0.upaiyun.com/videos/cdnpage/av-pretreatment-php-sdk.html) | 6分09秒  |
 | CDN  | [七牛镜像回源功能使用](https://techs.b0.upaiyun.com/videos/cdnpage/qiuniuoraliossmirror.html) | 6分19秒  |
 | CDN  | [CORS 跨域功能使用](https://techs.b0.upaiyun.com/videos/cdnpage/CORS.html) | 3分01秒  |
@@ -499,8 +499,8 @@ curl -T /local_img.jpg http://v0.api.upyun.com/bucket/img.jpg -u operator:operat
 | CDN  | [Rewrite规则的使用](https://techs.b0.upaiyun.com/videos/cdnpage/rewrite.html) | 4分03秒  |
 | 账号   | [实名认证](https://techs.b0.upaiyun.com/videos/cdnpage/gerenrenzheng.html) | 2分     |
 | CDN |[HTTP2简介](https://techs.b0.upaiyun.com/videos/cdnpage/HTTP2.html)|2分49秒|
-|工具|[Wireshark的使用](https://techs.b0.upaiyun.com/videos/cdnpage/wireshark.html)|5分58秒|
-|工具|[Tcpudmp的使用](https://techs.b0.upaiyun.com/videos/cdnpage/tcpdump.html)|8分56秒|
+|工具|[wireshark的使用](https://techs.b0.upaiyun.com/videos/cdnpage/wireshark.html)|5分58秒|
+|工具|[tcpudmp的使用](https://techs.b0.upaiyun.com/videos/cdnpage/tcpdump.html)|8分56秒|
 
 ### 直播服务
 
