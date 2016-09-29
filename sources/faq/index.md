@@ -498,6 +498,7 @@ curl -T /local_img.jpg http://v0.api.upyun.com/bucket/img.jpg -u operator:operat
 | CDN  | [又拍云监控系统简介](https://techs.b0.upaiyun.com/videos/cdnpage/jiankong.html) | 3分05秒  |
 | CDN  | [Rewrite规则的使用](https://techs.b0.upaiyun.com/videos/cdnpage/rewrite.html) | 4分03秒  |
 | 账号   | [实名认证](https://techs.b0.upaiyun.com/videos/cdnpage/gerenrenzheng.html) | 2分     |
+| CDN |[HTTP2简介](https://techs.b0.upaiyun.com/videos/cdnpage/HTTP2.html)|2分49秒|
 
 ### 直播服务
 
