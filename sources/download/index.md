@@ -147,7 +147,7 @@
     </li>
 </ul>
 
-<h2 id="third-party">直播 SDK </h2>
+<h2 id="live-sdk">直播 SDK </h2>
 <ul class="list-unstyled list-inline clearfix">
     <li>
         <strong> Andriod 流媒体播放器</strong>
@@ -170,7 +170,7 @@
     </li>
 </ul>
 
-<h2 id="third-party">融合 SDK</h2>
+<h2 id="cross-sdk">融合 SDK</h2>
 <ul class="list-unstyled list-inline clearfix">
     <li>
         <strong>iOS Fusion SDK</strong>
@@ -244,7 +244,7 @@
     </li>
 </ul>
 
-<h2 id="third-party">第三方插件和工具</h2>
+<h2 id="third-party-plugin">第三方插件和工具</h2>
 <ul class="list-unstyled list-inline clearfix">
     <li>
         <strong>WordPress</strong>
