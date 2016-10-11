@@ -127,8 +127,9 @@ token = MD5(domain/live/stream + expired_ts + secret)
 
 > 注：计算公式中的 secret，客户需妥善保管，谨防外泄。  
 > 注：MD5 后计算出的 token 值是 32 位的，必须小写。  
-> 推流暂仅支持 token 防盗链。  
+> 推流暂仅支持 token 防盗链。 
 
+关于 token 的推流，您可以参考[这里](https://github.com/monkey-wenjun/live_push_token/)的演示代码
 ### 拉流防盗链   
 拉流防盗链只针对播放域名，HTTP 协议拉流防盗链规则同文件加速，包括 IP 禁用、地区访问限制、回源鉴权、Token 防盗链、域名防盗链等。详细规则见文件加速[ 防盗链](http://docs.upyun.com/cdn/feature/#_1)。 
 
