@@ -510,6 +510,7 @@ curl -T /local_img.jpg http://v0.api.upyun.com/bucket/img.jpg -u operator:operat
 | 直播   | [创建和使用自主源直播服务](https://techs.b0.upaiyun.com/videos/cdnpage/upyunzzzb.html) | 4分51秒  |
 | 直播   | [直播转码和录制](https://techs.b0.upaiyun.com/videos/cdnpage/zb-format.html) | 10分23秒 |
 | 直播   | [安卓拉流播放器使用指南](https://techs.b0.upaiyun.com/videos/cdnpage/andriod-player-sdk.html) | 3分32秒  |
+| 直播   | [直播防盗链的使用](https://techs.b0.upaiyun.com/videos/cdnpage/live_push_token.html) | 6分54秒  |
 
 
 
