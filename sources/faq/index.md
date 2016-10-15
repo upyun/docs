@@ -501,6 +501,8 @@ curl -T /local_img.jpg http://v0.api.upyun.com/bucket/img.jpg -u operator:operat
 | CDN |[HTTP2简介](https://techs.b0.upaiyun.com/videos/cdnpage/HTTP2.html)|2分49秒|
 |工具|[wireshark的使用](https://techs.b0.upaiyun.com/videos/cdnpage/wireshark.html)|5分58秒|
 |工具|[tcpudmp的使用](https://techs.b0.upaiyun.com/videos/cdnpage/tcpdump.html)|8分56秒|
+|工具|[upx的使用](https://techs.b0.upaiyun.com/videos/cdnpage/upx.html)|6分56秒|
+|插件|[ueditor的使用](https://techs.b0.upaiyun.com/videos/cdnpage/ueditor.html)|7分55秒|
 
 ### 直播服务
 
