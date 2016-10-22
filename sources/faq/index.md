@@ -515,6 +515,14 @@ curl -T /local_img.jpg http://v0.api.upyun.com/bucket/img.jpg -u operator:operat
 | 直播   | [直播防盗链的使用](https://techs.b0.upaiyun.com/videos/cdnpage/live_push_token.html) | 6分54秒  |
 
 
+### 故障反馈
+
+| 视频类别 | 视频名称                                     | 时长     |
+| ---- | ---------------------------------------- | ------ |
+| 工具   | [PC 端故障反馈视频教程](https://techs.b0.upaiyun.com/videos/cdnpage/pc.html) | 10分    |
+| 工具   | [移动端故障反馈视频教程](https://techs.b0.upaiyun.com/videos/cdnpage/mobile.html) | 4分51秒  |
+
+
 
 
 
