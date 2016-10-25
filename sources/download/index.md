@@ -280,6 +280,12 @@
             <a href="https://github.com/monkey-wenjun/upyun-sdk-script" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
         </div>
     </li>
+     <li>
+        <strong>移动端网络检测工具</strong>
+        <div class="links">
+            <a href="  https://techs.b0.upaiyun.com/netecho.apk" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
+        </div>
+    </li>
 </ul>
 </ul>
 
