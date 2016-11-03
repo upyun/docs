@@ -283,7 +283,7 @@
      <li>
         <strong>移动端网络检测工具</strong>
         <div class="links">
-            <a href="  https://techs.b0.upaiyun.com/netecho.apk" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
+            <a href="  https://techs.b0.upaiyun.com/netecho.apk" class="btn btn-xs" target="_blank"><i class="fa fa-question-circle"></i>查看</a>
         </div>
     </li>
 </ul>
