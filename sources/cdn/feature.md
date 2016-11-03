@@ -433,6 +433,7 @@ $ curl http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-architecture.png?_u
 Rewrite 规则 DSL 支持函数，变量，字符串常量，用户可以将这些自由组合，完成对请求的重写。
 
 ### Rewrite 规则说明
+
 例如：
 
 ```
@@ -461,6 +462,7 @@ $2 ...` 这样的变量；`rule` 为当前的 rewrite 规则，`break` 表示如
 成功后是否要终止剩下的的 rewrite 过程。
 
 > 在管理后台对规则进行配置时，`pattern` 对应于 `URI 提取正则`，`rule` 对应于
+
 `Rewrite 规则`，`break` 对应于 `break 选项`，`调试模式` 选项是默认打开的。
 
 #### 调试模式
@@ -490,6 +492,7 @@ curl -H "X-Upyun-Rewrite-Preview: true" http://your-domain/foo/bar.html -v
 rewrite 过程会对所有命中的请求生效。
 
 #### 函数
+
 函数调用以 `$` 开头，后跟一组大写字母，字母之间可以包含下划线 `_`，函数需要的参
 数放在 `()` 中，以 `,` 分隔。和 Lua 中的函数调用一样，rewrite 中的函数参数个数不
 能少于要求的参数个数，否则视为语法错误，然后终止 rewrite 过程，多余的参数会被求
@@ -497,6 +500,7 @@ rewrite 过程会对所有命中的请求生效。
 型，参数中有不成立的条件（`false`）时，会终止 rewrite 过程。
 
 #### 变量
+
 变量以 `$_` 开头，这些变量都是对此次请求上下文中一些参数的映射，譬如 `$_HOST` 对
 应此次请求头中的 `Host` 字段，`$_GET_foo` 对应此次请求 URL 参数 foo 的值，等等。
 若将变量内插到重写后的 URL 中，譬如 rewrite `/$_GET_foo/bar`，如果请求参数中没有
@@ -504,6 +508,7 @@ rewrite 过程会对所有命中的请求生效。
 `$NOT($_GET_foo)`，如果参数中包含 `foo`，则返回 `false`，否则返回`true`。
 
 #### 字符串常量
+
 字符串常量有两种形式，第一种就是普通的字符串例如 `/foo/bar`，但是如果字符串中包
 含了一些特殊字符，例如空白字符将被省略，例如 `$(),'` 这些字符有特殊的用途，不能
 被直接使用，要使用这些特殊的字符，要加 `\` 前缀对其转义，例如 `/foo/bar\,`；第二
@@ -512,11 +517,13 @@ rewrite 过程会对所有命中的请求生效。
 `/foo/$\,'`。
 
 #### break
+
 除了能勾选 `break 选项` 指定是否 `break`，也可以直接在 rewrite 规则最后加上 `$$`
 表示 `break`。
 
 
 ### Rewrite 变量和函数列表
+
 `$N` 指 `PCRE` 正则匹配到的第 `N` 个分组：
 
  rule          | pattern
@@ -598,6 +605,7 @@ rewrite 过程会对所有命中的请求生效。
 ```
 
 ### Rewrite 示例
+
 rewrite 规则                                                       | 含义
 :--------------------                                              | :-------
 `$WHEN($MATCH($_URI, '^/foo/.*'))$ADD_REQ_HEADER(X-Foo, bar)`      | 在请求 URI 匹配 `^/foo/.*` 的情况下，添加请求头 `X-Foo: bar`
@@ -651,5 +659,3 @@ Rewrite 规则                                                        | URI 提�
 Rewrite 规则                                                        | URI 提取正则
 :--------------------                                               | :-------
 `$WHEN($1, $EQ($_HOST, 'test.upyun.com'))$LIMIT_RATE_AFTER(20, m)$LIMIT_RATE(100, k)` | `^(/).+-10\.mp4$`
-
-
