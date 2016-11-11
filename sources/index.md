@@ -10,9 +10,9 @@
         <h3>CDN 文档</h3>
         <h4>CDN Documents</h4>
         <ul class="list-unstyled">
-            <li><a href="/cdn/#_2">CDN 整体架构</a></li>
-            <li><a href="/cdn/">CDN 基础配置</a></li>
-            <li><a href="/cdn/feature/">CDN 高级特性</a></li>
+            <li><a href="/cdn/">产品简介</a></li>
+            <li><a href="/cdn/guide/">快速入门</a></li>
+            <li><a href="/cdn/basic/">基础设置</a></li>
             <li><a href="/cdn/">查看更多</a></li>
         </ul>
     </div>
