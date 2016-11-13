@@ -150,13 +150,13 @@
 <h2 id="live-sdk">直播 SDK </h2>
 <ul class="list-unstyled list-inline clearfix">
     <li>
-        <strong> Andriod 流媒体播放器</strong>
+        <strong> Android 流媒体播放器</strong>
         <div class="links">
             <a href="https://github.com/upyun/android-player-sdk" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
         </div>
     </li>
     <li>
-        <strong> Andriod 推流 SDK </strong>
+        <strong> Android 推流 SDK </strong>
         <div class="links">
             <a href="https://github.com/upyun/android-push-sdk" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
         </div>
