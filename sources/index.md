@@ -40,13 +40,13 @@
     </div>
     <div class="section section-api">
         <i class="upicon upicon-api"></i>
-        <h3>云处理文档</h3>
-        <h4>Cloud Processing</h4>
+        <h3>云存储文档</h3>
+        <h4>API Reference</h4>
         <ul class="list-unstyled">
-            <li><a href="/cloud/">云处理概述</a></li>
-            <li><a href="/cloud/image/">图片处理</a></li>
-            <li><a href="/cloud/av/">音视频处理</a></li>
-            <li><a href="/cloud/">查看更多</a></li>
+			<li><a href="/api/">产品简介</a></li>
+            <li><a href="/api/rest_api/">REST API</a></li>
+            <li><a href="/api/form_api/">FORM API</a></li>
+            <li><a href="/api/">查看更多</a></li>
         </ul>
     </div>
     <div class="section section-download">
