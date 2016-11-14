@@ -12,8 +12,11 @@ pages:
     - '开发者指南': 'guide/index.md'
     - 'REST API 简易指南(PHP)': 'guide/php_rest_guide.md'
 - 'CDN 文档':
-    - '基础特性': 'cdn/index.md'
-    - '高级特性': 'cdn/feature.md'
+    - '产品简介': 'cdn/index.md'
+    - '快速入门': 'cdn/guide.md'
+    - '基础设置': 'cdn/basic.md'
+    - '高级设置': 'cdn/advanced.md'
+    - '辅助工具': 'cdn/tools.md'
 - '直播文档':
     - '直播文档': 'live/index.md'
 - 'API 文档':
