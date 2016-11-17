@@ -3,7 +3,7 @@
 **IP 禁用**
 
 假如需要禁用某个 IP 或者某个 IP 段，则需要进行该功能配置。特别地，IP 防盗链目前暂时只支持黑名单逻辑。
- 
+
 配置引导
 
 登陆 [又拍云管理控制台](https://console.upyun.com/login/)，依次进入：服务 > 功能配置 > 防盗链 > IP 禁用，点击「管理」按钮即可开始配置。如下图所示：
@@ -11,10 +11,10 @@
 ![upyun-cdn-access-ip](http://upyun-assets.b0.upaiyun.com/docs/cdn/access-control/upyun-cdn-access-ip.png_/fw/800)
 
 注意事项：
- 
+
 1.支持 `*` 通配符，如 `10.11.12.*` 将禁止 `10.11.12.0~10.11.12.255` 的 IP 访问
 
-2.禁用 IP 上限 100 条，被禁止的 IP 访问资源时，将提示 403 
+2.禁用 IP 上限 100 条，被禁止的 IP 访问资源时，将提示 403
 
 **地区访问限制**
 
@@ -47,7 +47,7 @@
 3.支持 `*` 通配符，比如白名单的 `*upyun.com` 将允许 `www.upyun.com`、`abcupyun.com` 等网站访问
 
 4.特别地，默认 `允许 Referer 为空` 这种情况会绕过防盗链的逻辑，若这里启用 `禁止 Referer 为空`，那么这类请求就直接被禁止访问了
- 
+
 **User-Agent 防盗链**
 
 只允许特定的浏览器或者带有特殊 `User-Agent` 标识的专属的客户端进行访问。目前暂时只支持白名单逻辑。
@@ -86,7 +86,7 @@
 签名：
 
     _upt = MD5(token 密钥 & etime & URI){中间 8 位} + etime
-    
+
 参数：
 
  - token 密钥：用户所填的密钥
@@ -101,7 +101,7 @@
     URI = '/dir/pic.jpg'
     sign = MD5(token 密钥&etime&URI) = xxxxxxxxxxxxabcdefghyyyyyyyyyyyy
     _upt = MD5(token 密钥&etime&URI){中间 8 位} + etime = abcdefgh1370000600
-    
+
     该签名拼接在 URL 地址或用户 Cookie 中，均可起到防盗链作用:
     URL: http://<bucket>/dir/pic.jpg?_upt=abcdefgh1370000600
     Cookie: _upt=abcdefgh1370000600;
@@ -114,7 +114,7 @@
     $path = '/dir/pic.jpg'; // 图片相对路径
     $sign = substr(md5($key.'&'.$etime.'&'.$path), 12,8).$etime;
     ?>
-    
+
 **回源鉴权**
 
 回源鉴权是一种高级的防盗链方式，适用于对防盗链有很高实时性要求的场景。大概原理是 CDN 边缘节点每次接受到请求之后，都需要回客户源站进行验证，验证通过之后才认为是合法请求，这样 CDN 可以继续提供服务。
@@ -150,7 +150,7 @@
 **WAF 防护**
 
 WAF 防护主要防护的是来自对网站源站的动态数据攻击，可防护的攻击类型包括 SQL 注入、XSS 攻击、CSRF 攻击、恶意爬虫、扫描器、远程文件包含等攻击。
- 
+
 配置引导
 
 登陆 [又拍云管理控制台](https://console.upyun.com/login/)，依次进入：服务 > 功能配置 > 云安全 > WAF 防护，开启 WAF 保护即可。如下图所示：
@@ -163,7 +163,7 @@ WAF 防护主要防护的是来自对网站源站的动态数据攻击，可防�
 
 CC 防护主要是针对网络安全领域中的 CC 攻击而进行的一种应用层攻击防护，该功能通过自定义匹配规则对目标资源进行监控，当请求频率达到触发频率时对疑似攻击请求进行校验，校验通过则允许访问；校验不通过，则直接禁止访问。
 
- 
+
 配置引导
 
 登陆 [又拍云管理控制台](https://console.upyun.com/login/)，依次进入：服务 > 功能配置 > 云安全 > CC 防护，点击「管理」按钮即可开始配置。如下图所示：
@@ -197,7 +197,7 @@ CC 防护主要是针对网络安全领域中的 CC 攻击而进行的一种应�
 **IP 访问限制**
 
 可根据单个 IP 的访问频率来进行防御，在正常的情况下，用户访问网站是有一定频率的，可通过匹配自定义的限制规则对单个 IP 进行监控，将超过设定阈值的 IP 的访问进行拦截或者延迟响应，从而达到安全防护效果。
- 
+
 配置引导
 
 登陆 [又拍云管理控制台](https://console.upyun.com/login/)，依次进入：服务 > 功能配置 > 云安全 > IP 访问限制，点击「管理」按钮即可开始配置。如下图所示：
@@ -240,7 +240,7 @@ gzip_types <见下面的列表>;
 gzip_disable "MSIE [1-6]\.";
 gzip_vary on;
 ```
-    
+
 触发实际的 GZIP 压缩行为需要同时满足如下条件：
 
 > `Content-Type` 满足以下列表其中之一：
@@ -302,7 +302,7 @@ text/html -- default
 登陆 [又拍云管理控制台](https://console.upyun.com/login/)，依次进入：服务 > 功能配置 > 基础配置 > 参数跟随，点击管理即可开始配置。如下图所示：
 
 ![upyun-cdn-performance-param-management](http://upyun-assets.b0.upaiyun.com/docs/cdn/performance/upyun-cdn-performance-param-management.png_/fw/800)
-  
+
 注意：参数跟随功能，可以配合缓存配置功能来使用。
 
 
@@ -323,7 +323,7 @@ text/html -- default
 
 注意事项：
 
-1.为了保证正常拖拉，播放器可以发起约定格式的请求，例如：`http://example.com/video/test.mp4?start=xxx&end=xxx` 
+1.为了保证正常拖拉，播放器可以发起约定格式的请求，例如：`http://example.com/video/test.mp4?start=xxx&end=xxx`
 
 2.视频文件需含有关键帧，这是实现拖拉的前提条件，关键帧太少或者没有关键帧，视频文件需要重新编码
 
@@ -335,7 +335,7 @@ text/html -- default
 
 
 ----------
- 
+
 ##镜像存储
 
 使用又拍云 CDN 服务时，源站类型选择的是 `自主源`  模式（也即客户的网站资源都托管在自己的服务器或者第三方存储平台上）的话，可以开启镜像存储功能，可以将网站数据平滑迁移至又拍云存储平台，并减小网站回源比例。
@@ -378,7 +378,7 @@ text/html -- default
 **注意事项**
 
 1.当用户更新了源站资源时，为了保证请求访问到的资源是最新的，此时需要通过 API 或 FTP 的方式对已经存储在又拍云存储上的文件进行删除和替换操作
- 
+
 2.当镜像存储功能处于暂停状态时，您可以通过 API 接口逐步删除又拍云上对应的文件，将回源流量平滑迁移至源站，或调整源站带宽，最后再执行关闭操作
 
 
@@ -451,7 +451,7 @@ text/html -- default
 
 ----------
 
- 
+
 ##自定义 SSL 服务
 
 又拍云自定义 SSL 服务建立在自主研发的内容分发网络的基础之上，全面支持了 HTTPS 协议加速。通过会话重用及会话保持、在线证书状态检查协议优化、SSL 协议握手优化等技术手段，全面提升了 HTTPS 协议加速性能；在 [又拍云管理控制台](https://console.upyun.com/login/)，用户可自主化部署和管理 SSL 证书，并一键开启 HTTPS 加速服务。
@@ -533,7 +533,7 @@ HTTPS 配置：可开启 HTTPS 访问和强制 HTTPS
         "break": true
       }
     ]
-    
+
 其中，` pattern`  为对当前请求 URI 进行匹配的 ` PCRE`  正则表达式，匹配后，产生 ` $1, $2 ...`  这样的变量；` rule ` 为当前的 rewrite 规则，` break`  表示如果此次 rewrite 成功后是否要终止剩下的的 rewrite 过程。
 
 >  在管理后台对规则进行配置时，`pattern `对应于 URI 提取正则，`rule` 对应于 Rewrite 规则，`break` 对应于 `break` 选项，`调试模式 `选项是默认打开的。
@@ -556,36 +556,63 @@ HTTPS 配置：可开启 HTTPS 访问和强制 HTTPS
 
 函数调用以 ` $ ` 开头，后跟一组大写字母，字母之间可以包含下划线 `_`，函数需要的参 数放在` () `中，以 `,` 分隔。和 Lua 中的函数调用一样，rewrite 中的函数参数个数不 能少于要求的参数个数，否则视为语法错误，然后终止 rewrite 过程，多余的参数会被求值，但不影响调用。函数调用是有上下文的，譬如 `$WHEN` 这个函数，参数是 `bool` 类 型，参数中有不成立的条件（`false`）时，会终止 rewrite 过程。支持的函数有：
 
-函数                      | 含义
-:--------------------     | :-------
-`$ENCODE_BASE64(E)`       | 按 base64 编码压缩，例如：`$ENCODE_BASE64($_GET_foo)`
-`$DECODE_BASE64(E)`       | 按 base64 编码解压，例如：`$DECODE_BASE64($_HEADER_foo)`
-`$MD5(E)`                 | 计算 `E` 的 md5 值
-`$SUB(E1, from, to)`      | 字符串截取，从 `from` 到 `to`
-`$GT(E1, E2)`             | 数字比较，是否大于，返回 `true` 或者 `false`
-`$GE(E1, E2)`             | 数字比较，是否大于等于，返回 `true` 或者 `false`
-`$EQ(E1, E2)`             | 字符串是否相等，返回 `true` 或者 `false`
-`$UPPER(E)`               | 将 `E` 转换为大写
-`$LOWER(E)`               | 将 `E` 转换为小写
-`$ALL(E1, E2, ...)`       | 所有条件成立，参数个数不限
-`$ANY(E1, E2, ...)`       | 其中一个条件成立，参数个数不限
-`$MATCH(E1, E2)`          | PCRE 匹配，`E2` 为要匹配的 pattern，返回 `true` 或者 `false`
-`$WHEN(E1, E2, ...)`      | 条件是否成立，成立时才进行 `rewrite`，并返回空字符串
-`$PCALL(E)`               | 保护模式下解析 `E`，失败时返回空字符串
-`$ADD_REQ_HEADER(E1, E2)` | 添加请求头 `E1` 为 `E2`
-`$DEL_REQ_HEADER(E1)`     | 删除请求头 `E1`
-`$ADD_RSP_HEADER(E1, E2)` | 添加响应头 `E1` 为 `E2`
-`$REDIRECT(E1, E2)`       | 重定向地址到 `E1`，状态码为 `E2(301, 302)`
-`$EXIT(E1, E2)`           | 以状态码 `E1` 退出，响应体为 `E2`
+函数                         | 含义
+:--------------------       | :-------
+`$WHEN(E1, E2, ...)`        | 所有条件都成立时才进行 `rewrite`，并返回空字符串
+`$NOT(E)`                   | `E` 不成立时返回 `true`， 否则返回 `false`
+`$ALL(E1, E2, ...)`         | 所有条件都成立时返回 `true`，否则返回 `false`，参数个数不限
+`$ANY(E1, E2, ...)`         | 其中一个条件成立时返回 `true`，否则返回 `false`，参数个数不限
+`$OR(E1, E2, ...)`          | 值为第一个为真的表达式
+`$SELECT(E1, E2, E3)`       | `E1` 为真时值为 `E2`，否则为 `E3`
+`$CAPTURE(E1, E2, E3)`      | 按 `E2` pattern 对 `E1` 进行捕获，`E3` 表示是否忽略大小写，捕获后生成 `$n.m` 形式的变量，`n` 为当前 `CAPTURE` 出现的次序，`m` 表示匹配分组；`E2` 为空时，表示对 `E1` 进行捕获，此时 `E1` 对应 `$n.0`
+`$ENCODE_BASE64(E)`         | 按 base64 编码压缩，例如：`$ENCODE_BASE64($_GET_foo)`
+`$DECODE_BASE64(E)`         | 按 base64 编码解压，例如：`$DECODE_BASE64($_HEADER_foo)`
+`$MD5(E)`                   | 计算 `E` 的 md5 值
+`$SUB(E1, from, to)`        | 字符串截取，从 `from` 到 `to`
+`$GT(E1, E2)`               | 数字比较，是否大于，返回 `true` 或者 `false`
+`$GE(E1, E2)`               | 数字比较，是否大于等于，返回 `true` 或者 `false`
+`$EQ(E1, E2)`               | 字符串是否相等，返回 `true` 或者 `false`
+`$UPPER(E)`                 | 将 `E` 转换为大写
+`$LOWER(E)`                 | 将 `E` 转换为小写
+`$MATCH(E1, E2)`            | PCRE 匹配，`E2` 为要匹配的 pattern，返回 `true` 或者 `false`
+`$PCALL(E)`                 | 保护模式下解析 `E`，失败时返回空字符串
+`$ADD_REQ_HEADER(E1, E2)`   | 添加请求头 `E1` 为 `E2`
+`$DEL_REQ_HEADER(E)`        | 删除请求头 `E`
+`$ADD_RSP_HEADER(E1, E2)`   | 添加响应头 `E1` 为 `E2`
+`$REDIRECT(E1, E2)`         | 重定向地址到 `E1`，状态码为 `E2(301, 302)`
+`$EXIT(E1, E2)`             | 以状态码 `E1` 退出，响应体为 `E2`
+`$ADD(E1, E2)`              | 数字相加，返回 `E1 + E2` 结果数值
+`$MOD(E1, E2)`              | 数字取余，返回 `E1 % E2` 结果数值，其中 `E2` 不能为 `0`
+`$MSUB(E1, E2)`             | 数字相减，返回 `E1 - E2` 结果数值
+`$MULTIPLY(E1, E2)`         | 数字相乘，返回 `E1 * E2` 结果数值
+`$DIVIDE(E1, E2)`           | 数字相除，返回 `E1 / E2` 结果数值，其中 `E2` 不能为 `0`
+`$BYTE(E)`                  | 返回字符 `E` 的 ASCII 编码值
+`$FLOOR(E)`                 | 返回小于或等于数字 `E` 的最大整数
+`$CEIL(E)`                  | 返回大于或等于数字 `E` 的最小整数
+`$LIMIT_RATE_AFTER(E1, E2)` | 限速策略设置，发送 `E1` 大小单位为 `E2` 字节数据后，进行限速，`E2` 可选值有：`k`（KB)，`m`（MB）
+`$LIMIT_RATE(E1, E2)`       | 限速策略设置，按 `E1` 大小每秒进行限速，单位为 `E2`，`E2` 可选值有：`k`（KB)，`m`（MB）
+`$DEL_ARG(E)`               | 删除请求参数项 `E`
+`$INT(E1, E2, E3)`          | 进制转换，将 `E2` 进制的数字（字符串形式） `E1` 转换成 `E3` 进制并返回，`E2`, `E3` 可选，`E2` 默认为 `10`
+`$RANDI(E1, E2)`            | 返回大于 `E1` 并小于 `E2` 的随机数值
+`$UNIXT(y, m, d, h, min, sec)` | 指定年，月，日，小时，分钟，秒，返回相应的 UNIX TIME
+`$LEN(E)`                   | 返回字符串 `E` 的长度
+`$SET_METHOD(E)`            | 修改当前 HTTP 请求方法为 `E`，`E` 可选值有：`GET`, `HEAD`, `PUT`, `POST`, `DELETE`, `OPTIONS`, `PATCH`; 注 1
+`$SET_BODY(E)`              | 修改当前 HTTP 请求体的内容为 `E`，仅在 `PUT` 或 `POST` 请求下有效
+
+注 1：若当前请求带有请求体的情况下，`$SET_METHOD(E)` 不允许设置为除 `PUT` 和 `POST` 以外的方法。
 
 其中 `E[n]` 代表合法的表达式，也就是说函数可以相互嵌套，例如规则可以为：
-`/$SUB($DECODE_BASE64($_HEADER_foo), $_GET_from, $_GET_to)/`
+
+`/$SUB($DECODE_BASE64($_HEADER_foo), $_GET_from, $_GET_to)/`；布尔函数包括 `WHEN
+, ALL, ANY` 都是短路的，譬如 `$WHEN($ALL(), $EXIT(403))` 不会返回 `403`，因为
+`$ALL()` 的值为 `false`
 
 使用 `''` 能对变量进行转义，使其不被解释，例如以下规则：
 
 ```
 /foo/'$_HOST'
 ```
+
 会被转换为:
 
 ```
@@ -605,6 +632,7 @@ HTTPS 配置：可开启 HTTPS 访问和强制 HTTPS
 
 变量                  | 含义
 :-------------------- | :-------
+`$_IP`                | 客户端 IP
 `$_HOST`              | 请求头中的 Host 字段
 `$_HOST_n`            | `$_HOST_n` 指 Host 中的第 n 个子域，例如对于 foo.bar.baz.com：`$_HOST_1 = foo，$_HOST_2 = bar，$_HOST_3 = baz`
 `$_GET_name`          | 使用 Query String 中的变量（无需 urldecode）
@@ -615,8 +643,10 @@ HTTPS 配置：可开启 HTTPS 访问和强制 HTTPS
 `$_RANDOM_n`          | `n` 位随机字符串，其中 `1 <= n <= 32`
 `$_URI`               | 请求的 URI，不包含参数
 `$_QUERY`             | Query String，不带前缀 '?'
-`$_METHOD`            | GET/POST/PUT
+`$_METHOD`            | GET/POST/PUT/POST/DELETE/OPTIONS/PATCH
 `$_SCHEME`            | HTTP/HTTPS
+`$_TIME`              | 获取当前服务器时间，格式为 UNIX TIME
+`$_BODY`              | 获取当前请求的 BODY（请求体）内容，大小限制为 16KB
 
 **字符串常量**
 
