@@ -2,9 +2,10 @@
 
 **第一步：选择服务类型**
 
-登录 [又拍云管理控制台](https://console.upyun.com/login/)，在控制台页面，分别点击右上角的 `服务` 、`创建服务` 等按钮，选择服务类型。根据业务情况，可选择全网加速服务或直播加速服务。具体操作如下图所示：
+登录 [又拍云管理控制台](https://console.upyun.com/login/)，在控制台页面，分别点击右上角的 `服务` 、`创建服务` 等按钮，选择服务类型。根据业务情况，可选择 `全网加速服务` 或 `直播加速服务` 。具体操作如下图所示：
 
-![upyun-cdn-choose-server](http://upyun-assets.b0.upaiyun.com/docs/cdn/basic-config/upyun-cdn-choose-server.png_/fw/800)
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-choose-server.png" height="490" width="800" />
+
 
 **第二步：填写配置信息**
 
@@ -12,12 +13,11 @@
 
 创建服务：
 
-![upyun-cdn-create-server](http://upyun-assets.b0.upaiyun.com/docs/cdn/basic-config/upyun-cdn-create-server.png_/fw/800)
-
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-create-server.png" height="490" width="800" />
 
 创建操作员：
 
-![upyun-cdn-create-operation](http://upyun-assets.b0.upaiyun.com/docs/cdn/basic-config/upyun-cdn-create-operation.png_/fw/800)
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-create-operation.png" height="490" width="800" />
 
 
 **源站类型**
@@ -28,7 +28,8 @@
 
 系统默认会选择 `自主源`，请根据具体业务需求进行选择。配置界面如下图所示：
 
-![upyun-cdn-choose-orion](http://upyun-assets.b0.upaiyun.com/docs/cdn/basic-config/upyun-cdn-choose-orion.png_/fw/800)
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-choose-orion.png" height="490" width="800" />
+
 
 > 如果您的资源都托管在第三方云存储平台或者自有源上，请选择 `自主源`
    
@@ -38,7 +39,7 @@
 
 回源配置是 CDN 服务创建最重要的环节，请谨慎配置。也可去功能配置界面进行设置，依次进入：服务 > 功能配置 > 基础配置 > 回源配置，点击管理按钮即可配置。如下截图所示：
 
-![upyun-cdn-choose-orion](http://upyun-assets.b0.upaiyun.com/docs/cdn/basic-config/upyun-cdn-orion-management.png_/fw/800)
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-orion-management.png" height="490" width="800" />
 
 **回源 Host**
 
@@ -73,7 +74,8 @@
 
 配置界面如下截图所示，以下将重点介绍主备线路、轮询权重、最大失败次数和静默时间。
 
-![upyun-cdn-choose-orion](http://upyun-assets.b0.upaiyun.com/docs/cdn/basic-config/upyun-cdn-line-config.png_/fw/800)
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-line-config.png" height="490" width="800" />
+
 
  - 主、备线路
  
@@ -99,7 +101,7 @@
 
 您可以选择新创建一个操作员，也可以授权已有操作员，并且可以针对权限进行设置，包括可读取、可写入、可删除。配置界面如下图所示：
 
-![upyun-cdn-create-operation.png](http://upyun-assets.b0.upaiyun.com/docs/cdn/basic-config/upyun-cdn-create-operation.png_/fw/800)
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-create-operation.png" height="490" width="800" />
 
 
 你也可以在管理后台右上角的帐号下拉菜单中选择 `账户管理－> 操作员管理 -> 编辑` 进行设置。
@@ -113,7 +115,8 @@
 
 1.进入功能配置界面，选择 `加速域名` 模块，点击 `域名绑定` 按钮，添加域名绑定。
 
-![upyun-cdn-orion-management](http://upyun-assets.b0.upaiyun.com/docs/cdn/basic-config/upyun-cdn-domain-binding.png_/fw/800)
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-domain-binding.png" height="490" width="800" />
+
 
  2.除常规形式的域名外（包括顶级域名），我们还支持泛域名绑定，比如 `*.yourdomain.com`；特别地，其中 `*` 最多支持匹配
     4 层：
@@ -141,11 +144,12 @@
 
 1.首先进入服务管理列表，确保所选服务处于 `服务中` 状态，如下图所示：
 
-![upyun-cdn-server-status](http://upyun-assets.b0.upaiyun.com/docs/cdn/basic-config/upyun-cdn-server-status.png_/fw/800)
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-server-status.png" height="490" width="800" />
 
 2.选择相应服务，在管理界面，点击 `配置` 按钮进入 `加速域名` 选项，查看绑定的域名是否是 `正常` 状态。如下图所示：
 
-![upyun-cdn-domain-status](http://upyun-assets.b0.upaiyun.com/docs/cdn/basic-config/upyun-cdn-domain-status.png_/fw/800)
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-domain-status.png" height="490" width="800" />
+
 
 ----------
 
@@ -157,8 +161,7 @@
 
 登录 [又拍云管理控制台](https://console.upyun.com/login/)，选择需要配置的服务，依次进入：服务 > 功能配置 > 基础配置 > 缓存配置，点击管理即可开始配置。如下图所示：
 
-![upyun-cdn-cache-management](http://upyun-assets.b0.upaiyun.com/docs/cdn/cache-config/upyun-cdn-cache-management.png_/fw/800)
-
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-cache-management.png" height="490" width="800" />
 
 **自定义配置**
 
@@ -182,7 +185,7 @@
 
 全局缓存策略适合源站全是静态资源的客户，可以针对该服务一键开启配置缓存时间，开启请谨慎。详细配置可参照如下图所示：
 
-![upyun-cdn-cache-global](http://upyun-assets.b0.upaiyun.com/docs/cdn/cache-config/upyun-cdn-cache-global.png_/fw/800)
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-cache-global.png" height="490" width="800" />
 
 设置完成后，该服务下所有域名匹配的资源，在节点的缓存有效时间均为 7 天。
 
@@ -190,7 +193,7 @@
 
 1.全局缓存在自定义缓存配置里面的优先级是最低的，且优先级不可调节，如下图所示：
 
-![upyun-cdn-cache-priority](http://upyun-assets.b0.upaiyun.com/docs/cdn/cache-config/upyun-cdn-cache-priority.png_/fw/800)
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-cache-priority.png" height="490" width="800" />
 
 2.全局缓存设置有一个单独的开关，需要开启之后，才可以进行配置
 
@@ -209,7 +212,8 @@
 
 根据业务情况，可以针对一些动态资源文件（ 例如：php、jsp、asp、do、cgi、action、json等）强制配置不缓存， 详细配置可参照如下所示：
 
-![upyun-cdn-no-cache](http://upyun-assets.b0.upaiyun.com/docs/cdn/cache-config/upyun-cdn-no-cache.png_/fw/800)
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-no-cache.png" height="490" width="800" />
+
 
 > /*.(asp,php,jsp,do,json)     配置不缓存
 
@@ -301,7 +305,6 @@ video/x-m4v
 |m4v | apk | | | | | | | | |
 
 
-
 ----------
 
 
@@ -317,7 +320,8 @@ video/x-m4v
 
 当源站有少量文件更新时，可以使用 `URL 刷新` 来主动删除 CDN 节点上的资源文件。新的请求进来时，CDN 节点会回源获取文件并将新的资源文件缓存至 CDN 节点，所以这是一个主动更新的过程。操作界面如下图所示：
 
-![upyun-cdn-url-refresh](http://upyun-assets.b0.upaiyun.com/docs/cdn/cache-refresh/upyun-cdn-url-refresh.png_/fw/800)
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-url-refresh.png" height="490" width="800" />
+
 
 注意事项：
 
@@ -329,7 +333,8 @@ video/x-m4v
 
 当源站有针对资源进行批量更新时，可以通过 `规则刷新` 来刷新节点缓存文件。实际上，规则刷新并没有删除节点资源文件，规则一旦生效之后，缓存在 CDN 节点的文件会被致过期，新的请求会回源校验一次，如果源站文件有更新，则将新的文件响应给最终用户并替换节点上的旧文件。操作界面如下图所示：
 
-![upyun-cdn-rule-refresh](http://upyun-assets.b0.upaiyun.com/docs/cdn/cache-refresh/upyun-cdn-rule-refresh.png_/fw/800)
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-rule-refresh.png" height="490" width="800" />
+
 
 规则示例：
 
@@ -355,7 +360,8 @@ video/x-m4v
 
 当源站有新增新的资源文件时，可将这些新文件提前缓存至 CDN 节点，最终用户第一次访问这些资源文件时， CDN 节点不需要回源站请求文件资源了。一方面可减少用户突发访问时的回源量，另一方面可以加快资源文件的首次访问速度。操作界面如下图所示：
 
-![upyun-cdn-url-preheat](http://upyun-assets.b0.upaiyun.com/docs/cdn/cache-refresh/upyun-cdn-url-preheat.png_/fw/800)
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-url-preheat.png" height="490" width="800" />
+
 
 注意事项：建议不要同时预热太多资源文件，否则会对源站造成回源压力
 
@@ -387,24 +393,27 @@ video/x-m4v
 
 查询示例一：查询带宽及请求数曲线图
 
-![upyun-cdn-bandwidth-and-request](http://upyun-assets.b0.upaiyun.com/docs/cdn/statistical-monitoring/upyun-cdn-bandwidth-and-request.png_/fw/800)
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-bandwidth-and-request.png" height="490" width="800" />
+
 
 查询示例二：查询流量地区及运营商分布及排行
 
-![upyun-cdn-flow-ranking](http://upyun-assets.b0.upaiyun.com/docs/cdn/statistical-monitoring/upyun-cdn-flow-ranking.png_/fw/800)
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-flow-ranking.png" height="490" width="800" />
+
 
 查询示例三：查询明细数据
 
-![upyun-cdn-flow-details](http://upyun-assets.b0.upaiyun.com/docs/cdn/statistical-monitoring/upyun-cdn-flow-details.png_/fw/800)
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-flow-details.png" height="490" width="800" />
 
 查询示例四：回源带宽及请求
 
-![upyun-cdn-back-to-source-statistics](http://upyun-assets.b0.upaiyun.com/docs/cdn/statistical-monitoring/upyun-cdn-back-to-source-statistics.png_/fw/800)
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-back-to-source-statistics.png" height="490" width="800" />
 
 
 相关说明：
 
 1.以天为单位查询数据时，您可以查询 5 分钟时间粒度的数据
+
 2.时间区间为大于等于 7 天时，您可以查询 1 小时时间粒度的数据
 
 ----------
@@ -426,23 +435,28 @@ video/x-m4v
 
 登陆 [又拍云管理控制台](https://console.upyun.com/login/)，在置顶菜单进入 ` 监控` 栏目，可查询如上性能监测数据，如下图所示：
 
-![upyun-cdn-monitor](http://upyun-assets.b0.upaiyun.com/docs/cdn/statistical-monitoring/upyun-cdn-monitor.png_/fw/800)
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-monitor.png" height="490" width="800" />
+
 
 查询示例一：服务状况历史数据（健康度）
 
-![upyun-cdn-monitor-health](http://upyun-assets.b0.upaiyun.com/docs/cdn/statistical-monitoring/upyun-cdn-monitor-health.png_/fw/800)
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-monitor-health.png" height="490" width="800" />
+
 
 查询示例二：健康度详情（回源访问）
 
-![upyun-cdn-monitor-health-back-to-sourc](http://upyun-assets.b0.upaiyun.com/docs/cdn/statistical-monitoring/upyun-cdn-monitor-health-back-to-source.png_/fw/800)
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-monitor-health-back-to-source.png" height="490" width="800" />
+
 
 查询示例三：服务状况历史数据（缓存命中率）
 
-![upyun-cdn-monitor-hit](http://upyun-assets.b0.upaiyun.com/docs/cdn/statistical-monitoring/upyun-cdn-monitor-hit.png_/fw/800)
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-monitor-hit.png" height="490" width="800" />
+
 
 查询示例四：地区平均下载速度
 
-![upyun-cdn-monitor-speed](http://upyun-assets.b0.upaiyun.com/docs/cdn/statistical-monitoring/upyun-cdn-monitor-speed.png_/fw/800)
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-monitor-speed.png" height="490" width="800" />
+
 
 ----------
 
@@ -454,7 +468,8 @@ video/x-m4v
 
 登陆 [又拍云管理控制台](https://console.upyun.com/login/)，在置顶菜单进入 `工具箱`，找到 `日志管理` 栏目，选择 `日志分析` 选项。如下图所示：
 
-![upyun-cdn-log-analysis](http://upyun-assets.b0.upaiyun.com/docs/cdn/log-management/upyun-cdn-log-analysis.png_/fw/800)
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-log-analysis.png" height="490" width="800" />
+
 
 ----------
 
@@ -497,7 +512,8 @@ video/x-m4v
 
 登陆 [又拍云管理控制台](https://console.upyun.com/login/)，在置顶菜单进入 `工具箱`，找到 `日志管理` 栏目，选择 `日志下载` 选项。如下图所示：
 
-![upyun-cdn-log-download](http://upyun-assets.b0.upaiyun.com/docs/cdn/log-management/upyun-cdn-log-download.png_/fw/800)
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-log-download.png" height="490" width="800" />
+
 
 关于日志分析和下载视频教程请点击 [日志管理视频教程](https://techs.b0.upaiyun.com/videos/cdnpage/upyunlog.html)。
 
@@ -505,6 +521,5 @@ video/x-m4v
 ----------
 
 如有疑问请 [联系我们](https://www.upyun.com/about_contact.html)
-
 
 
