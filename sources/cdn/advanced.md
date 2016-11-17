@@ -3,18 +3,19 @@
 **IP 禁用**
 
 假如需要禁用某个 IP 或者某个 IP 段，则需要进行该功能配置。特别地，IP 防盗链目前暂时只支持黑名单逻辑。
-
+ 
 配置引导
 
 登陆 [又拍云管理控制台](https://console.upyun.com/login/)，依次进入：服务 > 功能配置 > 防盗链 > IP 禁用，点击「管理」按钮即可开始配置。如下图所示：
 
-![upyun-cdn-access-ip](http://upyun-assets.b0.upaiyun.com/docs/cdn/access-control/upyun-cdn-access-ip.png_/fw/800)
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-access-ip.png" height="490" width="800" />
+
 
 注意事项：
-
+ 
 1.支持 `*` 通配符，如 `10.11.12.*` 将禁止 `10.11.12.0~10.11.12.255` 的 IP 访问
 
-2.禁用 IP 上限 100 条，被禁止的 IP 访问资源时，将提示 403
+2.禁用 IP 上限 100 条，被禁止的 IP 访问资源时，将提示 403 
 
 **地区访问限制**
 
@@ -24,7 +25,8 @@
 
 登陆 [又拍云管理控制台](https://console.upyun.com/login/)，依次进入：服务 > 功能配置 > 防盗链 > 地区访问限制，点击「管理」按钮即可开始配置。如下图所示：
 
-![upyun-cdn-access-region-limit](http://upyun-assets.b0.upaiyun.com/docs/cdn/access-control/upyun-cdn-access-region-limit.png_/fw/800)
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-access-region-limit.png" height="490" width="800" />
+
 
 详细配置请参见 [地区访问限制用户指南](https://blog.upyun.com/?p=886)。
 
@@ -36,7 +38,8 @@
 
 登陆 [又拍云管理控制台](https://console.upyun.com/login/)，依次进入：服务 > 功能配置 > 防盗链 > 域名防盗链，点击「管理」按钮即可开始配置。如下图所示：
 
-![upyun-cdn-acces-referer](http://upyun-assets.b0.upaiyun.com/docs/cdn/access-control/upyun-cdn-acces-referer.png_/fw/800)
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-acces-referer.png" height="490" width="800" />
+
 
 注意事项：
 
@@ -47,7 +50,7 @@
 3.支持 `*` 通配符，比如白名单的 `*upyun.com` 将允许 `www.upyun.com`、`abcupyun.com` 等网站访问
 
 4.特别地，默认 `允许 Referer 为空` 这种情况会绕过防盗链的逻辑，若这里启用 `禁止 Referer 为空`，那么这类请求就直接被禁止访问了
-
+ 
 **User-Agent 防盗链**
 
 只允许特定的浏览器或者带有特殊 `User-Agent` 标识的专属的客户端进行访问。目前暂时只支持白名单逻辑。
@@ -56,7 +59,8 @@
 
 登陆 [又拍云管理控制台](https://console.upyun.com/login/)，依次进入：服务 > 功能配置 > 防盗链 > 客户端防盗链，点击「管理」按钮即可开始配置。如下图所示：
 
-![upyun-cdn-access-user-agent](http://upyun-assets.b0.upaiyun.com/docs/cdn/access-control/upyun-cdn-access-user-agent.png_/fw/800)
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-access-user-agent.png" height="490" width="800" />
+
 
 注意事项：
 
@@ -73,20 +77,22 @@
 
 实现原理
 
-![upyun-cdn-access-token](http://upyun-assets.b0.upaiyun.com/docs/cdn/access-control/upyun-cdn-access-token.png_/fw/800)
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-access-token.png" height="490" width="800" />
+
 
 配置引导
 
 登陆 [又拍云管理控制台](https://console.upyun.com/login/)，依次进入：服务 > 功能配置 > 防盗链 > Token 防盗链，点击「管理」按钮即可开始配置。如下图所示：
 
-![upyun-cdn-access-token-miyao](http://upyun-assets.b0.upaiyun.com/docs/cdn/access-control/upyun-cdn-access-token-miyao.png_/fw/800)
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-access-token-miyao.png" height="490" width="800" />
+
 
 > 签名方式
 
 签名：
 
     _upt = MD5(token 密钥 & etime & URI){中间 8 位} + etime
-
+    
 参数：
 
  - token 密钥：用户所填的密钥
@@ -101,7 +107,7 @@
     URI = '/dir/pic.jpg'
     sign = MD5(token 密钥&etime&URI) = xxxxxxxxxxxxabcdefghyyyyyyyyyyyy
     _upt = MD5(token 密钥&etime&URI){中间 8 位} + etime = abcdefgh1370000600
-
+    
     该签名拼接在 URL 地址或用户 Cookie 中，均可起到防盗链作用:
     URL: http://<bucket>/dir/pic.jpg?_upt=abcdefgh1370000600
     Cookie: _upt=abcdefgh1370000600;
@@ -114,7 +120,7 @@
     $path = '/dir/pic.jpg'; // 图片相对路径
     $sign = substr(md5($key.'&'.$etime.'&'.$path), 12,8).$etime;
     ?>
-
+    
 **回源鉴权**
 
 回源鉴权是一种高级的防盗链方式，适用于对防盗链有很高实时性要求的场景。大概原理是 CDN 边缘节点每次接受到请求之后，都需要回客户源站进行验证，验证通过之后才认为是合法请求，这样 CDN 可以继续提供服务。
@@ -123,7 +129,8 @@
 
 登陆 [又拍云管理控制台](https://console.upyun.com/login/)，依次进入：服务 > 功能配置 > 防盗链 > 回源鉴权，点击「管理」按钮即可开始配置。如下图所示：
 
-![upyun-cdn-access-back-to-source-auth](http://upyun-assets.b0.upaiyun.com/docs/cdn/access-control/upyun-cdn-access-back-to-source-auth.png_/fw/800)
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-access-back-to-source-auth.png" height="490" width="800" />
+
 
 详细配置请参见 [回源鉴权用户指南](https://blog.upyun.com/?p=877)。
 
@@ -135,11 +142,13 @@
 
 登陆 [又拍云管理控制台](https://console.upyun.com/login/)，依次进入：服务 > 功能配置 > 基础配置 > 外链功能，关闭外链功能。如下图所示：
 
-![upyun-cdn-access-wailian](http://upyun-assets.b0.upaiyun.com/docs/cdn/access-control/upyun-cdn-access-wailian.png_/fw/800)
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-access-wailian.png" height="490" width="800" />
+
 
 注意事项：
 
 1.服务创建完毕之后，外链功能默认开启
+
 2.关闭外链功能，会导致资源无法访问，请谨慎操作
 
 
@@ -150,12 +159,13 @@
 **WAF 防护**
 
 WAF 防护主要防护的是来自对网站源站的动态数据攻击，可防护的攻击类型包括 SQL 注入、XSS 攻击、CSRF 攻击、恶意爬虫、扫描器、远程文件包含等攻击。
-
+ 
 配置引导
 
 登陆 [又拍云管理控制台](https://console.upyun.com/login/)，依次进入：服务 > 功能配置 > 云安全 > WAF 防护，开启 WAF 保护即可。如下图所示：
 
-![upyun-cdn-security-waf](http://upyun-assets.b0.upaiyun.com/docs/cdn/security-protection/upyun-cdn-security-waf.png_/fw/800)
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-security-waf.png" height="490" width="800" />
+
 
 注意事项：适用于动态资源加速，全静态资源加速建议不启用该功能
 
@@ -163,12 +173,13 @@ WAF 防护主要防护的是来自对网站源站的动态数据攻击，可防�
 
 CC 防护主要是针对网络安全领域中的 CC 攻击而进行的一种应用层攻击防护，该功能通过自定义匹配规则对目标资源进行监控，当请求频率达到触发频率时对疑似攻击请求进行校验，校验通过则允许访问；校验不通过，则直接禁止访问。
 
-
+ 
 配置引导
 
 登陆 [又拍云管理控制台](https://console.upyun.com/login/)，依次进入：服务 > 功能配置 > 云安全 > CC 防护，点击「管理」按钮即可开始配置。如下图所示：
 
-![upyun-cdn-security-cc](http://upyun-assets.b0.upaiyun.com/docs/cdn/security-protection/upyun-cdn-security-cc.png_/fw/800)
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-security-cc.png" height="490" width="800" />
+
 
 具体配置可以走如下四个步骤：
 
@@ -191,19 +202,19 @@ CC 防护主要是针对网络安全领域中的 CC 攻击而进行的一种应�
 
 登陆 [又拍云管理控制台](https://console.upyun.com/login/)，依次进入：服务 > 功能配置 > 云安全 > HTTP 请求大小限制，点击「管理」按钮即可开始配置。如下图所示：
 
-![upyun-cdn-security-request-limit](http://upyun-assets.b0.upaiyun.com/docs/cdn/security-protection/upyun-cdn-security-request-limit.png_/fw/800)
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-security-request-limit.png" height="490" width="800" />
 
 
 **IP 访问限制**
 
 可根据单个 IP 的访问频率来进行防御，在正常的情况下，用户访问网站是有一定频率的，可通过匹配自定义的限制规则对单个 IP 进行监控，将超过设定阈值的 IP 的访问进行拦截或者延迟响应，从而达到安全防护效果。
-
+ 
 配置引导
 
 登陆 [又拍云管理控制台](https://console.upyun.com/login/)，依次进入：服务 > 功能配置 > 云安全 > IP 访问限制，点击「管理」按钮即可开始配置。如下图所示：
 
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-ip-limit.png" height="490" width="800" />
 
-<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/security-protection/upyun-cdn-ip-limit.png" height="470" width="800" />
 
 配置步骤如下：
 
@@ -240,7 +251,7 @@ gzip_types <见下面的列表>;
 gzip_disable "MSIE [1-6]\.";
 gzip_vary on;
 ```
-
+    
 触发实际的 GZIP 压缩行为需要同时满足如下条件：
 
 > `Content-Type` 满足以下列表其中之一：
@@ -279,7 +290,8 @@ text/html -- default
 
 登陆 [又拍云管理控制台](https://console.upyun.com/login/)，依次进入：服务 > 功能配置 > 高级功能 > 代码压缩，开启开关即可，如下图所示：
 
-![upyun-cdn-performance-daimayasuo](http://upyun-assets.b0.upaiyun.com/docs/cdn/performance/upyun-cdn-performance-daimayasuo.png_/fw/800)
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-performance-daimayasuo.png" height="490" width="800" />
+
 
 **参数跟随**
 
@@ -301,7 +313,7 @@ text/html -- default
 
 登陆 [又拍云管理控制台](https://console.upyun.com/login/)，依次进入：服务 > 功能配置 > 基础配置 > 参数跟随，点击管理即可开始配置。如下图所示：
 
-![upyun-cdn-performance-param-management](http://upyun-assets.b0.upaiyun.com/docs/cdn/performance/upyun-cdn-performance-param-management.png_/fw/800)
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-performance-param-management.png" height="490" width="800" />
 
 注意：参数跟随功能，可以配合缓存配置功能来使用。
 
@@ -317,13 +329,13 @@ text/html -- default
 
 登陆 [又拍云管理控制台](https://console.upyun.com/login/)，依次进入：服务 > 功能配置 > 高级功能 > 视频拖拉，点击管理即可开始配置。如下图所示：
 
-![upyun-cdn-video-drag](http://upyun-assets.b0.upaiyun.com/docs/cdn/video-drag/upyun-cdn-video-drag.png_/fw/800)
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-video-drag.png" height="490" width="800" />
 
 详细配置请参见 [「支持从任意起点观看」视频拖拉用户指南](https://blog.upyun.com/?p=873)
 
 注意事项：
 
-1.为了保证正常拖拉，播放器可以发起约定格式的请求，例如：`http://example.com/video/test.mp4?start=xxx&end=xxx`
+1.为了保证正常拖拉，播放器可以发起约定格式的请求，例如：`http://example.com/video/test.mp4?start=xxx&end=xxx` 
 
 2.视频文件需含有关键帧，这是实现拖拉的前提条件，关键帧太少或者没有关键帧，视频文件需要重新编码
 
@@ -335,7 +347,7 @@ text/html -- default
 
 
 ----------
-
+ 
 ##镜像存储
 
 使用又拍云 CDN 服务时，源站类型选择的是 `自主源`  模式（也即客户的网站资源都托管在自己的服务器或者第三方存储平台上）的话，可以开启镜像存储功能，可以将网站数据平滑迁移至又拍云存储平台，并减小网站回源比例。
@@ -345,7 +357,8 @@ text/html -- default
 
 实现机制可以参照如下流程：
 
-![upyun-cdn-monitor-storage](http://upyun-assets.b0.upaiyun.com/docs/cdn/monitor-storage/upyun-cdn-monitor-storage.png_/fw/800)
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/monitor-storage/upyun-cdn-monitor-storage.png" height="300" width="500" />
+
 
  - 终端用户访问资源；
  - 又拍云 CDN 节点从用户自主源站获取资源；
@@ -357,7 +370,7 @@ text/html -- default
 
 登陆 [又拍云管理控制台](https://console.upyun.com/login/)，依次进入：服务 > 功能配置 > 高级功能 > 镜像存储，点击开启即可开始配置。如下图所示：
 
-![upyun-cdn-monitor-storage-management](http://upyun-assets.b0.upaiyun.com/docs/cdn/monitor-storage/upyun-cdn-monitor-storage-management.png_/fw/800)
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-monitor-storage-management.png" height="490" width="800" />
 
 又拍云镜像存储功能包括三种状态，分别是开启、暂停、关闭，详细描述如下：
 
@@ -378,7 +391,7 @@ text/html -- default
 **注意事项**
 
 1.当用户更新了源站资源时，为了保证请求访问到的资源是最新的，此时需要通过 API 或 FTP 的方式对已经存储在又拍云存储上的文件进行删除和替换操作
-
+ 
 2.当镜像存储功能处于暂停状态时，您可以通过 API 接口逐步删除又拍云上对应的文件，将回源流量平滑迁移至源站，或调整源站带宽，最后再执行关闭操作
 
 
@@ -393,7 +406,7 @@ text/html -- default
 
 登陆 [又拍云管理控制台](https://console.upyun.com/login/)，依次进入：服务 > 功能配置 > 高级功能 > CORS 跨域共享，点击管理即可开始配置。如下图所示：
 
-![upyun-cdn-cors-config](http://upyun-assets.b0.upaiyun.com/docs/cdn/cors-config/upyun-cdn-cors-config.png_/fw/800)
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-cors-config.png" height="490" width="800" />
 
 **Access-Control-Allow-Origin**
 
@@ -451,7 +464,7 @@ text/html -- default
 
 ----------
 
-
+ 
 ##自定义 SSL 服务
 
 又拍云自定义 SSL 服务建立在自主研发的内容分发网络的基础之上，全面支持了 HTTPS 协议加速。通过会话重用及会话保持、在线证书状态检查协议优化、SSL 协议握手优化等技术手段，全面提升了 HTTPS 协议加速性能；在 [又拍云管理控制台](https://console.upyun.com/login/)，用户可自主化部署和管理 SSL 证书，并一键开启 HTTPS 加速服务。
@@ -462,27 +475,32 @@ text/html -- default
 
 第一步：进入 SSL 服务，工具箱 -> SSL 服务
 
-![upyun-cdn-custom-ssl](http://upyun-assets.b0.upaiyun.com/docs/cdn/custom-ssl/upyun-cdn-custom-ssl.png_/fw/800)
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-custom-ssl.png" height="490" width="800" />
+
 
 第二步：添加 SSL 证书，点击右上角的 `添加 SSL 证书` ，如下图所示：
 
-![upyun-cdn-custom-ssl-inputssl](http://upyun-assets.b0.upaiyun.com/docs/cdn/custom-ssl/upyun-cdn-custom-ssl-inputssl.png_/fw/800)
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-custom-ssl-inputssl.png" height="490" width="800" />
+
 
 粘贴证书内容:
 
-![upyun-cdn-custom-ssl-inputssl1](http://upyun-assets.b0.upaiyun.com/docs/cdn/custom-ssl/upyun-cdn-custom-ssl-inputssl1.png_/fw/800)
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-custom-ssl-inputssl1.png" height="490" width="800" />
 
 点击 `保存` 之后，可查看 SSL 证书信息如下图所示：
 
-![upyun-cdn-custom-ssl-see-ssl](http://upyun-assets.b0.upaiyun.com/docs/cdn/custom-ssl/upyun-cdn-custom-ssl-see-ssl.png_/fw/800)
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-custom-ssl-see-ssl.png" height="490" width="800" />
+
 
 第三步：在证书列表中，选择刚添加的证书，点击 `管理` ，选择开启 HTTPS 访问 ，如下图所示：
 
-![upyun-cdn-custom-ssl-management](http://upyun-assets.b0.upaiyun.com/docs/cdn/custom-ssl/upyun-cdn-custom-ssl-management.png_/fw/800)
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-custom-ssl-management.png" height="490" width="800" />
+
 
 HTTPS 配置：可开启 HTTPS 访问和强制 HTTPS
 
-![upyun-cdn-custom-ssl-config](http://upyun-assets.b0.upaiyun.com/docs/cdn/custom-ssl/upyun-cdn-custom-ssl-config.png_/fw/800)
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-custom-ssl-config.png" height="490" width="800" />
+
 
 注意事项：
 
@@ -511,7 +529,7 @@ HTTPS 配置：可开启 HTTPS 访问和强制 HTTPS
 
 登陆 [又拍云管理控制台](https://console.upyun.com/login/)，依次进入：服务 > 功能配置 > 高级功能 > 自定义 Rewrite，点击管理即可开始配置。如下图所示：
 
-![upyun-cdn-custom-rewrite](http://upyun-assets.b0.upaiyun.com/docs/cdn/custom-rewrite/upyun-cdn-custom-rewrite.png_/fw/800)
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-custom-rewrite.png" height="490" width="800" />
 
 **规则说明**
 
@@ -665,7 +683,6 @@ rewrite 规则                                                       | 含义
 `$WHEN($EQ($_HOST, 'foo.com'))$ADD_REQ_HEADER(X-Foo, bar)`         | 在请求 Host 为 `foo.com` 的情况下，添加请求头 `X-Foo: bar`
 `$WHEN($MATCH($_URI, '^/foo/'),$NOT($_HEADER_referer))$EXIT(403)` | 在请求的 URI 以 `/foo/` 开头并且没有 Referer 请求头时，返回 403
 
-
 ----------
 
-如有疑问请联系 [联系我们](https://www.upyun.com/about_contact.html)
+如有疑问请 [联系我们](https://www.upyun.com/about_contact.html)
