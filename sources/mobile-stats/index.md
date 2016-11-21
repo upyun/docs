@@ -50,18 +50,18 @@
 
 |接口名称 |对应方法 |对应方向 |接口描述 |
 |-|-|-|-|
-|获取Token |getToken	企业 -> |流量平台	|获取Token（后面接口需要） |
-|下订单 |createOrder |企业 -> 流量营销 |提交流量订单 |
-|查询订单 |getOrderStatus |企业 -> 流量营销	|查询订单的充值状态 |
-|充值状态回调 |- |	流量营销 -> 企业 |	又拍云手机流量充值平台将订单充值结果返回给企业的应用系统 |
-|号码归属地查询 |getMobileInfo |企业 -> 流量营销 |手机号信息（运营商、归属地） |
+| 获取Token      | refreshToken  | 企业 -> 流量平台 | 获取Token（后面接口需要）                                |
+| 下订单         | chargeOrder   | 企业 -> 流量营销 | 提交流量订单                                             |
+| 查询订单       | seekOrder     | 企业 -> 流量营销 | 查询订单的充值状态                                       |
+| 充值状态回调   | -             | 流量营销 -> 企业 | 又拍云手机流量充值平台将订单充值结果返回给企业的应用系统 |
+| 号码归属地查询 | getMobileInfo | 企业 -> 流量营销 | 手机号信息（运营商、属地）                               |
 
 ## 基础接口
 
 **1.1 获取Token:**
 
 
-地址	 |/getToken
+地址	 |/refreshToken
 :--------------------     | :-------
 方法	 |POST
 header |Content-Type为`application/json`
@@ -102,7 +102,7 @@ appsecret |鉴权密钥，由又拍云手机流量平台提供 |`string` |`true`
 **1.2 创建订单:**
 
 
-地址	 |/createOrder
+地址	 |/chargeOrder
 :--------------------     | :-------
 方法	 |POST
 header |Content-Type为`application/json`
@@ -112,20 +112,17 @@ header |Content-Type为`application/json`
 |Label |Description |Type |Required
 -|-|-|-
 appkey |鉴权账号，由又拍云手机流量平台提供 |`string` |`true`
-phone |需要申请流量包的手机号码，一次只允许一个手机号码，需要进行AES(AES/CBC/PKCS5Padding)加密,加密后的结果通过base64做转码传递，加密的密钥是最新获取的token,加密向量为当前账户的appkey, ([示例程序下载](http://up-static.b0.upaiyun.com/phone-traffic/AESCryptSample.zip)) |`string` |`true`
-pcode |流量包的ID，目前只支持每次一个流量包 |`string` |`true`
-extno |客户自定义的订单号，长度小于30，保证每次唯一	 |`string` |`true`
+mobile |需要申请流量包的手机号码，一次只允许一个手机号码，需要进行AES(AES/CBC/PKCS5Padding)加密,加密后的结果通过base64做转码传递，加密的密钥是最新获取的token,加密向量为当前账户的appkey, ([示例程序下载](http://up-static.b0.upaiyun.com/phone-traffic/AESCryptSample.zip)) |`string` |`true`
+prodcode |流量包的ID，目前只支持每次一个流量包 |`string` |`true`
+custno |客户自定义的订单号，长度小于30，保证每次唯一	 |`string` |`true`
 sign |签名串，签名规则见description, ([示例程序下载](http://up-static.b0.upaiyun.com/phone-traffic/AESCryptSample.zip)) |`string` |`true`
-pscope |用于区分全国通用流量和省内流量,全国流量参数为"中国",省内流量为中国再加省份,如"广东", 默认情况下为全国流量,参数为"中国"	 |`string` |`false`
-ptime |用于对流量时段的区分,如果闲时流量为0,全时段流量为1,默认情况下为全时段流量,值为1 |`integer` |`false`
-pstandard |用于区分网络类型,2g/3g/4g通用套餐为7,2g/3g通用套餐额为3,2g套餐为1,默认为2g/3g/4g通用套餐,值为7 |`integer` |`false`
 
 返回：
 
 ```json
 {
     "code": "返回的状态码，详见错误码说明,如果返回超时,不一定下单失败,需要查询订单状态",
-    "extno": "客户自定义的订单流水号，原样返回",
+    "custno": "客户自定义的订单流水号，原样返回",
     "orderno": "流量平台生成的订单号,若获取失败可能不返回",
     "info": "返回说明信息"
 }
@@ -150,7 +147,7 @@ sign签名算法说明：
 5. 将sign签名参数和其他请求参数一起发送给接口。
 
 6. 范例：
-    * 根据签名算法，将所有请求参数名与参数值按照参数名升序排序后拼接成字符串 appkeydfsdfs34r879wef3extnosde3jsef3ksdf32fsdf232fpcodeCMCC_10phone4a2954e3118afed8adad7dce3cd37tokenJjjveRLP7nFniKSs;
+    * 根据签名算法，将所有请求参数名与参数值按照参数名升序排序后拼接成字符串 appkeydfsdfs34r879wef3custnosde3jsef3ksdf32fsdf232fprodcodeCMCC_10mobile4a2954e3118afed8adad7dce3cd37tokenJjjveRLP7nFniKSs;
     * 对以上拼接的字符串进行SHA1签名算法，将签名值转化为十六进制的编码串：7acf2a069db286f2c75f16ed41bdff52a0e5b5ea
 
 备注:
@@ -171,11 +168,11 @@ header |Content-Type为`application/json`
 
 |Label |Description |Type |Required
 -|-|-|-
-extno |客户自定义的订单流水号，原样返回 |`string` |`true`
+custno |客户自定义的订单流水号，原样返回 |`string` |`true`
 orderno |流量平台生成的订单号 |`string` |`true`
 code |返回的状态码，详见错误码说明 |`string` |`true`
 info |返回说明信息 |`string` |`true`
-sign |签名串，签名规则为"code"字符串拼接实际的code值,加上"extno"字符串拼接实际的extno值,加上"info"字符串拼接实际的info值,加上"orderno"字符串拼接实际的orderno值, 最后拼接"TOKEN"(大写)串和实际的token值然后将拼接后的字符串进行sha1签名,实例可参考 ([示例程序下载](http://up-static.b0.upaiyun.com/phone-traffic/AESCryptSample.zip)) |`string` |`true`
+sign |签名串，签名规则为"code"字符串拼接实际的code值,加上"custno"字符串拼接实际的custno值,加上"info"字符串拼接实际的info值,加上"orderno"字符串拼接实际的orderno值, 最后拼接"TOKEN"(大写)串和实际的token值然后将拼接后的字符串进行sha1签名,实例可参考 ([示例程序下载](http://up-static.b0.upaiyun.com/phone-traffic/AESCryptSample.zip)) |`string` |`true`
 
 返回：
 
@@ -197,7 +194,7 @@ sign |签名串，签名规则为"code"字符串拼接实际的code值,加上"ex
 **1.4.1 查询订单充值状态:**
 
 
-地址	 |/getOrderStatus
+地址	 |/seekOrder
 :--------------------     | :-------
 方法	 |POST
 header |Content-Type为`application/json`
@@ -206,17 +203,17 @@ header |Content-Type为`application/json`
 
 |Label |Description |Type |Required
 -|-|-|-
-extno |客户提交的订单流水号 |`string` |`true`
+custno |客户提交的订单流水号 |`string` |`true`
 appkey |鉴权账号，由又拍云手机流量平台提供 |`string` |`true`
-sign |签名串，签名规则为"appkey"字符串拼接实际的appkey值,加上"extno"字符串拼接实际的extno值,如果传了ordertime,请加上"ordertime"拼接ordertime的值,如果没有传则无需处理,最后拼接"TOKEN"(大写)串和实际的token值,然后将拼接后的字符串进行sha1签名,实例可参考 ([示例程序下载](http://up-static.b0.upaiyun.com/phone-traffic/AESCryptSample.zip)) |`string` |`true`
-ordertime |该订单创建时间。该参数为可选参数,格式为"YYYY-MM-DD HH:mm:ss",为保证有效性,我们会在给定orderTime前后1个小时范围内查询;如果未传该参数,我们将在最近一周的订单中为你查询	 |`string` |`false`
+sign |签名串，签名规则为"appkey"字符串拼接实际的appkey值,加上"custno"字符串拼接实际的custno值,如果传了requesttime,请加上"requesttime"拼接requesttime的值,如果没有传则无需处理,最后拼接"TOKEN"(大写)串和实际的token值,然后将拼接后的字符串进行sha1签名,实例可参考 ([示例程序下载](http://up-static.b0.upaiyun.com/phone-traffic/AESCryptSample.zip)) |`string` |`true`
+requesttime |该订单创建时间。该参数为可选参数,格式为"YYYY-MM-DD HH:mm:ss",为保证有效性,我们会在给定requesttime前后1个小时范围内查询;如果未传该参数,我们将在最近一周的订单中为你查询	 |`string` |`false`
 
 返回：
 
 ```json
 {
     "code": "返回的状态码，详见错误码说明",
-    "extno": "客户自定义的订单流水号，原样返回",
+    "custno": "客户自定义的订单流水号，原样返回",
     "info": "返回说明信息"
 }
 ```
@@ -241,14 +238,14 @@ header |Content-Type为`application/json`
 
 |Label |Description |Type |Required
 -|-|-|-
-extno |客户自定义的订单流水号 |`string` |`true`
+custno |客户自定义的订单流水号 |`string` |`true`
 
 返回：
 
 ```json
 {
     "code": "返回的状态码，详见错误码说明",
-    "extno": "客户自定义的订单流水号，原样返回",
+    "custno": "客户自定义的订单流水号，原样返回",
     "info": "返回说明信息"
 }
 ```
@@ -264,7 +261,7 @@ extno |客户自定义的订单流水号 |`string` |`true`
 
 **1.5 查询金额**
 
-地址	 |/getCusBalance
+地址	 |/getMyBalance
 :--------------------     | :-------
 方法	 |POST
 header |Content-Type为`application/json`
