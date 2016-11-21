@@ -146,7 +146,7 @@ signature 生成步骤：
 
 |         参数         | 必选 |                                                 说明                                                |
 |----------------------|------|-----------------------------------------------------------------------------------------------------|
-| bucket               | 是   | 保存所上传的文件的又拍云空间名                                                                     |
+| bucket               | 是   | 保存所上传的文件的又拍云服务名                                                                      |
 | save-key             | 是   | 保存路径，如: '/path/to/file.ext'，可用占位符 [\[注 1\]](#note1)                                    |
 | expiration           | 是   | 请求的过期时间，**UNIX UTC** 时间戳（秒）                                                           |
 | allow-file-type      | 否   | 允许上传的文件扩展名，以 `,` 分隔。如 `jpg,jpeg,png`                                                |
@@ -164,6 +164,7 @@ signature 生成步骤：
 | x-gmkerl-extract-format     | 否   |   主题色提取格式，默认 `hex`                                                                 |
 | apps                 | 否   | json 格式的异步处理任务列表。见 [异步处理任务](/api/form_api/#_4)                                   |
 | ext-param            | 否   | 额外参数，UTF-8 编码，并小于 255 个字符 [\[注 3\]](#note3)                                          |
+| b64encoded           | 否   | 表示上传的文件需要`base64`解码。可用值为`on`                                                        |
 | *x-gmkerl-thumbnail* **DEPRECATED**   | *否*   | *缩略图版本名称，仅支持图片类空间，可搭配其他 `x-gmkerl-*` 参数使用* |
 | *x-gmkerl-type*  **DEPRECATED**       | *否*   | *缩略类型*                                                           |
 | *x-gmkerl-value*  **DEPRECATED**      | *否*   | *缩略类型对应的参数值*                                               |

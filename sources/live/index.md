@@ -88,13 +88,13 @@ Token 防盗链可以对推流的请求进行校验，可设置 token 有效时�
 ```
 rtmp://push/live/stream?domain={domain}&token={token}&valid_ts={valid_ts}&expired_ts={expired_ts}
 
-token = MD5(domain/live/stream + valid_ts + expire_ts + secret)
+token = MD5(domain/live/stream + valid_ts + expired_ts + secret)
 ```
 参数说明：  
 secret：密钥，用户与又拍约定，要求 32 位以内的数字、大小写英文字母、中划线、下划线及特殊字符 ~ ! @ # $ _ % ^ & * ( ) 组合。  
 domain：域名，开启 token 防盗链的域名。  
 valid_ts：有效时间，在 token 有效期内同一条 token 推流 URL 一直有效，服务器不会主动断开，valid_ts 必须是 UNIX TIME 格式，如 1472659200，表示 2016/9/1 00:00:00。  
-expire_ts：截止时间，截止时间到后，服务器主动断开已建立的 token 推流连接，expir_ts 必须是 UNIX TIME 格式，如 1473004800，表示 2016/9/5 00:00:00。  
+expired_ts：截止时间，截止时间到后，服务器主动断开已建立的 token 推流连接，expired_ts 必须是 UNIX TIME 格式，如 1473004800，表示 2016/9/5 00:00:00。  
 
 ```
 示例：  
@@ -127,8 +127,9 @@ token = MD5(domain/live/stream + expired_ts + secret)
 
 > 注：计算公式中的 secret，客户需妥善保管，谨防外泄。  
 > 注：MD5 后计算出的 token 值是 32 位的，必须小写。  
-> 推流暂仅支持 token 防盗链。  
+> 推流暂仅支持 token 防盗链。 
 
+关于 token 的推流，您可以参考[这里](https://github.com/monkey-wenjun/live_push_token/)的演示代码
 ### 拉流防盗链   
 拉流防盗链只针对播放域名，HTTP 协议拉流防盗链规则同文件加速，包括 IP 禁用、地区访问限制、回源鉴权、Token 防盗链、域名防盗链等。详细规则见文件加速[ 防盗链](http://docs.upyun.com/cdn/feature/#_1)。 
 
@@ -141,12 +142,11 @@ token = MD5(domain/live/stream + expired_ts + secret)
 > 录制方式：触发或定时录制    
 
 录播的主要作用是将推流内容录制成文件，最终用于点播。
-现支持录制成 MP4、FLV、TS、M3u8，默认录制成 mp4  格式文件，上传到又拍云存储，客户可以自定义上传到哪个存储服务（暂不支持，接口未开放，现在是默认云存储为 upyun-live-recorder）。
+现支持录制成 MP4、FLV、TS、M3u8，默认录制成 mp4  格式文件，上传到又拍云存储，客户可以自定义上传到哪个存储服务。  
 
-又拍录制系统会自动将录制下来的内容上传到又拍云存储后，可以根据云存储获取目录文件列表 来获取相关录制文件列表。
-如果对录制文件格式有其他要求，可在又拍云处理中心对其进行相关处理，比如格式处理，视频拼接，详细请见[云处理文档](http://docs.upyun.com/cloud/)。
+又拍录制系统会自动将录制下来的内容上传到又拍云存储后，可以根据云存储获取目录文件列表来获取相关录制文件列表。如果对录制文件格式有其他要求，可在又拍云处理中心对其进行相关处理，比如格式处理，视频拼接，详细请见[云处理文档](http://docs.upyun.com/cloud/)。
 
-如果需要将 rtmp://play.com/live/stream 这条流进行录制，录制后文件具体路径为：  
+如果配置对 rtmp://play.com/live/stream 这条流进行录制，录制后文件具体路径为：  
 
 ```
 upyun-live-recorder.b0.upaiyun.com/play.com/live/stream/recorder20160604163702.mp4  
@@ -186,7 +186,8 @@ play.com 为直播拉流域名，live 为接入点，stream 为流名，recorder
 > 录制配置的修改对旧连接无效，若希望对现有连接生效，需断开现有连接重新推流。 
 
 ### 转码
-> 需提供需要转码的流、需要匹配的后缀及转码模板  
+> 源站类型：又拍云源  
+> 提供要转码的原始流、转码匹配的后缀及转码模板  
 
 支持音视频流实时转码处理，通过转码模版可配置编码标准、分辨率、码率及输出流类型等流处理参数。
 默认支持使用又拍云直播服务的 RTMP，HTTP-FLV 和 HLS 协议的流转码支持 12 种转码模板和客户自定义转码配置，详细模板信息,参考[视频转码预置模板](http://docs.upyun.com/cloud/attachment/ ) 支持自定义转码后缀，分隔符支持中划线（-）、下划线（_）和感叹号（!）。
