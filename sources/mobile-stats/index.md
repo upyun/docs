@@ -271,7 +271,7 @@ header |Content-Type为`application/json`
 |Label |Description |Type |Required
 -|-|-|-
 appkey |鉴权账号，由又拍云手机流量平台提供 |`string` |`true`
-sign |签名串，签名规则为"appkey"字符串拼接实际的appkey值,再拼接"TOKEN"(大写)串和实际的token值,然后将拼接后的字符串进行sha1签名,实例可参考 ([示例程序下载](http://up-static.b0.upaiyun.com/phone-traffic/AESCryptSample.zip))  |`string` |`true`
+sign |签名串，签名规则为"appkey"字符串拼接实际的appkey值,再拼接"token"(小写)串和实际的token值,然后将拼接后的字符串进行sha1签名,实例可参考 ([示例程序下载](http://up-static.b0.upaiyun.com/phone-traffic/AESCryptSample.zip))  |`string` |`true`
 
 返回：
 
