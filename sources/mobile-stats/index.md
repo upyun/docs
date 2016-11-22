@@ -172,7 +172,7 @@ custno |客户自定义的订单流水号，原样返回 |`string` |`true`
 orderno |流量平台生成的订单号 |`string` |`true`
 code |返回的状态码，详见错误码说明 |`string` |`true`
 info |返回说明信息 |`string` |`true`
-sign |签名串，签名规则为"code"字符串拼接实际的code值,加上"custno"字符串拼接实际的custno值,加上"info"字符串拼接实际的info值,加上"orderno"字符串拼接实际的orderno值, 最后拼接"TOKEN"(大写)串和实际的token值然后将拼接后的字符串进行sha1签名,实例可参考 ([示例程序下载](http://up-static.b0.upaiyun.com/phone-traffic/AESCryptSample.zip)) |`string` |`true`
+sign |签名串，签名规则为"code"字符串拼接实际的code值,加上"custno"字符串拼接实际的custno值,加上"info"字符串拼接实际的info值,加上"orderno"字符串拼接实际的orderno值, 最后拼接"token"(小写)串和实际的token值然后将拼接后的字符串进行sha1签名,实例可参考 ([示例程序下载](http://up-static.b0.upaiyun.com/phone-traffic/AESCryptSample.zip)) |`string` |`true`
 
 返回：
 
@@ -205,7 +205,7 @@ header |Content-Type为`application/json`
 -|-|-|-
 custno |客户提交的订单流水号 |`string` |`true`
 appkey |鉴权账号，由又拍云手机流量平台提供 |`string` |`true`
-sign |签名串，签名规则为"appkey"字符串拼接实际的appkey值,加上"custno"字符串拼接实际的custno值,如果传了requesttime,请加上"requesttime"拼接requesttime的值,如果没有传则无需处理,最后拼接"TOKEN"(大写)串和实际的token值,然后将拼接后的字符串进行sha1签名,实例可参考 ([示例程序下载](http://up-static.b0.upaiyun.com/phone-traffic/AESCryptSample.zip)) |`string` |`true`
+sign |签名串，签名规则为"appkey"字符串拼接实际的appkey值,加上"custno"字符串拼接实际的custno值,如果传了requesttime,请加上"requesttime"拼接requesttime的值,如果没有传则无需处理,最后拼接"token"(小写)串和实际的token值,然后将拼接后的字符串进行sha1签名,实例可参考 ([示例程序下载](http://up-static.b0.upaiyun.com/phone-traffic/AESCryptSample.zip)) |`string` |`true`
 requesttime |该订单创建时间。该参数为可选参数,格式为"YYYY-MM-DD HH:mm:ss",为保证有效性,我们会在给定requesttime前后1个小时范围内查询;如果未传该参数,我们将在最近一周的订单中为你查询	 |`string` |`false`
 
 返回：
@@ -271,7 +271,7 @@ header |Content-Type为`application/json`
 |Label |Description |Type |Required
 -|-|-|-
 appkey |鉴权账号，由又拍云手机流量平台提供 |`string` |`true`
-sign |签名串，签名规则为"appkey"字符串拼接实际的appkey值,再拼接"TOKEN"(大写)串和实际的token值,然后将拼接后的字符串进行sha1签名,实例可参考 ([示例程序下载](http://up-static.b0.upaiyun.com/phone-traffic/AESCryptSample.zip))  |`string` |`true`
+sign |签名串，签名规则为"appkey"字符串拼接实际的appkey值,再拼接"token"(小写)串和实际的token值,然后将拼接后的字符串进行sha1签名,实例可参考 ([示例程序下载](http://up-static.b0.upaiyun.com/phone-traffic/AESCryptSample.zip))  |`string` |`true`
 
 返回：
 
