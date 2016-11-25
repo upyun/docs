@@ -464,6 +464,47 @@ text/html -- default
 
 ----------
 
+
+## 传递最终用户 IP
+
+又拍云 CDN 回客户源的时候会带上 `X-Real-IP` 和 `X-Forwarded-For` 的请求头下去，值为用户实际访问 CDN 的来源 IP 地址。特别地，为了兼容部分服务端程序，我们额外还提供了 `Client-IP` 请求头的支持，其值和 `X-Real-IP`、`X-Forwarded-For` 相同。
+
+如何使用
+
+1、X-Real-IP 传递用户 IP
+
+使用该方式传递最终用户 IP ，需要服务端代码进行一些改造，网站需要根据使用编程语言的不同，修改相应的代码模块，才可以传递最终用户 IP。代码示例如下：
+
+示例一：PHP 代码¶
+  
+     <?php
+            $ip = $_SERVER["HTTP_X_REAL_IP"];
+            echo $ip;
+     ?>
+
+示例二： Nginx 配置¶
+
+    server
+        {
+            listen 80;
+            add_header X-Real-IP $http_x_real_ip; 
+        }
+
+
+2、X-Forward-For 传递用户 IP
+
+回源请求头会默认传递 `X-Forwarded-For` 的值，用户网站无需任何改造。
+
+注意事项
+
+1、新增加速服务时我们会默认使用 `X-Real-IP` 和 `X-Forwarded-For` 方式，网站只需要按照 “如何使用” 章节中，对原先的用户 IP 获取代码进行替换即可；
+
+2、由于 `X-Real-IP`  是又拍云 CDN 服务特有的回源请求头 ，故终止 CDN 后，网站需将获取用户 IP 的代码修改为原始代码；
+
+3、在选择使用 `X-Forwarded-For` 进行最终用户 IP 传递时  ，`X-Real-IP`、`Client-IP`也是同时传递的；
+
+----------
+
  
 ##自定义 SSL 服务
 
