@@ -519,8 +519,10 @@ curl -T /local_img.jpg http://v0.api.upyun.com/bucket/img.jpg -u operator:operat
 
 | 视频类别 | 视频名称                                     | 时长     |
 | ---- | ---------------------------------------- | ------ |
-| 工具   | [PC 端故障反馈视频教程](https://techs.b0.upaiyun.com/videos/cdnpage/pc.html) | 10分    |
-| 工具   | [移动端故障反馈视频教程](https://techs.b0.upaiyun.com/videos/cdnpage/mobile.html) | 4分51秒  |
+| 工具   | [ PC 端故障反馈视频教程](https://techs.b0.upaiyun.com/videos/cdnpage/pc.html) | 10分    |
+| 工具   | [ Android 故障反馈视频教程](https://techs.b0.upaiyun.com/videos/cdnpage/mobile.html) | 4分51秒  |
+| 工具   | [ iOS 故障反馈视频教程](https://techs.b0.upaiyun.com/videos/cdnpage/iphone.html) | 4分51秒  |
+
 
 
 
