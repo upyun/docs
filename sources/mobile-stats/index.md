@@ -39,7 +39,7 @@
 
 **业务交互流程:**
 
-<img src="http://up-static.b0.upaiyun.com/phone-traffic/upyun-mobile-traffic.png" width="1000" />
+<img src="http://up-static.b0.upaiyun.com/phone-traffic/upyun-mobile-traffic.png" width="830" />
 
 **接口概述:**
 
