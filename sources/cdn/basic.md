@@ -483,7 +483,7 @@ video/x-m4v
 **日志样例**
 
 
-    115.231.100.106 - - [20/Oct/2016:09:37:31 +0800] "GET http://impress-demo.b0.upaiyun.com/mantou2/fw8MSxAj/g_sunOal4VkbHaRvr2_ky95f.png!/both/200x200 HTTP/1.1" 200 47302 "http://www.impress.com/gallery" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:49.0) Gecko/20100101 Firefox/49.0" Hit "U/200, G/200" Static "max-age=639705" 0.013 183.158.35.21
+    115.231.100.106 - - [20/Oct/2016:09:37:31 +0800] "GET http://impress-demo.b0.upaiyun.com/mantou2/fw8MSxAj/g_sunOal4VkbHaRvr2_ky95f.png!/both/200x200 HTTP/1.1" 200 47302 "http://www.impress.com/gallery" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:49.0) Gecko/20100101 Firefox/49.0" Hit "U/200" Static "max-age=639705" 0.013 183.158.35.21
 
 **字段说明**
 
@@ -502,7 +502,7 @@ video/x-m4v
 | 11   | Referer 请求头     |http://www.impress.com/gallery|
 | 12    | User-Agent 头 | Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:49.0)<br> Gecko/20100101 Firefox/49.0  |
 | 13   | 缓存命中状态             | Hit    |
-| 14    | 源站类型 (U: 云存储 C：自主源)/状态码          | U/200, G/200   |
+| 14    | 源站类型 (U: 云存储 C：自主源)/状态码          | U/200 |
 | 15    | 动态请求标记             | Static   |
 | 16    | 缓存时间             | max-age=639705   |
 | 17    | 请求处理时间（单位s）            | 0.013  |
