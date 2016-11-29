@@ -43,13 +43,11 @@
 
 **接口概述:**
 
-又拍云手机流量平台所有的参数传递都是通过标准的JSON格式提交,所有的请求响应都是通过JSON格式返回。
-
-又拍云手机流量平台需要与企业应用系统进行信息交换与同步，下图为本API提供的接口方法:
+又拍云手机流量平台接口入口地址统一为：https://ptp-api.upyun.com ，所有的参数传递都是通过标准的 JSON 格式提交，所有的请求响应都是通过 JSON 格式返回。下图为本API提供的接口方法:
 
 
 |接口名称 |对应方法 |对应方向 |接口描述 |
-|-|-|-|-|
+| --- | --- | --- | --- |
 | 获取Token      | refreshToken  | 企业 -> 流量平台 | 获取Token（后面接口需要）                                |
 | 下订单         | chargeOrder   | 企业 -> 流量营销 | 提交流量订单                                             |
 | 查询订单       | seekOrder     | 企业 -> 流量营销 | 查询订单的充值状态                                       |
@@ -73,6 +71,10 @@
 | appkey | 鉴权账号，由又拍云手机流量平台提供 | `string` | `true` |
 | appsecret | 鉴权密钥，由又拍云手机流量平台提供 | `string` | `true` |
 
+请求示例：
+```
+curl https://ptp-api.upyun.com/refreshToken -H "Content-Type: application/json" -d '{"appkey": "your_appkey_put_here", "appsecret": "your_appsecret_put_here"}'
+```
 
 返回：
 
