@@ -60,18 +60,18 @@
 **1.1 获取Token:**
 
 
-地址	 |/refreshToken
-:--------------------     | :-------
-方法	 |POST
-header |Content-Type为`application/json`
+| 地址	 | /refreshToken |
+| -------------------- | ------- |
+| 方法	 | POST |
+| header | Content-Type为`application/json` |
 
 
 参数列表：
 
-|Label |Description |Type |Required
--|-|-|-
-appkey |鉴权账号，由又拍云手机流量平台提供 |`string` |`true`
-appsecret |鉴权密钥，由又拍云手机流量平台提供 |`string` |`true`
+| Label | Description | Type | Required |
+| --- | --- | --- | --- |
+| appkey | 鉴权账号，由又拍云手机流量平台提供 | `string` | `true` |
+| appsecret | 鉴权密钥，由又拍云手机流量平台提供 | `string` | `true` |
 
 
 返回：
@@ -99,20 +99,20 @@ appsecret |鉴权密钥，由又拍云手机流量平台提供 |`string` |`true`
 **1.2 创建订单:**
 
 
-地址	 |/chargeOrder
-:--------------------     | :-------
-方法	 |POST
-header |Content-Type为`application/json`
+| 地址	 | /chargeOrder |
+| --- | --- |
+| 方法    |  POST |
+| header | Content-Type为`application/json` |
 
 参数列表：
 
-|Label |Description |Type |Required
--|-|-|-
-appkey |鉴权账号，由又拍云手机流量平台提供 |`string` |`true`
-mobile |需要申请流量包的手机号码，一次只允许一个手机号码，需要进行AES(AES/CBC/PKCS5Padding)加密,加密后的结果通过base64做转码传递，加密的密钥是最新获取的token,加密向量为当前账户的appkey, ([示例程序下载](http://up-static.b0.upaiyun.com/phone-traffic/AESCryptSample.zip)) |`string` |`true`
-prodcode |流量包的ID，目前只支持每次一个流量包 |`string` |`true`
-custno |客户自定义的订单号，长度小于30，保证每次唯一	 |`string` |`true`
-sign |签名串，签名规则见description, ([示例程序下载](http://up-static.b0.upaiyun.com/phone-traffic/AESCryptSample.zip)) |`string` |`true`
+|Label |Description |Type |Required|
+| --- | --- | --- | --- |
+|appkey |鉴权账号，由又拍云手机流量平台提供 |`string` |`true`|
+|mobile |需要申请流量包的手机号码，一次只允许一个手机号码，需要进行AES(AES/CBC/PKCS5Padding)加密,加密后的结果通过base64做转码传递，加密的密钥是最新获取的token,加密向量为当前账户的appkey, ([示例程序下载](http://up-static.b0.upaiyun.com/phone-traffic/AESCryptSample.zip)) |`string` |`true`|
+|prodcode |流量包的ID，目前只支持每次一个流量包 |`string` |`true`|
+|custno |客户自定义的订单号，长度小于30，保证每次唯一	 |`string` |`true`|
+|sign |签名串，签名规则见description, ([示例程序下载](http://up-static.b0.upaiyun.com/phone-traffic/AESCryptSample.zip)) |`string` |`true`|
 
 返回：
 
@@ -144,7 +144,8 @@ sign签名算法说明：
 5. 将sign签名参数和其他请求参数一起发送给接口。
 
 6. 范例：
-    * 根据签名算法，将所有请求参数名与参数值按照参数名升序排序后拼接成字符串 `appkey3P83lWwkoV15yZVTcustno20151123114702mobile8mBGFNfe1o/rzAx2Ost2IQ==prodcodeCMCC_10tokenVqHAab3JYXBDkCoO` （注意手机号是 aes 加密再 base64 编码后的）;
+
+    * 根据签名算法，将所有请求参数名与参数值按照参数名升序排序后拼接成字符串 `appkey3P83lWwkoV15yZVTcustno20151123114702mobile8mBGFNfe1o/rzAx2Ost2IQ==prodcodeCMCC_10tokenVqHAab3JYXBDkCoO`（注意手机号是 aes 加密再 base64 编码后的）
     * 对以上拼接的字符串进行SHA1签名算法，将签名值转化为十六进制的编码串：`86ee7d160f03b54f27c99fbfebaa276c8a1a3017`
 
 备注:
@@ -156,20 +157,20 @@ sign签名算法说明：
 **1.3 充值状态回调:**
 
 
-地址	 |/客户企业提供回调地址
-:--------------------     | :-------
-方法	 |POST
-header |Content-Type为`application/json`
+| 地址	 |/客户企业提供回调地址|
+| --------------------     | ------- |
+|方法	   | POST |
+|header |Content-Type为`application/json` |
 
 参数列表：
 
 |Label |Description |Type |Required
--|-|-|-
-custno |客户自定义的订单流水号，原样返回 |`string` |`true`
-orderno |流量平台生成的订单号 |`string` |`true`
-code |返回的状态码，详见错误码说明 |`string` |`true`
-info |返回说明信息 |`string` |`true`
-sign |签名串，签名规则为"code"字符串拼接实际的code值,加上"custno"字符串拼接实际的custno值,加上"info"字符串拼接实际的info值,加上"orderno"字符串拼接实际的orderno值, 最后拼接"token"(小写)串和实际的token值然后将拼接后的字符串进行sha1签名,实例可参考 ([示例程序下载](http://up-static.b0.upaiyun.com/phone-traffic/AESCryptSample.zip)) |`string` |`true`
+| --- | --- | --- | --- |
+| custno |客户自定义的订单流水号，原样返回 |`string` |`true`|
+| orderno |流量平台生成的订单号 |`string` |`true`|
+| code |返回的状态码，详见错误码说明 |`string` |`true`|
+| info |返回说明信息 |`string` |`true`|
+| sign |签名串，签名规则为"code"字符串拼接实际的code值,加上"custno"字符串拼接实际的custno值,加上"info"字符串拼接实际的info值,加上"orderno"字符串拼接实际的orderno值, 最后拼接"token"(小写)串和实际的token值然后将拼接后的字符串进行sha1签名,实例可参考 ([示例程序下载](http://up-static.b0.upaiyun.com/phone-traffic/AESCryptSample.zip)) |`string` |`true`|
 
 返回：
 
@@ -191,19 +192,19 @@ sign |签名串，签名规则为"code"字符串拼接实际的code值,加上"cu
 **1.4.1 查询订单充值状态:**
 
 
-地址	 |/seekOrder
-:--------------------     | :-------
-方法	 |POST
-header |Content-Type为`application/json`
+| 地址	 | /seekOrder |
+|--------------------     | ------- |
+|方法	 |POST |
+|header |Content-Type为`application/json` |
 
 参数列表：
 
-|Label |Description |Type |Required
--|-|-|-
-custno |客户提交的订单流水号 |`string` |`true`
-appkey |鉴权账号，由又拍云手机流量平台提供 |`string` |`true`
-sign |签名串，签名规则为"appkey"字符串拼接实际的appkey值,加上"custno"字符串拼接实际的custno值,如果传了requesttime,请加上"requesttime"拼接requesttime的值,如果没有传则无需处理,最后拼接"TOKEN"(大写)串和实际的token值,然后将拼接后的字符串进行sha1签名,实例可参考 ([示例程序下载](http://up-static.b0.upaiyun.com/phone-traffic/AESCryptSample.zip)) |`string` |`true`
-requesttime |该订单创建时间。该参数为可选参数,格式为"YYYY-MM-DD HH:mm:ss",为保证有效性,我们会在给定requesttime前后1个小时范围内查询;如果未传该参数,我们将在最近一周的订单中为你查询	 |`string` |`false`
+|Label |Description |Type |Required |
+| --- | --- | --- | --- |
+| custno |客户提交的订单流水号 |`string` |`true` |
+| appkey |鉴权账号，由又拍云手机流量平台提供 |`string` |`true` |
+sign |签名串，签名规则为"appkey"字符串拼接实际的appkey值,加上"custno"字符串拼接实际的custno值,如果传了requesttime,请加上"requesttime"拼接requesttime的值,如果没有传则无需处理,最后拼接"TOKEN"(大写)串和实际的token值,然后将拼接后的字符串进行sha1签名,实例可参考 ([示例程序下载](http://up-static.b0.upaiyun.com/phone-traffic/AESCryptSample.zip)) |`string` |`true`|
+requesttime |该订单创建时间。该参数为可选参数,格式为"YYYY-MM-DD HH:mm:ss",为保证有效性,我们会在给定requesttime前后1个小时范围内查询;如果未传该参数,我们将在最近一周的订单中为你查询	 |`string` |`false` |
 
 返回：
 
@@ -225,17 +226,17 @@ requesttime |该订单创建时间。该参数为可选参数,格式为"YYYY-MM-
 
 **1.5 查询金额**
 
-地址	 |/getMyBalance
-:--------------------     | :-------
-方法	 |POST
-header |Content-Type为`application/json`
+|地址	 |/getMyBalance
+|--------------------     | ------- |
+|方法	 |POST|
+|header |Content-Type为`application/json`|
 
 参数列表：
 
-|Label |Description |Type |Required
--|-|-|-
-appkey |鉴权账号，由又拍云手机流量平台提供 |`string` |`true`
-sign |签名串，签名规则为"appkey"字符串拼接实际的appkey值,再拼接"TOKEN"(大写)串和实际的token值,然后将拼接后的字符串进行sha1签名,实例可参考 ([示例程序下载](http://up-static.b0.upaiyun.com/phone-traffic/AESCryptSample.zip))  |`string` |`true`
+|Label |Description |Type |Required|
+|---|---|---|---|
+|appkey |鉴权账号，由又拍云手机流量平台提供 |`string` |`true`|
+|sign |签名串，签名规则为"appkey"字符串拼接实际的appkey值,再拼接"TOKEN"(大写)串和实际的token值,然后将拼接后的字符串进行sha1签名,实例可参考 ([示例程序下载](http://up-static.b0.upaiyun.com/phone-traffic/AESCryptSample.zip))  |`string` |`true`|
 
 返回：
 
@@ -258,23 +259,23 @@ sign |签名串，签名规则为"appkey"字符串拼接实际的appkey值,再�
 
 **请特别留意各接口备注说明**
 
-错误码   | 说明             | 错误码   | 说明
-:------- | :-------         | :------- | :-------
-200      | 成功             | 201      | 充值中
-410      | 运营商返回超时   | 422      | 用户状态异常
-430      | 订购/充值失败    | 502      | sign签名错误
-503      | 余额不足         | 504      | 非法的回调地址
-505      | 手机号不合法     | 506      | 用户不能订购该套餐
-507      | 接口参数异常     | 508      | 令牌鉴权不通过
-509      | 客户未认证授权   | 510      | 查询太频繁
-511      | 内部异常         | 512      | 订单号重复
-513      | 运营商请求超时   | 514      | ip不在白名单
-515      | 该客户不存在     | 516      | 不存在此订单
-517      | 无法识别的手机号 | 519      | 当前appkey或appsecret错误
-520      | 活动不存在       | 526      | 合同不在有效期
-527      | token不在有效期  | 530      | 订购/充值失败
-531      | 签名不通过       | 532      | 订单号长度超过30
-533      | aes加密有误      |          |
+|错误码   | 说明             | 错误码   | 说明 |
+|:------- | :-------         | :------- | :------- |
+|200      | 成功             | 201      | 充值中 |
+|410      | 运营商返回超时   | 422      | 用户状态异常 |
+|430      | 订购/充值失败    | 502      | sign签名错误 |
+|503      | 余额不足         | 504      | 非法的回调地址 |
+|505      | 手机号不合法     | 506      | 用户不能订购该套餐 |
+|507      | 接口参数异常     | 508      | 令牌鉴权不通过 |
+|509      | 客户未认证授权   | 510      | 查询太频繁 |
+|511      | 内部异常         | 512      | 订单号重复 |
+|513      | 运营商请求超时   | 514      | ip不在白名单 |
+|515      | 该客户不存在     | 516      | 不存在此订单 |
+|517      | 无法识别的手机号 | 519      | 当前appkey或appsecret错误 |
+|520      | 活动不存在       | 526      | 合同不在有效期 |
+|527      | token不在有效期  | 530      | 订购/充值失败 |
+|531      | 签名不通过       | 532      | 订单号长度超过30 |
+|533      | aes加密有误      |          |
 
 
 
