@@ -144,8 +144,8 @@ sign签名算法说明：
 5. 将sign签名参数和其他请求参数一起发送给接口。
 
 6. 范例：
-    * 根据签名算法，将所有请求参数名与参数值按照参数名升序排序后拼接成字符串 appkeydfsdfs34r879wef3custnosde3jsef3ksdf32fsdf232fprodcodeCMCC_10mobile4a2954e3118afed8adad7dce3cd37tokenJjjveRLP7nFniKSs;
-    * 对以上拼接的字符串进行SHA1签名算法，将签名值转化为十六进制的编码串：7acf2a069db286f2c75f16ed41bdff52a0e5b5ea
+    * 根据签名算法，将所有请求参数名与参数值按照参数名升序排序后拼接成字符串 `appkey3P83lWwkoV15yZVTcustno20151123114702mobile8mBGFNfe1o/rzAx2Ost2IQ==prodcodeCMCC_10tokenVqHAab3JYXBDkCoO` （注意手机号是 aes 加密再 base64 编码后的）;
+    * 对以上拼接的字符串进行SHA1签名算法，将签名值转化为十六进制的编码串：`86ee7d160f03b54f27c99fbfebaa276c8a1a3017`
 
 备注:
 
