@@ -53,6 +53,7 @@
 | 查询订单       | seekOrder     | 企业 -> 流量营销 | 查询订单的充值状态                                       |
 | 充值状态回调   | -             | 流量营销 -> 企业 | 又拍云手机流量充值平台将订单充值结果返回给企业的应用系统 |
 
+目前提供了 php 版本 sdk，用于提供完整示例，加速开发，[点击下载](http://up-static.b0.upaiyun.com/phone-traffic/upyun-mobile-stats.zip)。
 ## 基础接口
 
 **1.1 获取Token:**
