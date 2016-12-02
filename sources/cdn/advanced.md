@@ -319,6 +319,33 @@ text/html -- default
 
 
 ----------
+##重定向优化
+
+
+当 CDN 节点回源站时，若源站响应的状态码为 301/302 时，CDN 节点对重定向之后的目标 URL （也即 301/302 响应头 `Location` 字段对应的信息）发起请求，获取后的内容响应给最终用户，并在 CDN 节点进行缓存。这样向最终用户屏蔽了重定向过程，免去了最终用户再次向重定向后的 URL 重新发起请求的连接时间，从而加快了访问速度。
+ 
+原理介绍
+
+一般情况下，当 CDN 节点回源站请求文件时，若源站返回的是 HTTP 301/302 的响应，CDN 节点会将该响应返回给客户端，客户端根据响应头中的 `Location` 头信息进行再次请求。配置了重定向优化功能之后，访问流程如下图所示：
+
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-302redirect-yuanli.png" height="400" width="700" />
+
+1）客户端向 CDN 节点发起请求并传递至源站，例如：`http://example.com/123.html`；
+
+2）源站给 CDN 节点响应 301/302 状态码，并指明重定向后的 URL 为 `http://example.com/456.html`
+
+3）CDN 节点对重定向之后对目标 URL 发起请求；
+
+4）源站响应内容给最终用户，并将内容在 CDN 节点进行缓存；
+
+
+配置引导
+
+登陆 [又拍云管理控制台](https://console.upyun.com/login/)，依次进入：服务 > 功能配置 > 高级功能 > 重定向优化，滑动开关即可开启该功能。如下图所示：
+
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-redirect-performance.png" height="490" width="800" />
+
+----------
 
 
 ##视频拖拉
@@ -461,6 +488,173 @@ text/html -- default
 
 6） `缓存时间` 如果没有特殊情况可以酌情设置得大一点，默认为 86400 秒，最大为 604800 秒
 
+
+----------
+
+## 分段缓存
+
+又拍云 CDN 服务默认提供分段缓存功能配置，开启该功能可有效降低大文件回源率，提升响应速度，与此同时，可以提高文件在 CDN 节点的缓存命中率。特别地，开启该特性之后，CDN节点会以 Range 请求回源。
+
+
+配置引导
+
+登陆 [又拍云管理控制台](https://console.upyun.com/login/)，依次进入：服务 > 功能配置 > 高级服务 > 分段缓存，点击「管理」按钮即可开始配置。如下图所示：
+
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-slice-cache.png" height="490" width="800" />
+
+默认配置：该特性会默认关闭，您可以有选择性的开启该特性。特别地，我们针对分段缓存预置了文件后缀模板，也即可以根据文件后缀或者通配符规则来配置是否开启分段缓存功能。默认后缀如下：
+```
+视频：AVI、MP4、FLV、MOV、3GP、ASF、WMV、MPG、F4V、M4V、MKV、VOB、M3U8、TS 、RMVB、DAT、RM
+音频：MP3、OGG、M4A、WMA、AIF、AU
+安装包：APK、ZIP、EXE、RAR、IPA、PXL、DEB、SIS、SISX、JAR、XAP
+游戏下载：SO、CUE、CCD、MDS、IMG、7Z
+其它：CAB、DHP、GZ、ISO、MPQ、PBCV、PXL、QNP、R00、XY、XY2
+```
+
+配置效果
+
+假设最终用户发起了 Range 请求，请求的 URL 为：`http://www.example.com/download/game.zip`，CDN 节点收到请求后，若命中则响应对应分段文件给最终用户，未命中的分段 CDN 节点则回源发起 Range 请求获取资源文件。
+
+开启分段缓存：
+
+ - 若最终用户发起 Range 请求，CDN 节点上已经命中该分片，则直接响应给最终用户
+ - 若 CDN 节点未命中缓存，则 CDN 节点回源使用 Range 请求，分片获取资源文件
+
+关闭分段缓存：
+
+ - 节点文件缓存过期之后，会向源站获取整个资源文件
+
+分段预加载：
+
+ - 开启分段缓存功能之后，该特性会默认开启。当最终最终用户请求第一个分段文件时，我们会默认优先去下载后面几个分段文件，进而提高文件下载速度
+
+注意事项
+
+1、源站需要支持 Range 请求且响应体是 `Content-Length` 形式而非 `Chunked-Encoding`，否则会导致回源失败；
+
+2、该功能配置后不会立即生效，需在文件缓存过期或者文件缓存被主动刷新之后方可生效；
+
+3、该功能仅针对静态文件，动态内容开启分段缓存会可能会发生错误，请谨慎使用；
+
+4、该功能开启后，资源在 CDN 节点上会进行分段缓存，如果要立马关闭该特性，可通过手动刷新文件来解决；
+
+5、如果您已经使用又拍云对象存储服务，该特性已经默认开启，无需您做任何配置；
+
+----------
+
+## 文件另存为
+
+
+又拍云 CDN 服务支持对响应头 `Content-Disposition` 字段的特殊设置，也即在请求 URL 中加入 `_upd` 参数可对 `Content-Disposition` 进行特殊化配置。通过对该参数的配置就可以强制浏览器触发下载行为，同时该参数的值会作为文件下载后保存到本地的文件名。特别地，当其值为 `true` 时，保持原文件名不变。
+
+配置引导
+
+示例一：
+
+    请求参数中加入 _upd=true ，代表 Content-Disposition: attachment
+```
+$ curl http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-architecture.png?_upd=true -I
+
+> HTTP/1.1 200 OK
+> Content-Type: image/png
+> Content-Length: 57371
+> ...
+> Accept-Ranges: bytes
+> Content-Disposition: attachment;
+
+```
+
+示例一：
+
+    请求参数中加入 _upd=abc.png，代表 Content-Disposition: attachment; filename="abc.png"
+
+```
+$ curl http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-architecture.png?_upd=abc.png -I
+
+> HTTP/1.1 200 OK
+> Content-Type: image/png
+> Content-Length: 57371
+> ...
+> Accept-Ranges: bytes
+> Content-Disposition: attachment; filename="abc.png"
+
+```
+
+注意事项
+
+特别地， `参数跟随` 开启的情况下，此参数无效。
+
+----------
+
+## 传递最终用户 IP
+
+又拍云 CDN 回客户源的时候会带上 `X-Real-IP` 和 `X-Forwarded-For` 的请求头下去，值为用户实际访问 CDN 的来源 IP 地址。特别地，为了兼容部分服务端程序，我们额外还提供了 `Client-IP` 请求头的支持，其值和 `X-Real-IP`、`X-Forwarded-For` 相同。
+
+如何使用
+
+1、X-Real-IP 传递用户 IP
+
+使用该方式传递最终用户 IP ，需要服务端代码进行一些改造，网站需要根据使用编程语言的不同，修改相应的代码模块，才可以传递最终用户 IP。代码示例如下：
+
+示例一：PHP 代码¶
+  
+     <?php
+            $ip = $_SERVER["HTTP_X_REAL_IP"];
+            echo $ip;
+     ?>
+
+示例二： Nginx 配置¶
+
+    server
+        {
+            listen 80;
+            add_header X-Real-IP $http_x_real_ip; 
+        }
+
+
+2、X-Forward-For 传递用户 IP
+
+回源请求头会默认传递 `X-Forwarded-For` 的值，用户网站无需任何改造。
+
+注意事项
+
+1、新增加速服务时我们会默认使用 `X-Real-IP` 和 `X-Forwarded-For` 方式，网站只需要按照 “如何使用” 章节中，对原先的用户 IP 获取代码进行替换即可；
+
+2、由于 `X-Real-IP`  是又拍云 CDN 服务特有的回源请求头 ，故终止 CDN 后，网站需将获取用户 IP 的代码修改为原始代码；
+
+3、在选择使用 `X-Forwarded-For` 进行最终用户 IP 传递时  ，`X-Real-IP`、`Client-IP`也是同时传递的；
+
+----------
+
+## 自定义提示图
+
+支持自定义错误状态设置，目前支持 403、404、405 错误码自定义提示图的设置。如未设置，则默认遵循又拍云 CDN 服务默认错误状态提示图。
+
+配置引导
+
+登陆 [又拍云管理控制台](https://console.upyun.com/login/)，依次进入：服务 > 功能配置 > 高级服务 > 自定义提示图，在此栏目下进行相应图片的提示。如下图所示：
+
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-custom-map.png" height="490" width="800" />
+
+> 403 提示图
+
+
+当用户设置了例如 IP 禁用、Referer 等防盗链配置并且当前的请求与规则不匹配时，即会响应 403 给客户端，表示该次请求被禁止。另外，若该服务设置了自定义 403 提示图，那么此类情况下就会响应一个 302 跳转到相应的图片。
+
+> 404 提示图
+
+当请求的文件不存在时，会响应 404 状态码，可通过自定义提示图来展示。
+
+> 405 提示图
+
+正常使用中的服务，若被人为地设置为禁止外链，此时访问就会响应 405 状态码。同样，405 也支持自定义提示图设置。
+
+
+注意事项
+
+1、若此处未设置任何自定义提示图，CDN 服务会默认响应一个错误状态码提示图；
+
+2、此处自定义提示图的文件大小限制在 30KB 以内；
 
 ----------
 
