@@ -12,9 +12,9 @@
  
 ----------
 
-##创建账户
+##创建帐号
 
-打开 [注册界面](https://console.upyun.com/register/)，创建一个免费的账户或者在 [又拍云官网](http://www.upyun.com) 页面右上角点击「免费注册」，进入如下界面：
+打开 [注册界面](https://console.upyun.com/register/)，创建一个免费的帐号或者在 [又拍云官网](http://www.upyun.com) 页面右上角点击「免费注册」，进入如下界面：
 
 <img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-register.png" height="490" width="800" />
 
@@ -23,7 +23,7 @@
     
 ----------
 
-##账户认证
+##帐号认证
 
 注册完毕后，登录 [又拍云管理控制台](https://console.upyun.com/login/)，您需要进行企业或个人认证，认证完成后方可创建服务，否则将无法使用又拍云服务。账户认证可参见如下截图所示：
 
