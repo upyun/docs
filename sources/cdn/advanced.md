@@ -318,6 +318,31 @@ text/html -- default
 注意：参数跟随功能，可以配合缓存配置功能来使用。
 
 
+**重定向优化**
+
+当 CDN 节点回源站时，若源站响应的状态码为 301/302，CDN 节点对重定向之后的目标 URL （也即 301/302 响应头 `Location` 字段对应的信息）发起请求，将获取后的内容响应给最终用户，并在 CDN 节点进行缓存。这样向最终用户屏蔽了重定向过程，免去了最终用户再次向重定向后的 URL 重新发起请求的连接时间，从而加快了访问速度。
+ 
+原理介绍
+
+一般情况下，当 CDN 节点回源站请求文件时，若源站返回的是 HTTP 301/302 的响应，CDN 节点会将该响应返回给客户端，客户端根据响应头中的 `Location` 头信息进行再次请求。配置了重定向优化功能之后，访问流程如下图所示：
+
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-302redirect-yuanli.png" height="300" width="700" />
+
+1）客户端向 CDN 节点发起请求并传递至源站，例如：`http://example.com/123.html`；
+
+2）源站给 CDN 节点响应 301/302 状态码，并指明重定向后的 URL 为 `http://example.com/456.html`
+
+3）CDN 节点对重定向之后对目标 URL 发起请求；
+
+4）源站响应内容给最终用户，并将内容在 CDN 节点进行缓存；
+
+
+配置引导
+
+登陆 [又拍云管理控制台](https://console.upyun.com/login/)，依次进入：服务 > 功能配置 > 高级功能 > 重定向优化，滑动开关即可开启该功能。如下图所示：
+
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-redirect-performance.png" height="490" width="800" />
+
 ----------
 
 
