@@ -259,7 +259,8 @@ URL 刷新：是指源站更新少量资源文件时，可以通过 URL 刷新�
 
 **证书上传失败如何处理？**
 
-1）首先确认证书格式是否为 PEM 格式，并且是否符合 `[-----BEGINCERTIFICATE-----，-----ENDCERTIFICATE-----]` 开头结尾、每行 64 个字符、最后一行不超过 64 个字符的证书规则。如果非 PEM 格式，则可按问题 3 中的方式进行转换
+1）首先确认证书格式是否为 PEM 格式，并且是否符合 `[-----BEGINCERTIFICATE-----，-----ENDCERTIFICATE-----]` 开头结尾、每行 64 个字符、最后一行不超过 64 个字符的证书规则。如果非 PEM 格式，则可按上文中的方式进行转换
+
 2）检查私钥格式是否正确，是否以 `-----BEGIN RSA PRIVATEKEY----- `开头；如果是 `-----BEGIN PRIVATEKEY----- `开头，则可执行 `openssl rsa -in your-old.key -out upyun-new.key` 对私钥进行转换
 
 **什么是 SNI 技术？**
