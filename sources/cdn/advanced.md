@@ -486,9 +486,50 @@ text/html -- default
 
 6） `缓存时间` 如果没有特殊情况可以酌情设置得大一点，默认为 86400 秒，最大为 604800 秒
 
-
 ----------
 
+## 文件另存为
+
+又拍云 CDN 服务支持对响应头 `Content-Disposition` 字段的特殊设置，也即在请求 URL 中加入 `_upd` 参数可对 `Content-Disposition` 进行特殊化配置。通过对该参数的配置就可以强制浏览器触发下载行为，同时该参数的值会作为文件下载后保存到本地的文件名。特别地，当其值为 `true` 时，保持原文件名不变。
+
+配置引导
+
+示例一：
+
+    请求参数中加入 “_upd=true” ，代表添加响应头为： Content-Disposition: attachment
+```
+$ curl http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-architecture.png?_upd=true -I
+
+> HTTP/1.1 200 OK
+> Content-Type: image/png
+> Content-Length: 57371
+> ...
+> Accept-Ranges: bytes
+> Content-Disposition: attachment;
+
+```
+
+示例一：
+
+    请求参数中加入 “_upd=abc.png”，代表添加响应头为： Content-Disposition: attachment; filename="abc.png"
+
+```
+$ curl http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-architecture.png?_upd=abc.png -I
+
+> HTTP/1.1 200 OK
+> Content-Type: image/png
+> Content-Length: 57371
+> ...
+> Accept-Ranges: bytes
+> Content-Disposition: attachment; filename="abc.png"
+
+```
+
+注意事项
+
+特别地， `参数跟随` 开启的情况下，此参数无效。
+
+----------
 
 ## 传递最终用户 IP
 
