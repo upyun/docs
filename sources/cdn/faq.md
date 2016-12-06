@@ -288,4 +288,4 @@ HTTP/2 即超文本传输协议 2.0 ，是下一代 HTTP 协议。它由互联�
 
 **如果想使用 HTTP/2，需要做特殊配置吗？**
 
-因 HTTP/2 是在 HTTPS 的基础上实现的，所以如果想使用 HTTP/2，则域名必须支持 HTTPS 访问，所以只需按照 [自定义 SSL 服务](http://docs.upyun.com/cdn/advanced/#ssl) 中的步骤进行配置即可，其他无需做任何特殊配置。
+因 HTTP/2 是在 HTTPS 的基础上实现的，如果想使用 HTTP/2，则域名必须支持 HTTPS 访问，所以只需按照 [自定义 SSL 服务](http://docs.upyun.com/cdn/advanced/#ssl) 中的步骤进行配置即可，其他无需做任何特殊配置。
