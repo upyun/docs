@@ -17,6 +17,7 @@ pages:
     - '基础设置': 'cdn/basic.md'
     - '高级设置': 'cdn/advanced.md'
     - '辅助工具': 'cdn/tools.md'
+    - '常见问题': 'cdn/faq.md'
 - '直播文档':
     - '直播文档': 'live/index.md'
 - 'API 文档':
