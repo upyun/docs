@@ -274,20 +274,20 @@ SNI（ServerName Indication）定义在 RFC 4366，是用来改善 SSL(Secure So
  
 <img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-ssl-sni1.png" height="200" width="400" />
 
-**支持 HTTP2.0 吗？**
+**支持 HTTP/2 吗？**
 
-又拍云当前已全平台支持 HTTP2.0，并已默认开启。
+又拍云当前已全平台支持 HTTP/2，并已默认开启。
 
-HTTP 2.0 即超文本传输协议 2.0 ，是下一代 HTTP 协议。它由互联网工程任务组（IETF）的 Hypertext Transfer Protocol Bis (httpbis) 工作小组进行开发，以 SPDY 为原型，经过两年多的讨论和完善最终确定，优势如下：
+HTTP/2 即超文本传输协议 2.0 ，是下一代 HTTP 协议。它由互联网工程任务组（IETF）的 Hypertext Transfer Protocol Bis (httpbis) 工作小组进行开发，以 SPDY 为原型，经过两年多的讨论和完善最终确定，优势如下：
 
-1）HTTP2.0 采用二进制格式传输数据，其在协议的解析和优化扩展上带来更多的优势和可能。
+1）HTTP/2 采用二进制格式传输数据，其在协议的解析和优化扩展上带来更多的优势和可能。
 
-2）HTTP2.0 对消息头采用 HPACK 进行压缩传输，能够节省消息头占用的网络的流量。
+2）HTTP/2 对消息头采用 HPACK 进行压缩传输，能够节省消息头占用的网络的流量。
 
 3）多路复用，简单说就是所有的请求可以通过一个 TCP 连接并发完成。
 
 4）Server Push：服务端能够更快的把资源推送给客户端。
 
-**如果想使用 HTTP2.0，需要做特殊配置吗？**
+**如果想使用 HTTP/2，需要做特殊配置吗？**
 
-因 HTTP2.0 是在 HTTPS 的基础上实现的，所以如果想使用 HTTP2.0，则域名必须支持 HTTPS 访问，所以只需按照 [自定义 SSL 服务](http://docs.upyun.com/cdn/advanced/#ssl) 中的步骤进行配置即可，其他无需做任何特殊配置。
+因 HTTP/2 是在 HTTPS 的基础上实现的，所以如果想使用 HTTP/2，则域名必须支持 HTTPS 访问，所以只需按照 [自定义 SSL 服务](http://docs.upyun.com/cdn/advanced/#ssl) 中的步骤进行配置即可，其他无需做任何特殊配置。
