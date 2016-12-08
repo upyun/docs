@@ -222,9 +222,9 @@ http://upyun-assets.b0.upaiyun.com/docs/guide/sample.jpg_/rotate/90 //图片旋�
 ### CC 防护
 
 CC 防护是针对网络安全领域中的 CC 攻击而进行的一种应用层攻击防护，用户可在后台`服务－>云安全－>cc防护`开启
-![pic](https://techs.b0.upaiyun.com/img/cc.png!600)
 
-CC 防护有三种操作模式：`智能防护`、`强制防护`、`暂停防护`，默认到防护周期是 86400 秒
+
+CC 防护参考[这里配置](https://docs.upyun.com/cdn/advanced/#_2)
 
 
 ## 服务方式
