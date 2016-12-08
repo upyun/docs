@@ -708,7 +708,7 @@ HTTPS 配置：可开启 HTTPS 访问和强制 HTTPS
 声明：运行在 Windows XP 上的所有版本的 Internet Explorer 都不支持 SNI 。详细请参考[这里](http://serverfault.com/questions/109800/multiple-ssl-domains-on-the-same-ip-address-and-same-port)。
 
 
-## 自定义 Rewrite
+##自定义 Rewrite
 
 自定义 Rewrite 功能是又拍云 Rewrite DSL（ Domain Specific Language）实现对 URL 的重写、修改请求头及请求参数等逻辑。该功能主要面向开发者使用。Rewrite 规则支持函数、变量、字符串常量，用户可以将这些自由组合，完成对请求的重写。
 
@@ -825,8 +825,8 @@ HTTPS 配置：可开启 HTTPS 访问和强制 HTTPS
 
 函数                         | 含义
 :--------------------       | :-------
-`$ENCODE_BASE64(E)`         | 按 base64 编码压缩，例如：`$ENCODE_BASE64($_GET_foo)`
-`$DECODE_BASE64(E)`         | 按 base64 编码解压，例如：`$DECODE_BASE64($_HEADER_foo)`
+`$ENCODE_BASE64(E)`         | 将字符串 E 按 base64 编码压缩
+`$DECODE_BASE64(E)`         | 将字符串 E 按 base64 编码解压
 `$MD5(E)`                   | 计算 `E` 的 md5 值
 `$RANDI(E1, E2)`            | 返回大于 `E1` 并小于 `E2` 的随机数值
 `$UNIXT(y, m, d, h, min, sec)` | 指定年，月，日，小时，分钟，秒，返回相应的 UNIX TIME
