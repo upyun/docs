@@ -336,12 +336,27 @@ text/html -- default
 
 4）源站响应内容给最终用户，并将内容在 CDN 节点进行缓存；
 
-
 配置引导
 
 登陆 [又拍云管理控制台](https://console.upyun.com/login/)，依次进入：服务 > 功能配置 > 高级功能 > 重定向优化，滑动开关即可开启该功能。如下图所示：
 
 <img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-redirect-performance.png" height="490" width="800" />
+
+
+**文件合并**
+
+ `又拍云存储 ` 和  `自主源站 ` CDN 加速服务均支持 JS，CSS Combo（组合特性），即可以把多个 JS, CSS 请求合并成一个。
+ 
+
+如何使用
+
+> 特别地，我们以 `!!` 作为分隔符。
+
+    http://upyun-assets.b0.upaiyun.com/foo/!!a.js,b.js
+
+一个引用了如上 URL 的 Demo:
+
+    http://upyun-assets.b0.upaiyun.com/jscombo.html
 
 ----------
 
