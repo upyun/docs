@@ -3,12 +3,12 @@
 
 通过接入又拍云流量营销平台，商家可以获得更多流量、用户和收益，而商家提供的活动也让用户获得了三网通用流量和更加丰富的活动体验。
 
-## 产品特点
+### 产品特点
 1.三网通用，成本优势，覆盖面广
 
 2.快速对接、全流水、易对账、精结算
 
-## 应用场景
+### 应用场景
 1.APP 下载赠流量
 
 2.微信公众号增粉
@@ -25,7 +25,7 @@
 
 8.员工福利
 
-## 快速入门
+### 对接说明
 
 1.请联系商务（Tel:0571-89775132）确定您的应用场景需求，获取对应流量报价
 
@@ -41,141 +41,200 @@
 
 <img src="http://up-static.b0.upaiyun.com/phone-traffic/upyun-mobile-traffic.png" width="830" />
 
-**接口概述:**
+## 接口文档
 
-又拍云手机流量平台接口入口地址统一为：https://ptp-api.upyun.com ，所有的参数传递都是通过标准的 JSON 格式提交，所有的请求响应都是通过 JSON 格式返回。下图为本API提供的接口方法:
+又拍云手机流量平台接口入口地址统一为：[https://ptp-api.upyun.com](https://ptp-api.upyun.com)，请求接口时，统一使用 `POST` 方法， 文档类型统一为 `Content-Type: application/json`，使用 JSON 格式发送请求， 响应结果也会以 JSON 格式返回；文档中接口的请求地址只包含路径部分，实际请求时，需要加上统一入口地址 [https://ptp-api.upyun.com](https://ptp-api.upyun.com)。文档中描述签名计算时，都是先正序排序（给出的示例字符串已经是排序后的结果），再做 SHA1 运算。
 
+本文档一共描述了四个接口和一个充值回调说明，接口如下：
 
-|接口名称 |对应方法 |对应方向 |接口描述 |
+- 获取签名 `POST /refreshToken`
+- 提交订单 `POST /chargeOrder`
+- 查询订单状态 `POST /seekOrder`
+- 查询余额 `POST /getMyBalance`
+
+针对以上接口，目前提供了 php 版本 sdk，用于提供接口调用示例， 各企业用户可以根据自己的需要进行封装，完善错误处理，下载地址：[点击下载](http://up-static.b0.upaiyun.com/phone-traffic/upyun-mobile-stats.zip)。
+
+### 接口详情
+
+**1.获取计算签名需要的 token**
+
+接口说明
+
+该接口用于获取 token，调用其他接口时，需要使用 token 计算签名。由于 token 需要在后续的接口请求中，全局共享，所以在并发请求的场景下，建议将 token 保存在 Redis/Mysql 等第三方存储中
+
+请求地址
+
+    POST /refreshToken
+
+请求参数
+
+| 名称 | 类型 |  是否必须 |  描述 |
 | --- | --- | --- | --- |
-| 获取Token      | refreshToken  | 企业 -> 流量平台 | 获取Token（后面接口需要）                                |
-| 下订单         | chargeOrder   | 企业 -> 流量营销 | 提交流量订单                                             |
-| 查询订单       | seekOrder     | 企业 -> 流量营销 | 查询订单的充值状态                                       |
-| 充值状态回调   | -             | 流量营销 -> 企业 | 又拍云手机流量充值平台将订单充值结果返回给企业的应用系统 |
+| appkey | String |  必须 | appkey，由又拍云提供，可以登录手机流量后台查看 |
+| appsecret | String | 必须 |  appsecret，由又拍云提供，可以登录手机流量后台查看 |
 
-目前提供了 php 版本 sdk，用于提供完整示例，加速开发，[点击下载](http://up-static.b0.upaiyun.com/phone-traffic/upyun-mobile-stats.zip)。
-## 基础接口
+请求示例
 
-**1.1 获取Token:**
+```
+curl https://ptp-api.upyun.com/refreshToken -H "Content-Type: application/json" -d "{\"appkey\": \"your_appkey_put_here\", \"appsecret\": \"your_appsecret_put_here\"}"
+```
 
+响应参数
 
-| 地址	 | /refreshToken |
-| -------------------- | ------- |
-| 方法	 | POST |
-| header | Content-Type为`application/json` |
-
-
-参数列表：
-
-| Label | Description | Type | Required |
+| 名称 | 类型 |   示例值 |  描述 |
 | --- | --- | --- | --- |
-| appkey | 鉴权账号，由又拍云手机流量平台提供 | `string` | `true` |
-| appsecret | 鉴权密钥，由又拍云手机流量平台提供 | `string` | `true` |
+| code | String |  200 | 响应状态码，200 表示正常，其他详见错误码 |
+| token | String | XsdOpxqudzMnw | 用于签名计算需要的 token，token 默认有效期为 24 小时，仅最后一次请求接口生成的 token 才有效|
+| info | String | 请求成功 | |
 
-请求示例：
-```
-curl https://ptp-api.upyun.com/refreshToken -H "Content-Type: application/json" -d '{"appkey": "your_appkey_put_here", "appsecret": "your_appsecret_put_here"}'
-```
-
-返回：
+响应示例
 
 ```json
 {
-    "code": "返回的状态码，详见错误码说明",
-    "token": "返回的token,若获取失败则不返回",
-    "info": "返回说明"
+    "code": "200",
+    "token": "XsdOpxqudzMnw",
+    "info": "请求成功"
 }
 ```
 
+**2.创建订单**
 
-描述:
+接口说明
 
-客户获取token参数,后续接口需要应用到token参数进行身份识别token具有时间有效性,由流量平台设置,默认为获取token后24小时。
+创建手机流量充值订单
 
+请求地址
 
-备注:
+    POST /chargeOrder
 
-**友情提示: 如果生产环境中使用多台服务器，请使用一台服务器获取token或使用最后一次获取到的token（由于每次获取都会使token值刷新，所以最后一次获取的token值才是有效的）。**
+请求参数
 
-
-
-**1.2 创建订单:**
-
-
-| 地址	 | /chargeOrder |
-| --- | --- |
-| 方法    |  POST |
-| header | Content-Type为`application/json` |
-
-参数列表：
-
-|Label |Description |Type |Required|
+| 名称 | 类型 |  是否必须 |  描述 |
 | --- | --- | --- | --- |
-|appkey |鉴权账号，由又拍云手机流量平台提供 |`string` |`true`|
-|mobile |需要申请流量包的手机号码，一次只允许一个手机号码，需要进行AES(AES/CBC/PKCS5Padding)加密,加密后的结果通过base64做转码传递，加密的密钥是最新获取的token,加密向量为当前账户的appkey, ([示例程序下载](http://up-static.b0.upaiyun.com/phone-traffic/AESCryptSample.zip)) |`string` |`true`|
-|prodcode |流量包的ID，目前只支持每次一个流量包 |`string` |`true`|
-|custno |客户自定义的订单号，长度小于30，保证每次唯一	 |`string` |`true`|
-|sign |签名串，签名规则见description, ([示例程序下载](http://up-static.b0.upaiyun.com/phone-traffic/AESCryptSample.zip)) |`string` |`true`|
+|appkey | String |  必须 | E1KRHcKd3qoef8V1 |  |
+|mobile | String | 必须 |  被充值手机号进行 AES 对称加密再 base64 转码后的值，一次只允许一个手机号码，见[示例程序](http://up-static.b0.upaiyun.com/phone-traffic/AESCryptSample.zip) |
+|prodcode | String |  必须 | 流量包的产品编号 |
+|custno | String | 必须 | 客户自定义的订单号，用于客户内部记录订单，长度必须小于30， 且每次充值，编号不重复	 |
+|sign | String | 必须 |  根据 token 和请求参数计算的签名，签名规则见算法说明部分 ([示例程序下载](http://up-static.b0.upaiyun.com/phone-traffic/AESCryptSample.zip)) |
 
-返回：
+响应参数
+
+| 名称 | 类型 |   示例值 |  描述 |
+| --- | --- | --- | --- |
+| code | String | 200 | 响应状态码，200 表示创建订单成功；410 511 必须再次查询订单确认；其他错误码视为创建失败；系统响应超时等其他非正常响应，需要调用查询订单接口确认 |
+| custno | String |  20150238829 |  客户订单号，和请求值一致 |
+| orderno | String | 2016298237019 | 又拍云平台的订单号 |
+| info | String |  充值成功 | |
+
+算法说明
+
+1. 计算手机号的 AES 对称加密，再 base64 转码后的值
+
+2. 将接口请求参数按照请求参数名称正序排序;
+
+3. 将请求参数和请求参数值拼接成字符串：`appkeyYOURAPPKEYcustnoYOURCUSTNOmobileYOURMOBILEprodcodeYOURPRDCODEtokenYOURTOKEN`(将字符串中大写的部分替换成实际值即可)
+
+4. 对拼接后的字符串进行SHA1指纹运算，得到的 16 进制字符串 `b5cd94c99e3e576f5e2ca0e66ee3da670cb1c62b` 便是 sign 值
+
+示例
+
+参数拼接后的字符串为：`appkey3P83lWwkoV15yZVTcustno20151123114702mobile8mBGFNfe1o/rzAx2Ost2IQ==prodcodeCMCC_10tokenVqHAab3JYXBDkCoO`（注意手机号是 aes 加密再 base64 编码后的），进行 SHA1 运算得到的 sign 值为：`86ee7d160f03b54f27c99fbfebaa276c8a1a3017`
+
+响应示例
 
 ```json
 {
-    "code": "返回的状态码，详见错误码说明,如果返回超时,不一定下单失败,需要查询订单状态",
-    "custno": "客户自定义的订单流水号，原样返回",
-    "orderno": "流量平台生成的订单号,若获取失败可能不返回",
-    "info": "返回说明信息"
+    "code": "200",
+    "custno": "20150238829",
+    "orderno": "2016298237019",
+    "info": "充值成功"
 }
 ```
 
-描述:
+**3.查询订单状态**
 
-下单接口，企业客户发起流量包订购请求，又拍云手机流量平台完成合法性校验之后，并向运营商发送下单请求，同步返回下单结果。
+接口说明
 
-sign签名算法说明：
+查询充值订单当前的状态，用于确认是否充值成功
 
-企业往流量平台发送请求中，必须将签名sign作为参数，([示例程序下载](http://up-static.b0.upaiyun.com/phone-traffic/AESCryptSample.zip)), 具体说明如下:
+请求地址
 
-1. 将所有请求参数按照参数名升序排序;
+    POST /seekOrder
 
-2. 排序后，按请求参数名及参数值相互连接组成字符串并在最后增加"token"(小写)和当前token值, 如：parm1value1parm2value2…tokenTOKENVALUE(示例中的token值为TOKENVALUE)
+请求参数
 
-3. 对拼接后的字符串进行SHA1指纹运算后转成二进制数组；
-
-4. 对二进制数组转成16进制的字符串作为sign参数值。
-
-5. 将sign签名参数和其他请求参数一起发送给接口。
-
-6. 范例：
-
-    * 根据签名算法，将所有请求参数名与参数值按照参数名升序排序后拼接成字符串 `appkey3P83lWwkoV15yZVTcustno20151123114702mobile8mBGFNfe1o/rzAx2Ost2IQ==prodcodeCMCC_10tokenVqHAab3JYXBDkCoO`（注意手机号是 aes 加密再 base64 编码后的）
-    * 对以上拼接的字符串进行SHA1签名算法，将签名值转化为十六进制的编码串：`86ee7d160f03b54f27c99fbfebaa276c8a1a3017`
-
-备注:
-
-**注意:成功状态码：200; 特殊处理状态码：410,511（必须再次查询订单确认）；其它错误码为失败。对于我们系统返回的异常信息（非标准JSON结果）和请求超时无响应等结果，需再次查询订单确认结果。**
-
-
-
-**1.3 充值状态回调:**
-
-
-| 地址	 |/客户企业提供回调地址|
-| --------------------     | ------- |
-|方法	   | POST |
-|header |Content-Type为`application/json` |
-
-参数列表：
-
-|Label |Description |Type |Required
+| 名称 | 类型 |  是否必须 |  描述 |
 | --- | --- | --- | --- |
-| custno |客户自定义的订单流水号，原样返回 |`string` |`true`|
-| orderno |流量平台生成的订单号 |`string` |`true`|
-| code |返回的状态码，详见错误码说明 |`string` |`true`|
-| info |返回说明信息 |`string` |`true`|
-| sign |签名串，签名规则为"code"字符串拼接实际的code值,加上"custno"字符串拼接实际的custno值,加上"info"字符串拼接实际的info值,加上"orderno"字符串拼接实际的orderno值, 最后拼接"token"(小写)串和实际的token值然后将拼接后的字符串进行sha1签名,实例可参考 ([示例程序下载](http://up-static.b0.upaiyun.com/phone-traffic/AESCryptSample.zip)) |`string` |`true`|
+| custno | String | 必须 | 客户提交的订单号 |
+| appkey | String | 必须 | 鉴权账号 |
+| sign | String | 必须 | 签名 |
+| requesttime | String | 否 |  查询的时间点，该参数为可选参数，格式为"YYYY-MM-DD HH:mm:ss"，当传递该参数时，我们会在给定时间点的前后 1 个小时范围内查询；如果未传该参数，我们将在最近一周的订单中查询	|
 
-返回：
+响应参数
+
+| 名称 | 类型 |   示例值 |  描述 |
+| --- | --- | --- | --- |
+| code | String |  200 | 响应状态码，200 表示充值成功；430 516 530 表示充值失败； 其他错误码视为充值中 |
+| custno | String |  20150238829 |  客户自定义订单号 |
+| info | String |  成功 | |
+
+响应示例
+
+```json
+{
+    "code": "200",
+    "custno": "2015823871239",
+    "info": "充值成功"
+}
+```
+
+**4.查询余额**
+
+请求地址
+
+    POST /getMyBalance
+
+请求参数
+
+| 名称 | 类型 |  是否必须 |  描述 |
+|---|---|---|---|
+| appkey | String |  必须 | |
+| sign | String | 必须 | 签名，算法为 `appkeyYOURAPPKEYtokenYOURTOKEN` 中大写的部分替换实际值，再进行 SHA1 运算得到的字符串便为 sign 值 |
+
+响应参数
+
+| 名称 | 类型 |   示例值 |  描述 |
+| --- | --- | --- | --- |
+| code | String | 200 | 响应状态码 |
+| balance | Float | 100.00 | 账户余额（包含冻结金额） |
+| freeze | Float | 20.00 | 冻结金额，正在交易的订单金额 |
+| availBalance | Float | 80.00 | 实际可用余额（不包含冻结金额）|
+
+响应示例
+```json
+{
+    "code": "200",
+    "balance": 100,
+    "freeze": 20,
+    "availBalance": 80
+}
+```
+
+### 充值回调说明
+
+客户需要在又拍云手机流量后台填写充值回调地址，并注意防火墙配置，不能屏蔽又拍云服务器地址。配置成功后，每次充值后，又拍云会向该地址发送 `POST` 请求，请求的数据格式为 `application/json`
+
+请求参数
+
+| 名称 | 类型 |  是否必须 |  描述 |
+| --- | --- | --- | --- |
+| code | String | 必须 | 响应状态码，200 表示充值成功；430,530 表示充值失败，其他错误码或异常信息表示充值中 |
+| orderno | String | 必须 | 又拍云平台的订单号 |
+| custno | String | 必须 | 客户自定义订单号 |
+| info | String | 必须 | 描述信息 |
+| sign | String | 必须 | 签名，客户可以使用该值校验请求是否合法，强烈建议接受回调时进行校验。签名规则将 `codeCODEcustnoYOURCUSTNOinfoINFOordernoORDERNOtokenYOURTOKEN` 字符串中的大写值替换为请求参数中的值，再对得到的字符串进行 SHA1 签名 |
+
+客户接受请求成功后，需要响应如下 `json` 值：
 
 ```json
 {
@@ -183,84 +242,13 @@ sign签名算法说明：
 }
 ```
 
-描述:
-
-  又拍云手机流量平台将运营商的订单充值结果异步返回给客户，客户接收后返回json格式的{'info':'1'}给流量平台以确认接收到回调,如果又拍云手机流量平台没有接收到正确格式的确认信息，会每隔1分钟再次回调给客户，最多重新回调3次
-
-备注:
-
-**注意:成功状态码：200；失败状态码：430，530；其它错误码都为充值中。对于系统返回的异常信息（非标准JSON结果）和请求超时无响应等结果，需做充值中处理。**
+否则，又拍云将隔 1 分钟再重试一次，一共回调 3 次
 
 
-**1.4.1 查询订单充值状态:**
-
-
-| 地址	 | /seekOrder |
-|--------------------     | ------- |
-|方法	 |POST |
-|header |Content-Type为`application/json` |
-
-参数列表：
-
-|Label |Description |Type |Required |
-| --- | --- | --- | --- |
-| custno |客户提交的订单流水号 |`string` |`true` |
-| appkey |鉴权账号，由又拍云手机流量平台提供 |`string` |`true` |
-sign |签名串，签名规则为"appkey"字符串拼接实际的appkey值,加上"custno"字符串拼接实际的custno值,如果传了requesttime,请加上"requesttime"拼接requesttime的值,如果没有传则无需处理,最后拼接"TOKEN"(大写)串和实际的token值,然后将拼接后的字符串进行sha1签名,实例可参考 ([示例程序下载](http://up-static.b0.upaiyun.com/phone-traffic/AESCryptSample.zip)) |`string` |`true`|
-requesttime |该订单创建时间。该参数为可选参数,格式为"YYYY-MM-DD HH:mm:ss",为保证有效性,我们会在给定requesttime前后1个小时范围内查询;如果未传该参数,我们将在最近一周的订单中为你查询	 |`string` |`false` |
-
-返回：
-
-```json
-{
-    "code": "返回的状态码，详见错误码说明",
-    "custno": "客户自定义的订单流水号，原样返回",
-    "info": "返回说明信息"
-}
-```
-
-描述:
-
-订单充值详情查询接口
-
-备注:
-
-**注意:成功状态码：200；失败状态码：430，516，530；其它错误码都为充值中。对于系统返回的异常信息（非标准JSON结果）和请求超时无响应等结果，需做充值中处理。**
-
-**1.5 查询金额**
-
-|地址	 |/getMyBalance
-|--------------------     | ------- |
-|方法	 |POST|
-|header |Content-Type为`application/json`|
-
-参数列表：
-
-|Label |Description |Type |Required|
-|---|---|---|---|
-|appkey |鉴权账号，由又拍云手机流量平台提供 |`string` |`true`|
-|sign |签名串，签名规则为"appkey"字符串拼接实际的appkey值,再拼接"TOKEN"(大写)串和实际的token值,然后将拼接后的字符串进行sha1签名,实例可参考 ([示例程序下载](http://up-static.b0.upaiyun.com/phone-traffic/AESCryptSample.zip))  |`string` |`true`|
-
-返回：
-
-```json
-{
-    "code": "返回的状态码，详见错误码说明",
-    "balance": "余额(总充值金额减去已完成交易的余额)",
-    "freeze": "冻结金额(正在交易的订单总金额)",
-    "availBalance": "可用余额(余额减去冻结金额)"
-}
-```
-
-描述:
-
-查询当前账户的金额,客户应该使用availBalance,其它参数仅仅提供参考.
-
-备注:
 
 ## 错误码说明
 
-**请特别留意各接口备注说明**
+**注：需要留意每个接口响应参数说明中的 code 处理方式**
 
 |错误码   | 说明             | 错误码   | 说明 |
 |:------- | :-------         | :------- | :------- |
