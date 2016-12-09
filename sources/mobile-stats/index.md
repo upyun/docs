@@ -167,7 +167,7 @@ curl https://ptp-api.upyun.com/refreshToken -H "Content-Type: application/json" 
 | --- | --- | --- | --- |
 | custno | String | 必须 | 客户提交的订单号 |
 | appkey | String | 必须 | 鉴权账号 |
-| sign | String | 必须 | 签名 |
+| sign | String | 必须 | 签名，签名规则为：将 `appkeyYOURAPPKEYcustnoYOURCUSTNOrequesttimeYOURREQESTTIMEsignYOURSIGN` 中大写部分替换为实际值，再进行 SHA1 运算。如果请求参数不包含 `requesttime`，计算签名则不需要该值 |
 | requesttime | String | 否 |  查询的时间点，该参数为可选参数，格式为"YYYY-MM-DD HH:mm:ss"，当传递该参数时，我们会在给定时间点的前后 1 个小时范围内查询；如果未传该参数，我们将在最近一周的订单中查询	|
 
 响应参数
@@ -232,7 +232,7 @@ curl https://ptp-api.upyun.com/refreshToken -H "Content-Type: application/json" 
 | orderno | String | 必须 | 又拍云平台的订单号 |
 | custno | String | 必须 | 客户自定义订单号 |
 | info | String | 必须 | 描述信息 |
-| sign | String | 必须 | 签名，客户可以使用该值校验请求是否合法，强烈建议接受回调时进行校验。签名规则将 `codeCODEcustnoYOURCUSTNOinfoINFOordernoORDERNOtokenYOURTOKEN` 字符串中的大写值替换为请求参数中的值，再对得到的字符串进行 SHA1 签名 |
+| sign | String | 必须 | 签名，客户可以使用该值校验请求是否合法，强烈建议接收充值回调时进行校验。签名规则为：将 `codeCODEcustnoYOURCUSTNOinfoINFOordernoORDERNOtokenYOURTOKEN` 字符串中的大写值替换为请求参数中的值，再对得到的字符串进行 SHA1 签名 |
 
 客户接受请求成功后，需要响应如下 `json` 值：
 
