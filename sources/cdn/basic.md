@@ -483,30 +483,34 @@ video/x-m4v
 **日志样例**
 
 
-    115.231.100.106 - - [20/Oct/2016:09:37:31 +0800] "GET http://impress-demo.b0.upaiyun.com/mantou2/fw8MSxAj/g_sunOal4VkbHaRvr2_ky95f.png!/both/200x200 HTTP/1.1" 200 47302 "http://www.impress.com/gallery" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:49.0) Gecko/20100101 Firefox/49.0" Hit "U/200" Static "max-age=639705" 0.013 183.158.35.21
+    122.96.42.186 - - [13/Dec/2016:00:00:02 +0800] "GET http://impress-demo.b0.upaiyun.com/kphone/icons/weihui_icon3.png?v=1.0 HTTP/1.1" 200 1851 "-" "Mozilla/4.0" "image/png" 0 Hit "C/200" Static "max-age=900" 0.014 153.101.64.13
+    
 
 **字段说明**
 
 |   序号     |    字段          |   示例值   |
 |------------|------------|-----------------|
-| 1   | 客户端 IP 地址   |    115.231.100.106        |
-| 2   | 客户端用户名         | -    |
-| 3  | 访问时间与时区             | [20/Oct/2016:09:37:31 +0800] |
+| 1   | 客户端 IP 地址   |    122.96.42.186        |
+| 2   | 客户端用户名         | - |
+| 3  | 访问时间与时区             | [13/Dec/2016:00:00:02 +0800] |
 | 4   | 客户端请求方法            | GET    |
 | 5       | 请求协议           | HTTP    |
-| 6       | Host 请求头           | impress-demo.b0.upaiyun.com    |
-| 7       | 客户端请求 URI           | /mantou2/fw8MSxAj/g_sunOal4VkbHaRvr2_ky95f.png<br>!/both/200x200     |
-| 8   | 请求协议版本信息           | HTTP/1.1  |
-| 9 | 响应状态码           | 200    |
-| 10     | 发送给客户端的字节数  | 47302    |
-| 11   | Referer 请求头     |http://www.impress.com/gallery|
-| 12    | User-Agent 头 | Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:49.0)<br> Gecko/20100101 Firefox/49.0  |
-| 13   | 缓存命中状态             | Hit    |
-| 14    | 源站类型 (U: 云存储 C：自主源)/状态码          | U/200 |
-| 15    | 动态请求标记             | Static   |
-| 16    | 缓存时间             | max-age=639705   |
-| 17    | 请求处理时间（单位s）            | 0.013  |
-| 18    | 边缘节点 IP            | 183.158.35.21  |
+| 6       | 访问域名           | impress-demo.b0.upaiyun.com   |
+| 7       | 客户端请求 URI           | /kphone/icons/weihui_icon3.png    |
+| 8       | 请求参数          |  v=1.0   |
+| 9   | 请求协议版本信息           | HTTP/1.1  |
+| 10 | 响应状态码           | 200    |
+| 11     | 发送给客户端的字节数  | 1851    |
+| 12   | Referer 请求头     | - |
+| 13    | User-Agent 头 | Mozilla/4.0 |
+| 14    | 内容类型 | image/png |
+| 15    | 请求内容大小 | 0 |
+| 16   | 缓存命中状态             | Hit    |
+| 17    | 源站类型 (U: 云存储 C：自主源)/状态码          | C/200 |
+| 18    | 动态请求标记             | Static   |
+| 19    | 缓存时间             | max-age=900  |
+| 20    | 请求处理时间（单位s）   | 0.014  |
+| 21    | CDN 边缘节点 IP            | 153.101.64.13  |
 
 配置引导
 
