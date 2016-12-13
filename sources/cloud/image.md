@@ -31,7 +31,7 @@ http://demo.b0.upaiyun.com/demo.jpg!/rotate/90/watermark/text/5L2g5aW95Y+I5ouN5L
 注：
 
 
-- 所有处理参数的说明，请见 [作图参数](/cloud/image/#_7)。
+- 所有处理参数的说明，请见 [作图参数](/cloud/image/#_8)。
 - 间隔标识符用于分隔图片 URL 和图片处理参数，有 3 种可选，分别是：`!`（感叹号/默认值）、`-`（中划线）和 `_`（下划线），可登录又拍云控制台，在 「服务」 > 「功能配置」 > 「云处理」 中设置。本文档使用 `!` 作为示例间隔标识符。
 - 作图参数需要加在图片文件名后面而不是 URL 参数后面。例如 URL 是 `http://demo.b0.upaiyun.com/demo.jpg?foo=1&bar=2`，则加上作图参数后的 URL 应该是 `http://demo.b0.upaiyun.com/demo.jpg!/rotate/90?foo=1&bar=2`。
 
@@ -61,7 +61,7 @@ x-gmkerl-thumb: /format/png
 x-gmkerl-thumb: /fw/300/unsharp/true/quality/80/format/png
 ```
 
-所有处理参数的说明，请见 [作图参数](/cloud/image/#_7)。
+所有处理参数的说明，请见 [作图参数](/cloud/image/#_8)。
 
 #### 上传异步作图
 
