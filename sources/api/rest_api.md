@@ -1,5 +1,6 @@
 基于 RESTful 架构的 API，您可以使用任何编程语言发送 HTTP/HTTPS 请求与云存储通信。特别地，文中请求参数均通过 HTTP/HTTPS 请求头以 `Key: Value` 的形式传递。
 
+---------
 
 ## 请求方法
 
@@ -23,6 +24,7 @@ curl -X GET \
 
 详见[签名认证](/api/authorization/#_2)。
 
+---------
 
 ## 上传文件
 
@@ -36,12 +38,12 @@ PUT /<bucket>/path/to/file
 
 |      参数      | 必选 |   类型  |                                            说明                |
 |--------------- |------|-------- |---------------------------------------------------------------|
-| Date           | 是   | String  | 请求日期时间，GMT 格式字符串 ([RFC 1123](http://tools.ietf.org/html/rfc1123))，如 *`Wed, 29 Oct 2014 02:26:58 GMT`*          |
-| Content-MD5    | 否   | String  | 上传文件的 MD5 值，如果请求中没有文件或文件太大计算 MD5 不方便，可以为空        |
+| Date           | 是   | String  | 请求日期时间，GMT 格式字符串 ([RFC 1123](http://tools.ietf.org/html/rfc1123))，如 `Wed, 29 Oct 2014 02:26:58 GMT`          |
+| Content-MD5    | 否   | String  | 上传文件的 MD5 值，如果请求中文件太大计算 MD5 不方便，可以为空        |
 | Content-Type   | 否   | String  | 文件类型，默认使用文件扩展名作为文件类型                         |
-| Content-Secret | 否   | String  | 文件密钥，用于保护文件，防止文件被直接访问                        |
-| X-Upyun-Meta-X | 否   | String  | 文件元信息，详见 [metadata](/api/rest_api/#metadata)           |
-| X-gmkerl-thumb | 否   | String  | 图片预处理参数，详见 [上传同步作图](/cloud/image/#_3)            |
+| Content-Secret | 否   | String  | 文件密钥，用于保护文件，防止文件被直接访问，见 [Content-Secret 参数说明](/api/rest_api/#Content-Secret) |
+| X-Upyun-Meta-X | 否   | String  | 文件元信息，见 [Metadata](/api/rest_api/#metadata)           |
+| X-gmkerl-thumb | 否   | String  | 图片预处理参数，见[上传预处理（同步）](/cloud/image/#sync_upload_process)       |
 
 
 **响应信息**
@@ -57,21 +59,22 @@ PUT /<bucket>/path/to/file
 > x-upyun-frames: 1
 > x-upyun-file-type: JPEG
 ```
-例子中 `x-upyun-` 开头的头部信息即是图片处理成功时返回的[图片基本信息](/cloud/image/#_21)。
+例子中 `x-upyun-` 开头的头部信息即是图片处理成功时返回的[基本信息](/cloud/image/#attribute)（包含图片宽、高、格式、帧数）。
 
 <a name="Content-Secret"></a>
 **Content-Secret 参数说明**
 
-* 文件设置 `Content-Secret` 后，原文件将不能被直接访问，若需访问，需要在 URL 后加上 「间隔标识符」 和 「访问密钥」，如： 间隔符为 *`!`*，`Content-Secret` 为 *`upyun520`*，原文件访问方式为： *`http://www.yourdomain.com/sample.jpg!upyun520`*。
+* 文件设置 `Content-Secret` 后，文件将不能被直接访问，若需访问，需要在 URL 后加上 「间隔标识符」 和 「文件密钥」。如： 间隔符为 `!`，`Content-Secret` 为 `abc`，图片访问方式为： <a href="http://p.upyun.com/docs/cloud/secret.jpg!abc" target="_blank" title="查看">`http://p.upyun.com/docs/cloud/secret.jpg!abc`</a>。
 
-* **间隔标识符** 用于分隔文件 URL 和 `Content-Secret`，有 3 种可选，分别是：!（感叹号/默认值）、-（中划线）和 _（下划线），可登录又拍云控制台，在 「服务」 > 「功能配置」 > 「云处理」 中设置。
-
-* 如果原文件是一张图片，除了通过加上 `Content-Secret` 进行访问，还可以加上 [作图参数](/cloud/image/#url) 或 [缩略图版本](/cloud/image/#_3) 进行访问。
-
-* `Content-Secret` 避免与 [缩略图版本](/cloud/image/#_3) 冲突，如果冲突，`Content-Secret` 的优先级大于缩略图版本。
+* **间隔标识符** 用于分隔文件 URL 和文件秘钥，有 3 种可选，分别是：!（感叹号/默认值）、-（中划线）和 _（下划线），可登录又拍云<a href="https://console.upyun.com/services/" target="_blank">控制台</a>，在 「服务」 > 「功能配置」 > 「云处理」 中设置。
 
 * 删除或修改 `Content-Secret`，详见 [metadata](/api/rest_api/#metadata)。
 
+* 如果原文件是一张图片，除了通过文件密码进行访问外，还可以通过[图片处理](/cloud/image/#url)进行访问。
+
+* 如果原文件是一张图片，文件秘钥应避免与[缩略图版本](/cloud/image/#thumb)冲突，如果冲突，文件秘钥的优先级大于缩略图版本。
+
+---------
 
 <a name="Multi_upload"></a>
 ## 断点续传
@@ -90,6 +93,7 @@ PUT /<bucket>/path/to/file
 
 <!-- 支持混合使用, 不同阶段之间以逗号分隔(eg. `initate,upload` 表示初始化上传并上传第一个文件分块, `upload,complete` 表示上传最后一个文件分块并结束上传) -->
 
+---------
 
 ### 初始化断点续传
 
@@ -104,7 +108,7 @@ PUT /<bucket>/path/to/file
 | X-Upyun-Multi-Stage   | 是   | String  | 值为 `initiate`， 表示初始化上传任务                          |
 | X-Upyun-Multi-Type    | 是   | String  | 待上传文件的 `MIME` 类型                                |
 | X-Upyun-Multi-Length  | 是   | String  | 待上传文件大小，整型，单位 Byte   |
-| X-Upyun-Meta-X        | 否   | String  | 用于额外指定文件的元信息，详见 [metadata 参数](/api/rest_api/#metadata)   |
+| X-Upyun-Meta-X        | 否   | String  | 用于额外指定文件的元信息，详见 [Metadata](/api/rest_api/#metadata)   |
 
 **响应信息**
 
@@ -117,6 +121,7 @@ PUT /<bucket>/path/to/file
 
 上传失败时返回相应的出错信息，具体请参阅「[API 错误码表](/api/errno/)」。
 
+---------
 
 ### 续传数据
 
@@ -129,9 +134,9 @@ PUT /<bucket>/path/to/file
 |          参数           | 必选 |   类型  |                    说明                                 |
 |----------------------- |------|---------|-------------------------------------------------------------|
 | X-Upyun-Multi-Stage    | 是   | String  | 值为 `upload`， 表示开始上传文件数据                         |
-| X-Upyun-Multi-UUID     | 是   | String  | 本次上传任务的标识，是初始化断点续传任务时[响应信息](rest_api/#_12)中的 `X-Upyun-Multi-UUID`  |
+| X-Upyun-Multi-UUID     | 是   | String  | 本次上传任务的标识，是初始化断点续传任务时响应信息中的 `X-Upyun-Multi-UUID`  |
 | X-Upyun-Part-ID        | 是   | String  | 指定此次分片的唯一 ID，应严格等于上一次请求返回的 `X-Upyun-Next-Part-ID`   |
-| Content-MD5            | 否   | String  | 所上传分块的 MD5 校验值，等效于[签名认证](/api/authorization/#_2)中的 `File-MD5`             |
+| Content-MD5            | 否   | String  | 所上传分块的 MD5 值，等效于[签名认证](/api/authorization/#_2)中的 `File-MD5`             |
 
 
 **响应信息**
@@ -145,6 +150,7 @@ PUT /<bucket>/path/to/file
 
 上传失败时返回相应的出错信息，具体请参阅「[API 错误码表](/api/errno/)」。
 
+---------
 
 ### 结束断点续传
 
@@ -157,8 +163,8 @@ PUT /<bucket>/path/to/file
 |          参数           | 必选 |   类型  |                    说明                                 |
 |----------------------- |------|---------|-------------------------------------------------------------|
 | X-Upyun-Multi-Stage    | 是   | String  | 值为 `complete`， 表示完成断点续传任务                  |
-| X-Upyun-Multi-UUID     | 是   | String  | 本次上传任务的标识，是初始化断点续传任务时[响应信息](rest_api/#_12)中的 `X-Upyun-Multi-UUID`  |
-| X-Upyun-Multi-MD5      | 否   | String  | 所上传整个文件的 MD5 校验值，等效于[签名认证](/api/authorization/#_2)中的 `File-MD5`                    |
+| X-Upyun-Multi-UUID     | 是   | String  | 本次上传任务的标识，是初始化断点续传任务时响应信息中的 `X-Upyun-Multi-UUID`  |
+| X-Upyun-Multi-MD5      | 否   | String  | 所上传整个文件的 MD5 值，等效于[签名认证](/api/authorization/#_2)中的 `File-MD5`                    |
 
 
 **响应信息**
@@ -175,6 +181,7 @@ PUT /<bucket>/path/to/file
 
 上传失败时返回相应的出错信息，具体请参阅「[API 错误码表](/api/errno/)」。
 
+---------
 
 ## 下载文件
 
@@ -187,6 +194,7 @@ GET /<bucket>/path/to/file
 - 下载成功：返回 `200`，HTTP body 中返回文件内容。
 - 下载失败：返回相应的出错信息，具体请参阅「[API 错误码表](/api/errno/)」。
 
+---------
 
 ## 删除文件
 
@@ -212,6 +220,7 @@ DELETE /<bucket>/path/to/file
 - 同步删除有频率限制，批量删除请在请求头里加上 `x-upyun-async: true` 进行异步删除（无频率限制）。
 - 异步删除请求成功，返回 `200`，但删除操作会延期执行。
 
+---------
 
 ## 创建目录
 
@@ -231,6 +240,7 @@ POST /<bucket>/path/to/folder
 - 创建成功：返回 `200`。
 - 创建失败：返回相应的出错信息，具体请参阅「[API 错误码表](/api/errno/)」。
 
+---------
 
 ## 删除目录
 
@@ -247,6 +257,7 @@ DELETE /<bucket>/path/to/folder
 
 - 只允许删除空的目录，非空目录需要先删除里面的文件，否则删除请求会被拒绝。
 
+---------
 
 ## 获取文件信息
 
@@ -266,6 +277,7 @@ HEAD /<bucket>/path/to/file
 
 - 获取失败：返回相应的出错信息，具体请参阅「[API 错误码表](/api/errno/)」。
 
+---------
 
 ## 获取目录文件列表
 
@@ -300,6 +312,7 @@ foo.jpg\tN\t4237\t1415096225\nbar\tF\t423404\t1415096260
 - `x-upyun-list-iter` 返回下一次分页开始位置。它由一串 Base64 编码的随机数组成，当它是 `g2gCZAAEbmV4dGQAA2VvZg` 时，表示**最后一个分页**。
 - HTTP body 为各个文件/目录的信息，文件/目录之间以 `\n` 分隔，属性按 「文件\t类型\t大小\t最后修改时间」 排列，类型可选值：`N` 表示文件，`F` 表示目录。
 
+---------
 
 ## 获取服务使用量
 
@@ -312,6 +325,7 @@ GET /<bucket>/?usage
 - 获取成功：返回 `200`。HTTP body 内容为服务的使用量（单位为`Byte`）。
 - 获取失败：返回相应的出错信息，具体请参阅「[API 错误码表](/api/errno/)」。
 
+---------
 
 ## Metadata
 
@@ -330,6 +344,8 @@ curl -d 'abc' \
 	-H "X-Upyun-Meta-A: 2"
 ```
 文件 `abc.txt` 会新增 `X-Upyun-Meta-Foo: Bar` 和 `X-Upyun-Meta-A: 2` 这两个元信息。
+
+---------
 
 ### 修改 Metadata
 
@@ -431,6 +447,8 @@ curl -XPATCH http://v0.api.upyun.com/<bucket>/abc.txt?metadata=delete \
     -H "X-Upyun-Meta-Secret: upyun520" \
 ```
 
+---------
+
 ## 签名认证（旧）
 
 __签名格式__
@@ -459,13 +477,15 @@ __签名（signature）算法__
 
 **例如**
 
-请求方式为 *`GET`*，URI 为 *`bucket`* 空间的子目录 *`/sub`*，请求时间 为 *` Wed, 29 Oct 2014 02:26:58 GMT`*，因为是 GET，所以 `CONTENT-LENGTH` 为 *`0`*，假设该空间有一个授权操作员名为 *`upyun`*，该操作员密码为 *`password`*（密码 md5 后为 *`5f4dcc3b5aa765d61d8327deb882cf99`*），那么：
+请求方式为 `GET`，URI 为 `bucket` 空间的子目录 `/sub`，请求时间为 ` Wed, 29 Oct 2014 02:26:58 GMT`，因为是 `GET`，所以 `CONTENT-LENGTH` 为 `0`，假设该空间有一个授权操作员名为 `upyun`，该操作员密码为 `password`（密码 md5 后为 `5f4dcc3b5aa765d61d8327deb882cf99`），那么：
 
-签名（signature）即是对字符串 *`GET&/bucket/sub&Wed, 29 Oct 2014 02:26:58 GMT&0&5f4dcc3b5aa765d61d8327deb882cf99`* 计算 md5 所得，即：*`03db45e2904663c5c9305a9c6ed62af3`*，因此，只需在请求头部加上如下字段即可：
+签名（signature）即是对字符串 `GET&/bucket/sub&Wed, 29 Oct 2014 02:26:58 GMT&0&5f4dcc3b5aa765d61d8327deb882cf99` 计算 MD5 所得，即：`03db45e2904663c5c9305a9c6ed62af3`，因此，只需在请求头部加上如下字段即可：
 
 ```
 Authorization: UpYun upyun:03db45e2904663c5c9305a9c6ed62af3
 ```
+
+---------
 
 ## 图片预处理（旧）
 
@@ -478,8 +498,8 @@ Authorization: UpYun upyun:03db45e2904663c5c9305a9c6ed62af3
 | x-gmkerl-value                | 否   | 缩略类型对应的参数值，见 [x-gmkerl-value 值说明](#gmkerl-value)      |
 | x-gmkerl-quality              | 否   | 压缩质量，默认 `95`                                          |
 | x-gmkerl-unsharp              | 否   | 是否锐化，默认锐化                                        |
-| x-gmkerl-rotate               | 否   | 图片旋转（顺时针），可选值：`auto`、`(0, 360]`。详见[旋转]()             |
-| x-gmkerl-crop                 | 否   | 图片裁剪，格式：`<w>x<h>a<x>a<y>`。详见[裁剪]()       |
+| x-gmkerl-rotate               | 否   | 图片旋转（顺时针），可选值：`auto`、`(0, 360]`。详见[旋转](/cloud/image/#rotate)|
+| x-gmkerl-crop                 | 否   | 图片裁剪，格式：`<w>x<h>a<x>a<y>`。详见[裁剪](/cloud/image/#crop)       |
 | x-gmkerl-exif-switch          | 否   | 是否保留 EXIF 信息，默认不保留 <br /> 仅在搭配 `x-gmkerl-crop`、`x-gmkerl-type`、`x-gmkerl-thumbnail` 时有效        |
 | x-gmkerl-watermark-text       | 否   | 文字水印内容，必须经过 urlencode 处理                  |
 | x-gmkerl-watermark-font       | 否   | 文字水印字体，默认 `simsun`，见 [x-gmkerl-watermark-font 可选值列表](#gmkerl-watermark-font)            |
@@ -489,7 +509,6 @@ Authorization: UpYun upyun:03db45e2904663c5c9305a9c6ed62af3
 | x-gmkerl-watermark-opacity    | 否   | 水印透明度，取值范围 0 ~ 100 的整数，默认 `0`        |
 | x-gmkerl-watermark-color      | 否   | 文字水印颜色，RGB 值，默认 `#000000`                     |
 | x-gmkerl-watermark-border     | 否   | 文字水印边框，默认无边框，见 [x-gmkerl-watermark-border 值说明](#gmkerl-watermark-border)          |
-
 
 <a name="gmkerl-type"></a>
 **x-gmkerl-type 可选值列表**
@@ -533,3 +552,7 @@ Authorization: UpYun upyun:03db45e2904663c5c9305a9c6ed62af3
 **x-gmkerl-watermark-border 值说明**
 
 * 格式 `rgba`， `RGB` 表示边框的颜色，`a` 表示边框的透明度，如 `#cccccccc`
+
+---------
+
+如有疑问请 [联系我们](https://www.upyun.com/about_contact.html)

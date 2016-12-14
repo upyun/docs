@@ -33,13 +33,15 @@ pages:
     - '缓存刷新': 'api/purge.md'
     - '移动流量': 'mobile-stats/index.md'
 - '云处理文档':
-    - '云处理概述': 'cloud/index.md'
+    - '产品简介': 'cloud/index.md'
     - '图片处理': 'cloud/image.md'
+    - '认证鉴权': 'cloud/authorization.md'
     - '音视频处理': 'cloud/av.md'
+    - '图片鉴别': 'cloud/audit.md'
+    - '人脸识别': 'cloud/face_detect.md'
     - '压缩解压缩': 'cloud/unzip.md'
-    - '异步文件拉取': 'cloud/spider.md'
-    - '附件': 'cloud/attachment.md'
-    - '视频处理（旧）': 'cloud/av_pretreatment.md'
+    - '文件拉取': 'cloud/spider.md'
+    - '音视频处理（旧）': 'cloud/av_pretreatment.md'
 - '资源下载':
     - '资源下载': 'download/index.md'
 - '常见问题':
