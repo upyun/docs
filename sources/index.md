@@ -29,12 +29,12 @@
     </div>
     <div class="section section-api">
         <i class="upicon upicon-api"></i>
-        <h3>API 文档</h3>
+        <h3>云存储文档</h3>
         <h4>API Reference</h4>
         <ul class="list-unstyled">
-            <li><a href="/api/rest_api/">HTTP REST API</a></li>
-            <li><a href="/api/form_api/">HTTP FORM API</a></li>
-            <li><a href="/api/multipart_upload/">分块上传 API</a></li>
+			<li><a href="/api/">产品简介</a></li>
+            <li><a href="/api/rest_api/">REST API</a></li>
+            <li><a href="/api/form_api/">FORM API</a></li>
             <li><a href="/api/">查看更多</a></li>
         </ul>
     </div>
