@@ -1,46 +1,55 @@
-异步文件拉取服务采用主动获取文件的方式，帮助用户把存储在用户源站的文件迁移至又拍云存储，文件迁移完成后，以回调的方式通知用户拉取结果。
+## 快速入门
 
-异步文件拉取流程如下：
+又拍云云处理（压缩解压缩）基于云存储服务，您在使用它之前，请确保您已经注册又拍云账号并完成实名验证，请确保您已经创建[云存储服务](/api/quick_start)。
+
+---------
+
+## 开发者指南
+
+文件拉取流程如下：
 ![UPYUN Spider](http://upyundocs.b0.upaiyun.com/img/spider.png)
 
 特别地，本服务旨在为用户提供更便捷的资源上传方式，请您在提交资源链接时确保您拥有该资源的使用权或所有权。
 
-> 注：文中所有 `<>` 标注的字段，均需根据实际情况进行替换。
+---------
 
+<a name="submit_task"></a>
+### 提交处理任务
 
+** 请求方法 **
 
-## 使用方法
-
-### 请求方法
-
-以 `POST` 方式向 `http://p0.api.upyun.com/pretreatment/` 提交处理请求，又拍云接受请求后立即返回任务的 `task_id`，处理完成后通过回调的方式通知用户。
-
-例如：
+对需要拉取的文件，以 `POST` 方法向 `http://p0.api.upyun.com/pretreatment/` 提交处理任务，响应中返回任务 `task_id`。任务以异步的方式处理，处理完成后，回调通知用户处理结果。
 
 ```
 curl -X POST \
     http://p0.api.upyun.com/pretreatment/ \
-    -H "Authorization: UPYUN <operator>:<signature>" \
-    -H "Date: <Wed, 29 Oct 2014 02:26:58 GMT>"
+    -H "Authorization: UPYUN <Operator>:<Signature>" \
+    -H "Date: <Wed, 29 Oct 2014 02:26:58 GMT>" \
+	-H "Content-MD5: <Content-MD5>" \
     -d "bucket_name=<bucket_name>" \
     -d "notify_url=<notify_url>" \
     -d "app_name=spiderman" \
     -d "tasks=<base64 编码后的任务字符串>"
 ```
 
-### 请求参数
+** 认证鉴权 **
 
-|        参数       |    类型       | 必选     |   说明                           |
-|-------------------|--------------|------|---------------------------------------|
-| bucket_name       | string       |  是   | 文件所在空间名称                     |
-| notify_url        | string       |  是   | 回调通知地址                         |
-| tasks             | string       |  是   | 处理任务信息，详见下                 |
-| app_name          | string       |  是   | 任务所使用的云处理程序，文件拉取为 spiderman |
+`Authorization` 详见[签名认证](/cloud/authorization/#_1)。
 
 
-`tasks` 参数通过下面三个步骤生成：
+** 请求参数 **
 
-1\. 组装业务参数。一次最多可以提交 10 个处理任务。
+| 参数       		| 类型       	| 必选  	| 说明                              	|
+|-------------------|---------------|-------|-----------------------------------|
+| bucket_name       | string       	| 是   	| 文件上传的服务名         			|
+| notify_url        | string       	| 是   	| 回调通知地址，详见[回调通知](#notify_url)    |
+| tasks             | string       	| 是   	| 任务信息，详见 [tasks 参数说明](#tasks)  	|
+| app_name          | string       	| 是   	| 处理功能，`spiderman` 表示文件拉取      |
+
+<a name="tasks"></a>
+** tasks 参数说明 **
+
+1\. 按 JSON 格式组装任务，一次请求 `tasks` 最多可以提交 10 个任务。** 任务参数见[功能](#function) **。
 
 ```
 [
@@ -54,40 +63,91 @@ curl -X POST \
 ]
 ```
 
-2\. 把组装好的参数转换为 JSON 字符串。
+2\. 把 JSON 字符串 Base64 编码，得到 `tasks`。
 
-3\. 对 JSON 字符串进行 base64 编码处理。
+** 响应信息 **
 
-### 授权认证
+- 任务提交成功：返回 `200`，响应体是 `task_ids`。`task_ids` 是 JSON 格式字符串，是各个任务的 `task_id`。例如：
 
-授权认证的方法与异步音视频处理授权认证方法一致，请参考 [授权认证](http://docs.upyun.com/cloud/av/#_4)。
+```
+{
+  "task_ids": [
+      "35f0148d414a688a275bf915ba7cebb2",
+      "98adbaa52b2f63d6d7f327a0ff223348",
+      "c3103189fa906a5354d29bd807e8dc51",
+      …
+  ]
+}
+```
+
+- 任务提交失败：返回相应的出错信息，具体请参阅「[状态码表](#status)」。
+
+---------
+
+<a name="notify_url"></a>
+### 回调通知 
+
+任务处理完成后，向 `notify_url` 发送 `HTTP POST` 请求，请求体是回调信息。
+
+```
+curl -X POST \
+    <notify_url> \
+    -H "Authorization: UPYUN <Operator>:<Signature>" \
+    -H "Date: <Wed, 29 Oct 2014 02:26:58 GMT>" \
+	-H "Content-MD5: <Content-MD5>" \
+    -d "bucket_name=<bucket_name>" \
+	# 其他参数...
+```
+
+** 回调信息 **
+
+回调信息是 JSON 字符串，参数名及说明如下：
+
+| 参数       	| 类型   	| 说明                                                      	|
+|---------------|-----------|-----------------------------------------------------------|
+| task_id      	| string    | 任务对的任务 ID                             				|
+| bucket_name  	| string    | 文件上传的服务名                               |
+| status_code  	| integer   | 处理结果状态码，`200` 表示成功处理              				|
+| path         	| string    | 文件上传保存路径                              				|
+| error        	| string    | 错误信息，空字符串表示无错误信息        						|
+
+** 回调签名 **
+
+`Authorization` 详见[签名认证](/cloud/authorization/#_1)。
+
+---------
+
+<a name="status"></a>
+### 状态码表
+
+| 状态码    		| 说明        							|
+|---------------|---------------------------------------|
+| 200         	| 处理成功    							|
+| 400         	| 参数错误								|
+| 404         	| 拉取的文件不存在    					|
+| 5xx         	| 服务端错误。如遇此类错误，请反馈给[售后](https://www.upyun.com/about_contact.html)或您的商务经理|
+
+---------
+
+<a name="function"></a>
+## 功能
+
+### 文件拉取（spiderman）
+
+| 参数       		| 类型      	| 必选  	| 说明                                   	|
+|-------------------|-----------|-------|-------------------------------------------|
+| url               | string    | 是   	| 需要拉取文件的 URL 地址         				|
+| save_as           | string    | 是   	| 文件上传存放路径                          	|
+| overwrite         | boolean   | 否   	| 如果文件存在，是否覆盖，默认 `true`      		|
+| x-gmkerl-thumb    | string    | 否   	| 图片处理参数，默认不进行图片处理。详见[上传预处理（同步）](/cloud/image/#sync_upload_process)  |
+| random            | boolean   | 否   	| 是否在 `url` 后追加随机数，追加格式 `?<random>`，默认 `false`。见「注」|
 
 
-### 回调通知
+** 注 **
 
-处理完成后，系统根据提交任务时的 `notify_url` 参数，将处理结果转换成 JSON 字符串，并以 `HTTP POST` 请求进行回调通知。
+-  `url` 是指需要拉取文件的 URL 地址，如果文件存在缓存，`random` 参数可以避免我们错误重试或者您重复提交请求时获取到缓存内容。
+- 如果拉取文件过大，可能会超时导致拉取失败。
 
-** 回调通知参数 **
+---------
 
-|     参数     |    类型   |    说明                                                                                                      |
-|--------------|-----------|--------------------------------------------- |
-| task_id      | string    | 任务对应的 TaskId                             |
-| bucket_name  | string    | 文件所在的空间名                               |
-| status_code  | integer   | 处理结果状态码，200 表示成功处理                |
-| path         | string    | 文件保存路径                                  |
-| error        | string    | 处理错误信息描述，空字符串表示没有错误           |
-
-
-## 处理参数
-
-|        参数        |    类型   |    说明                                                             |
-|-------------------|-----------|--------------------------------------------------------------------|
-| url               | string    | 需要拉取文件的 url 地址，如 `http://www.upyun.com/index.html`         |
-| x-gmkerl-thumb    | string    | 图片处理参数，非必填项，默认为空。详见 [上传作图](/cloud/image/#_2)      |
-| random            | bool      | 是否追加随机数，默认 `false`                                           |
-| overwrite         | bool      | 是否覆盖，默认 `true`                                               |
-| save_as           | string    | 文件存放路径，必填项， 如 `/site/index.html`                          |
-
-注：
-
-- 如果拉取的资源过大，可能会超时导致拉取失败。
+如有疑问请 [联系我们](https://www.upyun.com/about_contact.html)
