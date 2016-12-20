@@ -11,7 +11,6 @@ Content-MD5: <Content-MD5>
 <Method>&
 <URI>&
 <Date>&
-<Policy>&
 <Content-MD5>
 ))
 ```
@@ -63,7 +62,6 @@ Signature = Base64 (HMAC-SHA1 (<Password>,
 <Method>&
 <URI>&
 <Date>&
-<Policy>&
 <Content-MD5>
 ))
 // 内容拼接时，不用换行或空格，上面格式的换行或空格是为了方便阅读

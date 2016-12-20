@@ -1,6 +1,6 @@
 ## 快速入门
 
-又拍云云处理（音视频处理）基于云存储服务，您在使用它之前，请确保您已经注册又拍云账号并完成实名验证，请确保您已经创建[云存储服务](/api/quick_start)。
+又拍云处理（音视频处理）基于云存储服务，您在使用它之前，请确保您已经注册又拍云账号并完成实名验证，请确保您已经创建[云存储服务](/api/quick_start)。
 
 收费方面，见[价格](https://www.upyun.com/price.html)。
 
@@ -50,7 +50,7 @@ curl -X POST \
 
 ```
 [
-    {
+	{
         "type": "video",                        // 视频转码
         "avopts": "/s/240p(4:3)/as/1/r/30",     // 参数
         "return_info": true,                    // 返回元数据
@@ -72,17 +72,15 @@ W3siYXZvcHRzIjoiL3MvMjQwcCg0OjMpL2FzLzEvci8zMCIsInJldHVybl9pbmZvIjp0cnVlLCJzYXZl
 
 ** 响应信息 **
 
-- 任务提交成功：返回 `200`，响应体是 `task_ids`。`task_ids` 是 JSON 格式字符串，是各个任务的 `task_id`。例如：
+- 任务提交成功：返回 `200`，响应体是一组按任务提交先后顺序排序的 `task_id`。例如：
 
 ```
-{
-  "task_ids": [
-      "35f0148d414a688a275bf915ba7cebb2",
-      "98adbaa52b2f63d6d7f327a0ff223348",
-      "c3103189fa906a5354d29bd807e8dc51",
-      …
-  ]
-}
+[
+	"35f0148d414a688a275bf915ba7cebb2",
+	"98adbaa52b2f63d6d7f327a0ff223348",
+	"c3103189fa906a5354d29bd807e8dc51",
+	…
+]
 ```
 
 - 任务提交失败：返回相应的出错信息，具体请参阅「[状态码表](#status)」。
@@ -375,7 +373,7 @@ upyun-operatoracceptjsonbucket_namedemonotify_urlhttp://www.example.com/notify/s
 | 参数              	| 类型   	| 必选  	| 说明                                    					|
 |-------------------|-----------|-------|-----------------------------------------------------------|
 | `type`            | string    | 是		| 固定值，`video`                                 			|
-| `avopts`          | string    | 是		| 视频转码参数，格式为 `/key1/value1/key2/value2/...`，见 avopts 参数说明      |
+| `avopts`          | string    | 是		| 视频转码参数，格式为 `/key1/value1/key2/value2/...`，见「avopts 参数说明」|
 | `return_info`		| boolean   | 否		| 回调信息是否包含输出文件的元数据，元数据格式为 JSON，默认 `false` 		|
 | `save_as`         | string    | 否		| 输出文件保存路径，默认原始视频所在目录+系统随机生成的文件名   |
 
@@ -427,7 +425,7 @@ upyun-operatoracceptjsonbucket_namedemonotify_urlhttp://www.example.com/notify/s
 | 参数              	| 类型   	| 必选  	| 说明                                    					|
 |-------------------|-----------|-------|-----------------------------------------------------------|
 | `type`            | string    | 是		| 固定值，`hls`                                 			|
-| `avopts`          | string    | 是		| 视频转码参数，格式为 `/key1/value1/key2/value2/...`，见 avopts 参数说明      |
+| `avopts`          | string    | 是		| 视频转码参数，格式为 `/key1/value1/key2/value2/...`，见「avopts 参数说明」 |
 | `return_info`		| boolean   | 否		| 回调信息是否包含输出文件的元数据，元数据格式为 JSON，默认 `false`       	|
 | `save_as`         | string    | 否		| 输出文件保存路径，默认原始视频所在目录+系统随机生成的文件名。见「注」   |
 
@@ -453,7 +451,7 @@ upyun-operatoracceptjsonbucket_namedemonotify_urlhttp://www.example.com/notify/s
 | 参数              	| 类型   	| 必选  	| 说明                                    					|
 |-------------------|-----------|-------|-----------------------------------------------------------|
 | `type`            | string    | 是		| 固定值，`video`                                 			|
-| `avopts`          | string    | 是		| 视频转码参数，格式为 `/key1/value1/key2/value2/...`，见 avopts 参数说明      |
+| `avopts`          | string    | 是		| 视频转码参数，格式为 `/key1/value1/key2/value2/...`，见「avopts 参数说明」 |
 | `return_info`		| boolean   | 否		| 回调信息是否包含输出文件的元数据，元数据格式为 JSON，默认 `false`     	|
 | `save_as`         | string    | 否		| 输出文件保存路径，默认原始视频所在目录+系统随机生成的文件名   |
 
@@ -490,7 +488,7 @@ southwest     |     south      |     southeast
 | 参数              	| 类型   	| 必选  	| 说明                                    					|
 |-------------------|-----------|-------|-----------------------------------------------------------|
 | `type`            | string    | 是		| 固定值，`thumbnail`                                 			|
-| `avopts`          | string    | 是		| 视频转码参数，格式为 `/key1/value1/key2/value2/...`，见 avopts 参数说明      |
+| `avopts`          | string    | 是		| 视频转码参数，格式为 `/key1/value1/key2/value2/...`，见「avopts 参数说明」  |
 | `return_info`		| boolean   | 否		| 回调信息是否包含输出文件的元数据，元数据格式为 JSON，默认 `false`      	|
 | `save_as`         | string    | 否		| 输出文件保存路径，默认原始视频所在目录+系统随机生成的文件名。见「注」   |
 
@@ -517,7 +515,7 @@ southwest     |     south      |     southeast
 | 参数              	| 类型   	| 必选  	| 说明                                    					|
 |-------------------|-----------|-------|-----------------------------------------------------------|
 | `type`            | string    | 是		| 固定值，`video`                                 			|
-| `avopts`          | string    | 是		| 视频转码参数，格式为 `/key1/value1/key2/value2/...`，见 avopts 参数说明      |
+| `avopts`          | string    | 是		| 视频转码参数，格式为 `/key1/value1/key2/value2/...`，见「avopts 参数说明」  |
 | `return_info`		| boolean   | 否		| 回调信息是否包含输出文件的元数据，元数据格式为 JSON，默认 `false`      	|
 | `save_as`         | string    | 否		| 输出文件保存路径，默认原始视频所在目录+系统随机生成的文件名   |
 
@@ -535,7 +533,7 @@ southwest     |     south      |     southeast
 | 参数              	| 类型   	| 必选  	| 说明                                    					|
 |-------------------|-----------|-------|-----------------------------------------------------------|
 | `type`            | string    | 是		| 固定值，`vconcat`                                 			|
-| `avopts`          | string    | 是		| 视频转码参数，格式为 `/key1/value1/key2/value2/...`，见 avopts 参数说明      |
+| `avopts`          | string    | 是		| 视频转码参数，格式为 `/key1/value1/key2/value2/...`，见「avopts 参数说明」 |
 | `return_info`		| boolean   | 否		| 回调信息是否包含输出文件的元数据，元数据格式为 JSON，默认 `false`  	|
 | `save_as`         | string    | 否		| 输出文件保存路径，默认原始视频所在目录+系统随机生成的文件名   |
 
@@ -560,7 +558,7 @@ southwest     |     south      |     southeast
 | 参数              	| 类型   	| 必选  	| 说明                                    					|
 |-------------------|-----------|-------|-----------------------------------------------------------|
 | `type`            | string    | 是		| 固定值，`audio`                                 			|
-| `avopts`          | string    | 是		| 视频转码参数，格式为 `/key1/value1/key2/value2/...`，见 avopts 参数说明      |
+| `avopts`          | string    | 是		| 视频转码参数，格式为 `/key1/value1/key2/value2/...`，见「avopts 参数说明」 |
 | `return_info`		| boolean   | 否		| 回调信息是否包含输出文件的元数据，元数据格式为 JSON，默认 `false`    	|
 | `save_as`         | string    | 否		| 输出文件保存路径，默认原始音频所在目录+系统随机生成的文件名	   |
 
@@ -581,7 +579,7 @@ southwest     |     south      |     southeast
 | 参数              	| 类型   	| 必选  	| 说明                                    					|
 |-------------------|-----------|-------|-----------------------------------------------------------|
 | `type`            | string    | 是		| 固定值，`audio`                                 			|
-| `avopts`          | string    | 是		| 视频转码参数，格式为 `/key1/value1/key2/value2/...`，见 avopts 参数说明      |
+| `avopts`          | string    | 是		| 视频转码参数，格式为 `/key1/value1/key2/value2/...`，见「avopts 参数说明」 |
 | `return_info`		| boolean   | 否		| 回调信息是否包含输出文件的元数据，元数据格式为 JSON，默认 `false`      	|
 | `save_as`         | string    | 否		| 输出文件保存路径，默认原始音频所在目录+系统随机生成的文件名   |
 
@@ -599,7 +597,7 @@ southwest     |     south      |     southeast
 | 参数              	| 类型   	| 必选  	| 说明                                    					|
 |-------------------|-----------|-------|-----------------------------------------------------------|
 | `type`            | string    | 是		| 固定值，`aconcat`                                 			|
-| `avopts`          | string    | 是		| 视频转码参数，格式为 `/key1/value1/key2/value2/...`，见 avopts 参数说明      |
+| `avopts`          | string    | 是		| 视频转码参数，格式为 `/key1/value1/key2/value2/...`，见「avopts 参数说明」 |
 | `return_info`		| boolean   | 否		| 回调信息是否包含输出文件的元数据，元数据格式为 JSON，默认 `false`  	|
 | `save_as`         | string    | 否		| 输出文件保存路径，默认原始音频所在目录+系统随机生成的文件名   |
 

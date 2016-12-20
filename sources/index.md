@@ -43,7 +43,7 @@
         <h3>云处理文档</h3>
         <h4>Cloud Processing</h4>
         <ul class="list-unstyled">
-            <li><a href="/cloud/">云处理概述</a></li>
+            <li><a href="/cloud/">产品简介</a></li>
             <li><a href="/cloud/image/">图片处理</a></li>
             <li><a href="/cloud/av/">音视频处理</a></li>
             <li><a href="/cloud/">查看更多</a></li>

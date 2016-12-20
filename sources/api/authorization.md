@@ -56,7 +56,6 @@ Content-MD5: <Content-MD5>
 - 回调签名：`Authorization` 放在请求头中，`Content-MD5` 表示回调请求体的 MD5 值；`Policy` 为空。
 - 回调签名有效期：由用户自行确定，建议设置为 30 分钟。
 
-
 <a name="policy"></a>
 ** FORM API - Policy 算法 **
 
@@ -123,16 +122,16 @@ Password = MD5(upyun520) = ab296a01090ca2eab5fe5b246999da54
 Method = POST							
 URI = /upyun-temp/
 
-// 请求体   
+// 请求体中的请求参数  
 bucket = upyun-temp
 save-key = /demo.jpg
 expiration = 1478674618
 date = Wed, 9 Nov 2016 14:26:58 GMT
-// 上传文件 MD5 值
 content-md5 = 7ac66c0f148de9519b8bd264312c4d64
-// 计算 Policy
-Policy = Base64 ({"bucket": "upyun-temp", "save-key": "/img.jpg", "expiration": "1478674618", "date": "Wed, 9 Nov 2016 14:26:58 GMT", "content-md5": "7ac66c0f148de9519b8bd264312c4d64"})
-	   = eyJidWNrZXQiOiAidXB5dW4tdGVtcCIsICJzYXZlLWtleSI6ICIvaW1nLmpwZyIsICJleHBpcmF0aW9uIjogIjE0Nzg2NzQ2MTgiLCAiZGF0ZSI6ICJXZWQsIDkgTm92IDIwMTYgMTQ6MjY6NTggR01UIiwgImNvbnRlbnQtbWQ1IjogIjdhYzY2YzBmMTQ4ZGU5NTE5YjhiZDI2NDMxMmM0ZDY0In0=
+
+// 请求参数键值对转换为 JSON 字符串，计算 Policy
+Policy = Base64 ({"bucket": "upyun-temp", "save-key": "/demo.jpg", "expiration": "1478674618", "date": "Wed, 9 Nov 2016 14:26:58 GMT", "content-md5": "7ac66c0f148de9519b8bd264312c4d64"})
+	   = eyJidWNrZXQiOiAidXB5dW4tdGVtcCIsICJzYXZlLWtleSI6ICIvZGVtby5qcGciLCAiZXhwaXJhdGlvbiI6ICIxNDc4Njc0NjE4IiwgImRhdGUiOiAiV2VkLCA5IE5vdiAyMDE2IDE0OjI2OjU4IEdNVCIsICJjb250ZW50LW1kNSI6ICI3YWM2NmMwZjE0OGRlOTUxOWI4YmQyNjQzMTJjNGQ2NCJ9
 ```
 
 生成 Signature：
@@ -146,15 +145,15 @@ Signature = Base64 (HMAC-SHA1 (<Password>,
 <Content-MD5>
 ))
 // 内容拼接时，不用换行或空格，上面格式的换行或空格是为了方便阅读
-= Base64 (HMAC-SHA1 (ab296a01090ca2eab5fe5b246999da54,POST&/upyun-temp/&Wed, 9 Nov 2016 14:26:58 GMT&eyJidWNrZXQiOiAidXB5dW4tdGVtcCIsICJzYXZlLWtleSI6ICIvaW1nLmpwZyIsICJleHBpcmF0aW9uIjogIjE0Nzg2NzQ2MTgiLCAiZGF0ZSI6ICJXZWQsIDkgTm92IDIwMTYgMTQ6MjY6NTggR01UIiwgImNvbnRlbnQtbWQ1IjogIjdhYzY2YzBmMTQ4ZGU5NTE5YjhiZDI2NDMxMmM0ZDY0In0=&7ac66c0f148de9519b8bd264312c4d64))
+= Base64 (HMAC-SHA1 (ab296a01090ca2eab5fe5b246999da54,POST&/upyun-temp/&Wed, 9 Nov 2016 14:26:58 GMT&eyJidWNrZXQiOiAidXB5dW4tdGVtcCIsICJzYXZlLWtleSI6ICIvZGVtby5qcGciLCAiZXhwaXJhdGlvbiI6ICIxNDc4Njc0NjE4IiwgImRhdGUiOiAiV2VkLCA5IE5vdiAyMDE2IDE0OjI2OjU4IEdNVCIsICJjb250ZW50LW1kNSI6ICI3YWM2NmMwZjE0OGRlOTUxOWI4YmQyNjQzMTJjNGQ2NCJ9&7ac66c0f148de9519b8bd264312c4d64))
 // HMAC-SHA1 返回的原生二进制数据进行 Base64 编码
-= EFVdZzkFJwaESE2lO+BRz3XlEW8=
+= NnMeoZosYLnOGUiY/Skb0W1DMNA=
 ```
 
 完整签名：
 
 ```
-Authorization: UPYUN upyun:EFVdZzkFJwaESE2lO+BRz3XlEW8=
+Authorization: UPYUN upyun:NnMeoZosYLnOGUiY/Skb0W1DMNA=
 ```
 
 例 3，[FORM API 回调通知](/api/form_api/#notify_return)请求签名
