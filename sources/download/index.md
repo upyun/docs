@@ -84,21 +84,6 @@
     </li>
 
     <li>
-        <strong>PHP 表单 API SDK</strong>
-       <div class="links">
-            <a href="https://github.com/upyun/php-form-sdk" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
-            <a href="https://github.com/upyun/php-form-sdk/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
-       </div>
-    </li>
-
-    <li>
-        <strong>分块上传 PHP SDK</strong>
-        <div class="links">
-            <a href="https://github.com/upyun/multipart-upload-php-sdk" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
-            <a href="https://github.com/upyun/multipart-upload-php-sdk/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
-        </div>
-    </li>
-    <li>
         <strong>分块上传 HTML5 SDK</strong>
         <div class="links">
             <a href="https://github.com/upyun/js-multipart-upload" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
@@ -107,26 +92,10 @@
     </li>
 
     <li>
-        <strong>音视频预处理 PHP SDK</strong>
-        <div class="links">
-            <a href="https://github.com/upyun/av-pretreatment-php-sdk" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
-            <a href="https://github.com/upyun/av-pretreatment-php-sdk/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
-        </div>
-    </li>
-
-    <li>
         <strong>视频预处理 Node SDK</strong>
         <div class="links">
             <a href="https://github.com/upyun/node-av-pretreatment" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
             <a href="https://github.com/upyun/node-av-pretreatment/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
-        </div>
-    </li>
-
-    <li>
-        <strong>PHP 缓存刷新 SDK</strong>
-        <div class="links">
-            <a href="https://github.com/upyun/php-purge-sdk" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
-            <a href="https://github.com/upyun/php-purge-sdk/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
         </div>
     </li>
 
