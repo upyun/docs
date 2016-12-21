@@ -1,6 +1,6 @@
 ## 快速入门
 
-又拍云云处理（图片处理）基于 CDN 或云存储服务，您在使用它之前，请确保您已经注册又拍云账号并完成实名验证，请确保您已经创建 [CDN 服务](/cdn/guide/)或[云存储服务](/api/quick_start/)。
+又拍云处理（图片鉴别）基于 CDN 或云存储服务，您在使用它之前，请确保您已经注册又拍云账号并完成实名验证，请确保您已经创建 [CDN 服务](/cdn/guide/)或[云存储服务](/api/quick_start/)。
 
 收费方面，现在免费公测中，后续会进行收费。
 
@@ -8,31 +8,77 @@
 
 ## 开发者指南
 
-<a name="async_upload_process"></a>
-### 上传预处理
+<a name="submit_task"></a>
+### 提交处理任务
 
-在上传图片时，对上传的图片进行鉴别。任务以异步的方式处理，处理完成后，回调通知用户鉴别结果。
+** 请求方法 **
 
-支持的 API： [FORM API](/api/form_api/#upload_args)。
-
-参数名是 `apps`，参数值是 JSON 字符串。一个 `apps` 最多允许包含一个鉴别任务，每张图片只需鉴别一次。
-
-** apps 参数结构 **
+对已经存在云存储中的图片，以 `POST` 方法向 `http://p0.api.upyun.com/pretreatment/` 提交处理任务，响应中返回任务 `task_id`。任务以异步的方式处理，处理完成后，回调通知用户处理结果。
 
 ```
-apps = [
-    {                                               // 异步鉴别任务
-        "name": "imgaudit",                         // 异步任务名称，必填。imgaudit 表示异步图片鉴别服务
-        "notify_url": "<notify_url>"                // 回调地址，不填时使用上传参数中的 notify_url
-    },
-	{ 												// 举例			
-	    "name": "imgaudit",                                         
-	    "notify_url": "http://www.yourdomain.com/notify/url",                  
+curl -X POST \
+    http://p0.api.upyun.com/pretreatment/ \
+    -H "Authorization: UPYUN <Operator>:<Signature>" \
+    -H "Date: <Wed, 29 Oct 2014 02:26:58 GMT>" \
+	-H "Content-MD5: <Content-MD5>" \
+    -d "bucket_name=<bucket_name>" \
+    -d "notify_url=<notify_url>" \
+    -d "app_name=<app_name>" \
+    -d "tasks=<base64 编码后的任务字符串>"
+```
+
+** 认证鉴权 **
+
+`Authorization` 详见[签名认证](/cloud/authorization/#_1)。
+
+
+** 请求参数 **
+
+| 参数       		| 类型       	| 必选  	| 说明                              	|
+|-------------------|---------------|-------|-----------------------------------|
+| bucket_name       | string       	| 是   	| 图片所在的服务名         			|
+| notify_url        | string       	| 是   	| 回调通知地址，详见[回调通知](#notify_url)    	|
+| tasks             | string       	| 是   	| 任务信息，详见 [tasks 参数说明](#tasks)  	|
+| app_name          | string       	| 是   	| 固定值，`imgaudit`			      	|
+
+
+<a name="tasks"></a>
+** tasks 参数说明 **
+
+1\. 按 JSON 格式组装任务，一次请求 `tasks` 最多可以提交 10 个任务。** 任务参数见[功能](#function) **。
+
+```
+[
+	{
+		"source": "/a.jpg",     // 需要审核的图片
 	},
-    ......
+  	{
+		"source": "/b.jpg",   	// 需要审核的图片
+	},
+	…
 ]
 ```
 
+2\. 把 JSON 字符串 Base64 编码，得到 `tasks`。
+
+** 响应信息 **
+
+- 任务提交成功：返回 `200`，响应体是一组按任务提交先后顺序排序的 `task_id`。例如：
+
+```
+[
+	"35f0148d414a688a275bf915ba7cebb2",
+	"98adbaa52b2f63d6d7f327a0ff223348",
+	"c3103189fa906a5354d29bd807e8dc51",
+	…
+]
+```
+
+- 任务提交失败：返回相应的出错信息，具体请参阅「[状态码表](#status)」。
+
+---------
+
+<a name="notify_url"></a>
 ### 回调通知 
 
 任务处理完成后，向 `notify_url` 发送 `HTTP POST` 请求，请求体是回调信息。
@@ -94,6 +140,39 @@ curl -X POST \
 
 ---------
 
+<a name="async_upload_process"></a>
+### 上传预处理
+
+![上传预处理](http://uprocess.b0.upaiyun.com/docs/cloud/audit.png)
+
+在上传图片时，对上传的图片进行鉴别。任务以异步的方式处理，处理完成后，回调通知用户鉴别结果。
+
+支持的 API： [FORM API](/api/form_api/#upload_args)。
+
+参数名是 `apps`，参数值是 JSON 字符串。一个 `apps` 最多允许包含一个鉴别任务，每张图片只需鉴别一次。
+
+** apps 参数结构 **
+
+```
+apps = [
+    {                                               // 异步鉴别任务
+        "name": "imgaudit",                         // 异步任务名称，必填。imgaudit 表示异步图片鉴别服务
+        "notify_url": "<notify_url>"                // 回调地址，不填时使用上传参数中的 notify_url
+    },
+	{ 												// 举例			
+	    "name": "imgaudit",                                         
+	    "notify_url": "http://www.yourdomain.com/notify/url",                  
+	},
+    ......
+]
+```
+
+** 回调通知 **
+
+任务处理完成后，向 `notify_url` 地址发送回调通知。详见「[回调通知](#notify_url)」。
+
+---------
+
 <a name="status"></a>
 ### 状态码表
 
@@ -108,6 +187,8 @@ curl -X POST \
 ---------
 
 ### 测试准确率
+
+根据常见图片内容，选择主要图片类型进行色情识别，识别的准确率如下：
 
 | 图片类型 		| 图片总数	| 检测结果                        									| 准确率 	|
 |---------------|-----------|-------------------------------------------------------------------|-----------|

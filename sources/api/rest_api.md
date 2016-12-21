@@ -28,7 +28,7 @@ curl -X GET \
 
 ## 上传文件
 
-把文件上传至又拍云云存储。在上传图片文件时，可以设置预处理参数，对图片进行处理后再保存。
+把文件上传至又拍云存储。在上传图片文件时，可以设置预处理参数，对图片进行处理后再保存。
 
 ```
 PUT /<bucket>/path/to/file
@@ -43,14 +43,13 @@ PUT /<bucket>/path/to/file
 | Content-Type   | 否   | String  | 文件类型，默认使用文件扩展名作为文件类型                         |
 | Content-Secret | 否   | String  | 文件密钥，用于保护文件，防止文件被直接访问，见 [Content-Secret 参数说明](/api/rest_api/#Content-Secret) |
 | X-Upyun-Meta-X | 否   | String  | 文件元信息，见 [Metadata](/api/rest_api/#metadata)           |
-| X-gmkerl-thumb | 否   | String  | 图片预处理参数，见[上传预处理（同步）](/cloud/image/#sync_upload_process)       |
-
+| X-Gmkerl-Thumb | 否   | String  | 图片预处理参数，见[上传预处理（同步）](/cloud/image/#sync_upload_process)       |
 
 **响应信息**
 
 上传成功时返回 `200`；上传失败时返回相应的出错信息，具体请参阅「[API 错误码表](/api/errno/)」。
 
-当上传文件是图片且设置 `X-gmkerl-thumb` 时，响应中会包含图片预处理信息，例如：
+当上传文件是图片且设置 `X-Gmkerl-Thumb` 时，响应中会包含图片预处理信息，例如：
 
 ```
 > HTTP/1.1 200 OK
@@ -80,7 +79,6 @@ PUT /<bucket>/path/to/file
 ## 断点续传
 
 在上传大文件或移动端上传文件时，因为网络质量、传输时间过长等原因造成上传失败，可以使用断点续传。特别地，断点续传上传的图片不支持预处理。
-
 
 ### 名称概念
 

@@ -1,4 +1,4 @@
-通过网页 FORM，使用 HTTP/HTTPS 直接把文件上传到又拍云云存储。特别地，文中请求参数放在 HTTP/HTTPS body 中传递，请确保您上传表单格式符合 [RFC 1867](https://www.ietf.org/rfc/rfc1867.txt) 协议规范。
+通过网页 FORM，使用 HTTP/HTTPS 直接把文件上传到又拍云存储。特别地，文中请求参数放在 HTTP/HTTPS body 中传递，请确保您上传表单格式符合 [RFC 1867](https://www.ietf.org/rfc/rfc1867.txt) 协议规范。
 
 ---------
 

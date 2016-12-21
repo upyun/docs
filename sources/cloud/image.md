@@ -1,6 +1,6 @@
 ## 快速入门
 
-又拍云云处理（图片处理）基于 CDN 或云存储服务，您在使用它之前，请确保您已经注册又拍云账号并完成实名验证，请确保您已经创建 [CDN 服务](/cdn/guide/)或[云存储服务](/api/quick_start/)。
+又拍云处理（图片处理）基于 CDN 或云存储服务，您在使用它之前，请确保您已经注册又拍云账号并完成实名验证，请确保您已经创建 [CDN 服务](/cdn/guide/)或[云存储服务](/api/quick_start/)。
 
 收费方面，图片处理完全免费。
 
@@ -82,6 +82,7 @@ x-gmkerl-thumb: /format/png
 x-gmkerl-thumb: /fw/300/unsharp/true/quality/80/format/png
 ```
 
+---------
 
 <a name="async_upload_process"></a>
 ### 上传预处理（异步）
@@ -495,7 +496,7 @@ x-gmkerl-thumb: upyun520/fw/500
 | `/format/<format>`      	| 图片格式，如 jpg	| 输出格式，可选值 `jpg`、`png`、`webp`、`动态 webp`      |
 | `/quality/<quality>`     	| 整数值，如 75  		| 设置压缩质量，可选范围`[1-99]`   |
 | `/compress/<boolean>`    	| true          	| JPG 、 PNG 大小压缩优化，默认 `false`      	|
-| `/coalesce/<boolean>`    	| false         	| 动态 GIF 大小压缩优化，默认 `true`，详细说明见「注」  |
+| `/coalesce/<boolean>`    	| false         	| 是否填充动态 GIF 图像中共同部分，默认 `true`，详见「注」  |
 | `/progressive/<boolean>` 	| true          	| JPG 图片渐进式加载，图片加载从模糊到清晰 			|
 | `/noicc/<boolean>`       	| true          	| 清除图片 ICC 信息，默认 `false` 					|
 | `/strip/<boolean>`       	| true          	| 去除图片所有元信息，包括 EXIF 、ICC 等。默认 `false`  |
@@ -507,7 +508,7 @@ x-gmkerl-thumb: upyun520/fw/500
 - 一般来说，`quality（质量）` 是 `75`，在这个值压缩大小与图片质量损失得到平衡。
 - `/compress/true` 会对 JPG/PNG 进行一次压缩以减少图片体积，同时稍微延长了图片处理时间、降低了图片质量。
 - `/noicc/true` 会导致图片质量轻微的下降。
-- `/coalesce/` 为`true` 时，不开启优化方式，图片变大但质量不会有损失；为 `false` 时，开启优化方式，图片变小但质量会有微小的损失。
+- 大部分动态 GIF 可以通过省略相邻帧之间共同部分来优化图片体积。如果 `coalesce` 参数为 `false`，当对动态 GIF 做缩略或放大时，可能会导致图片质量下降。 
 
 ---------
 
@@ -516,7 +517,7 @@ x-gmkerl-thumb: upyun520/fw/500
 | 参数			            | 值	                   	| 说明                                       	|
 |---------------------------|-----------------------|-----------------------------------------------|
 | `/excolor/<integer>`      | 颜色数量，如 128      	| 提取的颜色数量。可选值：`[1-4096]`               |
-| `/exformat/<exformat>` 	| 颜色进制，如 hex       	| 返回颜色的进制，默认 `hex`。可选值：`dec`、`hex`  |
+| `/exformat/<exformat>` 	| 颜色进制，如 hex       	| 返回颜色的进制，默认 `dec`。可选值：`dec`、`hex`  |
 
 ** 注 **
 
