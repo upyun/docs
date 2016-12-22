@@ -132,13 +132,13 @@ curl https://ptp-api.upyun.com/refreshToken -H "Content-Type: application/json" 
 
 2. 将接口请求参数按照请求参数名称正序排序;
 
-3. 将请求参数和请求参数值拼接成字符串：`appkeyYOURAPPKEYcustnoYOURCUSTNOmobileYOURMOBILEprodcodeYOURPRDCODEtokenYOURTOKEN`(将字符串中大写的部分替换成实际值即可)
+3.  将请求参数和请求参数值拼接成字符串：`appkey${YourAppKey}custno${YourCustno}mobile${YourAesEncodedMobile}prodcode${YourPrdcode}token${YourToken`(将字符串中的变量`${...}`部分替换成实际值即可，)
 
 4. 对拼接后的字符串进行SHA1指纹运算，得到的 16 进制字符串 `b5cd94c99e3e576f5e2ca0e66ee3da670cb1c62b` 便是 sign 值
 
 示例
 
-参数拼接后的字符串为：`appkey3P83lWwkoV15yZVTcustno20151123114702mobile8mBGFNfe1o/rzAx2Ost2IQ==prodcodeCMCC_10tokenVqHAab3JYXBDkCoO`（注意手机号是 aes 加密再 base64 编码后的），进行 SHA1 运算得到的 sign 值为：`86ee7d160f03b54f27c99fbfebaa276c8a1a3017`
+参数拼接后的字符串为：`appkey3P83lWwkoV15yZVTcustno20151123114702mobile8mBGFNfe1o/rzAx2Ost2IQ==prodcodeCMCC_10tokenVqHAab3JYXBDkCoO`（注意手机号是 aes 加密再 base64 编码后的），进行 SHA1 运算得到的 sign 值为：`8b05f52e605c7ab89a895eb730cacab4cbeabd4c`
 
 响应示例
 
@@ -167,7 +167,7 @@ curl https://ptp-api.upyun.com/refreshToken -H "Content-Type: application/json" 
 | --- | --- | --- | --- |
 | custno | String | 必须 | 客户提交的订单号 |
 | appkey | String | 必须 | 鉴权账号 |
-| sign | String | 必须 | 签名，签名规则为：将 `appkeyYOURAPPKEYcustnoYOURCUSTNOrequesttimeYOURREQESTTIMEsignYOURSIGN` 中大写部分替换为实际值，再进行 SHA1 运算。如果请求参数不包含 `requesttime`，计算签名则不需要该值 |
+| sign | String | 必须 | 签名，签名规则为：将 `appkey${YourAppKey}custno${YourCustno}requesttime${YourReqestTime}TOKEN${YourToken}` 中`${...}`变量部分替换为实际值，再进行 SHA1 运算。如果请求参数不包含 `requesttime`，计算签名则不需要该值 |
 | requesttime | String | 否 |  查询的时间点，该参数为可选参数，格式为"YYYY-MM-DD HH:mm:ss"，当传递该参数时，我们会在给定时间点的前后 1 个小时范围内查询；如果未传该参数，我们将在最近一周的订单中查询	|
 
 响应参数
@@ -199,7 +199,7 @@ curl https://ptp-api.upyun.com/refreshToken -H "Content-Type: application/json" 
 | 名称 | 类型 |  是否必须 |  描述 |
 |---|---|---|---|
 | appkey | String |  必须 | |
-| sign | String | 必须 | 签名，算法为 `appkeyYOURAPPKEYtokenYOURTOKEN` 中大写的部分替换实际值，再进行 SHA1 运算得到的字符串便为 sign 值 |
+| sign | String | 必须 | 签名，算法为 `appkey${YourAppKey}TOKEN${Yourtoken}` 中`${...}`变量部分替换实际值，再进行 SHA1 运算得到的字符串便为 sign 值 |
 
 响应参数
 
@@ -232,7 +232,8 @@ curl https://ptp-api.upyun.com/refreshToken -H "Content-Type: application/json" 
 | orderno | String | 必须 | 又拍云平台的订单号 |
 | custno | String | 必须 | 客户自定义订单号 |
 | info | String | 必须 | 描述信息 |
-| sign | String | 必须 | 签名，客户可以使用该值校验请求是否合法，强烈建议接收充值回调时进行校验。签名规则为：将 `codeCODEcustnoYOURCUSTNOinfoINFOordernoORDERNOtokenYOURTOKEN` 字符串中的大写值替换为请求参数中的值，再对得到的字符串进行 SHA1 签名 |
+| sign | String | 必须 | 签名，客户可以使用该值校验请求是否合法，强烈建议接收充值回调时进行校验。签名规则为：将
+`code${Code}custno${YourCustno}info${Info}orderno${OrderNo}token${YourToken}` 字符串中的变量部分`${...}`替换为请求参数中的值，再对得到的字符串进行 SHA1 签名 |
 
 客户接受请求成功后，需要响应如下 `json` 值：
 
