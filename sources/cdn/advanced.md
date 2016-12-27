@@ -237,6 +237,57 @@ CC 防护主要是针对网络安全领域中的 CC 攻击而进行的一种应�
 
 ----------
 
+##HTTPS 配置
+
+又拍云 HTTPS 加速服务建立在自主研发的内容分发网络基础之上，全面支持了 HTTPS 协议加速。通过会话重用及会话保持、在线证书状态检查、协议优化、SSL 协议握手优化等技术手段，全面提升了 HTTPS 协议加速性能。
+
+**配置引导**
+
+第一步：依次进入 服务 > 功能配置 > HTTPS, 点击 `管理` 即可开始配置。如下图所示：
+
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-https1.png" height="490" width="800" />
+
+第二步：可针对单个域名选择相应的证书，然后保存。如果无证书可选，可前往[ SSL 证书服务](https://console.upyun.com/toolbox/ssl/)平台添加域名的自有证书；用户也可直接在[ SSL 证书服务](https://console.upyun.com/toolbox/ssl/)平台免费申请 Let’s Encrypt 的 DV SSL 证书;
+
+（免费申请 Symantec 的 DV SSL 证书，付费型 OV、EV SSL 证书，即将推出，敬请期待！）。
+
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-https2.png" height="490" width="800" />
+
+第三步：可选择是否开启 HTTPS 访问和强制 HTTPS 功能。在开启 HTTPS 访问后，可通过点击 `修改` 切换域名所对应的证书，点击 `详情` 可查看相应证书的详细信息；
+
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-https3.png" height="490" width="800" />
+
+“ HTTPS 访问”：开启该功能后，客户端才能使用 HTTPS 协议进行访问，默认关闭。
+
+“强制 HTTPS ”：勾选此功能后，又拍云边缘节点收到用户的 HTTP 请求后会将其强制跳转到 HTTPS 进行访问。默认：兼容用户的 HTTP 和 HTTPS 请求。
+
+**HTTP/2**
+
+HTTP/2 即超文本传输协议 2.0，是下一代 HTTP 协议。它由国际互联网工程任务组 （IETF）的 Hypertext Transfer Protocol Bis (httpbis) 工作小组进行开发，以 SPDY 为原型，经过两年多的讨论和完善最终确定。
+
+HTTP/2 优势如下：
+
+1）HTTP/2 采用二进制格式传输数据，其在协议的解析和优化扩展上带来更多的优势和可能。
+
+2）HTTP/2 对消息头采用 HPACK 进行压缩传输，能够节省消息头占用的网络的流量。
+
+3）多路复用，简单说就是所有的请求可以通过一个 TCP 连接并发完成。
+
+4）Server Push：服务端能够更快的把资源推送给客户端。
+
+又拍云 CDN 当前已全平台支持 HTTP/2，并已默认开启。又因 HTTP/2 是在 HTTPS 协议的基础上实现的，所以只要使用又拍云 HTTPS 加速服务的域名，都可免费享受 HTTP/2 服务，无需做任何特殊配置，如下图所示：
+
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-https4.png" height="490" width="800" />
+
+**注意事项：**
+
+又拍云 HTTPS 加速服务是基于 SNI 技术实现的，因此某些不支持 SNI 的浏览器或客户端访问可能出现问题。支持 SNI 的客户端列表如下：
+
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-https5.png" height="490" width="800" />
+
+声明：运行在 Windows XP 上的所有版本的 Internet Explorer 都不支持 SNI ，详细请参考[这里](http://serverfault.com/questions/109800/multiple-ssl-domains-on-the-same-ip-address-and-same-port)。
+
+----------
 
 ##性能优化
 
@@ -666,62 +717,6 @@ $ curl http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-architecture.png?_u
 2、此处自定义提示图的文件大小限制在 30KB 以内；
 
 ----------
-
-##自定义 SSL 服务
-
-又拍云自定义 SSL 服务建立在自主研发的内容分发网络的基础之上，全面支持了 HTTPS 协议加速。通过会话重用及会话保持、在线证书状态检查协议优化、SSL 协议握手优化等技术手段，全面提升了 HTTPS 协议加速性能；在 [又拍云管理控制台](https://console.upyun.com/login/)，用户可自主化部署和管理 SSL 证书，并一键开启 HTTPS 加速服务。
-
-配置引导
-
-如用户已有证书，可以直接自行添加证书进行部署即可；如果尚未申请证书，可以去第三方机构申请证书或者使用又拍云默认域名证书。证书管理模块主要用于管理用户的 SSL 证书，方便用户录入、查看及应用 SSL 证书。证书管理及相关配置，参见如下步骤：
-
-第一步：进入 SSL 服务，工具箱 -> SSL 服务
-
-<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-custom-ssl.png" height="490" width="800" />
-
-
-第二步：添加 SSL 证书，点击右上角的 `添加 SSL 证书` ，如下图所示：
-
-<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-custom-ssl-inputssl.png" height="490" width="800" />
-
-
-粘贴证书内容:
-
-<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-custom-ssl-inputssl1.png" height="490" width="800" />
-
-点击 `保存` 之后，可查看 SSL 证书信息如下图所示：
-
-<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-custom-ssl-see-ssl.png" height="490" width="800" />
-
-
-第三步：在证书列表中，选择刚添加的证书，点击 `管理` ，选择开启 HTTPS 访问 ，如下图所示：
-
-<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-custom-ssl-management.png" height="490" width="800" />
-
-
-HTTPS 配置：可开启 HTTPS 访问和强制 HTTPS
-
-<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-custom-ssl-config.png" height="490" width="800" />
-
-
-注意事项：
-
-又拍云自定义 SSL 服务是基于 SNI 技术实现的，因此某些不支持 SNI 的浏览器或客户端访问可能出现问题。支持 SNI 的客户端列表如下：
-
- - Internet Explorer 7 and later
- - Firefox 2
- - Opera 8 with TLS 1.1 enabled
- - Google Chrome:
- - Supported on Vista and later by default
- - OS X 10.5.7 in Chrome Version 5.0.342.0 and later
- - Safari 2.1 and later (requires OS X 10.5.6 and later or Windows Vista
-   and later)
- - Mobile Safari for iOS 4.0
- - Android 3.0 (Honeycomb) and later
- - Windows Phone 7
-
-声明：运行在 Windows XP 上的所有版本的 Internet Explorer 都不支持 SNI 。详细请参考[这里](http://serverfault.com/questions/109800/multiple-ssl-domains-on-the-same-ip-address-and-same-port)。
-
 
 ##自定义 Rewrite
 
