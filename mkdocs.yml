@@ -16,6 +16,7 @@ pages:
     - '快速入门': 'cdn/guide.md'
     - '基础设置': 'cdn/basic.md'
     - '高级设置': 'cdn/advanced.md'
+    - '证书服务': 'cdn/ssl.md'
     - '辅助工具': 'cdn/tools.md'
     - '常见问题': 'cdn/faq.md'
 - '直播文档':
