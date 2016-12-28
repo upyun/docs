@@ -1,10 +1,11 @@
-﻿
 ##产品介绍
-HTTPS（全称：Hyper Text Transfer Protocol over Secure Socket Layer），其实 HTTPS 并不是一个新鲜协议，Google 很早就开始启用了，初衷是为了保证数据安全。 近两年，Google、Apple、Facebook 等这样的互联网巨头，不谋而合地开始大力推行 HTTPS， 国外的大型互联网公司很多也都已经启用了全站 HTTPS，这也是未来互联网发展的趋势。为鼓励全球网站的 HTTPS 实现，Google 甚至调整了搜索引擎算法，让采用 HTTPS 的网站在搜索中排名更靠前。想必在不久的将来，全网 HTTPS 势在必行。
+
+HTTPS（全称：HyperText Transfer Protocol over Secure Socket Layer），其实 HTTPS 并不是一个新鲜协议，Google 很早就开始启用了，初衷是为了保证数据安全。 近两年，Google、Apple、Facebook 等这样的互联网巨头，不谋而合地开始大力推行 HTTPS， 国外的大型互联网公司很多也都已经启用了全站 HTTPS，这也是未来互联网发展的趋势。为鼓励全球网站的 HTTPS 实现，Google 甚至调整了搜索引擎算法，让采用 HTTPS 的网站在搜索中排名更靠前。想必在不久的将来，全网 HTTPS 势在必行。
 
 但是，如果网站想使用 HTTPS 服务，则必须为域名从数字证书授权机构（CA，Certificate Authority）申请相关的 SSL 证书，并部署于源站服务器上才能有效。为此，又拍云提供了 SSL 证书的一站式服务，用户可直接在又拍云 [SSL 证书服务](https://console.upyun.com/toolbox/ssl/)平台申购各类 SSL 证书（包括免费申购 DV SSL 证书）;同时支持上传自有证书，全部自动化管理及部署，帮助客户以最低的成本，享受最优的服务，完成网站 HTTP 到 HTTPS 的转换，为用户提供优质的 HTTPS 加速解决方案。
 
 ##名词解释
+
 **HTTPS**
 
 HTTPS（全称：Hyper Text Transfer Protocol over Secure Socket Layer），是以安全为目标的 HTTP 通道，即 HTTP 的安全版。HTTPS 的安全基础是 SSL/TLS，它提供了身份验证与加密通讯的方法，现在被广泛用于万维网上安全敏感的通讯，比如交易、支付等。
@@ -141,9 +142,3 @@ Google 在 2014 年发布的官方博客中指出，已经调整其搜索引擎�
 3、如果证书申购失败，除因 CNAME 原因导致的失败，其他失败情况下，可多次尝试重新提交申请，如多次都未申请成功，则可提交工单寻求帮助。
 
 4、目前只支持单一域名的申请，不支持泛域名申请，不支持带下划线（_）的域名申请，申请数量不限。
-
-
-
-
-
-
