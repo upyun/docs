@@ -26,7 +26,7 @@ curl -X POST \
     -H "Authorization: UPYUN <Operator>:<Signature>" \
     -H "Date: <Wed, 29 Oct 2014 02:26:58 GMT>" \
 	-H "Content-MD5: <Content-MD5>" \
-    -d "bucket_name=<bucket_name>" \
+    -d "service=<service>" \
     -d "notify_url=<notify_url>" \
     -d "app_name=spiderman" \
     -d "tasks=<base64 编码后的任务字符串>"
@@ -40,7 +40,7 @@ curl -X POST \
 
 | 参数       		| 类型       	| 必选  	| 说明                              	|
 |-------------------|---------------|-------|-----------------------------------|
-| bucket_name       | string       	| 是   	| 文件上传的服务名         			|
+| service       	| string       	| 是   	| 文件上传的服务名         			|
 | notify_url        | string       	| 是   	| 回调通知地址，详见[回调通知](#notify_url)    |
 | tasks             | string       	| 是   	| 任务信息，详见 [tasks 参数说明](#tasks)  	|
 | app_name          | string       	| 是   	| 处理功能，`spiderman` 表示文件拉取      |
@@ -92,7 +92,7 @@ curl -X POST \
     -H "Authorization: UPYUN <Operator>:<Signature>" \
     -H "Date: <Wed, 29 Oct 2014 02:26:58 GMT>" \
 	-H "Content-MD5: <Content-MD5>" \
-    -d "bucket_name=<bucket_name>" \
+    -d "service=<service>" \
 	# 其他参数...
 ```
 
@@ -103,7 +103,7 @@ curl -X POST \
 | 参数       	| 类型   	| 说明                                                      	|
 |---------------|-----------|-----------------------------------------------------------|
 | task_id      	| string    | 任务对的任务 ID                             				|
-| bucket_name  	| string    | 文件上传的服务名                               |
+| service  		| string    | 文件上传的服务名                               |
 | status_code  	| integer   | 处理结果状态码，`200` 表示成功处理              				|
 | path         	| string    | 文件上传保存路径                              				|
 | error        	| string    | 错误信息，空字符串表示无错误信息        						|
@@ -136,7 +136,11 @@ curl -X POST \
 | url               | string    | 是   	| 需要拉取文件的 URL 地址         				|
 | save_as           | string    | 是   	| 文件上传存放路径                          	|
 | overwrite         | boolean   | 否   	| 如果文件存在，是否覆盖，默认 `true`      		|
-| x-gmkerl-thumb    | string    | 否   	| 图片处理参数，默认不进行图片处理。详见[上传预处理（同步）](/cloud/image/#sync_upload_process)  |
+| content-md5    	| String   	| 否  	| 上传文件的 MD5 值，如果请求中文件太大计算 MD5 不方便，可以为空        |
+| content-type   	| String  	| 否  	| 文件类型，默认使用文件扩展名作为文件类型                         |
+| content-secret 	| String  	| 否  	| 文件密钥，用于保护文件，防止文件被直接访问，见 [Content-Secret 参数说明](/api/rest_api/#Content-Secret) |
+| x-upyun-meta-x 	| String   	| 否  	| 文件元信息，见 [Metadata](/api/rest_api/#metadata)           |
+| x-gmkerl-thumb	 	| string    | 否   	| 图片处理参数，默认不进行图片处理。详见[上传预处理（同步）](/cloud/image/#sync_upload_process)  |
 | random            | boolean   | 否   	| 是否在 `url` 后追加随机数，追加格式 `?<random>`，默认 `false`。见「注」|
 
 

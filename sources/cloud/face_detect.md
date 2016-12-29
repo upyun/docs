@@ -23,9 +23,9 @@
 
 ** 举例 **
 
-图片 URL 是 <a href="http://p.upyun.com/docs/cloud/face.jpg" target="_blank" title="查看">`http://p.upyun.com/docs/cloud/face.jpg`</a> 
+图片 URL 是 <a href="https://p.upyun.com/docs/cloud/face.jpg" target="_blank" title="查看">`https://p.upyun.com/docs/cloud/face.jpg`</a> 
 
-人脸检测的 URL 是 <a href="http://p.upyun.com/docs/cloud/face.jpg!/face/detection" target="_blank" title="查看">`http://p.upyun.com/docs/cloud/face.jpg!/face/detection`</a>
+人脸检测的 URL 是 <a href="https://p.upyun.com/docs/cloud/face.jpg!/face/detection" target="_blank" title="查看">`https://p.upyun.com/docs/cloud/face.jpg!/face/detection`</a>
 
 ### 响应信息
 

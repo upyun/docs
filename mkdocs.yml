@@ -38,7 +38,7 @@ pages:
     - '图片处理': 'cloud/image.md'
     - '认证鉴权': 'cloud/authorization.md'
     - '音视频处理': 'cloud/av.md'
-    - '图片鉴别': 'cloud/audit.md'
+    - '内容审核': 'cloud/audit.md'
     - '人脸识别': 'cloud/face_detect.md'
     - '压缩解压缩': 'cloud/unzip.md'
     - '文件拉取': 'cloud/spider.md'
