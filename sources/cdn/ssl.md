@@ -142,3 +142,24 @@ Google 在 2014 年发布的官方博客中指出，已经调整其搜索引擎�
 3、如果证书申购失败，除因 CNAME 原因导致的失败，其他失败情况下，可多次尝试重新提交申请，如多次都未申请成功，则可提交工单寻求帮助。
 
 4、目前只支持单一域名的申请，不支持泛域名申请，不支持带下划线（_）的域名申请，申请数量不限。
+
+5、Let’s Encrypt DV SSL 证书兼容列表如下所示：
+
+Mozilla Firefox >= v2.0
+Google Chrome
+Internet Explorer on Windows XP SP3 and higher
+Microsoft Edge
+Android OS >= v2.3.6
+Safari >= v4.0 on macOS
+Safari on iOS >= v3.1
+Debian Linux >= v6
+Ubuntu Linux >= v12.04
+NSS Library >= v3.11.9
+Amazon FireOS (Silk Browser)
+Cyanogen > v10
+Jolla Sailfish OS > v1.1.2.16
+Kindle > v3.4.1
+Java 7 >= 7u111
+Java 8 >= 8u101
+
+更多兼容性信息请看考[这里](https://letsencrypt.org/docs/certificate-compatibility/)
