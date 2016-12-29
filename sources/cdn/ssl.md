@@ -145,6 +145,7 @@ Google 在 2014 年发布的官方博客中指出，已经调整其搜索引擎�
 
 5、Let’s Encrypt DV SSL 证书兼容列表如下所示：
 
+```
 Mozilla Firefox >= v2.0
 Google Chrome
 Internet Explorer on Windows XP SP3 and higher
@@ -162,4 +163,6 @@ Kindle > v3.4.1
 Java 7 >= 7u111
 Java 8 >= 8u101
 
-更多兼容性信息请看考[这里](https://letsencrypt.org/docs/certificate-compatibility/)
+```
+
+更多兼容性信息请参考[这里](https://letsencrypt.org/docs/certificate-compatibility/)
