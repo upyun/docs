@@ -1,6 +1,6 @@
 ## 快速入门
 
-又拍云处理（图片鉴别）基于 CDN 或云存储服务，您在使用它之前，请确保您已经注册又拍云账号并完成实名验证，请确保您已经创建 [CDN 服务](/cdn/guide/)或[云存储服务](/api/quick_start/)。
+又拍云处理（内容审核）基于 CDN 或云存储服务，您在使用它之前，请确保您已经注册又拍云账号并完成实名验证，请确保您已经创建 [CDN 服务](/cdn/guide/)或[云存储服务](/api/quick_start/)。
 
 收费方面，现在免费公测中，后续会进行收费。
 
@@ -21,7 +21,7 @@ curl -X POST \
     -H "Authorization: UPYUN <Operator>:<Signature>" \
     -H "Date: <Wed, 29 Oct 2014 02:26:58 GMT>" \
 	-H "Content-MD5: <Content-MD5>" \
-    -d "bucket_name=<bucket_name>" \
+    -d "service=<service>" \
     -d "notify_url=<notify_url>" \
     -d "app_name=<app_name>" \
     -d "tasks=<base64 编码后的任务字符串>"
@@ -36,7 +36,7 @@ curl -X POST \
 
 | 参数       		| 类型       	| 必选  	| 说明                              	|
 |-------------------|---------------|-------|-----------------------------------|
-| bucket_name       | string       	| 是   	| 图片所在的服务名         			|
+| service       	| string       	| 是   	| 图片所在的服务名         			|
 | notify_url        | string       	| 是   	| 回调通知地址，详见[回调通知](#notify_url)    	|
 | tasks             | string       	| 是   	| 任务信息，详见 [tasks 参数说明](#tasks)  	|
 | app_name          | string       	| 是   	| 固定值，`imgaudit`			      	|
@@ -89,7 +89,7 @@ curl -X POST \
     -H "Authorization: UPYUN <Operator>:<Signature>" \
     -H "Date: <Wed, 29 Oct 2014 02:26:58 GMT>" \
 	-H "Content-MD5: <Content-MD5>" \
-    -d "bucket_name=<bucket_name>" \
+    -d "service=<service>" \
 	# 其他参数...
 ```
 
@@ -97,22 +97,18 @@ curl -X POST \
 
 回调信息为 JSON 格式，参数名及说明如下：
 
-| 参数       	| 类型   	| 说明                                                      	|
-|---------------|-----------|-----------------------------------------------------------|
-| bucket_name   | string    | 图片所在的服务名                                     		|
-| status_code   | integer   | 处理结果状态码，`200` 表示成功处理，详见[状态码表](#status)   	|
-| source        | string    | 图片路径                                            		|
-| label  		| integer  	| 图片被机器判定为某个分类的概率，`0` 表示正常的概率，`1` 表示涉黄的概率 |
-| task_id       | string    | 任务对应的 `task_id`                                    	|
-| error       	| string   	| 错误信息，空字符串表示无错误信息   							|
-
-<!--
-
-| label  		| integer  	| 图片被机器判定的分类，可能值 `0`、`1`，`0` 表示正常，`1` 表示涉黄 	|
-| rate  		| float   	| 图片被机器判定为某个分类的概率，概率介于 `[0-1]` 之间，您可以根据您的需求确定需要人工复审的界限 |
-| review  		| boolean  	| 是否需要人工复审，`true` 表示需要，`false` 表示不需要 			|
-
--->
+| 参数       		| 类型   	| 说明                                                      	|
+|-------------------|-----------|-----------------------------------------------------------|
+| service	   		| string    | 图片所在的服务名                                     		|
+| status_code   	| integer   | 处理结果状态码，`200` 表示成功处理，详见[状态码表](#status)   	|
+| source        	| string    | 图片路径                                            		|
+| result 			| json  	| 识别结果集，包含 `porn`										|
+| porn 				| json  	| 色情识别结果，包含 `label`、`rate`、`revice`					|
+| label  			| integer  	| 图片被判定的分类，可能值 `0`、`1`，`0` 表示正常，`1` 表示色情 	|
+| rate  			| float   	| 图片被判定为某个分类的概率，介于 `[0-1]` 之间	 		|
+| review  			| boolean  	| 是否需要人工复审，`true` 表示需要，`false` 表示不需要 			|
+| task_id       	| string    | 任务对应的 `task_id`                                    	|
+| error       		| string   	| 错误信息，空字符串表示无错误信息   							|
 
 ** 回调签名 **
 
@@ -122,21 +118,19 @@ curl -X POST \
 
 ```
 {
-	"labels": {
-        "0": 0.9833183288574219,
-        "1": 0.016681667417287827
-    },
-    "status_code": 200,
-    "bucket_name": "upyun-temp",
-    "task_id": "7b01610c7fa700b56cd7c80be5e08d5c",
-    "source": "upyun.jpg"
+    "service": "upyun-temp",
+	"status_code": 200,
+    "source": "upyun.jpg",
+	"result": {
+		"porn": { 
+			"label": 0,
+			"rate": 0.9833183288574219,
+	    	"review": false  
+		} 
+	},
+    "task_id": "7b01610c7fa700b56cd7c80be5e08d5c"
 }
 ```
-<!--
-    "label": 0,
-	"rate": 0.9833183288574219,
-    "review": false
--->
 
 ---------
 
@@ -145,18 +139,18 @@ curl -X POST \
 
 ![上传预处理](http://uprocess.b0.upaiyun.com/docs/cloud/audit.png)
 
-在上传图片时，对上传的图片进行鉴别。任务以异步的方式处理，处理完成后，回调通知用户鉴别结果。
+在上传图片时，对上传的图片进行识别。任务以异步的方式处理，处理完成后，回调通知用户识别结果。
 
 支持的 API： [FORM API](/api/form_api/#upload_args)。
 
-参数名是 `apps`，参数值是 JSON 字符串。一个 `apps` 最多允许包含一个鉴别任务，每张图片只需鉴别一次。
+参数名是 `apps`，参数值是 JSON 字符串。一个 `apps` 最多允许包含一个识别任务，每张图片只需识别一次。
 
 ** apps 参数结构 **
 
 ```
 apps = [
-    {                                               // 异步鉴别任务
-        "name": "imgaudit",                         // 异步任务名称，必填。imgaudit 表示异步图片鉴别服务
+    {                                               // 异步内容审核任务
+        "name": "imgaudit",                         // 异步任务名称，必填。imgaudit 表示异步内容审核服务
         "notify_url": "<notify_url>"                // 回调地址，不填时使用上传参数中的 notify_url
     },
 	{ 												// 举例			
@@ -206,12 +200,12 @@ apps = [
 
 ## 功能
 
-当前，支持涉黄鉴别。后续会陆续上线广告、涉政、暴恐、违禁品鉴别。
+当前，支持色情识别。后续会上线涉政识别和违禁识别。
 
 
-### 涉黄鉴别
+### 色情识别
 
-色情，裸露生殖器官或者含有性暗示的图片
+色情，描述性行为和色情场景、女性裸露敏感部位、男性裸露下体等。
 
 <img src="http://p.upyun.com/docs/cloud/porno2.jpg" height="180" target="_blank" title="查看" />
 <img src="http://p.upyun.com/docs/cloud/porno3.png" height="180" target="_blank" title="查看" />
@@ -225,13 +219,9 @@ apps = [
 
 <!--
 
-### 小广告鉴别
+### 涉政识别
 
-### 涉政鉴别
-
-### 血暴鉴别
-
-### 违禁品鉴别
+### 违禁识别
 
 -->
 

@@ -22,7 +22,7 @@ curl -X POST \
     -H "Date: <Wed, 29 Oct 2014 02:26:58 GMT>" \
 	-H "Content-MD5: <Content-MD5>" \
     -d "accept=json"
-    -d "bucket_name=<bucket_name>" \
+    -d "service=<service>" \
     -d "notify_url=<notify_url>" \
     -d "source=<音视频文件相对路径>" \
     -d "tasks=<base64 编码后的任务字符串>" \
@@ -37,7 +37,7 @@ curl -X POST \
 
 | 参数       		| 类型       	| 必选  	| 说明                              	|
 |-------------------|---------------|-------|-----------------------------------|
-| bucket_name       | string       	| 是   	| 音/视频文件所在的服务名         		|
+| service       	| string       	| 是   	| 音/视频文件所在的服务名         		|
 | notify_url        | string       	| 是   	| 回调通知地址，详见[回调通知](#notify_url) |
 | source            | string       	| 是   	| 原始音/视频文件路径                     	|
 | tasks             | string       	| 是   	| 任务信息，详见 [tasks 参数说明](#tasks)  	|
@@ -98,7 +98,7 @@ curl -X POST \
     -H "Authorization: UPYUN <Operator>:<Signature>" \
     -H "Date: <Wed, 29 Oct 2014 02:26:58 GMT>" \
 	-H "Content-MD5: <Content-MD5>" \
-    -d "bucket_name=<bucket_name>" \
+    -d "service=<service>" \
 	# 其他参数...
 ```
 
@@ -108,7 +108,7 @@ curl -X POST \
 
 | 参数       		| 类型   	| 说明                                                      	|
 |-------------------|-----------|-----------------------------------------------------------|
-| bucket_name   	| string    | 音/视频文件所在的服务名                                     	|
+| service   		| string    | 音/视频文件所在的服务名                                     	|
 | status_code   	| integer   | 处理结果状态码，`200` 表示成功处理，详见[状态码表](#status)   	|
 | path          	| array     | 输出文件保存路径                                            |
 | description   	| string    | 处理结果描述                                             	|
@@ -168,7 +168,7 @@ apps = [
 通过 `task_id`，以 `GET` 方法向 `http://p0.api.upyun.com/status/` 提交进度查询任务。
 
 ```
-curl http://p0.api.upyun.com/status?bucket_name=<bucket_name>&task_ids=<task_id1>,<task_id2>,<task_id3> \
+curl http://p0.api.upyun.com/status?service=<service>&task_ids=<task_id1>,<task_id2>,<task_id3> \
     -H "Authorization: UPYUN <Operator>:<Signature>" \
     -H "Date: <Wed, 29 Oct 2014 02:26:58 GMT>"
 ```
@@ -181,7 +181,7 @@ curl http://p0.api.upyun.com/status?bucket_name=<bucket_name>&task_ids=<task_id1
 
 | 参数       		| 类型      	| 必选  	| 说明                                   |
 |-------------------|-----------|-------|------------------------------------------|
-| bucket_name       | string    | 是   	| 音/视频文件所在的服务名        		    	|
+| service       	| string    | 是   	| 音/视频文件所在的服务名        		    	|
 | task_ids          | string    | 是    	| 任务集，多个 `task_id` 使用 `,` 连接，最多 20 个 `task_id`  	  |
 
 ** 响应信息 **
@@ -212,7 +212,7 @@ curl http://p0.api.upyun.com/status?bucket_name=<bucket_name>&task_ids=<task_id1
 通过 `task_id`，以 `GET` 方法向 `http://p0.api.upyun.com/result/` 提交处理结果查询任务。
 
 ```
-curl http://p0.api.upyun.com/result?bucket_name=<bucket_name>&task_ids=<task_id1>,<task_id2>,<task_id3> \
+curl http://p0.api.upyun.com/result?service=<service>&task_ids=<task_id1>,<task_id2>,<task_id3> \
     -H "Authorization: UPYUN <Operator>:<Signature>" \
     -H "Date: <Wed, 29 Oct 2014 02:26:58 GMT>"
 ```
@@ -225,7 +225,7 @@ curl http://p0.api.upyun.com/result?bucket_name=<bucket_name>&task_ids=<task_id1
 
 | 参数       		| 类型      	| 必选  	| 说明                                   |
 |-------------------|-----------|-------|------------------------------------------|
-| bucket_name       | string    | 是   	| 音/视频文件所在的服务名        		    	|
+| service       	| string    | 是   	| 音/视频文件所在的服务名        		    	|
 | task_ids          | string    | 是    	| 任务集，多个 `task_id` 使用 `,` 连接，最多 20 个 `task_id`  	  |
 
 ** 响应信息 **
@@ -238,7 +238,7 @@ curl http://p0.api.upyun.com/result?bucket_name=<bucket_name>&task_ids=<task_id1
         "path": ["/v2.mp4"],
         "signature": "4042c1f07f546d28",
         "status_code": 200,
-        "bucket_name": "bucket",
+        "service": "service",
         "description": "OK",
         "task_id": "9d9c32b63a1034834e77672c6f51f661",
         "timestamp": 1472010905
@@ -247,7 +247,7 @@ curl http://p0.api.upyun.com/result?bucket_name=<bucket_name>&task_ids=<task_id1
         "path": ["/v2.mp4"],
         "signature": "1c49be9b672394ff",
         "status_code": 200,
-        "bucket_name": "bucket",
+        "service": "service",
         "description": "OK",
         "task_id": "3438a54b4991e8d4a46a003bc15e9867",
         "timestamp": 1472010684
@@ -283,6 +283,26 @@ curl http://p0.api.upyun.com/result?bucket_name=<bucket_name>&task_ids=<task_id1
 | 音频编码格式 	| MP1、MP2、MP3、AAC、AC-3、Vorbis、PCM、RealAudio、Windows Media Audio 等	| AAC、MP3 等		|
 
 更多的格式请查阅 [ffmpeg 支持格式列表](http://ffmpeg.org/general.html#Supported-File-Formats_002c-Codecs-or-Features)。
+
+---------
+
+<a name="preset_mode"></a>
+### 预置模板
+
+同等清晰度下，建议优先使用 16:9 的宽高比。特别地，支持 4K 视频处理。
+
+| 清晰度     	| 参数名         	| 分辨率            	| 码率     		|
+|---------------|-------------------|-------------------|---------------|
+| 全高清      	| 1080p(16:9)     	| 1920x1080,16:9    | 2560Kbps    	|
+| 高清        	| 720p(16:9)      	| 1280x720,16:9     | 1152kbps    	|
+| 高清        	| 720p(4:3)       	| 960x720,4:3     	| 1152kbps    	|
+| 标清        	| 540p(16:9)      	| 960x540,16:9      | 768kbps    	|
+| 标清        	| 480p(16:9)      	| 854x480,16:9      | 512kbps    	|
+| 标清        	| 480p(4:3)       	| 640x480,4:3       | 512kbps    	|
+| 标清        	| 480p(3:2)       	| 720x480,3:2       | 512kbps    	|
+| 流畅（低清）  	| 360p(16:9)       	| 640x360,16:9      | 384kbps    	|
+| 流畅（低清）  	| 360p(4:3)        	| 480x360,4:3       | 384kbps    	|
+| 流畅（低清）  	| 240p(4:3)        	| 320x240,4:3       | 256kbps    	|
 
 ---------
 
@@ -398,25 +418,6 @@ upyun-operatoracceptjsonbucket_namedemonotify_urlhttp://www.example.com/notify/s
 ** 注 **
 
 - `s` 参数有两种设置方法：1）使用[预置模板](#preset_mode)，值是预置模板的参数名，如 `720p(16:9)`；2）自定义，值是 `宽x高`，如 `1280x720`。
-
-
-<a name="preset_mode"></a>
-** 预置模板 **
-
-同等清晰度下，建议优先使用 16:9 的宽高比。特别地，支持 4K 视频处理。
-
-| 清晰度     	| 参数名         	| 分辨率            	| 码率     		|
-|---------------|-------------------|-------------------|---------------|
-| 全高清      	| 1080p(16:9)     	| 1920x1080,16:9    | 2560Kbps    	|
-| 高清        	| 720p(16:9)      	| 1280x720,16:9     | 1152kbps    	|
-| 高清        	| 720p(4:3)       	| 960x720,4:3     	| 1152kbps    	|
-| 标清        	| 540p(16:9)      	| 960x540,16:9      | 768kbps    	|
-| 标清        	| 480p(16:9)      	| 854x480,16:9      | 512kbps    	|
-| 标清        	| 480p(4:3)       	| 640x480,4:3       | 512kbps    	|
-| 标清        	| 480p(3:2)       	| 720x480,3:2       | 512kbps    	|
-| 流畅（低清）  	| 360p(16:9)       	| 640x360,16:9      | 384kbps    	|
-| 流畅（低清）  	| 360p(4:3)        	| 480x360,4:3       | 384kbps    	|
-| 流畅（低清）  	| 240p(4:3)        	| 320x240,4:3       | 256kbps    	|
 
 ---------
 

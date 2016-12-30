@@ -19,7 +19,7 @@ curl -X POST \
     -H "Authorization: UPYUN <Operator>:<Signature>" \
     -H "Date: <Wed, 29 Oct 2014 02:26:58 GMT>" \
 	-H "Content-MD5: <Content-MD5>" \
-    -d "bucket_name=<bucket_name>" \
+    -d "service=<service>" \
     -d "notify_url=<notify_url>" \
     -d "app_name=<app_name>" \
     -d "tasks=<base64 编码后的任务字符串>"
@@ -34,7 +34,7 @@ curl -X POST \
 
 | 参数       		| 类型       	| 必选  	| 说明                              	|
 |-------------------|---------------|-------|-----------------------------------|
-| bucket_name       | string       	| 是   	| 压缩/解压缩文件所在的服务名         		|
+| service       	| string       	| 是   	| 压缩/解压缩文件所在的服务名         		|
 | notify_url        | string       	| 是   	| 回调通知地址，详见[回调通知](#notify_url)           	|
 | tasks             | string       	| 是   	| 任务信息，详见 [tasks 参数说明](#tasks)  	|
 | app_name          | string       	| 是   	| 处理功能，`compress` 表示压缩，`depress` 表示解压缩      |
@@ -89,7 +89,7 @@ curl -X POST \
     -H "Authorization: UPYUN <Operator>:<Signature>" \
     -H "Date: <Wed, 29 Oct 2014 02:26:58 GMT>" \
 	-H "Content-MD5: <Content-MD5>" \
-    -d "bucket_name=<bucket_name>" \
+    -d "service=<service>" \
 	# 其他参数...
 ```
 

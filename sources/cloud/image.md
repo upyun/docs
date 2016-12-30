@@ -22,13 +22,13 @@
 
 ** 例如 **
 
-图片 URL 是 <a href="http://p.upyun.com/docs/cloud/demo.jpg" target="_blank" title="查看">`http://p.upyun.com/docs/cloud/demo.jpg`</a>，
+图片 URL 是 <a href="https://p.upyun.com/docs/cloud/demo.jpg" target="_blank" title="查看">`https://p.upyun.com/docs/cloud/demo.jpg`</a>，
 
 间隔标识符是 `!`，
 
 功能是 `旋转 90°`，
 
-访问的 URL 是 <a href="http://p.upyun.com/docs/cloud/demo.jpg!/rotate/90" target="_blank" title="查看">`http://p.upyun.com/docs/cloud/demo.jpg!/rotate/90`</a>。
+访问的 URL 是 <a href="https://p.upyun.com/docs/cloud/demo.jpg!/rotate/90" target="_blank" title="查看">`https://p.upyun.com/docs/cloud/demo.jpg!/rotate/90`</a>。
 
 
 
@@ -53,7 +53,7 @@
 
 缩略图版本名称是 `upyun520`，
 
-访问的 URL 是 <a href="http://p.upyun.com/docs/cloud/demo.jpg!upyun520" target="_blank" title="查看">`http://p.upyun.com/docs/cloud/demo.jpg!upyun520`</a>。
+访问的 URL 是 <a href="https://p.upyun.com/docs/cloud/demo.jpg!upyun520" target="_blank" title="查看">`https://p.upyun.com/docs/cloud/demo.jpg!upyun520`</a>。
 
 其中，`!` 是[间隔标识符](#tag)。
 
@@ -126,7 +126,7 @@ apps = [
 |  字段名       |   类型    |          说明             |
 |---------------|---------- |---------------------------|
 | `task_id`     |  string   | 异步处理任务 ID（在上传时返回）|
-| `bucket_name` |  string   | 文件所在空间名 				|
+| `service` 	|  string   | 文件所在空间名 				|
 | `status_code` |  integer  | 处理结果状态码，`200` 表示成功处理 |
 | `imginfo`     |  map      | 输出单张图片信息 			|
 | `imginfos`    |  array    | 输出多张图片信息 			|
@@ -151,7 +151,7 @@ apps = [
 ```json
 {
     "task_id": "b52c96bea30646abf8170f333bbd42b9",
-    "bucket_name": "upyun-demo",
+    "service": "upyun-demo",
     "status_code": 200,
     "imginfo": {
         "path": "/images/upyun.jpg",
@@ -168,7 +168,7 @@ apps = [
 ```json
 {
     "task_id": "b52c96bea30646abf8170f333bbd42b9",
-    "bucket_name": "upyun-demo",
+    "service": "upyun-demo",
     "status_code": 200,
     "imginfos": [
       {
@@ -204,7 +204,7 @@ apps = [
 
 例如，保护秘钥是 `abc`，
 
-访问图片 URL 是 <a href="http://p.upyun.com/docs/cloud/secret.jpg!abc" target="_blank" title="查看">`http://p.upyun.com/docs/cloud/secret.jpg!abc`</a>。
+访问图片 URL 是 <a href="https://p.upyun.com/docs/cloud/secret.jpg!abc" target="_blank" title="查看">`https://p.upyun.com/docs/cloud/secret.jpg!abc`</a>。
 
 如果保护秘钥跟缩略图版本名称相同，当作保护密钥。特别地，对有保护秘钥的图片进行处理时，不需要加保护秘钥。
 
@@ -216,9 +216,9 @@ apps = [
 
 URL 作图混合使用是：
 
-<a href="http://p.upyun.com/docs/cloud/demo.jpg!upyun520/fw/500" target="_blank" title="查看">
+<a href="https://p.upyun.com/docs/cloud/demo.jpg!upyun520/fw/500" target="_blank" title="查看">
 ```
-http://p.upyun.com/docs/cloud/demo.jpg!upyun520/fw/500
+https://p.upyun.com/docs/cloud/demo.jpg!upyun520/fw/500
 ```
 </a> 
 
@@ -345,7 +345,7 @@ x-gmkerl-thumb: upyun520/fw/500
 
 把图片水印或文字水印参数重复。例如，一个文字水印 + 一个图片水印：
 
-<a href="http://p.upyun.com/docs/cloud/demo.jpg!/watermark/text/5L2g5aW977yB/font/simhei/watermark/url/L2RvY3MvY2xvdWQvdXB5dW4tbG9nby5wbmc=/align/southeast" target="_blank" title="查看演示">
+<a href="https://p.upyun.com/docs/cloud/demo.jpg!/watermark/text/5L2g5aW977yB/font/simhei/watermark/url/L2RvY3MvY2xvdWQvdXB5dW4tbG9nby5wbmc=/align/southeast" target="_blank" title="查看演示">
 ```
 /watermark/text/5L2g5aW977yB/font/simhei/watermark/url/L2RvY3MvY2xvdWQvdXB5dW4tbG9nby5wbmc=/align/southeast
 ```

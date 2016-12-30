@@ -153,7 +153,7 @@ Signature = Base64 (HMAC-SHA1 (<Password>,
 完整签名：
 
 ```
-Authorization: UPYUN upyun:NnMeoZosYLnOGUiY/Skb0W1DMNA=
+authorization: UPYUN upyun:NnMeoZosYLnOGUiY/Skb0W1DMNA=
 ```
 
 例 3，[FORM API 回调通知](/api/form_api/#notify_return)请求签名

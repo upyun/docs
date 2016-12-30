@@ -44,11 +44,11 @@ Password = MD5(upyun520) = ab296a01090ca2eab5fe5b246999da54
 Method = POST							
 URI = /pretreatment/
 Date = Wed, 9 Nov 2016 14:26:58 GMT
-Content-MD5 = MD5({"bucket_name": "upyun-temp", "notify_url": "/upyun_notify_url", "source": "/upyun_notify_url", "tasks": "W3siYXZvcHRzIjoiL3MvMjQwcCg0OjMpL2FzLzEvci8zMCIsInJldHVybl9pbmZvIjp0cnVlLCJzYXZlX2FzIjoiL2EvYi5tcDQiLCJ0eXBlIjoidmlkZW8ifSx7ImF2b3B0cyI6Ii9pL0wyRXZZaTlqTG0xd05BPT0vaS9MekV2TWk4ekxtMXdOQT09Iiwic2F2ZV9hcyI6Ii9jb25jYXQvYS5tcDQiLCJ0eXBlIjoidmNvbmNhdCJ9XQ==", "accept": "json"})
-            = b80a4464027bab3a6f244a464f1db63a
+Content-MD5 = MD5({"service": "upyun-temp", "notify_url": "/upyun_notify_url", "source": "/upyun_notify_url", "tasks": "W3siYXZvcHRzIjoiL3MvMjQwcCg0OjMpL2FzLzEvci8zMCIsInJldHVybl9pbmZvIjp0cnVlLCJzYXZlX2FzIjoiL2EvYi5tcDQiLCJ0eXBlIjoidmlkZW8ifSx7ImF2b3B0cyI6Ii9pL0wyRXZZaTlqTG0xd05BPT0vaS9MekV2TWk4ekxtMXdOQT09Iiwic2F2ZV9hcyI6Ii9jb25jYXQvYS5tcDQiLCJ0eXBlIjoidmNvbmNhdCJ9XQ==", "accept": "json"})
+            = 346867d17ec42a2e5d1593a420e85323
 
 // 请求体
-bucket_name = upyun-temp
+service = upyun-temp
 notify_url = /upyun_notify_url
 source = /tmp.mp4
 tasks = W3siYXZvcHRzIjoiL3MvMjQwcCg0OjMpL2FzLzEvci8zMCIsInJldHVybl9pbmZvIjp0cnVlLCJzYXZlX2FzIjoiL2EvYi5tcDQiLCJ0eXBlIjoidmlkZW8ifSx7ImF2b3B0cyI6Ii9pL0wyRXZZaTlqTG0xd05BPT0vaS9MekV2TWk4ekxtMXdOQT09Iiwic2F2ZV9hcyI6Ii9jb25jYXQvYS5tcDQiLCJ0eXBlIjoidmNvbmNhdCJ9XQ==
@@ -65,15 +65,15 @@ Signature = Base64 (HMAC-SHA1 (<Password>,
 <Content-MD5>
 ))
 // 内容拼接时，不用换行或空格，上面格式的换行或空格是为了方便阅读
-= Base64 (HMAC-SHA1 (ab296a01090ca2eab5fe5b246999da54,POST&/pretreatment/&Wed, 9 Nov 2016 14:26:58 GMT&b80a4464027bab3a6f244a464f1db63a))
+= Base64 (HMAC-SHA1 (ab296a01090ca2eab5fe5b246999da54,POST&/pretreatment/&Wed, 9 Nov 2016 14:26:58 GMT&346867d17ec42a2e5d1593a420e85323))
 // HMAC-SHA1 返回的原生二进制数据进行 Base64 编码
-= Oxt/VspwMh9zKkOdt+okC9aFycs=
+= vvTpvPx15mSuDesHyt1ULodZ1WU=
 ```
 
 完整签名：
 
 ```
-Authorization: UPYUN upyun:Oxt/VspwMh9zKkOdt+okC9aFycs=
+Authorization: UPYUN upyun:vvTpvPx15mSuDesHyt1ULodZ1WU=
 ```
 
 ---------
