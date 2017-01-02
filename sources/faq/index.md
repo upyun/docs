@@ -507,6 +507,7 @@ curl -T /local_img.jpg http://v0.api.upyun.com/bucket/img.jpg -u operator:operat
 |工具|[tcpudmp的使用](https://techs.b0.upaiyun.com/videos/cdnpage/tcpdump.html)|8分56秒|
 |工具|[upx的使用](https://techs.b0.upaiyun.com/videos/cdnpage/upx.html)|6分56秒|
 |插件|[ueditor的使用](https://techs.b0.upaiyun.com/videos/cdnpage/ueditor.html)|7分55秒|
+| CDN |[ Let'S Encrypt DV SSL 证书](https://techs.b0.upaiyun.com/videos/cdnpage/zssq.html)|7分55秒|
 
 ### 直播服务
 
