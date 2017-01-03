@@ -500,12 +500,13 @@ curl -T /local_img.jpg http://v0.api.upyun.com/bucket/img.jpg -u operator:operat
 | 日志   | [日志分析和日志下载](https://techs.b0.upaiyun.com/videos/cdnpage/upyunlog.html)                    | 7分2    |
 | CDN  | [又拍云的统计功能](https://techs.b0.upaiyun.com/videos/cdnpage/upyuncount.html) | 3分35秒  |
 | CDN  | [又拍云监控系统简介](https://techs.b0.upaiyun.com/videos/cdnpage/jiankong.html) | 3分05秒  |
-| CDN  | [Rewrite规则的使用](https://techs.b0.upaiyun.com/videos/cdnpage/rewrite.html) | 4分03秒  |
+| CDN  | [ Rewrite 规则的使用](https://techs.b0.upaiyun.com/videos/cdnpage/rewrite.html) | 4分03秒  |
 | 账号   | [实名认证](https://techs.b0.upaiyun.com/videos/cdnpage/gerenrenzheng.html) | 2分     |
-| CDN |[HTTP2简介](https://techs.b0.upaiyun.com/videos/cdnpage/HTTP2.html)|2分49秒|
-|工具|[wireshark的使用](https://techs.b0.upaiyun.com/videos/cdnpage/wireshark.html)|5分58秒|
-|工具|[tcpudmp的使用](https://techs.b0.upaiyun.com/videos/cdnpage/tcpdump.html)|8分56秒|
-|工具|[upx的使用](https://techs.b0.upaiyun.com/videos/cdnpage/upx.html)|6分56秒|
+| CDN |[ HTTP2 简介](https://techs.b0.upaiyun.com/videos/cdnpage/HTTP2.html)|2分49秒|
+|工具|[ wireshark 的使用](https://techs.b0.upaiyun.com/videos/cdnpage/wireshark.html)|5分58秒|
+|工具|[ tcpudmp 的使用](https://techs.b0.upaiyun.com/videos/cdnpage/tcpdump.html)|8分56秒|
+|工具|[ Linux 下 upx 的使用](https://techs.b0.upaiyun.com/videos/cdnpage/upx.html)|6分56秒|
+|工具|[ Windows 下 upx 的使用](https://techs.b0.upaiyun.com/videos/cdnpage/winupx.html)|10分23秒|
 |插件|[ueditor的使用](https://techs.b0.upaiyun.com/videos/cdnpage/ueditor.html)|7分55秒|
 | CDN |[ Let'S Encrypt DV SSL 证书](https://techs.b0.upaiyun.com/videos/cdnpage/zssq.html)|3分35秒|
 
