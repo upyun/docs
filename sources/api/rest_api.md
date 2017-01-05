@@ -22,7 +22,7 @@ curl -X GET \
 
 **认证鉴权**
 
-详见[签名认证](/api/authorization/#_2)。
+详见[签名认证](/api/authorization/#header)。
 
 ---------
 
@@ -134,8 +134,7 @@ PUT /<bucket>/path/to/file
 | X-Upyun-Multi-Stage    | 是   | String  | 值为 `upload`， 表示开始上传文件数据                         |
 | X-Upyun-Multi-UUID     | 是   | String  | 本次上传任务的标识，是初始化断点续传任务时响应信息中的 `X-Upyun-Multi-UUID`  |
 | X-Upyun-Part-ID        | 是   | String  | 指定此次分片的唯一 ID，应严格等于上一次请求返回的 `X-Upyun-Next-Part-ID`   |
-| Content-MD5            | 否   | String  | 所上传分块的 MD5 值，等效于[签名认证](/api/authorization/#_2)中的 `File-MD5`             |
-
+| Content-MD5            | 否   | String  | 所上传分块的 MD5 值，等效于[签名认证](/api/authorization/#header)中的 `Content-MD5 ` |
 
 **响应信息**
 
@@ -162,7 +161,7 @@ PUT /<bucket>/path/to/file
 |----------------------- |------|---------|-------------------------------------------------------------|
 | X-Upyun-Multi-Stage    | 是   | String  | 值为 `complete`， 表示完成断点续传任务                  |
 | X-Upyun-Multi-UUID     | 是   | String  | 本次上传任务的标识，是初始化断点续传任务时响应信息中的 `X-Upyun-Multi-UUID`  |
-| X-Upyun-Multi-MD5      | 否   | String  | 所上传整个文件的 MD5 值，等效于[签名认证](/api/authorization/#_2)中的 `File-MD5`                    |
+| X-Upyun-Multi-MD5      | 否   | String  | 所上传整个文件的 MD5 值，等效于[签名认证](/api/authorization/#header)中的 `Content-MD5 ` |
 
 
 **响应信息**

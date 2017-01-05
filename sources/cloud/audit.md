@@ -103,7 +103,7 @@ curl -X POST \
 | status_code   	| integer   | 处理结果状态码，`200` 表示成功处理，详见[状态码表](#status)   	|
 | source        	| string    | 图片路径                                            		|
 | result 			| json  	| 识别结果集，包含 `porn`										|
-| porn 				| json  	| 色情识别结果，包含 `label`、`rate`、`revice`					|
+| porn 				| json  	| 色情识别结果，包含 `label`、`rate`、`review`					|
 | label  			| integer  	| 图片被判定的分类，可能值 `0`、`1`，`0` 表示正常，`1` 表示色情 	|
 | rate  			| float   	| 图片被判定为某个分类的概率，介于 `[0-1]` 之间	 		|
 | review  			| boolean  	| 是否需要人工复审，`true` 表示需要，`false` 表示不需要 			|
@@ -199,9 +199,6 @@ apps = [
 ---------
 
 ## 功能
-
-当前，支持色情识别。后续会上线涉政识别和违禁识别。
-
 
 ### 色情识别
 
