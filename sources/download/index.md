@@ -219,15 +219,8 @@
     </li>
 </ul>
 
-<h2 id="third-party-plugin">第三方插件和工具</h2>
+<h2 id="third-party-plugin">第三方工具和插件</h2>
 <ul class="list-unstyled list-inline clearfix">
-    <li>
-        <strong>WordPress</strong>
-        <div class="links">
-            <a href="https://github.com/monkey-wenjun/upyun_plugins" class="btn btn-xs" target="_blank"><i class="fa fa-question-circle"></i>查看</a>
-        </div>
-    </li>
-
     <li>
         <strong>又拍云资源管理器</strong>
         <div class="links">
@@ -242,16 +235,12 @@
             <a href="https://github.com/xcuts/UPYUN-API-Web-Tool/archive/master.zip" target="_blank" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
         </div>
     </li>
-
-     
-
     <li>
         <strong>又拍云命令行工具</strong>
         <div class="links">
             <a href="https://github.com/polym/upx" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
         </div>
     </li>
-
     <li>
         <strong>又拍云常用脚本</strong>
         <div class="links">
@@ -261,7 +250,61 @@
      <li>
         <strong>移动端网络检测工具</strong>
         <div class="links">
-            <a href="  https://techs.b0.upaiyun.com/netecho.apk" class="btn btn-xs" target="_blank"><i class="fa fa-question-circle"></i>查看</a>
+            <a href="https://techs.b0.upaiyun.com/netecho.apk" class="btn btn-xs" target="_blank"><i class="fa fa-question-circle"></i>查看</a>
+        </div>
+    </li>
+	<li>
+        <strong>WordPress</strong>
+        <div class="links">
+            <a href="https://github.com/monkey-wenjun/upyun_plugins" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
+        </div>
+    </li>
+	<li>
+        <strong>CKEditor</strong>
+        <div class="links">
+            <a href="https://github.com/liangzai-cool/ckeditor-plugin-image-upload-for-upyun/" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
+        </div>
+    </li>	
+	<li>
+        <strong>emlog</strong>
+        <div class="links">
+            <a href="https://github.com/ydva/upyun-for-emlog" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
+        </div>
+    </li>
+	<li>
+        <strong>Ghost</strong>
+        <div class="links">
+            <a href="https://github.com/sanddudu/upyun-ghost-store" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
+        </div>
+    </li>
+	<li>
+        <strong>NodeBB</strong>
+        <div class="links">
+            <a href="https://github.com/revir/nodebb-plugin-upyun-uploads" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
+        </div>
+    </li>
+	<li>
+        <strong>Swfupload</strong>
+        <div class="links">
+            <a href="https://github.com/cuncle/upyun-swfupload-example" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
+        </div>
+    </li>
+	<li>
+        <strong>Typecho</strong>
+        <div class="links">
+            <a href="https://github.com/codesee/UpyunFile" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
+        </div>
+    </li>
+	<li>
+        <strong>Plupload</strong>
+        <div class="links">
+            <a href="https://github.com/cuncle/upyun-plupload-example" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
+        </div>
+    </li>
+	<li>
+        <strong>Webupload</strong>
+        <div class="links">
+            <a href="https://github.com/cuncle/upyun-webupload-example" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
         </div>
     </li>
 </ul>
