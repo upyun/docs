@@ -41,7 +41,7 @@ curl -X POST \
 | notify_url        | string       	| 是   	| 回调通知地址，详见[回调通知](#notify_url) |
 | source            | string       	| 是   	| 原始音/视频文件路径                     	|
 | tasks             | string       	| 是   	| 任务信息，详见 [tasks 参数说明](#tasks)  	|
-| accept            | string       	| 是   	| 固定值，`json`  					|
+| accept            | string       	| 是   	| 回调信息的格式，值为`json`  					|
 
 <a name="tasks"></a>
 ** tasks 参数说明 **

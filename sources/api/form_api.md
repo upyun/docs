@@ -79,6 +79,7 @@ curl http://v0.api.upyun.com/<bucket> \
 | x-gmkerl-thumb        | 否   	| 图片预处理，见 [上传预处理（同步）](/cloud/image/#sync_upload_process)   |
 | x-gmkerl-type         | 否   	| 可选值：`get_meta`，获取图片信息；`get_theme_color`，获取图片主题色          |
 | apps                  | 否   	| 异步预处理，见 [异步预处理](#async_process)            |
+| b64encoded            | 否   	| 对通过 Base64 编码上传的文件进行 Base64 解码，值为 `on`            |
 | ext-param             | 否   	| 额外参数，见 [ext-parm](#ext-parm)                  |
 
 **注**
@@ -334,7 +335,7 @@ form_api_secret：`lGetaXubhGezKp89+6iuOb5IaS3=`
 | 参数                   		| 必选	| 说明                                       				    |
 |-------------------------------|-------|---------------------------------------------------------------|
 | x-gmkerl-extract-color-count  | 否   	| 主题色提取的颜色数量，默认 `256`                                 	|
-| x-gmkerl-extract-format       | 否   	| 主题色提取格式，默认 `hex`                                      	|
+| x-gmkerl-extract-format       | 否   	| 主题色提取格式，默认 `dec`                                      	|
 | x-gmkerl-thumbnail            | 否   	| 缩略图版本名称，可搭配其他 `x-gmkerl-*` 参数使用                  	|
 | x-gmkerl-type                 | 否   	| 缩略类型，见 [x-gmkerl-type 可选值列表](#gmkerl-type)           	|
 | x-gmkerl-value                | 否   	| 缩略类型对应的参数值，见 [x-gmkerl-value 值说明](#gmkerl-value)  	|
