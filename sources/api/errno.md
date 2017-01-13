@@ -100,6 +100,9 @@ API 请求失败时，服务端会返回一个 JSON 格式的响应体。它可�
 | 400 			| 40000033 			| failed to read firstchunk |
 | 400 			| 40000034 			| client error |
 | 400 			| 40000035 			| need purge body |
+| 400 			| 40000036 			| uri bucket must be same as param bucket    |
+| 400 			| 40000037 			| unknown service    |
+| 400 			| 40000038 			| no boundary defined in Content-Type    |
 | 401 			| 40100001 			| need date header    |
 | 401 			| 40100002 			| date offset error    |
 | 401 			| 40100003 			| unknown realm in authorization header    |
@@ -117,6 +120,10 @@ API 请求失败时，服务端会返回一个 JSON 格式的响应体。它可�
 | 401 			| 40100015 			| bucket read only    |
 | 401 			| 40100016 			| invalid date value in header    |
 | 401 			| 40100017 			| user need permission  |
+| 401 			| 40100018 			| account inactivate    |
+| 401 			| 40100019 			| account forbidden    |
+| 401 			| 40100020 			| account reject    |
+| 401 			| 40100021 			| overdue account    |
 | 403 			| 40300001 			| file name contains invalid chars (\r\n\t)    |
 | 403 			| 40300002 			| file path too long    |
 | 403 			| 40300003 			| file name too long    |
@@ -146,7 +153,9 @@ API 请求失败时，服务端会返回一个 JSON 格式的响应体。它可�
 | 403 			| 40300027 			| request body too big |
 | 403 			| 40300028 			| request has expired |
 | 403 			| 40300029 			| purge too much items |
+| 403 			| 40300030 			| wrong content-length header |
 | 404 			| 40400001 			| file or directory not found    |
+| 404 			| 40400002 			| base64 decoded err    |
 | 406 			| 40600001 			| dir not acceptable    |
 | 406 			| 40600002 			| folder already exists    |
 | 408 			| 40800001 			| read client request timeout |

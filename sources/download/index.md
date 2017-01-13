@@ -260,12 +260,6 @@
         </div>
     </li>
 	<li>
-        <strong>CKEditor</strong>
-        <div class="links">
-            <a href="https://github.com/liangzai-cool/ckeditor-plugin-image-upload-for-upyun/" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
-        </div>
-    </li>	
-	<li>
         <strong>emlog</strong>
         <div class="links">
             <a href="https://github.com/ydva/upyun-for-emlog" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
