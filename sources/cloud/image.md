@@ -26,9 +26,9 @@
 
 间隔标识符是 `!`，
 
-功能是 `旋转 90°`，
+功能是 `格式转换成 webp`，
 
-访问的 URL 是 <a href="https://p.upyun.com/docs/cloud/demo.jpg!/rotate/90" target="_blank" title="查看">`https://p.upyun.com/docs/cloud/demo.jpg!/rotate/90`</a>。
+访问的 URL 是 <a href="https://p.upyun.com/docs/cloud/demo.jpg!/format/webp" target="_blank" title="查看">`https://p.upyun.com/docs/cloud/demo.jpg!/format/webp`</a>。
 
 
 

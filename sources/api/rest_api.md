@@ -170,11 +170,11 @@ PUT /<bucket>/path/to/file
 
 响应信息还包括以下响应参数：
 
-|      参数             |   类型  |                             说明                               |
-|----------------------|---------|---------------------------------------------------------------|
-| X-Upyun-Multi-UUID   | String  | 本次上传任务的标识                                            |
-| X-Upyun-Multi-Type   | String  | 本次上传文件的 `MIME` 类型                                    |
-| X-Upyun-Multi-Length | String  | 本次上传文件大小，整型，单位 Byte   |
+| 参数          			| 类型  		| 说明                                 				|
+|-----------------------|-----------|---------------------------------------------------|
+| X-Upyun-Multi-UUID   	| String  	| 本次上传任务的标识                                  	|
+| X-Upyun-Multi-Type   	| String  	| 本次上传文件的 `MIME` 类型                          	|
+| X-Upyun-Multi-Length 	| String  	| 本次上传文件大小，整型，单位 Byte   					|
 
 上传失败时返回相应的出错信息，具体请参阅「[API 错误码表](/api/errno/)」。
 
@@ -192,6 +192,7 @@ GET /<bucket>/path/to/file
 - 下载失败：返回相应的出错信息，具体请参阅「[API 错误码表](/api/errno/)」。
 
 ---------
+
 
 ## 删除文件
 

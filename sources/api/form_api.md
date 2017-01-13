@@ -31,11 +31,11 @@ curl http://v0.api.upyun.com/<bucket> \
             +-----------------+ +-----------------+ +-----------------+
                     |                   |                   |
                     |                   |                   |
-                   +++           Request  signature        +++
+                   +++        Request authorization        +++
                    |-|====================================>|-|
                    |-|                  |                  |-|
                    |-|                  |                  |-|
-                   |-|           Response signature        |-|
+                   |-|        Response authorization       |-|
                    |-|<====================================|-|
                    +++                  |                  +++
                     |                   |                   |
@@ -52,7 +52,7 @@ curl http://v0.api.upyun.com/<bucket> \
                     |                   |                   |                              
 ```
 
-1. 客户端请求客户服务器，生成、获取上传所需的 `signature`、`policy` 参数；
+1. 客户端请求客户服务器，生成、获取上传所需的 [`policy`](/api/authorization/#policy)、[`authorization`](/api/authorization/#body) 参数；
 2. 客户端通过 FORM API 上传文件，返回上传结果信息，（可选）回调通知客户服务器；
 3. 客户端处理其他业务流程。
 
@@ -203,14 +203,21 @@ apps = [
     },
 	......
 ]
+
+apps = [
+    {                                               // 异步内容审核任务
+        "name": "imgaudit",                         // 异步任务名称，必填。imgaudit 表示异步内容审核服务
+        "notify_url": "<notify_url>"                // 回调地址，不填时使用上传参数中的 notify_url
+    },
+	......
+]
 ```
 
-　　　
 **注**
 
-- `apps` 参数是 JSON 格式，最多包含 10 个任务，每个任务必须有 `name` 参数。
+- `apps` 按 JSON 格式组装任务，最多可以包含 10 个任务，每个任务必须指定 `name` 参数。
 - 原文件的保存路径由[上传参数](#upload_args)中的 `save-key` 指定。
-- 异步图片处理，详见 「图片处理」 > 「[上传预处理（异步）](/cloud/image/#async_upload_process)」；异步音视频处理，详见「音视频处理」 > 「[上传预处理（异步）](/cloud/av/#async_upload_process)」；异步图片鉴别，详见 「图片鉴别」 > 「[上传预处理（异步）](/cloud/audit/#async_upload_process)」。
+- 异步图片处理，详见 「图片处理」 > 「[上传预处理（异步）](/cloud/image/#async_upload_process)」；异步音视频处理，详见「音视频处理」 > 「[上传预处理](/cloud/av/#async_upload_process)」；异步内容审核，详见 「内容审核」 > 「[上传预处理](/cloud/audit/#async_upload_process)」。
 
 ---------
 
