@@ -256,7 +256,7 @@
 	<li>
         <strong>WordPress</strong>
         <div class="links">
-            <a href="https://github.com/monkey-wenjun/upyun_plugins" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
+            <a href="https://github.com/ihacklog/hacklog-remote-attachment-upyun" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
         </div>
     </li>
 	<li>
