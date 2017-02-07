@@ -3,7 +3,7 @@ site_url: https://docs.upyun.com/
 repo_url: https://github.com/upyun/docs/
 docs_dir: sources
 theme_dir: theme/updocs
-copyright: Copyright &copy; 2016, 又拍云
+copyright: Copyright &copy; 2017, 又拍云
 
 pages:
 
