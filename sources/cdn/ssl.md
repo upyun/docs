@@ -82,7 +82,7 @@ Google 在 2014 年发布的官方博客中指出，已经调整其搜索引擎�
 
 详细操作步骤如下：
 
-###一、免费申请 Symantec-TrustAsia、Let’s Encrypt DV SSL 证书
+###免费证书申购
 
 第一步：首先需要在 CDN 平台[创建服务](http://docs.upyun.com/cdn/basic/#_1),并绑定需要申请证书的域名；
 
@@ -118,7 +118,7 @@ Google 在 2014 年发布的官方博客中指出，已经调整其搜索引擎�
 
 <img src="http://upyun-assets.b0.upaiyun.com/docs/ssl/upyun-cdn-ssl7.png" height="490" width="800" />
 
-###二、上传域名自有证书
+###自有证书上传
 
 第一步：进入 SSL 证书服务，工具箱 -> SSL 证书服务 -> 证书管理 -> 添加自有证书 
 
@@ -132,7 +132,7 @@ Google 在 2014 年发布的官方博客中指出，已经调整其搜索引擎�
 
 <img src="http://upyun-assets.b0.upaiyun.com/docs/ssl/upyun-cdn-ssl10.png" height="490" width="800" />
 
-###三、证书管理
+###SSL 证书管理
 
 在[证书管理](https://console.upyun.com/toolbox/ssl/)列表中，可根据需求选择申购的证书或上传的自有证书，点击 `HTTPS 配置`进行操作 ，如下图所示：
 
