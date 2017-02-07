@@ -247,9 +247,9 @@ CC 防护主要是针对网络安全领域中的 CC 攻击而进行的一种应�
 
 <img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-https1.png" height="490" width="800" />
 
-第二步：可针对单个域名选择相应的证书，然后保存。如果无证书可选，可前往[ SSL 证书服务](https://console.upyun.com/toolbox/ssl/)平台添加域名的自有证书；用户也可直接在[ SSL 证书服务](https://console.upyun.com/toolbox/ssl/)平台免费申请 Let’s Encrypt 的 DV SSL 证书;
+第二步：可针对单个域名选择相应的证书，然后保存。如果无证书可选，可前往[ SSL 证书服务](https://console.upyun.com/toolbox/ssl/)平台添加域名的自有证书；用户也可直接在[ SSL 证书服务](https://console.upyun.com/toolbox/ssl/)平台免费申请 Symantec、Let’s Encrypt 的 DV SSL 证书;
 
-（免费申请 Symantec 的 DV SSL 证书，付费型 OV、EV SSL 证书，即将推出，敬请期待！）。
+（申购 Symantec、Geotrust 等品牌的付费型 OV、EV SSL 证书，即将推出，敬请期待！）。
 
 <img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-https2.png" height="490" width="800" />
 
