@@ -80,7 +80,7 @@ curl http://v0.api.upyun.com/<bucket> \
 | x-gmkerl-type         | 否   	| 可选值：`get_meta`，获取图片信息；`get_theme_color`，获取图片主题色          |
 | apps                  | 否   	| 异步预处理，见 [异步预处理](#async_process)            |
 | b64encoded            | 否   	| 对通过 Base64 编码上传的文件进行 Base64 解码，值为 `on`            |
-| ext-param             | 否   	| 额外参数，见 [ext-parm](#ext-parm)                  |
+| ext-param             | 否   	| 额外参数，见 [ext-param](#ext-param)                  |
 
 **注**
 
