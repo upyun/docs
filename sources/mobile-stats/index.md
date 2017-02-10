@@ -116,6 +116,9 @@ curl https://ptp-api.upyun.com/refreshToken -H "Content-Type: application/json" 
 |prodcode | String |  必须 | 流量包的产品编号 |
 |custno | String | 必须 | 客户自定义的订单号，用于客户内部记录订单，长度必须小于30， 且每次充值，编号不重复	 |
 |sign | String | 必须 |  根据 token 和请求参数计算的签名，签名规则见算法说明部分 ([示例程序下载](http://up-static.b0.upaiyun.com/phone-traffic/AESCryptSample.zip)) |
+|prodscope | String | 选填 | 区分全国流量和省内流量，当 `prodscope=中国` 表示全国流量，当 `prodscope=浙江`，表示浙江省的本地流量，默认为全国流量|
+|prodtime| Integer |  选填 |流量时段，`1` 表示全时段流量，`0` 表示闲时流量，默认为全时段流量|
+|prodstandard| Integer |  选填 | 用于区分网络类型，可选值分别为：`7`表示全部网络类型，`3`表示 2g 和 3g 两种网络类型，`1`表示 2g 网络类型，默认值为`7`|
 
 响应参数
 
