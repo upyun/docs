@@ -26,6 +26,7 @@ curl -X GET \
 
 ---------
 
+<a name="upload_file"></a>
 ## 上传文件
 
 把文件上传至又拍云存储。在上传图片文件时，可以设置预处理参数，对图片进行处理后再保存。
@@ -43,22 +44,21 @@ PUT /<bucket>/path/to/file
 | Content-Type   | 否   | String  | 文件类型，默认使用文件扩展名作为文件类型                         |
 | Content-Secret | 否   | String  | 文件密钥，用于保护文件，防止文件被直接访问，见 [Content-Secret 参数说明](/api/rest_api/#Content-Secret) |
 | X-Upyun-Meta-X | 否   | String  | 文件元信息，见 [Metadata](/api/rest_api/#metadata)           |
-| X-Gmkerl-Thumb | 否   | String  | 图片预处理参数，见[上传预处理（同步）](/cloud/image/#sync_upload_process)       |
+| x-gmkerl-thumb | 否   | String  | 图片预处理参数，见[上传预处理（同步）](/cloud/image/#sync_upload_process)       |
 
 **响应信息**
 
-上传成功时返回 `200`；上传失败时返回相应的出错信息，具体请参阅「[API 错误码表](/api/errno/)」。
-
-当上传文件是图片且设置 `X-Gmkerl-Thumb` 时，响应中会包含图片预处理信息，例如：
+- 上传成功：返回 `200`，当上传文件是图片且设置 `x-gmkerl-xxx` 时，包含图片[基本信息](/cloud/image/#attribute)（包含图片宽、高、格式、帧数），例如：
 
 ```
 > HTTP/1.1 200 OK
 > x-upyun-width: 50
 > x-upyun-height: 50
-> x-upyun-frames: 1
 > x-upyun-file-type: JPEG
+> x-upyun-frames: 1
 ```
-例子中 `x-upyun-` 开头的头部信息即是图片处理成功时返回的[基本信息](/cloud/image/#attribute)（包含图片宽、高、格式、帧数）。
+
+- 上传失败：返回相应的出错信息，具体请参阅「[API 错误码表](/api/errno/)」。
 
 <a name="Content-Secret"></a>
 **Content-Secret 参数说明**
@@ -84,9 +84,9 @@ PUT /<bucket>/path/to/file
 
 * 文件分块：直接切分二进制文件成小块。分块大小固定为 1M。最后一个分块除外。
 * 上传阶段：使用 `X-Upyun-Multi-Stage` 参数来指示断点续传的阶段。分为以下三个阶段: `initate`(上传初始化), `upload`(上传中), `complete`(上传结束)。各阶段依次进行。
-* 分片序号：使用 `X-Upyun-Part-ID` 参数来指示当前的分片序号，序号从 0 起算。
+* 分片序号：使用 `X-Upyun-Part-Id` 参数来指示当前的分片序号，序号从 0 起算。
 * 顺序上传：对于同一个断点续传任务，只支持顺序上传。
-* 上传标识：使用 `X-Upyun-Multi-UUID` 参数来唯一标识一次上传任务, 类型为字符串, 长度为 36 位。
+* 上传标识：使用 `X-Upyun-Multi-Uuid` 参数来唯一标识一次上传任务, 类型为字符串, 长度为 36 位。
 * 上传清理：断点续传未完成的文件，会保存 24 小时，超过后，文件会被删除。
 
 <!-- 支持混合使用, 不同阶段之间以逗号分隔(eg. `initate,upload` 表示初始化上传并上传第一个文件分块, `upload,complete` 表示上传最后一个文件分块并结束上传) -->
@@ -114,8 +114,8 @@ PUT /<bucket>/path/to/file
 
 |      参数             |   类型  |                             说明                               |
 |----------------------|---------|---------------------------------------------------------------|
-| X-Upyun-Multi-UUID   | String  | 本次上传任务的标识                                            |
-| X-Upyun-Next-Part-ID | String  | 下一个分块序号。因为是初始化阶段，所以值为 0                        |
+| X-Upyun-Multi-Uuid   | String  | 本次上传任务的标识                                            |
+| X-Upyun-Next-Part-Id | String  | 下一个分块序号。因为是初始化阶段，所以值为 0                        |
 
 上传失败时返回相应的出错信息，具体请参阅「[API 错误码表](/api/errno/)」。
 
@@ -132,8 +132,8 @@ PUT /<bucket>/path/to/file
 |          参数           | 必选 |   类型  |                    说明                                 |
 |----------------------- |------|---------|-------------------------------------------------------------|
 | X-Upyun-Multi-Stage    | 是   | String  | 值为 `upload`， 表示开始上传文件数据                         |
-| X-Upyun-Multi-UUID     | 是   | String  | 本次上传任务的标识，是初始化断点续传任务时响应信息中的 `X-Upyun-Multi-UUID`  |
-| X-Upyun-Part-ID        | 是   | String  | 指定此次分片的唯一 ID，应严格等于上一次请求返回的 `X-Upyun-Next-Part-ID`   |
+| X-Upyun-Multi-Uuid     | 是   | String  | 本次上传任务的标识，是初始化断点续传任务时响应信息中的 `X-Upyun-Multi-UUID`  |
+| X-Upyun-Part-Id        | 是   | String  | 指定此次分片的唯一 ID，应严格等于上一次请求返回的 `X-Upyun-Next-Part-ID`   |
 | Content-MD5            | 否   | String  | 所上传分块的 MD5 值，等效于[签名认证](/api/authorization/#header)中的 `Content-MD5 ` |
 
 **响应信息**
@@ -142,8 +142,8 @@ PUT /<bucket>/path/to/file
 
 |      参数             |   类型  |                             说明                               |
 |----------------------|---------|---------------------------------------------------------------|
-| X-Upyun-Multi-UUID   | String  | 本次上传任务的标识                                            |
-| X-Upyun-Next-Part-ID | String  | 下一个分块序号。若全部分块都已经传完，则该响应头值为 -1               |
+| X-Upyun-Multi-Uuid   | String  | 本次上传任务的标识                                            |
+| X-Upyun-Next-Part-Id | String  | 下一个分块序号。若全部分块都已经传完，则该响应头值为 -1               |
 
 上传失败时返回相应的出错信息，具体请参阅「[API 错误码表](/api/errno/)」。
 
@@ -160,7 +160,7 @@ PUT /<bucket>/path/to/file
 |          参数           | 必选 |   类型  |                    说明                                 |
 |----------------------- |------|---------|-------------------------------------------------------------|
 | X-Upyun-Multi-Stage    | 是   | String  | 值为 `complete`， 表示完成断点续传任务                  |
-| X-Upyun-Multi-UUID     | 是   | String  | 本次上传任务的标识，是初始化断点续传任务时响应信息中的 `X-Upyun-Multi-UUID`  |
+| X-Upyun-Multi-Uuid     | 是   | String  | 本次上传任务的标识，是初始化断点续传任务时响应信息中的 `X-Upyun-Multi-UUID`  |
 | X-Upyun-Multi-MD5      | 否   | String  | 所上传整个文件的 MD5 值，等效于[签名认证](/api/authorization/#header)中的 `Content-MD5 ` |
 
 
@@ -172,7 +172,7 @@ PUT /<bucket>/path/to/file
 
 | 参数          			| 类型  		| 说明                                 				|
 |-----------------------|-----------|---------------------------------------------------|
-| X-Upyun-Multi-UUID   	| String  	| 本次上传任务的标识                                  	|
+| X-Upyun-Multi-Uuid   	| String  	| 本次上传任务的标识                                  	|
 | X-Upyun-Multi-Type   	| String  	| 本次上传文件的 `MIME` 类型                          	|
 | X-Upyun-Multi-Length 	| String  	| 本次上传文件大小，整型，单位 Byte   					|
 
@@ -475,7 +475,7 @@ __签名（signature）算法__
 
 **例如**
 
-请求方式为 `GET`，URI 为 `bucket` 空间的子目录 `/sub`，请求时间为 ` Wed, 29 Oct 2014 02:26:58 GMT`，因为是 `GET`，所以 `CONTENT-LENGTH` 为 `0`，假设该空间有一个授权操作员名为 `upyun`，该操作员密码为 `password`（密码 md5 后为 `5f4dcc3b5aa765d61d8327deb882cf99`），那么：
+请求方式为 `GET`，URI 为 `bucket` 服务的子目录 `/sub`，请求时间为 ` Wed, 29 Oct 2014 02:26:58 GMT`，因为是 `GET`，所以 `CONTENT-LENGTH` 为 `0`，假设该服务有一个授权操作员名为 `upyun`，该操作员密码为 `password`（密码 md5 后为 `5f4dcc3b5aa765d61d8327deb882cf99`），那么：
 
 签名（signature）即是对字符串 `GET&/bucket/sub&Wed, 29 Oct 2014 02:26:58 GMT&0&5f4dcc3b5aa765d61d8327deb882cf99` 计算 MD5 所得，即：`03db45e2904663c5c9305a9c6ed62af3`，因此，只需在请求头部加上如下字段即可：
 

@@ -29,6 +29,7 @@ pages:
     - 'REST API': 'api/rest_api.md'
     - 'FORM API': 'api/form_api.md'
     - '开发者工具': 'api/developer_tools.md'
+    - 'SDK 使用文档': 'api/sdk.md'
     - '分块上传（旧）': 'api/multipart_upload.md'
     - 'API 错误码表': 'api/errno.md'
     - '缓存刷新': 'api/purge.md'

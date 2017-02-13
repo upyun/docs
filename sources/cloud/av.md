@@ -199,7 +199,7 @@ curl http://p0.api.upyun.com/status?service=<service>&task_ids=<task_id1>,<task_
 }
 ```
 
-`100` 或 `20`，表示任务进度百分比，`100` 表示任务处理完成。`null` 表示任务尚未开始或异常，如果长时间是 `null`，请联系售后或您的商务经理。
+`20` 表示任务进度百分比，`100` 表示任务处理完成，`-1` 表示任务处理失败，`null` 表示任务尚未开始。如果长时间是 `null`，请反馈给[售后]((https://www.upyun.com/about_contact.html))或您的商务经理。
 
 - 查询失败：返回相应的出错信息，具体请参阅「[状态码表](#status)」。
 

@@ -45,14 +45,14 @@ Content-MD5: <Content-MD5>
 |---------------|-------|---------------------------------------------------|
 | Operator      | 是  	| 服务的操作员名称                            		|
 | Method        | 是  	| 请求方式，如：GET、POST、PUT、HEAD 等                            |
-| URI           | 是  	| 请求路径，需要 URL encoding ([RFC 1738](http://tools.ietf.org/html/rfc1738 )) |
+| URI           | 是  	| 请求路径	 |
 | Date          | 是  	| 请求日期时间，GMT 格式字符串 ([RFC 1123](http://tools.ietf.org/html/rfc1123))，如 `Wed, 29 Oct 2014 02:26:58 GMT` |
 | Content-MD5   | 否  	| 请求体的 MD5 值，如果文件太大计算 MD5 不方便或请求体为空，可以为空			|
 | Password      | 是  	| 服务的操作员密码的 MD5 值               				|
 
 ** 注 **
 
-- 非必选参数为空时，不参与签名计算。所有计算的 MD5 值，格式均是 32 位小写。
+- 非必选参数为空时，连同前面的 `&` 一起不参与签名计算。所有计算的 MD5 值，格式均是 32 位小写。
 - HMAC-SHA1 输出的必须是原生的二进制数据。
 - REST API 签名有效期为 30 分钟；FORM API 回调通知签名有效期由用户自行确定，建议设置为 30 分钟。
 
@@ -165,15 +165,15 @@ content-md5: <Content-MD5>
 |---------------|-------|---------------------------------------------------|
 | Operator      | 是  	| 服务的操作员名称                            		|
 | Method        | 是  	| 请求方式，如：GET、POST、PUT、HEAD 等                            |
-| URI           | 是  	| 请求路径，需要 URL encoding ([RFC 1738](http://tools.ietf.org/html/rfc1738 )) |
+| URI           | 是  	| 请求路径    |
 | Date          | 否  	| 请求日期时间，GMT 格式字符串 ([RFC 1123](http://tools.ietf.org/html/rfc1123))，如 `Wed, 29 Oct 2014 02:26:58 GMT`  |
-| Policy        | 否  	| 上传参数的 Base64 编码，详见 [Policy 算法](#policy)  |
+| Policy        | 是  	| 上传参数的 Base64 编码，详见 [Policy 算法](#policy)  |
 | Content-MD5   | 否  	| 上传文件的 MD5 值									|
 | Password      | 是  	| 服务的操作员密码的 MD5 值               				|
 
 ** 注 **
 
-- 非必选参数为空时，不参与签名计算。所有计算的 MD5 值，格式均是 32 位小写。
+- 非必选参数为空时，连同前面的 `&` 一起不参与签名计算。所有计算的 MD5 值，格式均是 32 位小写。
 - HMAC-SHA1 输出的必须是原生的二进制数据。
 - 自定义签名有效期，建议为 30 分钟。如果签名超过有效期，需要重新生成签名。
 
@@ -188,6 +188,7 @@ content-md5: <Content-MD5>
 ** 注 **
 
 - 参数和参数值必须是 UTF-8 编码，且不包含换行符。
+- 参数 `date` 和 `content-md5` 就是签名中的 `Date` 和 `Content-MD5`。
 
 ** 举例 **
 
@@ -200,7 +201,7 @@ Password = MD5(upyun520) = ab296a01090ca2eab5fe5b246999da54
 
 // 请求头
 Method = POST							
-URI = /upyun-temp/
+URI = /upyun-temp
 
 // 请求体中的请求参数  
 bucket = upyun-temp
@@ -225,15 +226,15 @@ Signature = Base64 (HMAC-SHA1 (<Password>,
 <Content-MD5>
 ))
 // 内容拼接时，不用换行或空格，上面格式的换行或空格是为了方便阅读
-= Base64 (HMAC-SHA1 (ab296a01090ca2eab5fe5b246999da54,POST&/upyun-temp/&Wed, 9 Nov 2016 14:26:58 GMT&eyJidWNrZXQiOiAidXB5dW4tdGVtcCIsICJzYXZlLWtleSI6ICIvZGVtby5qcGciLCAiZXhwaXJhdGlvbiI6ICIxNDc4Njc0NjE4IiwgImRhdGUiOiAiV2VkLCA5IE5vdiAyMDE2IDE0OjI2OjU4IEdNVCIsICJjb250ZW50LW1kNSI6ICI3YWM2NmMwZjE0OGRlOTUxOWI4YmQyNjQzMTJjNGQ2NCJ9&7ac66c0f148de9519b8bd264312c4d64))
+= Base64 (HMAC-SHA1 (ab296a01090ca2eab5fe5b246999da54,POST&/upyun-temp&Wed, 9 Nov 2016 14:26:58 GMT&eyJidWNrZXQiOiAidXB5dW4tdGVtcCIsICJzYXZlLWtleSI6ICIvZGVtby5qcGciLCAiZXhwaXJhdGlvbiI6ICIxNDc4Njc0NjE4IiwgImRhdGUiOiAiV2VkLCA5IE5vdiAyMDE2IDE0OjI2OjU4IEdNVCIsICJjb250ZW50LW1kNSI6ICI3YWM2NmMwZjE0OGRlOTUxOWI4YmQyNjQzMTJjNGQ2NCJ9&7ac66c0f148de9519b8bd264312c4d64))
 // HMAC-SHA1 返回的原生二进制数据进行 Base64 编码
-= NnMeoZosYLnOGUiY/Skb0W1DMNA=
+= 0Igyrrq/CT7I0lHYEfAzCiApdM0=
 ```
 
 完整签名：
 
 ```
-authorization: UPYUN upyun:NnMeoZosYLnOGUiY/Skb0W1DMNA=
+authorization: UPYUN upyun:0Igyrrq/CT7I0lHYEfAzCiApdM0=
 ```
 
 ---------
