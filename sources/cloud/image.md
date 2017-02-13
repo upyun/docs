@@ -30,8 +30,6 @@
 
 访问的 URL 是 <a href="https://p.upyun.com/docs/cloud/demo.jpg!/format/webp" target="_blank" title="查看">`https://p.upyun.com/docs/cloud/demo.jpg!/format/webp`</a>。
 
-
-
 ---------
 
 <a name="tag"></a>
