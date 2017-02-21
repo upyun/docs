@@ -321,6 +321,7 @@ x-gmkerl-thumb: upyun520/fw/500
 | `/align/<align>`     	| 位置，如 north                                   	| 水印图片放置方位，默认 `northwest`，详见[方位说明](#align_gravity)       |
 | `/margin/<x>x<y>`    	| 横偏移x纵偏移，如 15x10                           	| 水印图片横纵相对偏移，默认 `20x20`        |
 | `/opacity/<opacity>`  | 透明度，如 90                                    	| 水印图片透明度，默认 `100`，取值范围 `[0-100]`，值越大越不透明，`0` 完全透明，`100` 完全不透明 |
+| `/percent/<integer>`  | 百分比值，如 50                                       | 水印图片自适应原图短边的比例，取值范围 `[0-100]`，默认 `0`，`0` 表示不设置该参数 |
 | `/animate/<boolean>`	| true                                            	| 允许对动态图片加水印，默认 `false`  |
 
 
