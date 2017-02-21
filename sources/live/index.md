@@ -100,11 +100,11 @@ expired_ts：截止时间，截止时间到后，服务器主动断开已建立�
 示例：  
 推流 URL 为 rtmp://push.com/live/stream，  
 则 domain = push.com，  
-假设约定 secret = a1b2c3d4e53gxwb07，有效时间 valid_ts = 1472659200，截止时间 expired_ts = 1465244082，  
+假设约定 secret = a1b2c3d4e53gxwb07，有效时间 valid_ts = 1472659200，截止时间 expired_ts = 1473004800，  
 那么 token = MD5(push.com/live/stream14726592001465244082a1b2c3d4e53gxwb07) 
            = 67905e046efc00996da3d87552824aa7    
 则 rtmp://push.com/live/stream?domain=push.com&token=67905e046efc00996da3d87552824aa7&valid_ts=1472659200    
-&expired_ts=1465244082， 该 token 防盗链在 2016/9/1 00:00:00 之前推流都有效，而时间到 2016/9/5 00:00:00 后，  
+&expired_ts=1473004800， 该 token 防盗链在 2016/9/1 00:00:00 之前推流都有效，而时间到 2016/9/5 00:00:00 后，  
 所有的推流连接都将被服务器断开。  
 ```
 有效时间与截止时间的组合能帮助用户简单实现复杂应用场景，设置有效时间，可以让有效时间来控制本次生成的 token 防盗链的可用时长，设置截止时间，可以控制服务器在截止时间到后断开客户端推流连接，便于用户细分其不同客户群，进行相关权限控制。  
