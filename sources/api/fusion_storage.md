@@ -23,17 +23,17 @@
 
 1）「工具箱」 > 「融合云存储」。
 
-![融合云存储入口1](http://upyun-assets.b0.upaiyun.com/docs/storage/fusion_entrance1.png_/fh/408)
+![融合云存储入口1](http://upyun-assets.b0.upaiyun.com/docs/storage/fusion_entrance1.jpg_/fw/800)
 
 2）「服务」 列表 > 「融合云」。特别地，只有源站是 「又拍云」的服务，才有「融合云」 这个入口。 
 
-![融合云存储入口2](http://upyun-assets.b0.upaiyun.com/docs/storage/fusion_entrance2.png_/fh/408)
+![融合云存储入口2](http://upyun-assets.b0.upaiyun.com/docs/storage/fusion_entrance2.jpg_/fw/800)
 
 ### 添加服务
 
 进入配置列表页面后，点击右上角的 「添加服务」。
 
-![添加服务](http://upyun-assets.b0.upaiyun.com/docs/storage/fusion_add_service.png_/fh/408)
+![添加服务](http://upyun-assets.b0.upaiyun.com/docs/storage/fusion_add_service.jpg_/fw/800)
 
 ### 配置
 
@@ -71,7 +71,7 @@
 
 配置成功后，会显示在配置列表中。
 
-![配置列表](http://upyun-assets.b0.upaiyun.com/docs/storage/fusion_list.png_/fh/408)
+![配置列表](http://upyun-assets.b0.upaiyun.com/docs/storage/fusion_list.jpg_/fw/800)
 
 ### 其他操作
 
