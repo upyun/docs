@@ -114,6 +114,14 @@
             <a href="https://github.com/upyun/token-examples/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
         </div>
     </li>
+
+    <li>
+        <strong>小程序 SDK</strong>
+        <div class="links">
+            <a href="https://github.com/upyun/upyun-wxapp-sdk" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
+            <a href="https://github.com/upyun/upyun-wxapp-sdk/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
+        </div>
+    </li>
 </ul>
 
 <h2 id="live-sdk">直播 SDK </h2>

@@ -37,18 +37,19 @@ PUT /<bucket>/path/to/file
 
 **上传参数**
 
-|      参数      | 必选 |   类型  |                                            说明                |
-|--------------- |------|-------- |---------------------------------------------------------------|
-| Date           | 是   | String  | 请求日期时间，GMT 格式字符串 ([RFC 1123](http://tools.ietf.org/html/rfc1123))，如 `Wed, 29 Oct 2014 02:26:58 GMT`          |
-| Content-MD5    | 否   | String  | 上传文件的 MD5 值，如果请求中文件太大计算 MD5 不方便，可以为空        |
-| Content-Type   | 否   | String  | 文件类型，默认使用文件扩展名作为文件类型                         |
-| Content-Secret | 否   | String  | 文件密钥，用于保护文件，防止文件被直接访问，见 [Content-Secret 参数说明](/api/rest_api/#Content-Secret) |
-| X-Upyun-Meta-X | 否   | String  | 文件元信息，见 [Metadata](/api/rest_api/#metadata)           |
-| x-gmkerl-thumb | 否   | String  | 图片预处理参数，见[上传预处理（同步）](/cloud/image/#sync_upload_process)       |
+| 参数       		| 必选 	|  类型  	|                                            说明                |
+|-------------------|-------|-----------|---------------------------------------------------------------|
+| Date           	| 是   	| String  	| 请求日期时间，GMT 格式字符串 ([RFC 1123](http://tools.ietf.org/html/rfc1123))，如 `Wed, 29 Oct 2014 02:26:58 GMT`          |
+| Content-Length    	| 是   	| String  	| 请求内容长度        |
+| Content-MD5    	| 否   	| String  	| 上传文件的 MD5 值，如果请求中文件太大计算 MD5 不方便，可以为空        |
+| Content-Type   	| 否   	| String  	| 文件类型，默认使用文件扩展名作为文件类型                         |
+| Content-Secret 	| 否   	| String  	| 文件密钥，用于保护文件，防止文件被直接访问，见 [Content-Secret 参数说明](/api/rest_api/#Content-Secret) |
+| x-upyun-meta-x 	| 否   	| String  	| 文件元信息，见 [Metadata](/api/rest_api/#metadata)           |
+| x-gmkerl-thumb 	| 否   	| String  	| 图片预处理参数，见[上传预处理（同步）](/cloud/image/#sync_upload_process)       |
 
 **响应信息**
 
-- 上传成功：返回 `200`，当上传文件是图片且设置 `x-gmkerl-xxx` 时，包含图片[基本信息](/cloud/image/#attribute)（包含图片宽、高、格式、帧数），例如：
+- 上传成功：返回 `200`，当上传文件是图片且设置 `x-gmkerl-xxx` 时，包含图片[基本信息](/cloud/image/#attribute)（包括图片宽、高、格式、帧数），例如：
 
 ```
 > HTTP/1.1 200 OK
@@ -67,7 +68,7 @@ PUT /<bucket>/path/to/file
 
 * **间隔标识符** 用于分隔文件 URL 和文件秘钥，有 3 种可选，分别是：!（感叹号/默认值）、-（中划线）和 _（下划线），可登录又拍云<a href="https://console.upyun.com/services/" target="_blank">控制台</a>，在 「服务」 > 「功能配置」 > 「云处理」 中设置。
 
-* 删除或修改 `Content-Secret`，详见 [metadata](/api/rest_api/#metadata)。
+* 删除或修改 `Content-Secret`，见 Metadata 的[常见应用案例](/api/rest_api/#metadata_exg)。
 
 * 如果原文件是一张图片，除了通过文件密码进行访问外，还可以通过[图片处理](/cloud/image/#url)进行访问。
 
@@ -83,10 +84,10 @@ PUT /<bucket>/path/to/file
 ### 名称概念
 
 * 文件分块：直接切分二进制文件成小块。分块大小固定为 1M。最后一个分块除外。
-* 上传阶段：使用 `X-Upyun-Multi-Stage` 参数来指示断点续传的阶段。分为以下三个阶段: `initate`(上传初始化), `upload`(上传中), `complete`(上传结束)。各阶段依次进行。
-* 分片序号：使用 `X-Upyun-Part-Id` 参数来指示当前的分片序号，序号从 0 起算。
+* 上传阶段：使用 `x-upyun-multi-stage` 参数来指示断点续传的阶段。分为以下三个阶段: `initate`(上传初始化), `upload`(上传中), `complete`(上传结束)。各阶段依次进行。
+* 分片序号：使用 `x-upyun-part-id` 参数来指示当前的分片序号，序号从 0 起算。
 * 顺序上传：对于同一个断点续传任务，只支持顺序上传。
-* 上传标识：使用 `X-Upyun-Multi-Uuid` 参数来唯一标识一次上传任务, 类型为字符串, 长度为 36 位。
+* 上传标识：使用 `x-upyun-multi-uuid` 参数来唯一标识一次上传任务, 类型为字符串, 长度为 36 位。
 * 上传清理：断点续传未完成的文件，会保存 24 小时，超过后，文件会被删除。
 
 <!-- 支持混合使用, 不同阶段之间以逗号分隔(eg. `initate,upload` 表示初始化上传并上传第一个文件分块, `upload,complete` 表示上传最后一个文件分块并结束上传) -->
@@ -101,21 +102,22 @@ PUT /<bucket>/path/to/file
 
 **请求参数**
 
-|           参数         | 必选 |   类型  |                    说明                                           |
-|-----------------------|------|---------|----------------------------------------------------------------------|
-| X-Upyun-Multi-Stage   | 是   | String  | 值为 `initiate`， 表示初始化上传任务                          |
-| X-Upyun-Multi-Type    | 是   | String  | 待上传文件的 `MIME` 类型                                |
-| X-Upyun-Multi-Length  | 是   | String  | 待上传文件大小，整型，单位 Byte   |
-| X-Upyun-Meta-X        | 否   | String  | 用于额外指定文件的元信息，详见 [Metadata](/api/rest_api/#metadata)   |
+| 参数         			| 必选 	| 类型  		| 说明                                          	|
+|-----------------------|-------|-----------|-----------------------------------------------|
+| Content-Length    		| 是   	| String  	| 请求内容长度							       	|
+| x-upyun-multi-stage   | 是   	| String  	| 值为 `initiate`， 表示初始化上传任务             |
+| x-upyun-multi-type    | 是   	| String  	| 待上传文件的 `MIME` 类型                        |
+| x-upyun-multi-length  | 是   	| String  	| 待上传文件大小，整型，单位 Byte   |
+| x-upyun-meta-x        | 否   	| String  	| 用于额外指定文件的元信息，详见 [Metadata](/api/rest_api/#metadata)   |
 
 **响应信息**
 
 初始化断点续传成功返回 `204` 状态码, 包括以下响应参数：
 
-|      参数             |   类型  |                             说明                               |
-|----------------------|---------|---------------------------------------------------------------|
-| X-Upyun-Multi-Uuid   | String  | 本次上传任务的标识                                            |
-| X-Upyun-Next-Part-Id | String  | 下一个分块序号。因为是初始化阶段，所以值为 0                        |
+| 参数             		| 类型  		| 说明                               					|
+|-----------------------|-----------|-------------------------------------------------------|
+| x-upyun-multi-uuid   	| String  	| 本次上传任务的标识                                      	|
+| x-upyun-next-part-id 	| String  	| 下一个分块序号。因为是初始化阶段，所以值为 `0`              |
 
 上传失败时返回相应的出错信息，具体请参阅「[API 错误码表](/api/errno/)」。
 
@@ -129,21 +131,22 @@ PUT /<bucket>/path/to/file
 
 **请求参数**
 
-|          参数           | 必选 |   类型  |                    说明                                 |
-|----------------------- |------|---------|-------------------------------------------------------------|
-| X-Upyun-Multi-Stage    | 是   | String  | 值为 `upload`， 表示开始上传文件数据                         |
-| X-Upyun-Multi-Uuid     | 是   | String  | 本次上传任务的标识，是初始化断点续传任务时响应信息中的 `X-Upyun-Multi-UUID`  |
-| X-Upyun-Part-Id        | 是   | String  | 指定此次分片的唯一 ID，应严格等于上一次请求返回的 `X-Upyun-Next-Part-ID`   |
-| Content-MD5            | 否   | String  | 所上传分块的 MD5 值，等效于[签名认证](/api/authorization/#header)中的 `Content-MD5 ` |
+| 参数         			| 必选 	| 类型  		| 说明                                          	|
+|-----------------------|-------|-----------|-----------------------------------------------|
+| Content-Length    		| 是   	| String  	| 请求内容长度        							|
+| x-upyun-multi-stage   | 是   	| String  	| 值为 `upload`， 表示开始上传文件数据             	|
+| x-upyun-multi-uuid    | 是   	| String  	| 本次上传任务的标识，是初始化断点续传任务时响应信息中的 `x-upyun-multi-uuid` |
+| x-upyun-part-id       | 是   	| String  	| 指定此次分片的唯一 ID，应严格等于上一次请求返回的 `x-upyun-next-part-id`   |
+| Content-MD5           | 否   	| String  	| 所上传分块的 MD5 值，等效于[签名认证](/api/authorization/#header)中的 `Content-MD5 ` |
 
 **响应信息**
 
 断点续传此分块成功返回 `204` 状态码, 包括以下响应参数：
 
-|      参数             |   类型  |                             说明                               |
-|----------------------|---------|---------------------------------------------------------------|
-| X-Upyun-Multi-Uuid   | String  | 本次上传任务的标识                                            |
-| X-Upyun-Next-Part-Id | String  | 下一个分块序号。若全部分块都已经传完，则该响应头值为 -1               |
+| 参数             		| 类型  		| 说明                               					|
+|-----------------------|-----------|-------------------------------------------------------|
+| x-upyun-multi-uuid   	| String  	| 本次上传任务的标识                                      	|
+| x-upyun-next-part-id 	| String  	| 下一个分块序号。若全部分块都已经传完，则该响应头值为 `-1`    |
 
 上传失败时返回相应的出错信息，具体请参阅「[API 错误码表](/api/errno/)」。
 
@@ -157,11 +160,12 @@ PUT /<bucket>/path/to/file
 
 **请求参数**
 
-|          参数           | 必选 |   类型  |                    说明                                 |
-|----------------------- |------|---------|-------------------------------------------------------------|
-| X-Upyun-Multi-Stage    | 是   | String  | 值为 `complete`， 表示完成断点续传任务                  |
-| X-Upyun-Multi-Uuid     | 是   | String  | 本次上传任务的标识，是初始化断点续传任务时响应信息中的 `X-Upyun-Multi-UUID`  |
-| X-Upyun-Multi-MD5      | 否   | String  | 所上传整个文件的 MD5 值，等效于[签名认证](/api/authorization/#header)中的 `Content-MD5 ` |
+| 参数         			| 必选 	| 类型  		| 说明                                          	|
+|-----------------------|-------|-----------|-----------------------------------------------|
+| Content-Length    		| 是   	| String  	| 请求内容长度        		|
+| x-upyun-multi-stage   | 是   	| String  	| 值为 `complete`， 表示完成断点续传任务           	|
+| x-upyun-multi-uuid    | 是   	| String  	| 本次上传任务的标识，是初始化断点续传任务时响应信息中的 `x-upyun-multi-uuid`  |
+| x-upyun-multi-md5     | 否   	| String  	| 所上传整个文件的 MD5 值，等效于[签名认证](/api/authorization/#header)中的 `Content-MD5 ` |
 
 
 **响应信息**
@@ -170,11 +174,11 @@ PUT /<bucket>/path/to/file
 
 响应信息还包括以下响应参数：
 
-| 参数          			| 类型  		| 说明                                 				|
-|-----------------------|-----------|---------------------------------------------------|
-| X-Upyun-Multi-Uuid   	| String  	| 本次上传任务的标识                                  	|
-| X-Upyun-Multi-Type   	| String  	| 本次上传文件的 `MIME` 类型                          	|
-| X-Upyun-Multi-Length 	| String  	| 本次上传文件大小，整型，单位 Byte   					|
+| 参数             		| 类型  		| 说明                               					|
+|-----------------------|-----------|-------------------------------------------------------|
+| x-upyun-multi-uuid   	| String  	| 本次上传任务的标识                                  		|
+| x-upyun-multi-type   	| String  	| 本次上传文件的 `MIME` 类型                          		|
+| x-upyun-multi-length 	| String  	| 本次上传文件大小，整型，单位 Byte   						|
 
 上传失败时返回相应的出错信息，具体请参阅「[API 错误码表](/api/errno/)」。
 
@@ -289,9 +293,9 @@ GET /<bucket>/path/to/folder
 
 |      参数       | 必选 |   类型  |                    说明                                 |
 |--------------- |------|--------|-------------------------------------------------------------|
-| X-List-Iter    |  否  | string  | 分页开始位置，通过`x-upyun-list-iter` 响应头返回，所以第一次请求不需要填写      |
-| X-List-Limit   |  否  | string  | 获取的文件数量，默认 100，最大 10000                           |
-| X-List-Order   |  否  | string  | `asc` 或 `desc`，按时间升序或降序排列。默认 `asc`               |
+| x-list-iter    |  否  | string  | 分页开始位置，通过`x-upyun-list-iter` 响应头返回，所以第一次请求不需要填写      |
+| x-list-limit   |  否  | string  | 获取的文件数量，默认 100，最大 10000                           |
+| x-list-order   |  否  | string  | `asc` 或 `desc`，按时间升序或降序排列。默认 `asc`               |
 
 
 **响应信息**
@@ -331,17 +335,17 @@ GET /<bucket>/?usage
 
 ### 添加 Metadata
 
-[上传文件](/api/rest_api/#_2)时，如果在请求头里带上以 `X-Upyun-Meta-` 开头的参数，那么该参数会作为文件的元数据存储到云存储。
+[上传文件](/api/rest_api/#_2)时，如果在请求头里带上以 `x-upyun-meta-` 开头的参数，那么该参数会作为文件的元数据存储到云存储。例如：
 
 ```
 curl -d 'abc' \
     http://v0.api.upyun.com/<bucket>/abc.txt \
     -H "Authorization: UPYUN <Operator>:<Signature>" \
     -H "Date: <Wed, 30 Oct 2016 11:26:58 GMT>"\
-    -H "X-Upyun-Meta-Foo: Bar"\
-	-H "X-Upyun-Meta-A: 2"
+    -H "x-upyun-meta-foo: Bar"\
+	-H "x-upyun-meta-a: 2"
 ```
-文件 `abc.txt` 会新增 `X-Upyun-Meta-Foo: Bar` 和 `X-Upyun-Meta-A: 2` 这两个元信息。
+文件 `abc.txt` 会增加 `x-upyun-meta-foo: bar` 和 `x-upyun-meta-a: 2` 这两个元信息。
 
 ---------
 
@@ -351,98 +355,99 @@ curl -d 'abc' \
 PATCH /<bucket>/path/to/file?metadata=<option>
 ```
 
-其中，`option` 的取值如下：
+option 的取值如下：
 
-|     option      |                          说明                                     |
-|-----------------|------------------------------------------------------------------|
-|merge（**默认**） | 合并文件元信息，相同的元信息将被新上传的值替换                         |
-|replace          | 替换文件元信息为新上传的文件元信息                                    |
-|delete           | 删除文件元信息                                                     |
+| option      		| 说明                                     							|
+|-------------------|-------------------------------------------------------------------|
+|merge（**默认**） 	| 合并文件元信息，如果是相同的元信息，将被新上传的值替换                         |
+|replace          	| 替换文件元信息为新上传的文件元信息                                    |
+|delete           	| 删除文件元信息                                                     |
 
 **响应信息**
 
 - 修改成功：返回 `200`。
 - 修改失败：返回相应的出错信息，具体请参阅「[API 错误码表](/api/errno/)」。
 
-**option 举例说明**
+**举例**
 
-例 1：合并元信息
+例 1：合并元信息，`metadata=merge`
 
 ```
 curl -d 'abc' http://v0.api.upyun.com/<bucket>/abc.txt \
 	-H "Authorization: Basic b3BlcmF0b3I6cGFzc3dvcmQ=" \
-    -H "X-Upyun-Meta-A: 1"
+    -H "x-upyun-meta-a: 1"
 
 curl -XPATCH http://v0.api.upyun.com/<bucket>/abc.txt?metadata=merge \
 	-H "Authorization: Basic b3BlcmF0b3I6cGFzc3dvcmQ=" \
-    -H "X-Upyun-Meta-A: 2" \
-    -H "X-Upyun-Meta-B: 3"
+    -H "x-upyun-meta-a: 2" \
+    -H "x-upyun-meta-b: 3"
 ```
 
 文件 abc.txt 的元信息是：
 
 ```
-X-Upyun-Meta-A: 2
-X-Upyun-Meta-B: 3
+x-upyun-meta-a: 2
+x-upyun-meta-b: 3
 ```
 
-例 2：替换元信息
+例 2：替换元信息，`metadata=replace`
 
 ```
 curl -d 'abc' http://v0.api.upyun.com/<bucket>/abc.txt \
 	-H "Authorization: Basic b3BlcmF0b3I6cGFzc3dvcmQ=" \
-    -H "X-Upyun-Meta-A: 1" \
-    -H "X-Upyun-Meta-B: 2"
+    -H "x-upyun-meta-a: 1" \
+    -H "x-upyun-meta-b: 2"
 
 curl -XPATCH http://v0.api.upyun.com/<bucket>/abc.txt?metadata=replace \
 	-H "Authorization: Basic b3BlcmF0b3I6cGFzc3dvcmQ=" \
-    -H "X-Upyun-Meta-A: 3" \
-    -H "X-Upyun-Meta-C: 4"
+    -H "x-upyun-meta-a: 3" \
+    -H "x-upyun-meta-c: 4"
 ```
 
 文件 abc.txt 的元信息为：
 
 ```
-X-Upyun-Meta-A: 3
-X-Upyun-Meta-C: 4
+x-upyun-meta-a: 3
+x-upyun-meta-c: 4
 ```
 
-例 3：删除元信息
+例 3：删除元信息，`metadata=delete`
 
 ```
 curl -d 'abc' http://v0.api.upyun.com/<bucket>/abc.txt \
 	-H "Authorization: Basic b3BlcmF0b3I6cGFzc3dvcmQ=" \
-    -H "X-Upyun-Meta-A: 1" \
-    -H "X-Upyun-Meta-B: 2"
+    -H "x-upyun-meta-a: 1" \
+    -H "x-upyun-meta-b: 2"
 
 curl -XPATCH http://v0.api.upyun.com/<bucket>/abc.txt?metadata=delete \
 	-H "Authorization: Basic b3BlcmF0b3I6cGFzc3dvcmQ=" \
-    -H "X-Upyun-Meta-A: true"
+    -H "x-upyun-meta-a: true"
 ```
 
 文件 abc.txt 的元信息为：
 
 ```
-X-Upyun-Meta-B: 2
+x-upyun-meta-b: 2
 ```
 
-**常见应用举例**
+<a name="metadata_exg"></a>
+### 常见应用案例
 
-例 1：修改 metadata 默认不更新文件的 `Last-Modified`，如果要更新，在参数中指定 `update_last_modified=true`：
+例 1：修改 Metadata 默认不更新文件的 `Last-Modified`，如果需要更新，在参数中指定 `update_last_modified=true`：
 
 ```
-curl -XPATCH http://v0.api.upyun.com/<bucket>/abc.txt?metadata=replace&**update_last_modified=true** \
+curl -XPATCH http://v0.api.upyun.com/<bucket>/abc.txt?metadata=replace&update_last_modified=true \
     -H "Authorization: Basic b3BlcmF0b3I6cGFzc3dvcmQ=" \
-    -H "X-Upyun-Meta-A: 3" \
-    -H "X-Upyun-Meta-C: 4"
+    -H "x-upyun-meta-a: 3" \
+    -H "x-upyun-meta-c: 4"
 ```
 
-例 2：`Content-Secret` 被存储为 `X-Upyun-Meta-Secret` 元信息，如果要修改或删除，对 `X-Upyun-Meta-Secret` 进行操作：
+例 2：`Content-Secret` 是被存储为 `x-upyun-meta-secret` 元信息，如果需要修改或删除，可以对 `x-upyun-meta-secret` 进行操作：
 
 ```
 curl -XPATCH http://v0.api.upyun.com/<bucket>/abc.txt?metadata=delete \
     -H "Authorization: Basic b3BlcmF0b3I6cGFzc3dvcmQ=" \
-    -H "X-Upyun-Meta-Secret: upyun520" \
+    -H "x-upyun-meta-secret: upyun520"
 ```
 
 ---------

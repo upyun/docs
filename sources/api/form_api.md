@@ -52,7 +52,7 @@ curl http://v0.api.upyun.com/<bucket> \
                     |                   |                   |                              
 ```
 
-1. 客户端请求客户服务器，生成、获取上传所需的 [`policy`](/api/authorization/#policy)、[`authorization`](/api/authorization/#body) 参数；
+1. 客户端请求客户服务器，生成、获取上传所需的 [policy](/api/authorization/#policy)、[authorization](/api/authorization/#body)；
 2. 客户端通过 FORM API 上传文件，返回上传结果信息，（可选）回调通知客户服务器；
 3. 客户端处理其他业务流程。
 

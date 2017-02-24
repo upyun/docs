@@ -1,11 +1,9 @@
 ## 签名认证
 
-** 签名格式 **
+** 签名计算方法 **
 
 ```
 Authorization: UPYUN <Operator>:<Signature>
-Date: <格林尼治标准时间>
-Content-MD5: <Content-MD5>
 
 <Signature> = Base64 (HMAC-SHA1 (<Password>,
 <Method>&
@@ -38,22 +36,15 @@ Content-MD5: <Content-MD5>
 参数信息：
 ```
 // 操作员信息
-Operator = upyun			
-Password = MD5(upyun520) = ab296a01090ca2eab5fe5b246999da54
+Operator = operator123			
+Password = MD5(password123) = 482c811da5d5b4bc6d497ffa98491e38
 
-// 请求头
+// 参数
 Method = POST							
 URI = /pretreatment/
-Date = Wed, 9 Nov 2016 14:26:58 GMT
+Date = Wed, 09 Nov 2016 14:26:58 GMT
 Content-MD5 = MD5(service=upyun-temp&notify_url=/upyun_notify_url&source=/tmp.mp4&tasks=W3siYXZvcHRzIjoiL3MvMjQwcCg0OjMpL2FzLzEvci8zMCIsInJldHVybl9pbmZvIjp0cnVlLCJzYXZlX2FzIjoiL2EvYi5tcDQiLCJ0eXBlIjoidmlkZW8ifSx7ImF2b3B0cyI6Ii9pL0wyRXZZaTlqTG0xd05BPT0vaS9MekV2TWk4ekxtMXdOQT09Iiwic2F2ZV9hcyI6Ii9jb25jYXQvYS5tcDQiLCJ0eXBlIjoidmNvbmNhdCJ9XQ==&accept=json)
             = a2d75510f7ec654cc24cfa2b5a5a8182
-
-// 请求体
-service = upyun-temp
-notify_url = /upyun_notify_url
-source = /tmp.mp4
-tasks = W3siYXZvcHRzIjoiL3MvMjQwcCg0OjMpL2FzLzEvci8zMCIsInJldHVybl9pbmZvIjp0cnVlLCJzYXZlX2FzIjoiL2EvYi5tcDQiLCJ0eXBlIjoidmlkZW8ifSx7ImF2b3B0cyI6Ii9pL0wyRXZZaTlqTG0xd05BPT0vaS9MekV2TWk4ekxtMXdOQT09Iiwic2F2ZV9hcyI6Ii9jb25jYXQvYS5tcDQiLCJ0eXBlIjoidmNvbmNhdCJ9XQ==
-accept = json
 ```
 
 生成 Signature：
@@ -66,27 +57,27 @@ Signature = Base64 (HMAC-SHA1 (<Password>,
 <Content-MD5>
 ))
 // 内容拼接时，不用换行或空格，上面格式的换行或空格是为了方便阅读
-= Base64 (HMAC-SHA1 (ab296a01090ca2eab5fe5b246999da54,POST&/pretreatment/&Wed, 9 Nov 2016 14:26:58 GMT&a2d75510f7ec654cc24cfa2b5a5a8182))
+= Base64 (HMAC-SHA1 (ab296a01090ca2eab5fe5b246999da54,POST&/pretreatment/&Wed, 09 Nov 2016 14:26:58 GMT&a2d75510f7ec654cc24cfa2b5a5a8182))
 // HMAC-SHA1 返回的原生二进制数据进行 Base64 编码
-= e9QV8W8yBDDGyknkwTesxn94jN0=
+= lSPhJS7LVUkrCMUq3PBZSvhsnqo=
 ```
 
-完整签名：
+Authorization 签名：
 
 ```
 Authorization: UPYUN upyun:e9QV8W8yBDDGyknkwTesxn94jN0=
 ```
 
-完整的请求信息：（为了方便阅读，对它进行了格式化）
+完整的请求：
 
 ```
 POST /pretreatment/ HTTP/1.1
-Authorization: UPYUN upyun:e9QV8W8yBDDGyknkwTesxn94jN0=
+Authorization: UPYUN upyun:lSPhJS7LVUkrCMUq3PBZSvhsnqo=
 Content-MD5: a2d75510f7ec654cc24cfa2b5a5a8182
 Date: Wed, 9 Nov 2016 14:26:58 GMT
 Content-Type: application/x-www-form-urlencoded; charset=utf-8
 Host: p0.api.upyun.com
-Content-Length: 334
+Content-Length: 668
 
 service=upyun-temp&notify_url=/upyun_notify_url&source=/tmp.mp4&tasks=W3siYXZvcHRzIjoiL3MvMjQwcCg0OjMpL2FzLzEvci8zMCIsInJldHVybl9pbmZvIjp0cnVlLCJzYXZlX2FzIjoiL2EvYi5tcDQiLCJ0eXBlIjoidmlkZW8ifSx7ImF2b3B0cyI6Ii9pL0wyRXZZaTlqTG0xd05BPT0vaS9MekV2TWk4ekxtMXdOQT09Iiwic2F2ZV9hcyI6Ii9jb25jYXQvYS5tcDQiLCJ0eXBlIjoidmNvbmNhdCJ9XQ==&accept=json
 ```
