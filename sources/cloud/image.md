@@ -4,6 +4,8 @@
 
 收费方面，图片处理完全免费。
 
+WebP 演示 DEMO：[让您的图片瘦身 70%](https://www.upyun.com/webp.html)。
+
 ---------
 
 ## 开发者指南
@@ -252,14 +254,26 @@ x-gmkerl-thumb: upyun520/fw/500
 
 | 类型      		| 值      														|
 |---------------|-----------------------------------------------------------------------|
-| 输入格式 		| JPG、JPEG、PNG、WEBP、GIF、动态 GIF、BMP、SVG等 			| 
-| 输出格式 		| JPG、PNG、WEBP、动态 WEBP 								|
+| 输入格式 		| JPG、JPEG、PNG、WebP、动态 WebP、GIF、动态 GIF、BMP、SVG等 			| 
+| 输出格式 		| JPG、PNG、WebP、动态 WebP 								|
+
+** 其他约束 **
+
+- 图片宽或高最大不能超过 2 万像素，「宽 * 高 * 帧数」最大不能超过 2 亿。
 
 ---------
 
-### 其他约束
+### WebP 专题
 
-- 图片宽或高最大不能超过 2 万像素，「宽 * 高 * 帧数」最大不能超过 2 亿。
+WebP 演示 DEMO：[让您的图片瘦身 70%](https://www.upyun.com/webp.html)。
+
+JPG 格式图片转成 WebP：www.domain.com/a.jpg!/format/webp
+
+PNG 格式图片转成 WebP：www.domain.com/a.png!/format/webp
+
+GIF/动态 GIF 格式图片转成 WebP：www.domain.com/a.gif!/format/webp
+
+`!` 是间隔标识符，具体说明见[间隔标识符](#tag)；`/format/webp` 是格式转换成 WebP，具体说明见[结果输出](#output)。
 
 ---------
 
@@ -321,7 +335,7 @@ x-gmkerl-thumb: upyun520/fw/500
 | `/align/<align>`     	| 位置，如 north                                   	| 水印图片放置方位，默认 `northwest`，详见[方位说明](#align_gravity)       |
 | `/margin/<x>x<y>`    	| 横偏移x纵偏移，如 15x10                           	| 水印图片横纵相对偏移，默认 `20x20`        |
 | `/opacity/<opacity>`  | 透明度，如 90                                    	| 水印图片透明度，默认 `100`，取值范围 `[0-100]`，值越大越不透明，`0` 完全透明，`100` 完全不透明 |
-| `/percent/<integer>`  | 百分比值，如 50                                       | 水印图片自适应原图短边的比例，取值范围 `[0-100]`，默认 `0`，`0` 表示不设置该参数 |
+| `/percent/<integer>`	| 百分比值，如 50                                    	| 水印图片自适应原图短边的比例，取值范围 `[0-100]`，默认 `0`，`0` 表示不设置该参数 |
 | `/animate/<boolean>`	| true                                            	| 允许对动态图片加水印，默认 `false`  |
 
 
@@ -488,14 +502,15 @@ x-gmkerl-thumb: upyun520/fw/500
 
 ---------
 
+<a name="output"></a>
 ### 结果输出
 
 | 参数       				| 值     		 	| 说明            				 |
 |---------------------------|-------------------|--------------------------------|
-| `/format/<format>`      	| 图片格式，如 jpg	| 输出格式，可选值 `jpg`、`png`、`webp`、`动态 webp`      |
+| `/format/<format>`      	| 图片格式，如 jpg	| 输出格式，可选值 `jpg`、`png`、`webp`。`webp` 包含动态 WebP      |
 | `/quality/<quality>`     	| 整数值，如 75  		| 设置压缩质量，可选范围`[1-99]`   |
 | `/compress/<boolean>`    	| true          	| JPG 、 PNG 大小压缩优化，默认 `false`      	|
-| `/coalesce/<boolean>`    	| false         	| 是否填充动态 GIF 图像中共同部分，默认 `true`，详见「注」  |
+| `/coalesce/<boolean>`    	| false         	| 是否填充动态 GIF 图像中共同部分，默认 `true`，见「注」  |
 | `/progressive/<boolean>` 	| true          	| JPG 图片渐进式加载，图片加载从模糊到清晰 			|
 | `/noicc/<boolean>`       	| true          	| 清除图片 ICC 信息，默认 `false` 					|
 | `/strip/<boolean>`       	| true          	| 去除图片所有元信息，包括 EXIF 、ICC 等。默认 `false`  |

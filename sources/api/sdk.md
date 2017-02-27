@@ -395,7 +395,7 @@ up = upyun.UpYun('您的服务名', '您的操作员名', '您的操作员密码
 * checksum，表示是否进行 MD5 校验，如果是小文件，建议进行，为 True；如果是大文件，建议不进行，为 False
 * headers，表示需要的头信息，见 REST API 上传文件
 */
-headers = { 'X-Gmkerl-Thumb': '/fw/300' }
+headers = { 'x-gmkerl-thumb': '/fw/300' }
 
 with open('dd.png', 'rb') as f:
     res = up.put('/up/dd.png', f, checksum=True, headers=headers)
