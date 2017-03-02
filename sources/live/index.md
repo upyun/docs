@@ -86,7 +86,7 @@ Token 防盗链可以对推流的请求进行校验，可设置 token 有效时�
 
 一个含防盗链的推流地址格式如下：  
 ```
-rtmp://push/live/stream?domain={domain}&token={token}&valid_ts={valid_ts}&expired_ts={expired_ts}
+rtmp://push.com/live/stream?domain={domain}&token={token}&valid_ts={valid_ts}&expired_ts={expired_ts}
 
 token = MD5(domain/live/stream + valid_ts + expired_ts + secret)
 ```
@@ -100,12 +100,12 @@ expired_ts：截止时间，截止时间到后，服务器主动断开已建立�
 示例：  
 推流 URL 为 rtmp://push.com/live/stream，  
 则 domain = push.com，  
-假设约定 secret = a1b2c3d4e53gxwb07，有效时间 valid_ts = 1472659200，截止时间 expired_ts = 1465244082，  
-那么 token = MD5(push.com/live/stream14726592001465244082a1b2c3d4e53gxwb07) 
-           = 67905e046efc00996da3d87552824aa7    
-则 rtmp://push.com/live/stream?domain=push.com&token=67905e046efc00996da3d87552824aa7&valid_ts=1472659200    
-&expired_ts=1465244082， 该 token 防盗链在 2016/9/1 00:00:00 之前推流都有效，而时间到 2016/9/5 00:00:00 后，  
-所有的推流连接都将被服务器断开。  
+假设约定 secret = a1b2c3d4e53gxwb07，有效时间 valid_ts = 1472659200，截止时间 expired_ts = 1473004800，  
+那么 token = MD5(push.com/live/stream14726592001473004800a1b2c3d4e53gxwb07) 
+           = 8405243ad35e5d08b9621110a15b0a12    
+则rtmp://push.com/live/stream?domain=push.com&token=8405243ad35e5d08b9621110a15b0a12  
+&valid_ts=1472659200&expired_ts=1473004800， 该 token 防盗链在 2016/9/1 00:00:00 之前推流都有效，  
+而时间到 2016/9/5 00:00:00 后，所有的推流连接都将被服务器断开。  
 ```
 有效时间与截止时间的组合能帮助用户简单实现复杂应用场景，设置有效时间，可以让有效时间来控制本次生成的 token 防盗链的可用时长，设置截止时间，可以控制服务器在截止时间到后断开客户端推流连接，便于用户细分其不同客户群，进行相关权限控制。  
 有效时间与截止时间可同时使用，也可二选一。  
@@ -127,8 +127,9 @@ token = MD5(domain/live/stream + expired_ts + secret)
 
 > 注：计算公式中的 secret，客户需妥善保管，谨防外泄。  
 > 注：MD5 后计算出的 token 值是 32 位的，必须小写。  
-> 推流暂仅支持 token 防盗链。  
+> 推流暂仅支持 token 防盗链。 
 
+关于 token 的推流，您可以参考[这里](https://github.com/monkey-wenjun/live_push_token/)的演示代码。
 ### 拉流防盗链   
 拉流防盗链只针对播放域名，HTTP 协议拉流防盗链规则同文件加速，包括 IP 禁用、地区访问限制、回源鉴权、Token 防盗链、域名防盗链等。详细规则见文件加速[ 防盗链](http://docs.upyun.com/cdn/feature/#_1)。 
 
@@ -186,7 +187,7 @@ play.com 为直播拉流域名，live 为接入点，stream 为流名，recorder
 
 ### 转码
 > 源站类型：又拍云源  
-> 提供要转码的原始流、转码匹配的后缀及转码模板  
+> 提供要转码的原始流、转码匹配的后缀及转码模板。  
 
 支持音视频流实时转码处理，通过转码模版可配置编码标准、分辨率、码率及输出流类型等流处理参数。
 默认支持使用又拍云直播服务的 RTMP，HTTP-FLV 和 HLS 协议的流转码支持 12 种转码模板和客户自定义转码配置，详细模板信息,参考[视频转码预置模板](http://docs.upyun.com/cloud/attachment/ ) 支持自定义转码后缀，分隔符支持中划线（-）、下划线（_）和感叹号（!）。
@@ -209,31 +210,32 @@ http://play.com/live/stream-small.m3u8
 秒级禁播则是针对该业务场景而研发的功能，由又拍提供页面配置和调用 API 禁播两种方式。当客户发现某直播视频内容非法时，实时断开主播推流，从而阻止非法内容的传播。  
 禁播方式支持立即禁播，解除禁播，以及禁播一段时间后自动解除。  
 
-### 直播截图
+### 截图
 > 源站类型：又拍云源
 
-直播截图服务支持将直播视频以设定的时间间隔和尺寸大小进行截图，并以 .jpg 格式保存在存储空间中。如果对截图文件有其他要求，可在又拍云处理中心对其进行相关处理操作，详情请见[云处理文档](http://docs.upyun.com/cloud/)。
-#### 触发截图
-仅在直播推流时触发单次截图，适用于静态封面。  
-如果对服务号为 upyun-live 的直播空间设置触发截图，选择存储空间为 upyun-live-pic ，截图后文件的具体路径为
+直播截图服务支持将直播视频以设定的时间间隔和尺寸大小进行截图，并以 .jpg 格式保存在存储空间。如果对截图文件有处理需求，可在又拍云处理中心对其进行相关处理操作，详情请见[云处理文档](http://docs.upyun.com/cloud/)。
+#### 单次截图
+仅在直播推流时进行单次截图，截取推流的第一帧。同一条流，重推后将重新截取首帧，并覆盖上次推流的截图。该截图模式适用于静态封面。  
+如果对服务号为 upyun-live 的直播空间开启单次截图，选择存储空间为 upyun-live-pic ，截图后文件的具体路径为
 ```
 upyun-live-pic.b0.upaiyun.com/upyun-live/live/stream.jpg
 其中 upyun-live-pic 为存储空间， upyun-live-pic.b0.upaiyun.com 为截图文件默认访问域名， 
 upyun-live 为直播空间，live 为接入点， stream 为流名。 
 ```
-#### 定时截图
-可设置间隔固定时间进行截图，直到推流结束，适用于动态封面和内容审核。  
+#### 多次截图
+开启多次截图，可设置固定时间间隔，在推流过程中，以一定时间间隔进行截图，直到推流结束，适用于动态封面和内容审核。  
 
-如果对服务号为 upyun-live 的直播空间设置触发截图，选择存储空间为 upyun-live-pic ，截图保存路径及命名设置为 {直播加速服务名}/{接入点}/{流名}{年}{月}{日}{时}{分}{秒}.jpg，截图后文件的具体路径为
+如果对服务号为 upyun-live 的直播空间开启多次截图，选择存储空间为 upyun-live-pic ，截图保存路径及命名可设置为 {直播加速服务名}/{接入点}/{流名}{年}{月}{日}{时}{分}{秒}.jpg，则截图后文件的具体路径为
 ```
 upyun-live-pic.b0.upaiyun.com/upyun-live/live/stream20170101121212.jpg  
 其中 upyun-live-pic 为存储空间， upyun-live-pic.b0.upaiyun.com 为截图文件默认访问域名，
 upyun-live 为直播空间，live 为接入点， stream 为流名，
 201701011212 为 2017 年 1 月 1 日 12 点 12 分 12 秒。
 ```
+> 截图保存路径及命名详情见后台配置页面。  
 
 #### 回调
-> 需提供接受回调的地址   （建议为 URL）
+> 需提供接受回调的地址（建议为 URL）
 
 直播截图文件所在路径以 post 请求返回给客户，具体的 json 格式为
 ```
