@@ -508,6 +508,7 @@ curl -T /local_img.jpg http://v0.api.upyun.com/bucket/img.jpg -u operator:operat
 |工具|[ Windows 下 upx 的使用](https://techs.b0.upaiyun.com/videos/cdnpage/winupx.html)|10分23秒|
 |插件|[ueditor的使用](https://techs.b0.upaiyun.com/videos/cdnpage/ueditor.html)|7分55秒|
 | CDN |[ Let'S Encrypt DV SSL 证书](https://techs.b0.upaiyun.com/videos/cdnpage/zssq.html)|3分35秒|
+| SDK |[云处理 - 音视频转码](https://techs.b0.upaiyun.com/videos/cdnpage/format_videos.html)|3分35秒|
 
 ### 直播服务
 
