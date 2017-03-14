@@ -21,10 +21,10 @@
         <h3>直播文档</h3>
         <h4>Live Documents</h4>
         <ul class="list-unstyled">
-            <li><a href="/live/#_3">直播基础配置</a></li>
-            <li><a href="/live/#_10">直播增值服务</a></li>
-            <li><a href="/live/#ios-sdk_1">移动端 SDK</a></li>
-            <li><a href="/live/">查看更多</a></li>
+            <li><a href="/live/Introduction/">产品简介</a></li>
+            <li><a href="/live/guide/">快速入门</a></li>
+            <li><a href="/live/primary/">基础配置</a></li>
+            <li><a href="/live/Introduction/">查看更多</a></li>
         </ul>
     </div>
     <div class="section section-api">

@@ -20,7 +20,11 @@ pages:
     - '辅助工具': 'cdn/tools.md'
     - '常见问题': 'cdn/faq.md'
 - '直播文档':
-    - '直播文档': 'live/index.md'
+    - '产品简介': 'live/Introduction.md'
+    - '快速入门': 'live/guide.md'
+    - '基础配置': 'live/primary.md'
+    - '增值服务': 'live/advanced.md'
+    - '移动端 sdk': 'live/mobile-sdk.md'
 - '云存储文档':
     - '产品简介': 'api/index.md'
     - '快速入门': 'api/quick_start.md'
