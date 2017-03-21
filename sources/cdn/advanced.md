@@ -743,7 +743,7 @@ $ curl http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-architecture.png?_u
 
 为了更好的理解 rewrite 规则，本节围绕 rewrite 规则配置项和规则示例来进行详细说明，先来了解下配置截图，如下截图所示：
 
-<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-custom-rewrite-config.png" height="490" width="800" />
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-custom-rewrite-config.png" height="380" width="800" />
 
 如上所示，配置一条完整的 rewrite 规则需要完成 ` Rewrite 规则` 、` URI 提取正则` 、` break` 、` 调试模式` 、` 备注` 这 5 个选项的配置，其中 ` Rewrite 规则` 为必填项，`URI 提取正则` 和` 备注` 为可填项，` break`  和 `调试模式` 为控制开关，可根据需要来进行开启和关闭。
 
@@ -972,7 +972,6 @@ $ curl http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-architecture.png?_u
 
 ```
 /test.ts?key=68ddbe535557d6630a19cebde0cb9252&t=1481106349
-
 ```
 
 以上请求 URL 是按照如下算法生成的，参见如下算法说明：
@@ -1030,14 +1029,12 @@ rules:
 将请求 URL 转换为带参数的动态 URL，例如请求的 URL 为：
 ```
 http://example.com/pay/25/8/...
-
 ```
 
 需要 CDN 边缘节点转换为如下请求：
 
 ```
 http://example.com/pay.php?payid=25&categoryid=8...
-
 ```
 这个时候，`pattern` 部分需要提取目录数字，需要生成 `$1` 和 `$2` 这样的变量，如下规则所示：
 
@@ -1057,7 +1054,6 @@ http://example.com/pay.php?payid=25&categoryid=8...
 ```
 pattern: /(.*)/playlist\.m3u8$
 rule: /$1'.m3u8'
-
 ```
 
 规则释义：当访问地址为 `http://domain/app/stream/playlist.m3u8` 时，将访问地址改写为 `http://domain/app/stream.m3u8`。
@@ -1072,7 +1068,6 @@ rule: /$1'.m3u8'
 ```
 "rule": "$ADD_REQ_HEADER(X-From-Cdn, upyun)",
 "pattern": ""
-
 ```
 规则释义：添加请求头 `X-From-Cdn:upyun`，识别 CDN 厂商。
 
@@ -1122,7 +1117,6 @@ rule: /$1'.m3u8'
 ```
 "rule": "$GT($_TIME,$ADD($INT($_GET_t,16,10),3600))",
 "pattern": ""
-
 ```
 
 规则释义：将请求 URL 中的 t 参数 由 16 进制转换为 10 进制，然后加上 3600 ，将相加得到的值和当前系统时间进行比较。这里使用到了 `$GT(E1，E2）` 函数，也即 `E1` 是否大于 `E2`，大于即返回 true 。另外，等于使用 `$EQ(E1，E2）` 函数，大于等于使用 `$GE(E1，E2）` 函数。
