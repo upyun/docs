@@ -720,38 +720,67 @@ $ curl http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-architecture.png?_u
 
 ##自定义 Rewrite
 
-自定义 Rewrite 功能是又拍云 Rewrite DSL（ Domain Specific Language）实现对 URL 的重写、修改请求头及请求参数等逻辑。该功能主要面向开发者使用。Rewrite 规则支持函数、变量、字符串常量，用户可以将这些自由组合，完成对请求的重写。
+###功能简介
 
-配置引导
+自定义 rewrite 是基于 DSL ( Domain Specific Language ) 理念来设计的，主要面向开发者使用。充分利用又拍云 CDN ( Content Delivery Network )分布式边缘网络的性能及规模，通过又拍云管理控制台可轻松创建 rewrite 规则，规则支持函数、变量、字符串常量，用户可以将这些自由组合，可以实现对 URL 的改写、重定向、自定义 HTTP 头、请求禁止等处理逻辑。
 
-登陆 [又拍云管理控制台](https://console.upyun.com/login/)，依次进入：服务 > 功能配置 > 高级功能 > 自定义 Rewrite，点击管理即可开始配置。如下图所示：
+###应用场景
 
-<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-custom-rewrite.png" height="490" width="800" />
+ 1. 提高安全性：可以有效的避免一些参数名、ID 等完全暴露在用户面前；
+ 
+ 2. URL 美化：去除了那些比如 `*.do` 之类的后缀名、长长的参数串等，可以自己组织精简更能反映访问模块内容的 URL；
+ 
+ 3. 提高网站 SEO：通过 URL Rewrite 之后，更有利于搜索引擎的收入，通过对 URL 的一些优化，可以使搜索引擎更好的识别与收录网站的信息；
+ 
+ 4. HTTP 头改写：新增、删除 HTTP 请求头，新增、删除 HTTP 响应头等处理逻辑；
+ 
+ 5. 防盗链设置：可以很灵活、高效的编写防盗链规则和处理逻辑，可以实现高强度的防盗链规则；
+ 
+ 6. 边缘重定向：可以根据特殊的业务逻辑，触发某个条件之后，可将请求重定向到特定的地址等等；
+ 
+ 
+###规则说明
 
-**规则说明**
+为了更好的理解 rewrite 规则，本节围绕 rewrite 规则配置项和规则示例来进行详细说明，先来了解下配置截图，如下截图所示：
+
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-custom-rewrite-config.png" height="490" width="800" />
+
+如上所示，配置一条完整的 rewrite 规则需要完成 ` Rewrite 规则` 、` URI 提取正则` 、` break` 、` 调试模式` 、` 备注` 这 5 个选项的配置，其中 ` Rewrite 规则` 为必填项，`URI 提取正则` 和` 备注` 为可填项，` break`  和 `调试模式` 为控制开关，可根据需要来进行开启和关闭。
+
+下面我们来结合配置好的规则示例来说明下每个配置项的作用，如下为一组 rewrite 规则集，包括两条 rewrite 规则：
 
     -- JSON
     [
-      {
-        "rule": "$WHEN($MATCH($LOWER($_HEADER_cache_control),only-if-cached))$DEL_REQ_HEADER(Cache-Control)",
-        "pattern": "",
-        "break": false
-      },
-      {
-        "rule": "/movies/$1",
-        "pattern": "/download/(.*)$",
-        "break": true
-      },
-      {
-        "rule": "$WHEN($EQ($_HOST, 'images.foo.com'))/$1",
-        "pattern": "^/images/(.*)$",
-        "break": true
-      }
+    rules[
+    {
+        rule :  $WHEN($EQ($_HOST, 'images.foo.com'))/$1,
+        pattern :  ^/images/(.*)$
+        break :  true,
+        debug :  true,
+        description :  URL改写,
+          
+    },
+    {
+        rule :  /movies/$1,
+        pattern :  /download/(.*)$
+        break :  true,
+        debug :  true,
+        description :  目录改写,
+    
+    },
     ]
 
-其中，` pattern`  为对当前请求 URI 进行匹配的 ` PCRE`  正则表达式，匹配后，产生 ` $1, $2 ...`  这样的变量；` rule ` 为当前的 rewrite 规则，` break`  表示如果此次 rewrite 成功后是否要终止剩下的的 rewrite 过程。
+通过以上规则集的了解，下面我们针对规则集里面的每个部分做相应的介绍和解释：
 
->  在管理后台对规则进行配置时，`pattern `对应于 URI 提取正则，`rule` 对应于 Rewrite 规则，`break` 对应于 `break` 选项，`调试模式 `选项是默认打开的。
+` pattern ` 为对当前请求 URI 进行匹配的 `PCRE`  正则表达式，匹配后，产生 ` $1, $2 ...`  这样的变量，对应配置项里面的` URI 提取正则`；
+
+` rule ` rewrite 规则主要组成部分，代表最终的处理逻辑，详细请看语法规则部分，对应配置项里面的 `rewrite 规则`；
+
+` break ` 表示如果此次 rewrite 成功后是否要终止剩下的的 rewrite 过程；
+
+` debug ` 是一个调试开关，默认开启，对应配置截图里面的 ` 调试模式 `；
+
+` description ` 用来描述该规则的用途； 对应配置项里面的 ` 备注 ` 。
 
 **调试模式**
 
@@ -768,11 +797,24 @@ $ curl http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-architecture.png?_u
 
 这样经过调试，确定该 rewrite 过程符合预期后，即可将 `调试模式` 关闭，此时该 rewrite 过程会对所有命中的请求生效。
 
-特别地，调试模式目前仅对 URL 的修改进行保护，响应头/请求头等修改无视调试模式。
+注意：特别地，调试模式目前仅针对 URI 和 ARGS 修改以及一些函数有效，受 `调试模式` 开关影响的 rewrite 操作有：
+
+```
+ - $LIMIT_RATE_AFTER()
+ - $LIMIT_RATE
+ - $DEL_REQ_HEADER(E)
+ - $REDIRECT(E1,E2)
+ - $DEL_ARG(E)
+ - $EXIT(E1,E2)
+ - $ADD_REQ_HEADER
+ - 修改 URI 和 ARGS 的操作
+```
+
+###语法规则
 
 **函数**
 
-函数调用以 ` $ ` 开头，后跟一组大写字母，字母之间可以包含下划线 `_`，函数需要的参 数放在` () `中，以 `,` 分隔。如果没有特别说明，rewrite 中的函数参数个数不 能少于要求的参数个数，否则视为语法错误，然后终止 rewrite 过程，多余的参数会被求值，但不影响调用。函数调用是有上下文的，譬如 `$WHEN` 这个函数，参数是 `bool` 类 型，参数中有不成立的条件 `false` 时，会终止 rewrite 过程。支持的函数有：
+函数调用以 ` $ ` 开头，后跟一组大写字母，字母之间可以包含下划线 `_`，函数需要的参 数放在` () `中，以 `,` 分隔。如果没有特别说明，rewrite 中的函数参数个数不能少于要求的参数个数，否则视为语法错误，然后终止 rewrite 过程，多余的参数会被求值，但不影响调用。函数调用是有上下文的，譬如 `$WHEN` 这个函数，参数是 `bool` 类 型，参数中有不成立的条件 `false` 时，会终止 rewrite 过程。支持的函数有：
 
 > 条件选择和判断
 
@@ -910,16 +952,181 @@ $ curl http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-architecture.png?_u
 
 **break**
 
-除了能勾选 `break 选项` 指定是否 `break`，也可以直接在 rewrite 规则最后加上 `$$`
-表示 `break`。
+除了能勾选 `break 选项` 指定是否 `break`，也可以直接在 rewrite 规则最后加上 `$$` 表示 `break`。
 
-**Rewrite 示例**
 
-rewrite 规则                                                        | 含义
-:--------------------                                              | :-------
-`$WHEN($MATCH($_URI, '^/foo/.*'))$ADD_REQ_HEADER(X-Foo, bar)`      | 在请求 URI 匹配 `^/foo/.*` 的情况下，添加请求头 `X-Foo: bar`
-`$WHEN($EQ($_HOST, 'foo.com'))$ADD_REQ_HEADER(X-Foo, bar)`         | 在请求 Host 为 `foo.com` 的情况下，添加请求头 `X-Foo: bar`
-`$WHEN($MATCH($_URI, '^/foo/'),$NOT($_HEADER_referer))$EXIT(403)`  | 在请求的 URI 以 `/foo/` 开头并且没有 Referer 请求头时，返回 403
+###配置引导
+
+登陆 [管理控制台](https://console.upyun.com/login/)，依次进入：服务 > 功能配置 > 高级功能 > 自定义 Rewrite，点击管理即可开始配置。如下图所示：
+
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-custom-rewrite.png" height="490" width="800" />
+
+
+###经典案例
+
+**1、自定义防盗链**
+
+需求描述：将请求 URL 按照一定的算法规则实现 token 防盗链，使用自定义 rewrite 来实现，会更加灵活和高效。token 防盗链详解请参见：https://blog.upyun.com/?p=1177
+
+请求 URL 示例：
+
+```
+/test.ts?key=68ddbe535557d6630a19cebde0cb9252&t=1481106349
+
+```
+
+以上请求 URL 是按照如下算法生成的，参见如下算法说明：
+
+```
+<?php
+$etime = time() + 600; // 授权 10 分钟后过期 
+$key = 'abc'; // token 防盗链密钥
+$path = '/test.ts'; // 文件相对路径
+$url = $path.'?key='.md5($key.$etime.$path).'&t='.$etime;
+echo $url; 
+?>
+```
+
+CDN 节点需要进行两层判断，一层就是对时间戳进行比较，另外一层就是按照约定的规则生成验证信息并进行比较，看是否一致。按照要求，可编写如下规则集来实现以上要求：
+
+```
+rules:
+{
+  "rule": "$WHEN($MATCH($_URI, '.ts$'),$OR($NOT($_GET_t),$NOT($_GET_key)))$EXIT(403)",
+  "pattern": ""
+}, 
+{
+   "rule": "$WHEN($MATCH($_URI, '.ts$'),$GT($_TIME, $_GET_t))$EXIT(401)",
+   "pattern": ""
+}, 
+{
+  "rule": "$WHEN(($MATCH($_URI, '.ts$'),$NOT($EQ($MD5('abc'$_GET_t$_URI),$LOWER($_GET_key))))$EXIT(403)",
+  "pattern": ""
+}
+```
+规则释义：
+
+第一条：当文件后缀为 ts 时，判断请求 URL 里面是否存在 t 和 key 参数，如果其中一个不存在，则返回 403；
+
+第二条：当文件后缀为 ts 时，判断当前 CDN 节点 UNIX 时间是否大于请求参数里面的时间戳（也即参数 t 的值），否则返回 401；
+
+第三条：当文件后缀为 ts 时，CDN 节点按照约定的算法规则生成验证信息（也即 MD5 值），判断生成的 MD5 值和请求参数 key 的值是否一致，不一致则返回 403；
+
+**2、边缘重定向**
+
+示例一：匹配 `cookie` 进行跳转
+
+```
+"rule": "$WHEN($NOT($EQ($_URI, /live.html)), $NOT($_COOKIE_token))$REDIRECT(http://test.example.com/no_token.html)",
+"pattern": ""
+```
+
+规则释义：首先匹配请求 `URI` 是否为 `/live.html`,当 `cookie` 中 `token` 值为空时，则跳转到指定到地址 `http://test.example.com/no_token.html`。
+
+**3、URL 改写**
+
+示例一：目录及参数改写
+
+将请求 URL 转换为带参数的动态 URL，例如请求的 URL 为：
+```
+http://example.com/pay/25/8/...
+
+```
+
+需要 CDN 边缘节点转换为如下请求：
+
+```
+http://example.com/pay.php?payid=25&categoryid=8...
+
+```
+这个时候，`pattern` 部分需要提取目录数字，需要生成 `$1` 和 `$2` 这样的变量，如下规则所示：
+
+```
+"rule": "/product.php?productid=$1&categoryid=$2",
+"pattern": "^product/([0-9]+)/([0-9]+)/(.*?).html$"
+```
+
+规则释义：当解析的 url 符合规则 `^product/([0-9]+)/([0-9]+)/(.*?).html$ `，那么将请求导向到 `/product.php?productid=$1&categoryid=$2 `。
+
+```
+也即将 http://example.com/pay/25/8/... 转换为 http://example.com/pay.php?payid=25&categoryid=8...
+```
+
+示例二：文件名改写
+
+```
+pattern: /(.*)/playlist\.m3u8$
+rule: /$1'.m3u8'
+
+```
+
+规则释义：当访问地址为 `http://domain/app/stream/playlist.m3u8` 时，将访问地址改写为 `http://domain/app/stream.m3u8`。
+
+应用场景：在直播应用场景中，因为客户端机制无法或者不方便升级的情况，可以通过 URL 改写，将 `/stream/playlist.m3u8` 改为 `/stream.m3u8`，其中 `app` 代表发布点，`stream` 代表流名。
+
+
+**4、请求/响应头修改**
+
+示例一：添加、删除请求头
+
+```
+"rule": "$ADD_REQ_HEADER(X-From-Cdn, upyun)",
+"pattern": ""
+
+```
+规则释义：添加请求头 `X-From-Cdn:upyun`，识别 CDN 厂商。
+
+```
+"rule": "$DEL_REQ_HEADER(Accept-Encoding) ",
+"pattern": ""
+```
+规则释义：删除请求头 `Accept-Encoding` ，无论终端是否发起 `gzip` 的请求，都进行 `ungzip` 的返回。
+
+
+示例二：添加响应头
+
+```
+"rule": "$ADD_RSP_HEADER(CDN, UPYUN, 1) ",
+"pattern": ""
+```
+
+规则释义：添加响应头 `CDN`  为 `UPYUN`, `1` 表示会覆盖掉已有的响应头，通过响应头也可以识别 CDN 厂商。
+
+
+**5、URL 限速**
+
+假如请求的 URL 为：`http://test.example.com/mp4/4E10F356C0FEAD359C33DC5901307461-10.mp4` ，需要对该类型文件进行限速，限速要求为：前 20MB 不限速，20MB 之后限速 800 KB/s，规则可这样编写：
+
+```
+"rule": "$WHEN($1, $EQ($_HOST, 'test.example.com'))$LIMIT_RATE_AFTER(20, m)$LIMIT_RATE(800, k)",
+"pattern": "^(/).+-10\.mp4$"
+```
+
+规则释义：当 `$1` 为真，且满足请求 `HOST` 为 `test.example.com ` 时 ，开始 20MB 不限速，后面限制到 `800KB/s`。
+
+**6、大小写转换**
+
+该部分会使用到`$LOWER(E)` 函数，直接看规则：
+
+```
+"rule": "$WHEN($MATCH($LOWER($_URI), /uptest.png)) /UPtest.png",
+"pattern": ""
+```
+
+规则释义：首先是获取请求 `URI` ，使用 `$LOWER(E)` 函数将 `URI` 转换为小写，和 `/uptest.png` 进行匹配，匹配成功，则直接将 `URI` 改写为`/UPtest.png`。如果需要将字符串转换为大写，使用 `$UPPER(E)` 函数。
+
+**7、数值比较**
+
+也即将字符串或者数字进行比较。例如： `A` 和 `B` 进行比较，是否大于、大于等于、相等等逻辑，参见如下规则示例：
+
+```
+"rule": "$GT($_TIME,$ADD($INT($_GET_t,16,10),3600))",
+"pattern": ""
+
+```
+
+规则释义：将请求 URL 中的 t 参数 由 16 进制转换为 10 进制，然后加上 3600 ，将相加得到的值和当前系统时间进行比较。这里使用到了 `$GT(E1，E2）` 函数，也即 `E1` 是否大于 `E2`，大于即返回 true 。另外，等于使用 `$EQ(E1，E2）` 函数，大于等于使用 `$GE(E1，E2）` 函数。
+
 
 ----------
 
