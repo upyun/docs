@@ -79,7 +79,7 @@ PUT /<bucket>/path/to/file
 <a name="Multi_upload"></a>
 ## 断点续传
 
-在上传大文件或移动端上传文件时，因为网络质量、传输时间过长等原因造成上传失败，可以使用断点续传。特别地，断点续传上传的图片不支持预处理。
+在上传大文件或移动端上传文件时，因为网络质量、传输时间过长等原因造成上传失败，可以使用断点续传。特别地，断点续传上传的图片不支持预处理。特别地，断点续传上传的文件不能使用其他上传方式覆盖，如果需要覆盖，须先删除文件。
 
 ### 名称概念
 
@@ -106,8 +106,8 @@ PUT /<bucket>/path/to/file
 |-----------------------|-------|-----------|-----------------------------------------------|
 | Content-Length    		| 是   	| String  	| 请求内容长度							       	|
 | x-upyun-multi-stage   | 是   	| String  	| 值为 `initiate`， 表示初始化上传任务             |
-| x-upyun-multi-type    | 是   	| String  	| 待上传文件的 `MIME` 类型                        |
 | x-upyun-multi-length  | 是   	| String  	| 待上传文件大小，整型，单位 Byte   |
+| x-upyun-multi-type    | 否   	| String  	| 待上传文件的 `MIME` 类型，默认 `application/octet-stream`，建议自行设置  |
 | x-upyun-meta-x        | 否   	| String  	| 用于额外指定文件的元信息，详见 [Metadata](/api/rest_api/#metadata)   |
 
 **响应信息**
