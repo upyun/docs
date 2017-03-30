@@ -146,7 +146,6 @@ Authorization: UPYUN operator123:3x6z6M9U2Ugi1FxLPhQldiXFzAc=
 Content-MD5: ed091459198a814d549701dab1dc4880
 Date: Wed, 09 Nov 2016 14:26:58 GMT
 Content-Type: application/json
-Host: v0.api.upyun.com
 Content-Length: 192
 
 {"code": 200, "message": "ok", "url": "%2F2011%2F12%2Ffd0e30047f81fa95.mp3", "time": 1478701618}
@@ -264,7 +263,7 @@ Content-Disposition: form-data; name="policy"
 
 eyJidWNrZXQiOiAidXB5dW4tdGVtcCIsICJzYXZlLWtleSI6ICIvZGVtby5qcGciLCAiZXhwaXJhdGlvbiI6ICIxNDc4Njc0NjE4IiwgImRhdGUiOiAiV2VkLCA5IE5vdiAyMDE2IDE0OjI2OjU4IEdNVCIsICJjb250ZW50LW1kNSI6ICI3YWM2NmMwZjE0OGRlOTUxOWI4YmQyNjQzMTJjNGQ2NCJ9&file=
 ----WebKitFormBoundaryE19zNvXGzXaLvS5C
-Content-Disposition: form-data; name="file"
+Content-Disposition: form-data; name="file"; filename="demo.jpg"
 
 def
 ----WebKitFormBoundaryE19zNvXGzXaLvS5C

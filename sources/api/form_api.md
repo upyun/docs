@@ -263,7 +263,7 @@ curl http://v0.api.upyun.com/<bucket> \
 
 signature 生成步骤：
 
-1. 生成 policy 字符串（见 policy 算法）；
+1. 生成 policy 字符串（见 [policy 算法](/api/authorization/#policy)）；
 2. 将第 1 步中的字符串与表单 API 密钥字符串用 `&` 拼接；
 3. 将第 2 步中的字符串计算 md5，所得即为 `signature`。
 
