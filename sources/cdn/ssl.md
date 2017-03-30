@@ -207,11 +207,9 @@ Symantec、GeoTrust、TrustAsia 的各类付费 DV SSL、OV SSL、EV SSL 证书�
 
 ##快速入门
 
-又拍云携手 TrustAsia 与 Symantec、GeoTrust 达成战略合作，推出了各类域名型 DV SSL 、企业型 OV SSL 、增强型 EV SSL 证书的申购；其中有效期为一年的域名型 DV SSL 单域名证书当前免费申请，原价 1900 元/年。
+又拍云携手 TrustAsia 与 Symantec、GeoTrust 达成战略合作，推出了各类域名型 DV SSL 、企业型 OV SSL 、增强型 EV SSL 证书的申购；其中有效期为一年的 TrustAsia 域名型 DV SSL 单域名证书当前免费申请，原价 1900 元/年。
 
-又拍云还与国际证书提供商 Let’s Encrypt 合作，为用户免费提供了另一款 DV SSL 证书的申请，证书到期自动续签，操作简单方便，一键完成证书的申请与部署。
-
-用户可根据自身情况，多重选择，满足不同场景的需求。
+又拍云还与国际证书提供商 Let’s Encrypt 合作，为用户免费提供了另一款 DV SSL 证书的申请，证书到期会自动续签，操作简单方便，一键完成证书的申请与部署，用户可根据自身情况，多重选择，满足不同场景的需求。
 
 详细操作步骤如下：
 
@@ -219,11 +217,11 @@ Symantec、GeoTrust、TrustAsia 的各类付费 DV SSL、OV SSL、EV SSL 证书�
 
 第一步：[注册](http://docs.upyun.com/cdn/guide/#_2)又拍云账号，并完成[实名认证](http://docs.upyun.com/cdn/guide/#_3)；
 
-第二步：进入 SSL 证书服务，工具箱 -> SSL 证书服务 -> 证书申购；
+第二步：进入 SSL 证书服务，工具箱 -> SSL 证书服务 -> 申购证书；
 
 <img src="http://upyun-assets.b0.upaiyun.com/docs/ssl/upyun-cdn-ssl1.png" height="490" width="800" />
 
-第三步：点击右上角的 `申购证书`，如下图所示，选择证书品牌，并选择需要申购的证书类型、有效期；
+第三步：点击右上角的 `申购证书`，如下图所示，选择证书品牌，并选择需要申购的证书类型、有效期等；
 
 <img src="http://upyun-assets.b0.upaiyun.com/docs/ssl/certificate/buy1.png" height="490" width="800" />
 
@@ -266,15 +264,13 @@ Symantec、GeoTrust、TrustAsia 的各类付费 DV SSL、OV SSL、EV SSL 证书�
 
 **（2）如果申购的是 DV SSL 证书，则进行**
 
-在`证书申购`界面，点击`申请结果`找到对应的申购记录
-
-点击`查看`获取相关验证信息，验证操作可参考[这里](http://docs.upyun.com/cdn/ssl/#dv-ssl)
+在`证书申购`界面，点击`申请结果`找到对应的申购记录，点击`查看`获取相关验证信息，验证操作可参考[这里](http://docs.upyun.com/cdn/ssl/#dv-ssl)
 
 <img src="http://upyun-assets.b0.upaiyun.com/docs/ssl/certificate/write5.png" height="490" width="800" />
 
 添加好验证信息后，申购进入 CA 机构信息审核验证状态，一般需要 1 个工作日
 
-第九步：查看申请结果，工具箱 -> SSL 证书服务 -> 证书申购；
+第九步：查看申请结果，工具箱 -> SSL 证书服务 -> 申购证书；
 
 点击`申请结果`查看申请状态，在证书未颁发成功之前，都可点击`取消`按钮，进行申购信息修改或停止申购。
 
@@ -292,9 +288,9 @@ Symantec、GeoTrust、TrustAsia 的各类付费 DV SSL、OV SSL、EV SSL 证书�
 
 第八步：前往域名所在服务商处修改 [CNAME 记录](http://docs.upyun.com/cdn/guide/#cname)，如未修改 CNAME 记录，则会导致证书申请失败；
 
-第九步：进入 SSL 证书服务，工具箱 -> SSL 证书服务 -> 证书申购；
+第九步：进入 SSL 证书服务，工具箱 -> SSL 证书服务 -> 申购证书；
 
-在`证书申购`界面，点击`购买列表`找到对应的申购记录，点击`补全`
+在`申购证书`界面，点击`购买列表`找到对应的申购记录，点击`补全`
 
 <img src="http://upyun-assets.b0.upaiyun.com/docs/ssl/certificate/free1.png" height="490" width="800" />
 
@@ -324,13 +320,13 @@ Symantec、GeoTrust、TrustAsia 的各类付费 DV SSL、OV SSL、EV SSL 证书�
 
 **1、DNS 验证**
 
-修改域名的 DNS，添加一条 TXT 记录，然后 CA 机构通过解析域名的 TXT 记录来验证域名所有权
+修改域名的 DNS，添加 `TXT 记录 `，然后 CA 机构通过解析域名的 `TXT 记录`来验证域名所有权
 
 <img src="http://upyun-assets.b0.upaiyun.com/docs/ssl/certificate/dns1.png" height="490" width="800" />
 
-以 DNSPOD 为例， TXT 记录添加方法如下：
+以 DNSPOD 为例， `TXT 记录` 添加的方法如下：
 
-<img src="http://upyun-assets.b0.upaiyun.com/docs/ssl/certificate/dnspod1.png" height="490" width="800" />
+<img src="http://upyun-assets.b0.upaiyun.com/docs/ssl/certificate/dnspod1.png" height="256" width="800" />
 
 **2、文件验证**
 
@@ -340,21 +336,21 @@ Symantec、GeoTrust、TrustAsia 的各类付费 DV SSL、OV SSL、EV SSL 证书�
 
 举例：
 
-如果域名是www.upyun.com，则 CA 机构进行验证访问的地址是 http|https://www.upyun.com/.well-known/pki-validation/fileauth.txt ；
+如果域名是` www.upyun.com`，则 CA 机构进行验证访问的地址是： http|https://www.upyun.com/.well-known/pki-validation/fileauth.txt ；
 
-如果域名是泛域名*.upyun.com，则 CA 机构进行验证访问的地址是 http|https://upyun.com/.well-known/pki-validation/fileauth.txt 。
+如果域名是泛域名 `*.upyun.com`，则 CA 机构进行验证访问的地址是： http|https://upyun.com/.well-known/pki-validation/fileauth.txt 。
 
-fileauth.txt 文件中的内容为：201703212055513616t9uk2pok3zmu2b7m3nc4c8mkudogfpvyj2w2gebhkypy58
+`fileauth.txt` 文件中的内容为：201703212055513616t9uk2pok3zmu2b7m3nc4c8mkudogfpvyj2w2gebhkypy58
 
 注意：
 
-CA 机构支持 http 或 https 访问验证链接，但是不支持任何形式的跳转，需要源站服务器直接响应 200 状态码和文件内容。
+CA 机构支持 `http` 或 `https` 访问验证链接，但是不支持任何形式的跳转，需要源站服务器直接响应 200 状态码和文件内容。
 
-如果 Window 系统不支持创建 /.well-known 目录，则可以通过命令行来创建： `mkdir .well-known`
+如果 Window 系统不支持创建 `/.well-known` 目录，则可以通过命令行来创建： `mkdir .well-known`
 
 **3、审核验证**
 
-无论是添加 TXT 记录，还是增加验证文件，两者操作完成以后，申购就进入了 CA 机构信息审核验证状态，一般需要 1 个工作日，证书颁发成功后，上述两种记录可删除。
+无论是添加 `TXT 记录`，还是增加`验证文件`，两者操作完成以后，申购就进入了 CA 机构信息审核验证状态，一般需要 1 个工作日，证书颁发成功后，上述两种记录可删除。
 
 ##注意事项
 
