@@ -128,13 +128,13 @@ Symantec、GeoTrust、TrustAsia 的各类付费 DV SSL、OV SSL、EV SSL 证书�
 
 通过又拍云购买 SSL 证书，流程更加简洁方便：
 
-<img src="http://upyun-assets.b0.upaiyun.com/docs/ssl/certificate/flow1.png" height="490" width="800" />
+<img src="http://upyun-assets.b0.upaiyun.com/docs/ssl/certificate/flow1.png" height="490" width="480" />
 
 ###价格总览
 
 **价格列表：**
 
-<img src="http://upyun-assets.b0.upaiyun.com/docs/ssl/certificate/price1.png" height="490" width="800" />
+<img src="http://upyun-assets.b0.upaiyun.com/docs/ssl/certificate/price1.png" height="830" width="750" />
 
 **说明：**
 
@@ -148,29 +148,44 @@ Symantec、GeoTrust、TrustAsia 的各类付费 DV SSL、OV SSL、EV SSL 证书�
 
 计算公式（以一年有效期证书为例）：
 
-    假设：1年标准域名价格=A        标准域名个数=B      1年泛域名价格=C      泛域名个数=D
+    假设：
     
-          1年标准域名专业版价格=E        1年泛域名专业版价格=F    则：
+    1年标准域名价格 = A ； 标准域名个数 = B   
     
-    多域名证书价格=A*B
+    1年泛域名价格 = C ；泛域名个数 = D
     
-    多域名专业版证书价格=E*B
+    1年标准域名专业版价格 = E       
     
-    多域名泛域名证书价格 =A*B+C*D
+    1年泛域名专业版价格 = F    
     
-    多域名泛域名专业版证书价格 =E*B+F*D
+    则：
+    
+    多域名证书价格 = A * B
+    
+    多域名专业版证书价格 = E * B
+    
+    多域名泛域名证书价格 = A * B + C * D
+    
+    多域名泛域名专业版证书价格 = E * B + F * D
 
 > Geotrust、TrustAsia 品牌
 
 默认支持5个标准域名（默认域名中不包含泛域名），计算公式（以一年有效期证书为例）：
 
-    假设：1年标准域名价格=A      标准域名个数=B      1年泛域名价格=C      泛域名个数=D
+    假设：
+    
+    1年标准域名价格 = A ；标准域名个数 = B 
+    
+    1年泛域名价格 = C ；泛域名个数 = D
      
-          1年标准域名额外价格=E       则：
+    1年标准域名额外价格 = E      
+    
+    则：
      
-    多域名证书价格=A+E*(B-5)   如果B-5<0  则按0计算
+    多域名证书价格 = A + E * ( B - 5 )   如果 B - 5 < 0  则按 0 计算
       
-    多域名泛域名证书价格 =A+E*(B-5)+C*D   如果B-5 <0  则按0计算
+    多域名泛域名证书价格 = A + E * ( B - 5 ) + C * D   如果 B - 5 < 0  则按 0 计算
+    
 
 ###退款服务
 
@@ -253,7 +268,7 @@ Symantec、GeoTrust、TrustAsia 的各类付费 DV SSL、OV SSL、EV SSL 证书�
 
 在`证书申购`界面，点击`申请结果`找到对应的申购记录
 
-点击`查看`获取相关验证信息，验证操作可参考[这里](http://docs.upyun.com/cdn/ssl/#_7)
+点击`查看`获取相关验证信息，验证操作可参考[这里](http://docs.upyun.com/cdn/ssl/#dv-ssl)
 
 <img src="http://upyun-assets.b0.upaiyun.com/docs/ssl/certificate/write5.png" height="490" width="800" />
 
@@ -303,7 +318,7 @@ Symantec、GeoTrust、TrustAsia 的各类付费 DV SSL、OV SSL、EV SSL 证书�
 
 <img src="http://upyun-assets.b0.upaiyun.com/docs/ssl/upyun-cdn-ssl7.png" height="490" width="800" />
 
-###DV SSL 证书验证操作流程
+###DV SSL证书验证
 
 当申购的证书为 TrustAsia DV SSL 多域名、泛域名证书时，需要通过以下方式进行域名所有权验证。
 
