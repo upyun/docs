@@ -1,6 +1,6 @@
 ##产品介绍
 
-HTTPS（全称：HyperText Transfer Protocol over Secure Socket Layer），其实 HTTPS 并不是一个新鲜协议，Google 很早就开始启用了，初衷是为了保证数据安全。 近两年，Google、Baidu、Facebook 等这样的互联网巨头，不谋而合地开始大力推行 HTTPS， 国内外的大型互联网公司很多也都已经启用了全站 HTTPS，这也是未来互联网发展的趋势。
+HTTPS（全称：HyperText Transfer Protocol over Secure Socket Layer），其实 HTTPS 并不是一个新鲜协议，Google 很早就开始启用了，初衷是为了保护数据安全。 近两年，Google、Baidu、Facebook 等这样的互联网巨头，不谋而合地开始大力推行 HTTPS， 很多国内外的大型互联网公司也都已经启用了全站 HTTPS，这也是未来互联网发展的趋势。
 
 为鼓励全球网站的 HTTPS 实现，Google 甚至调整了搜索引擎算法，让采用 HTTPS 的网站在搜索中排名更靠前。并且从 2017 年开始，Chrome 浏览器已把采用 HTTP 协议的网站标记为不安全网站，苹果 App Store 中的所有应用也都必须使用 HTTPS 加密连接；当前国内炒的很火热的微信小程序也要求必须使用 HTTPS 协议；新一代的 HTTP/2 协议的支持需以 HTTPS 为基础。因此想必在不久的将来，全网 HTTPS 势在必行。
 
