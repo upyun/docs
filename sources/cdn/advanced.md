@@ -305,7 +305,7 @@ HTTP/2 优势如下：
 
 <img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-https4.png" height="490" width="800" />
 
-###注意事项：
+###注意事项
 
 又拍云 HTTPS 加速服务是基于 SNI 技术实现的，因此某些不支持 SNI 的浏览器或客户端访问可能出现问题。支持 SNI 的客户端列表如下：
 
