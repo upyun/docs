@@ -237,19 +237,17 @@ CC 防护主要是针对网络安全领域中的 CC 攻击而进行的一种应�
 
 ----------
 
-##HTTPS 配置
+##HTTPS 配置 
 
-又拍云 HTTPS 加速服务建立在自主研发的内容分发网络基础之上，全面支持了 HTTPS 协议加速。通过会话重用及会话保持、在线证书状态检查、协议优化、SSL 协议握手优化等技术手段，全面提升了 HTTPS 协议加速性能。
+又拍云 HTTPS 加速服务建立在自主研发的内容分发网络基础之上，全面支持了 HTTPS 协议加速。通过会话重用及会话保持、在线证书状态检查、协议优化、SSL 协议握手优化、HTTP/2 等技术手段，全面提升了 HTTPS 协议加速性能。
 
-**配置引导**
+###配置引导
 
 第一步：依次进入 服务 > 功能配置 > HTTPS, 点击 `管理` 即可开始配置。如下图所示：
 
 <img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-https1.png" height="490" width="800" />
 
-第二步：可针对单个域名选择相应的证书，然后保存。如果无证书可选，可前往[ SSL 证书服务](https://console.upyun.com/toolbox/ssl/)平台添加域名的自有证书；用户也可直接在[ SSL 证书服务](https://console.upyun.com/toolbox/ssl/)平台免费申请 Symantec、Let’s Encrypt 的 DV SSL 证书;
-
-（申购 Symantec、Geotrust 等品牌的付费型 OV、EV SSL 证书，即将推出，敬请期待！）。
+第二步：可针对单个域名选择相应的证书，然后保存。如果无证书可选，可前往[ SSL 证书服务](https://console.upyun.com/toolbox/ssl/)平台添加域名的自有证书；用户也可直接在[ SSL 证书申购](https://console.upyun.com/toolbox/createCertificate/)平台申购 Symantec、GeoTrust、TrustAsia、Let’s Encrypt 的各类 SSL 证书，其中 TrustAsia、Let’s Encrypt 的 DV SSL 单域名证书可免费申请。
 
 <img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-https2.png" height="490" width="800" />
 
@@ -261,7 +259,35 @@ CC 防护主要是针对网络安全领域中的 CC 攻击而进行的一种应�
 
 “强制 HTTPS ”：勾选此功能后，又拍云边缘节点收到用户的 HTTP 请求后会将其强制跳转到 HTTPS 进行访问。默认：兼容用户的 HTTP 和 HTTPS 请求。
 
-**HTTP/2**
+备注：其中 `HTTPS 配置` 也可以在 `SSL 证书管理`里面配置，参见下文`SSL 证书管理`部分。
+
+###自有证书上传
+
+如果域名当前已有证书，又拍云提供了自有证书的上传方式，无需人工协助，安全便捷。
+
+第一步：进入 SSL 证书服务，工具箱 -> SSL 证书服务 -> 证书管理 -> 添加自有证书 
+
+<img src="http://upyun-assets.b0.upaiyun.com/docs/ssl/upyun-cdn-ssl8.png" height="490" width="800" />
+
+第二步：粘贴证书内容:
+
+<img src="http://upyun-assets.b0.upaiyun.com/docs/ssl/upyun-cdn-ssl9.png" height="490" width="800" />
+
+点击 `保存` 之后，可查看 SSL 证书信息如下图所示：
+
+<img src="http://upyun-assets.b0.upaiyun.com/docs/ssl/upyun-cdn-ssl10.png" height="490" width="800" />
+
+###SSL 证书管理
+
+在[证书管理](https://console.upyun.com/toolbox/ssl/)列表中，可根据需求选择申购成功并已部署于 CDN 平台的证书或已上传的自有证书，点击 `HTTPS 配置`进行操作 ，如下图所示：
+
+<img src="http://upyun-assets.b0.upaiyun.com/docs/ssl/upyun-cdn-ssl11.png" height="490" width="800" />
+
+“HTTPS 访问”：开启该功能后，客户端使用 HTTPS 协议访问时才能成功，默认关闭。
+
+“强制 HTTPS”：勾选此功能后，又拍云边缘节点收到用户的 HTTP 请求后会将其强制跳转到 HTTPS 进行访问。默认：兼容用户的 HTTP 和 HTTPS 请求。
+
+###HTTP/2
 
 HTTP/2 即超文本传输协议 2.0，是下一代 HTTP 协议。它由国际互联网工程任务组 （IETF）的 Hypertext Transfer Protocol Bis (httpbis) 工作小组进行开发，以 SPDY 为原型，经过两年多的讨论和完善最终确定。
 
@@ -279,13 +305,14 @@ HTTP/2 优势如下：
 
 <img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-https4.png" height="490" width="800" />
 
-**注意事项：**
+###注意事项：
 
 又拍云 HTTPS 加速服务是基于 SNI 技术实现的，因此某些不支持 SNI 的浏览器或客户端访问可能出现问题。支持 SNI 的客户端列表如下：
 
 <img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-https5.png" height="490" width="800" />
 
 声明：运行在 Windows XP 上的所有版本的 Internet Explorer 都不支持 SNI ，详细请参考[这里](http://serverfault.com/questions/109800/multiple-ssl-domains-on-the-same-ip-address-and-same-port)。
+
 
 ----------
 
