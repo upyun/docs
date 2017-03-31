@@ -10,17 +10,16 @@
 如果配置对 rtmp://play.com/live/stream 这条流进行录制，录制后文件具体路径为：  
 
 ```
-upyun-live-recorder.b0.upaiyun.com/play.com/live/stream/recorder20160604163702.mp4  
+live-recorder.b0.upaiyun.com/play.com/live/stream/recorder20160604163702.mp4  
 
-其中 upyun-live-recorder 为存储空间， upyun-live-recorder.b0.upaiyun.com 为录制文件默认播放域名,  
+其中 live-recorder 为存储空间，live-recorder.b0.upaiyun.com 为录制文件默认播放域名,  
 play.com 为直播拉流域名，live 为接入点，stream 为流名，recorder 系统默认标识符名，  
 20160604163702 为录制完成时间，mp4 为文件类型。录制完成后可以通过 post 方式回调给用户提供的回调地址。  
-
 ```
 录制系统会将录制文件默认保存在该空间以这条流 URL 为路径的目录下，  
-即 upyun-live-recorder.b0.upaiyun.com/play.com/live/stream/，使用又拍文件加速服务，直接可通过   http://client.com/play.com/live/stream/recorder20160604163702.mp4 来访问，client.com 为客户点播域名，需绑定在录制文件所有的云存储空间，该过程即对存储内容进行点播。
+即 live-recorder.b0.upaiyun.com/play.com/live/stream/，使用又拍文件加速服务，直接可通过   http://client.com/play.com/live/stream/recorder20160604163702.mp4 来访问，client.com 为客户点播域名，需绑定在录制文件所有的云存储空间，该过程即对存储内容进行点播。
 
-录制支持触发录制与定时录制两种方式，并且支持网络闪断重连后的文件合并，具体需要多长时间内的闪断进行合并，可配置，如要进行合并，断流前后的直播流分辨率需要保持一致。
+录制支持触发录制与定时录制两种方式，并且支持网络闪断重连后的文件合并，具体需要多长时间内的闪断进行合并，可配置，如要进行合并，断流前后的直播流分辨率需要保持一致。同一条流在录制过程中，如果视频分辨率或音频采样率发生变化时，会自动切割成两个文件。
 
 > 需要录制的流协议支持：RTMP，HTTP-FLV。
 
@@ -42,9 +41,16 @@ play.com 为直播拉流域名，live 为接入点，stream 为流名，recorder
 录制文件所在的路径以 post 请求返回给客户，具体的 json 格式为
 ```
 {"timestamp": "2016-06-04 16:38:45",  
- "path": ["http://live-recorder.b0.upaiyun.com/play.com/live/stream/recorder20160604163702.mp4"]}
+ "path":   
+ ["http://live-recorder.b0.upaiyun.com/play.com/live/stream/recorder20160604163702.mp4"]}
 ```
-其中，timestamp 为发送 json 回调任务时间，path 为录制文件具体路径。
+其中，timestamp 为发送 json 回调任务时间，path 为录制文件具体路径，支持回调多个文件。当录制的文件到达切割时间，或者在闪断合并过程中，需要合并的流视频分辨率或音频采样率发生变化时，会生成多个录制文件，具体的 json 格式为
+```
+{"timestamp": "2016-06-04 16:38:45",  
+ "path":  
+ ["http://live-recorder.b0.upaiyun.com/play.com/live/stream/recorder20160604163702.mp4",   
+ "http://live-recorder.b0.upaiyun.com/play.com/live/stream/recorder20160604163902.mp4"]}
+```
 
 ## 转码
 > 源站类型：又拍云源  
