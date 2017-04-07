@@ -149,7 +149,7 @@ curl -X POST \
 ```
 {
     "service": "upyun-temp",
-	"status_code": 200,
+    "status_code": 200,
     "source": "upyun.jpg",
 	"result": {
 		"porn": {
@@ -380,7 +380,7 @@ curl -X POST \
 ```
 {
     "service": "upyun-temp",
-	"status_code": 200,
+    "status_code": 200,
     "source": "upyun.jpg",
 	"result": {
 		"porn": {
@@ -437,7 +437,7 @@ curl -X POST \
 ```
 {
     "service": "upyun-temp",
-	"status_code": 200,
+    "status_code": 200,
     "source": "upyun.jpg",
 	"result": {
 		"porn": {
