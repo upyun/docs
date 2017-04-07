@@ -109,7 +109,7 @@ curl -X POST \
 ---------
 
 <a name="image_notify_url"></a>
-#### 回调通知 
+#### 回调通知
 
 任务处理完成后，向 `notify_url` 发送 `HTTP POST` 请求，请求体是回调信息。
 
@@ -152,11 +152,11 @@ curl -X POST \
 	"status_code": 200,
     "source": "upyun.jpg",
 	"result": {
-		"porn": { 
+		"porn": {
 			"label": 0,
 			"rate": 0.9833183288574219,
 	    	"review": false  
-		} 
+		}
 	},
     "task_id": "7b01610c7fa700b56cd7c80be5e08d5c",
 	"error": ""
@@ -277,7 +277,7 @@ curl -X POST \
 ---------
 
 <a name="video_notify_url"></a>
-#### 回调通知 
+#### 回调通知
 
 任务处理完成后，向 `notify_url` 发送 `HTTP POST` 请求，请求体是回调信息。
 
@@ -325,11 +325,11 @@ curl -X POST \
     "filelist": [
         {
             "result": {
-					"porn": { 
+					"porn": {
 					"label": 0,
 					"rate": 0.9833183288574219,
 			    	"review": false  
-				} 
+				}
             },
             "shot_time": 0,
             "save_as": "foo_1.jpg"
@@ -355,10 +355,7 @@ curl -X POST \
     -H "Authorization: UPYUN <Operator>:<Signature>" \
     -H "Date: <Wed, 29 Oct 2014 02:26:58 GMT>" \
 	-H "Content-MD5: <Content-MD5>" \
-    -d "service=<service>" \
-    -d "source=<source>" \
-    -d "save_as=<save_as>" \
-    -d "notify_url=<notify_url>" 
+    -d '{"service": "<service>", "source": "<source>", "save_as": "<save_as>", "notify_url": "<notify_url>"}'
 ```
 
 ** 认证鉴权 **
@@ -386,11 +383,11 @@ curl -X POST \
 	"status_code": 200,
     "source": "upyun.jpg",
 	"result": {
-		"porn": { 
+		"porn": {
 			"label": 0,
 			"rate": 0.9833183288574219,
 	    	"review": false  
-		} 
+		}
 	},
     "task_id": "7b01610c7fa700b56cd7c80be5e08d5c"
 	"error": ""
@@ -443,11 +440,11 @@ curl -X POST \
 	"status_code": 200,
     "source": "upyun.jpg",
 	"result": {
-		"porn": { 
+		"porn": {
 			"label": 0,
 			"rate": 0.9833183288574219,
 	    	"review": false  
-		} 
+		}
 	},
     "task_id": "7b01610c7fa700b56cd7c80be5e08d5c"
 	"error": ""
