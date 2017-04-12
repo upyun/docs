@@ -495,7 +495,7 @@ curl -T /local_img.jpg http://v0.api.upyun.com/bucket/img.jpg -u operator:operat
 | CDN  | [CORS 跨域功能使用](https://techs.b0.upaiyun.com/videos/cdnpage/CORS.html) | 3分01秒  |
 | SDK  | [Python SDK的使用 ](https://techs.b0.upaiyun.com/videos/cdnpage/Python_Sdk.html) | 17分25秒 |
 | FTP  | [又拍云资源管理器的使用](https://techs.b0.upaiyun.com/videos/cdnpage/upyun_manager.html) | 2分38秒  |
-| CDN  | [阿里云云盾设置](https://techs.b0.upaiyun.com/videos/cdnpage/yundun.html) | 1分04秒  |
+| CDN  | [阿里云云盾设置](https://techs.b0.upaiyun.com/videos/cdnpage/yundun.html) | 1分39秒  |
 | 日志   | [日志分析和日志下载](https://techs.b0.upaiyun.com/videos/cdnpage/upyunlog.html)                    | 7分2    |
 | CDN  | [又拍云的统计功能](https://techs.b0.upaiyun.com/videos/cdnpage/upyuncount.html) | 3分35秒  |
 | CDN  | [又拍云监控系统简介](https://techs.b0.upaiyun.com/videos/cdnpage/jiankong.html) | 3分05秒  |
@@ -507,7 +507,7 @@ curl -T /local_img.jpg http://v0.api.upyun.com/bucket/img.jpg -u operator:operat
 |工具|[ Linux 下 upx 的使用](https://techs.b0.upaiyun.com/videos/cdnpage/upx.html)|6分56秒|
 |工具|[ Windows 下 upx 的使用](https://techs.b0.upaiyun.com/videos/cdnpage/winupx.html)|10分23秒|
 |插件|[ueditor的使用](https://techs.b0.upaiyun.com/videos/cdnpage/ueditor.html)|7分55秒|
-| CDN |[ Let'S Encrypt DV SSL 证书](https://techs.b0.upaiyun.com/videos/cdnpage/zssq.html)|3分35秒|
+| CDN |[分段缓存](https://techs.b0.upaiyun.com/videos/cdnpage/fenduan.html)|8分39秒|
 | SDK |[云处理 - 音视频转码](https://techs.b0.upaiyun.com/videos/cdnpage/format_videos.html)|3分35秒|
 
 ### 直播服务
