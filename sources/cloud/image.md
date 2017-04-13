@@ -315,7 +315,7 @@ GIF/动态 GIF 格式图片转成 WebP：www.domain.com/a.gif!/format/webp
 |---------------------------|-------------------------------|-----------------------------------|
 | `/crop/<w>x<h>a<x>a<y>`  	| 宽x高axay，如 300x200a80a60 	| 缩小或放大前进行裁剪 				|
 | `/clip/<w>x<h>a<x>a<y>`  	| 宽x高axay，如 300x200a80a60 	| 缩小或放大后进行裁剪					|
-| `/gravity/<gravity>`		| 位置，如 north  				| 裁剪开始的方位，默认 `northwest`，详见[方位说明](#align_gravity) |
+| `/gravity/<gravity>`		| 位置，如 north  				| 裁剪开始的方位，默认 `northwest`，详见[方位说明](#align_gravity) <br /> 特别地，`/gravity` 需要放在 `/crop` 或 `/clip` 的后面 |
 | `/roundrect/<roundrect>`  | 圆角半径，如 20					| 裁剪时对四角进行圆化（圆角裁剪），默认 `10`|
 
 ** 注 **
