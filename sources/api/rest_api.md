@@ -66,13 +66,13 @@ PUT /<bucket>/path/to/file
 
 * 文件设置 `Content-Secret` 后，文件将不能被直接访问，若需访问，需要在 URL 后加上 「间隔标识符」 和 「文件密钥」。如： 间隔符为 `!`，`Content-Secret` 为 `abc`，图片访问方式为： <a href="https://p.upyun.com/docs/cloud/secret.jpg!abc" target="_blank" title="查看">`https://p.upyun.com/docs/cloud/secret.jpg!abc`</a>。
 
-* **间隔标识符** 用于分隔文件 URL 和文件秘钥，有 3 种可选，分别是：!（感叹号/默认值）、-（中划线）和 _（下划线），可登录又拍云<a href="https://console.upyun.com/services/" target="_blank">控制台</a>，在 「服务」 > 「功能配置」 > 「云处理」 中设置。
+* **间隔标识符** 用于分隔文件 URL 和文件密钥，有 3 种可选，分别是：!（感叹号/默认值）、-（中划线）和 _（下划线），可登录又拍云<a href="https://console.upyun.com/services/" target="_blank">控制台</a>，在 「服务」 > 「功能配置」 > 「云处理」 中设置。
 
 * 删除或修改 `Content-Secret`，见 Metadata 的[常见应用案例](/api/rest_api/#metadata_exg)。
 
 * 如果原文件是一张图片，除了通过文件密码进行访问外，还可以通过[图片处理](/cloud/image/#url)进行访问。
 
-* 如果原文件是一张图片，文件秘钥应避免与[缩略图版本](/cloud/image/#thumb)冲突，如果冲突，文件秘钥的优先级大于缩略图版本。
+* 如果原文件是一张图片，文件密钥应避免与[缩略图版本](/cloud/image/#thumb)冲突，如果冲突，文件密钥的优先级大于缩略图版本。
 
 ---------
 

@@ -326,7 +326,7 @@ form_api_secret：`lGetaXubhGezKp89+6iuOb5IaS3=`
 
 **no-sign 算法**
 
-如果发生异常，表单 API 验证秘钥获取失败，返回 `no-sign`。`no-sign` 算法跟 `sign` 相同，只是表单 API 验证密匙(`form_api_secret`) 为空字符串 `''`。
+如果发生异常，表单 API 验证密钥获取失败，返回 `no-sign`。`no-sign` 算法跟 `sign` 相同，只是表单 API 验证密匙(`form_api_secret`) 为空字符串 `''`。
 
 例如，使用上例参数拼接后的字符串是：
 

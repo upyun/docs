@@ -195,18 +195,18 @@ apps = [
 
 ---------
 
-### 原图保护秘钥
+### 原图保护密钥
 
-- 上传图片时，保护秘钥通过 [REST API](/api/rest_api/#_2) | [FORM API](/api/form_api/#_2) 的 `Content-Secret` 设置。
+- 上传图片时，保护密钥通过 [REST API](/api/rest_api/#_2) | [FORM API](/api/form_api/#_2) 的 `Content-Secret` 设置。
 - 已经存在存储的图片，可以通过编辑 [Metadata](/api/rest_api/#metadata_2) 设置保护密钥。
 
-图片添加保护秘钥后，访问时需要带上 「[间隔标识符](#tag)」 和 「保护密钥」，才能访问图片。
+图片添加保护密钥后，访问时需要带上 「[间隔标识符](#tag)」 和 「保护密钥」，才能访问图片。
 
-例如，保护秘钥是 `abc`，
+例如，保护密钥是 `abc`，
 
 访问图片 URL 是 <a href="https://p.upyun.com/docs/cloud/secret.jpg!abc" target="_blank" title="查看">`https://p.upyun.com/docs/cloud/secret.jpg!abc`</a>。
 
-如果保护秘钥跟缩略图版本名称相同，当作保护密钥。特别地，对有保护秘钥的图片进行处理时，不需要加保护秘钥。
+如果保护密钥跟缩略图版本名称相同，当作保护密钥。特别地，对有保护密钥的图片进行处理时，不需要加保护密钥。
 
 ---------
 
@@ -343,7 +343,7 @@ GIF/动态 GIF 格式图片转成 WebP：www.domain.com/a.gif!/format/webp
 
 | 参数         			| 值                   				| 说明                         |
 |-----------------------|-----------------------------------|---------------------------------------|
-| `/watermark//text/<text>`| 文字内容，如 `5L2g5aW977yB`        	| 文字内容，示例中为 `你好！`的 Base64 编码字符串。     |
+| `/watermark/text/<text>`| 文字内容，如 `5L2g5aW977yB`        	| 文字内容，示例中为 `你好！`的 Base64 编码字符串。     |
 | `/size/<size>`      	| 大小，如 16                        | 文字大小，单位 px，默认 `32`               |
 | `/font/<font>`      	| 字体，如 simsun（宋体）            	| 文字字体，默认 `simsun`。字体使用时，需要用参数名。参数名见[字体列表](#font_list)  |
 | `/color/<color>`     	| RRGGBB，如 FF0000（红色）          	| 字体颜色，默认 `000000（黑色）`            |
