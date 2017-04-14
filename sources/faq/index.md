@@ -479,8 +479,8 @@ curl -T /local_img.jpg http://v0.api.upyun.com/bucket/img.jpg -u operator:operat
 
 | 视频类别 | 视频名称                                     | 时长     |
 | ---- | ---------------------------------------- | ------ |
-| CDN  | [创建和使用CDN存储服务](https://techs.b0.upaiyun.com/videos/cdnpage/create_cdn_and_use_storage_services.html) | 9分24秒  |
-| CDN  | [创建动态CDN和设置缓存](https://techs.b0.upaiyun.com/videos/cdnpage/create_dynamic_cdn_and_cache_setting.html) | 15分04秒 |
+| CDN  | [创建和使用CDN存储服务](https://techs.b0.upaiyun.com/videos/cdnpage/create_cdn_and_use_storage_services.html) | 13分14秒  |
+| CDN  | [创建动态CDN和设置缓存](https://techs.b0.upaiyun.com/videos/cdnpage/create_dynamic_cdn_and_cache_setting.html) | 18分05秒 |
 | CDN  | [创建和使用缩略图](https://techs.b0.upaiyun.com/videos/cdnpage/Picture_processing.html) | 8分03秒  |
 | CDN  | [设置SSL证书](https://techs.b0.upaiyun.com/videos/cdnpage/ssl_setting.html) | 5分54秒  |
 | CDN  | [缓存刷新功能](https://techs.b0.upaiyun.com/videos/cdnpage/chache_Refresh.html) | 3分42秒  |
@@ -508,7 +508,7 @@ curl -T /local_img.jpg http://v0.api.upyun.com/bucket/img.jpg -u operator:operat
 |工具|[ Windows 下 upx 的使用](https://techs.b0.upaiyun.com/videos/cdnpage/winupx.html)|10分23秒|
 |插件|[ueditor的使用](https://techs.b0.upaiyun.com/videos/cdnpage/ueditor.html)|7分55秒|
 | CDN |[分段缓存](https://techs.b0.upaiyun.com/videos/cdnpage/fenduan.html)|8分39秒|
-| SDK |[云处理 - 音视频转码](https://techs.b0.upaiyun.com/videos/cdnpage/format_videos.html)|3分35秒|
+| SDK |[云处理 - 音视频转码](https://techs.b0.upaiyun.com/videos/cdnpage/format_videos.html)|9分14秒|
 
 ### 直播服务
 
@@ -519,6 +519,7 @@ curl -T /local_img.jpg http://v0.api.upyun.com/bucket/img.jpg -u operator:operat
 | 直播   | [直播转码和录制](https://techs.b0.upaiyun.com/videos/cdnpage/zb-format.html) | 10分23秒 |
 | 直播   | [安卓拉流播放器使用指南](https://techs.b0.upaiyun.com/videos/cdnpage/andriod-player-sdk.html) | 3分32秒  |
 | 直播   | [直播防盗链的使用](https://techs.b0.upaiyun.com/videos/cdnpage/live_push_token.html) | 6分54秒  |
+| 直播   | [流管控和流回调](https://techs.b0.upaiyun.com/videos/cdnpage/stream_control.html) | 9分37秒  |
 
 
 ### 故障反馈
