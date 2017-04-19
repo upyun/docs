@@ -40,6 +40,7 @@ pages:
     - '缓存刷新': 'api/purge.md'
     - '微信小程序': 'api/small_program.md'
     - '移动流量': 'mobile-stats/index.md'
+    - '短信服务': 'sms/index.md'
 - '云处理文档':
     - '产品简介': 'cloud/index.md'
     - '认证鉴权': 'cloud/authorization.md'
