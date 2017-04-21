@@ -509,6 +509,7 @@ curl -T /local_img.jpg http://v0.api.upyun.com/bucket/img.jpg -u operator:operat
 |插件|[ueditor的使用](https://techs.b0.upaiyun.com/videos/cdnpage/ueditor.html)|7分55秒|
 | CDN |[分段缓存](https://techs.b0.upaiyun.com/videos/cdnpage/fenduan.html)|8分39秒|
 | SDK |[云处理 - 音视频转码](https://techs.b0.upaiyun.com/videos/cdnpage/format_videos.html)|9分14秒|
+| SDK   | [ 云处理 - 视频水印](https://techs.b0.upaiyun.com/videos/cdnpage/watermark.html) | 11分37秒  |
 
 ### 直播服务
 
@@ -529,6 +530,7 @@ curl -T /local_img.jpg http://v0.api.upyun.com/bucket/img.jpg -u operator:operat
 | 工具   | [ PC 端故障反馈视频教程](https://techs.b0.upaiyun.com/videos/cdnpage/pc.html) | 10分    |
 | 工具   | [ Android 故障反馈视频教程](https://techs.b0.upaiyun.com/videos/cdnpage/mobile.html) | 4分51秒  |
 | 工具   | [ iOS 故障反馈视频教程](https://techs.b0.upaiyun.com/videos/cdnpage/iphone.html) | 4分51秒  |
+| 工具   | [  DNS 的修改 ](https://techs.b0.upaiyun.com/videos/cdnpage/dns.html) | 11分37秒  |
 
 
 
