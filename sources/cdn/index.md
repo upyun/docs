@@ -1,4 +1,4 @@
-﻿**产品介绍**
+**产品介绍**
 
 ----------
 
@@ -81,6 +81,6 @@
 
 ----------
 
-[缓存相关](https://docs.upyun.com/cdn/faq/#_1)｜[刷新相关](https://docs.upyun.com/cdn/faq/#_2)｜[性能相关](https://docs.upyun.com/cdn/faq/#_3)｜[功能相关](https://docs.upyun.com/cdn/faq/#_4)｜[安全相关](https://docs.upyun.com/cdn/faq/#_5)｜[资源相关](https://docs.upyun.com/cdn/faq/#_6)｜[证书相关](https://docs.upyun.com/cdn/faq/#_7)
+[缓存相关](https://docs.upyun.com/cdn/faq/#_1)｜[刷新相关](https://docs.upyun.com/cdn/faq/#_5)｜[性能相关](https://docs.upyun.com/cdn/faq/#_9)｜[功能相关](https://docs.upyun.com/cdn/faq/#_15)｜[安全相关](https://docs.upyun.com/cdn/faq/#_21)｜[资源相关](https://docs.upyun.com/cdn/faq/#_25)｜[证书相关](https://docs.upyun.com/cdn/faq/#_27)
 
 ----------
