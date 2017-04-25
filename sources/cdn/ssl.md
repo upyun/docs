@@ -1,4 +1,4 @@
-##产品介绍
+﻿##产品介绍
 
 HTTPS（全称：HyperText Transfer Protocol over Secure Socket Layer），其实 HTTPS 并不是一个新鲜协议，Google 很早就开始启用了，初衷是为了保护数据安全。 近两年，Google、Baidu、Facebook 等这样的互联网巨头，不谋而合地开始大力推行 HTTPS， 很多国内外的大型互联网公司也都已经启用了全站 HTTPS，这也是未来互联网发展的趋势。
 
@@ -54,29 +54,29 @@ ECC（Elliptic Curves Cryptography，椭圆曲线加密算法）也是一种公�
     
 ##产品功能
 
-**申购 SSL 证书**
+####申购 SSL 证书
 
 又拍云提供了 Symantec、GeoTrust、TrustAsia、Let’s Encrypt 的各类 DV/OV/EV SSL 证书的[申购服务](https://console.upyun.com/toolbox/createCertificate/)，其中 TrustAsia、Let’s Encrypt DV SSL 单域名证书可免费申请。 
 
-**快速签发**
+####快速签发
 
 填写相关信息，一键申购，步骤简单方便，流程全自动化处理，无需人工协助，申购周期大大缩短，使证书得到快速签发。
 
-**自助化管理**
+####自助化管理
 
 又拍云平台即支持申购上述各类证书，同时也支持上传和管理任意机构签发的证书，所有 SSL 证书均自助化管理，集中监测，让用户使用更加放心、安心。
 
-**一键部署**
+####一键部署
 
 提供一键部署 SSL 证书到又拍云 CDN 产品的功能，用户可自愿选择，帮助用户更快捷地保护数据安全，完成网站 HTTP 到 HTTPS 的转换。
 
 ##产品优势
 
-**免费申请 SSL 证书**
+####免费申请 SSL 证书
 
 又拍云提供了两款证书的免费申请方案，用户可通过 [SSL 证书申购](https://console.upyun.com/toolbox/createCertificate/)平台，免费申请 Symantec-TrustAsia、Let’s Encrypt 的 DV SSL 证书，帮助用户零成本实现全站部署 HTTPS。并且还实现了 Let’s Encrypt 证书到期自动续签，用户无需担心证书过期时间，降低维护成本。
 
-**国际领先 CA 机构合作**
+####国际领先 CA 机构合作
 
 又拍云携手 TrustAsia 与国际顶级数字证书提供商 Symantec、GeoTrust 合作，推出了域名型 SSL 证书（DV SSL），企业型 SSL 证书（OV SSL）、增强型 SSL 证书（EV SSL）的申购；其中域名型 DV SSL 单域名证书当前免费申购。
 
@@ -87,15 +87,15 @@ GeoTrust 是全球第二大数字证书提供商，也是身份认证和信任�
 TrustAsia®（亚洲诚信）是亚数信息科技（上海）有限公司应用于信息安全领域的品牌，
 专业为企业提供包含数字证书在内的所有网络安全服务，是Symantec™（赛门铁克）的白金合作伙伴。
 
-**一键完成证书申请**
+####一键完成证书申请
 
 用户只需提交域名，填写必要信息，点击申请即可完成证书的申购；对于免费证书，系统会自动将证书部署于 CDN 平台；对于付费证书，用户可按需一键将证书部署于 CDN 平台；两者都可以与又拍云 CDN 产品完美融合，实现全站 HTTPS 加速服务。
 
-**简单易用，管理方便**
+####简单易用，管理方便
 
 无论是用户上传的自有证书，还是通过又拍云申购的各类证书，都可在 [SSL 证书服务](https://console.upyun.com/toolbox/ssl/)中统一管理，方便用户对证书进行各种操作，并且全程无需人工协助，公钥、私钥更加安全，做到让用户省心、放心，同时提升了用户的工作效率。
 
-**提升网站搜索排名**
+####提升网站搜索排名
 
 Google 在 2014 年发布的官方博客中指出，已经调整其搜索引擎算法，采用 HTTPS 加密的网站在搜索结果中的排名将会更高。其目标非常简单，就是要鼓励全球网站采用安全度更高的 HTTPS 以保证访客安全。因此网站采用 HTTPS 协议，可吸引更多的用户进行访问，提升网站的价值，增创营收。
 
@@ -125,13 +125,13 @@ Symantec、GeoTrust、TrustAsia 的各类付费 DV SSL、OV SSL、EV SSL 证书�
 
 ##购买指导
 
-###购买流程
+####购买流程
 
 通过又拍云购买 SSL 证书，流程更加简洁方便：
 
 <img src="http://upyun-assets.b0.upaiyun.com/docs/ssl/certificate/flow1.png" height="490" width="480" />
 
-###价格总览
+####价格总览
 
 **价格列表：**
 
@@ -188,7 +188,7 @@ Symantec、GeoTrust、TrustAsia 的各类付费 DV SSL、OV SSL、EV SSL 证书�
     多域名泛域名证书价格 = A + E * ( B - 5 ) + C * D   如果 B - 5 < 0  则按 0 计算
     
 
-###退款服务
+####退款服务
 
 **条件**
 
@@ -200,7 +200,7 @@ Symantec、GeoTrust、TrustAsia 的各类付费 DV SSL、OV SSL、EV SSL 证书�
 
 目前暂时仅支持通过提交工单的方式进行退款申请。
 
-###证书吊销
+####证书吊销
 
 如果用户发现源站服务器被攻破或其他原因导致 SSL 证书私钥泄露，则可以选择吊销此证书；证书吊销后，各浏览器、客户端等将不再信任已吊销的证书，会出现不安全提醒，举例参考[这里](https://revoked.badssl.com/)。
 
@@ -214,7 +214,7 @@ Symantec、GeoTrust、TrustAsia 的各类付费 DV SSL、OV SSL、EV SSL 证书�
 
 详细操作步骤如下：
 
-###付费证书申购
+####付费证书申购
 
 第一步：[注册](http://docs.upyun.com/cdn/guide/#_2)又拍云账号，并完成[实名认证](http://docs.upyun.com/cdn/guide/#_3)；
 
@@ -281,7 +281,7 @@ Symantec、GeoTrust、TrustAsia 的各类付费 DV SSL、OV SSL、EV SSL 证书�
 
 如果选择将证书`部署到 CDN`，则可进入[证书管理](https://console.upyun.com/toolbox/ssl/)界面，对证书进行[配置操作](http://docs.upyun.com/cdn/advanced/#ssl)。
 
-###免费证书申购
+####免费证书申购
 
 前一、二、三、四、五、六步与付费证书申购步骤一致；
 
@@ -315,7 +315,7 @@ Symantec、GeoTrust、TrustAsia 的各类付费 DV SSL、OV SSL、EV SSL 证书�
 
 <img src="http://upyun-assets.b0.upaiyun.com/docs/ssl/upyun-cdn-ssl7.png" height="490" width="800" />
 
-###DV SSL证书验证
+####DV SSL证书验证
 
 当申购的证书为 TrustAsia DV SSL 多域名、泛域名证书时，需要通过以下方式进行域名所有权验证。
 
@@ -402,3 +402,8 @@ Symantec-TrustAsia DV SSL 证书（有效期一年），在[证书管理](https:
 9、对于 Symantec、GeoTrust、TrustAsia 的各类 SSL 证书，主域名例如 upyun.com 已经成功申请证书，则此证书中已默认添加了 www.upyun.com，即 www.upyun.com 可直接使用此证书，无需重复申请；同理使用 www.upyun.com 申请的证书，主域名 upyun.com 也可使用（上述只针对主域名生效，例如用域名 abc.upyun.com 申请的证书，则 www.abc.upyu.com 不可使用，需要重新申请）。
   
 注意：另一款 Let’s Encrypt DV SSL 证书，主域名 upyun.com 和 www.upyun.com 无法共用一张证书，需分别申请。
+
+
+
+
+
