@@ -1,4 +1,4 @@
-﻿##功能简介
+##功能简介
 
 自定义 rewrite 是基于 DSL ( Domain Specific Language ) 理念来设计的，主要面向开发者使用。充分利用又拍云 CDN ( Content Delivery Network )分布式边缘网络的性能及规模，通过又拍云管理控制台可轻松创建 rewrite 规则，规则支持函数、变量、字符串常量，用户可以将这些自由组合，可以实现对 URL 的改写、重定向、自定义 HTTP 头、请求禁止等处理逻辑。
 
