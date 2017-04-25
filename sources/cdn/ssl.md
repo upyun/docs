@@ -1,4 +1,4 @@
-﻿##产品介绍
+##产品介绍
 
 HTTPS（全称：HyperText Transfer Protocol over Secure Socket Layer），其实 HTTPS 并不是一个新鲜协议，Google 很早就开始启用了，初衷是为了保护数据安全。 近两年，Google、Baidu、Facebook 等这样的互联网巨头，不谋而合地开始大力推行 HTTPS， 很多国内外的大型互联网公司也都已经启用了全站 HTTPS，这也是未来互联网发展的趋势。
 
