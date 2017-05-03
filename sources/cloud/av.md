@@ -130,7 +130,7 @@ curl -X POST \
 
 支持的 API： [FORM API](/api/form_api/#upload_args)。
 
-参数名是 `apps`，参数值是 JSON 字符串。一个 `apps` 最多允许包含 10 个音视频处理任务。** 任务参数见[功能](#function) **。
+参数名是 `apps`，参数值是 JSON 数组。一个 `apps` 最多允许包含 10 个音视频处理任务。** 任务参数见[功能](#function) **。
 
 ** apps 参数结构 **
 
