@@ -1,4 +1,4 @@
-﻿##域名接入（自有源）
+##域名接入（自主源）
 
 如果您的网站或应用使用的是自有源站或者第三方存储源，您可以通过自主源的方式接入 CDN 服务。此时您的源站无需做任何改动，只需要走完下面的配置流程并在 DNS 解析商那边修改 CNAME 记录即可享受 CDN 服务，具体操作参见如下步骤：
 
@@ -37,9 +37,9 @@
 
 <img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-service-state.png" height="470" width="800" />
 
-在此配置界面，您也可以在该服务下绑定多个域名，详细点击 [域名绑定](https://docs.upyun.com/cdn/service/#_4)，请耐心等待域名配置（约 10 分钟），查看域名对应的状态是否为［正常］。
+在此配置界面，您也可以在该服务下绑定多个域名，详情点击 [域名绑定](https://docs.upyun.com/cdn/service/#_13)，请耐心等待域名配置（约 10 分钟），查看域名对应的状态是否为［正常］。
 
-特别地，又拍云为每一个 CDN 服务提供了 [默认域名](https://docs.upyun.com/cdn/service/#_3)，默认域名格式为：
+特别地，又拍云为每一个 CDN 服务提供了 [默认域名](https://docs.upyun.com/cdn/service/#_12)，默认域名格式为：
 服务名.upaiyun.com，此默认域名仅供测试使用，正式业务环境请绑定自有域名。
 
 ####第五步：修改CNAME记录
@@ -72,7 +72,7 @@
 
 ####第三步：创建操作员
 
-针对使用又拍云对象存储作为源的 CDN 服务，需要创建操作员来管理存储在又拍对象存储服务上面的非结构化数据，详细操作和介绍点击 [操作员](https://docs.upyun.com/cdn/service/#_7)。
+针对使用又拍云对象存储作为源的 CDN 服务，需要创建操作员来管理存储在又拍对象存储服务上面的非结构化数据，详细操作和介绍点击 [操作员](https://docs.upyun.com/cdn/service/#_22)。
 
 ####第四步：服务状态确认
 
@@ -80,16 +80,16 @@
 
 <img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-service-state.png" height="470" width="800" />
 
-在此配置界面，您也可以在该服务下绑定多个域名，详细点击 [域名绑定](https://docs.upyun.com/cdn/service/#_4)，请耐心等待域名配置（约 10 分钟），查看域名对应的状态是否为［正常］。
+在此配置界面，您也可以在该服务下绑定多个域名，详细点击 [域名绑定](https://docs.upyun.com/cdn/service/#_13)，请耐心等待域名配置（约 10 分钟），查看域名对应的状态是否为［正常］。
 
-特别地，又拍云为每一个 CDN 服务提供了 [默认域名](https://docs.upyun.com/cdn/service/#_3)，默认域名格式为：
+特别地，又拍云为每一个 CDN 服务提供了 [默认域名](https://docs.upyun.com/cdn/service/#_12)，默认域名格式为：
 服务名.upaiyun.com，此默认域名仅供测试使用，正式业务环境请绑定自有域名。
 
 ####第五步：资源文件上传
 
 以上步骤操作完毕之后，可以使用操作员针对该服务进行资源文件的上传和管理操作，资源文件的上传和管理，请参见 [云存储开发者工具](http://docs.upyun.com/api/developer_tools/)。待资源文件都上传完毕，确保该存储空间可以正常提供服务之后，就可以开始使用 CDN 服务了。
 
-####第六步：修改CNAME记录**
+####第六步：修改CNAME记录
 
 在以上步骤中，您可查看 CDN 平台为您分配的 CNAME 域名，此时需要去域名 DNS 解析商处，为该域名添加一条 CNAME 记录，待 CNAME 配置生效之后，方可享受 CDN 服务，具体配置详见 [CNAME 解析](https://docs.upyun.com/cdn/guide/#cname)。
 

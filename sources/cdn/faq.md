@@ -1,4 +1,4 @@
-﻿##缓存相关
+##缓存相关
 
 ####CDN 默认的缓存策略是怎样的？
 
@@ -99,7 +99,7 @@ URL 刷新：是指源站更新少量资源文件时，可以通过 URL 刷新�
 
 ####支持 GZIP 压缩吗？
 
-又拍云 CDN 默认开启了 `GZIP` 压缩特性。支持情况可参见文档 [GZIP 压缩](https://docs.upyun.com/cdn/config/#6)。
+又拍云 CDN 默认开启了 `GZIP` 压缩特性。支持情况可参见文档 [GZIP 压缩](https://docs.upyun.com/cdn/config/#61-gzip)。
 
 
 ####回源带宽过大，如何有效降低回源带宽？

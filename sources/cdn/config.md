@@ -1,4 +1,4 @@
-﻿又拍云 CDN 服务支持多项自定义配置，您可以根据自身业务需要进行设置，优化您的 CDN 加速效果或配合实现某些业务逻辑。
+又拍云 CDN 服务支持多项自定义配置，您可以根据自身业务需要进行设置，优化您的 CDN 加速效果或配合实现某些业务逻辑。
 
 ##1. 配置概览
 
@@ -30,9 +30,9 @@
 [地区访问限制](https://docs.upyun.com/cdn/config/#42)                  | 根据地区维度来限制最终用户访问，支持白名单和黑名单
 [Referer 防盗链](https://docs.upyun.com/cdn/config/#43-referer)         | Referer 防盗链配置，支持白名单和黑名单
 [User-Agent 防盗链](https://docs.upyun.com/cdn/config/#44-user-agent)         | User-Agent 防盗链配置，支持白名单和黑名单
-[Token 防盗链](https://docs.upyun.com/cdn/config/45-token)         | Token 防盗链配置引导，也即时间戳防盗链
-[回源鉴权](https://docs.upyun.com/cdn/config/46)         | 回源鉴权功能说明及配置引导，属于高级防盗链模式
-[外链功能](https://docs.upyun.com/cdn/config/47)         | 禁止用户访问，支持服务维度
+[Token 防盗链](https://docs.upyun.com/cdn/config/#45-token)         | Token 防盗链配置引导，也即时间戳防盗链
+[回源鉴权](https://docs.upyun.com/cdn/config/#46)         | 回源鉴权功能说明及配置引导，属于高级防盗链模式
+[外链功能](https://docs.upyun.com/cdn/config/#47)         | 禁止用户访问，支持服务维度
 
 **安全防护**
 
