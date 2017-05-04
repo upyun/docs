@@ -138,7 +138,7 @@ curl -X POST \
 apps = [
     {                                               // 异步音视频处理任务
         "name": "naga",                             // 异步任务名称，必填。naga 表示异步音视频处理服务
-        "type": "<type>",                           // 视频转码，必填
+        "type": "video",                            // 视频转码，必填，`video` 表示视频处理任务
         "avopts": "<avopts>",                       // 处理参数，必填
         "return_info": true/false,                  // 是否返回元数据，选填
         "save_as": "<save_as>",                     // 结果音频/视频保存路径，选填
