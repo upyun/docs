@@ -91,7 +91,7 @@ x-gmkerl-thumb: /fw/300/unsharp/true/quality/80/format/png
 
 支持的 API： [FORM API](/api/form_api/#upload_args)。
 
-参数名是 `apps`，参数值是 JSON 字符串。一个 `apps` 最多允许包含 10 个图片处理任务。处理参数见[功能](#function)。
+参数名是 `apps`，参数值是 JSON 数组。一个 `apps` 最多允许包含 10 个图片处理任务。处理参数见[功能](#function)。
 
 ** apps 参数结构 **
 
