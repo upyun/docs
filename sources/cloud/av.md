@@ -138,7 +138,7 @@ curl -X POST \
 apps = [
     {                                               // 异步音视频处理任务
         "name": "naga",                             // 异步任务名称，必填。naga 表示异步音视频处理服务
-        "type": "<type>",                           // 视频转码，必填
+        "type": "<type>",                           // 功能标识，必填
         "avopts": "<avopts>",                       // 处理参数，必填
         "return_info": true/false,                  // 是否返回元数据，选填
         "save_as": "<save_as>",                     // 结果音频/视频保存路径，选填
@@ -518,7 +518,7 @@ southwest     |     south      |     southeast
 | `type`            | string    | 是		| 固定值，`video`                                 			|
 | `avopts`          | string    | 是		| 视频转码参数，格式为 `/key1/value1/key2/value2/...`，见「avopts 参数说明」  |
 | `return_info`		| boolean   | 否		| 回调信息是否包含输出文件的元数据，元数据格式为 JSON，默认 `false`      	|
-| `save_as`         | string    | 否		| 输出文件保存路径，默认原始视频所在目录+系统随机生成的文件名   |
+| `save_as`         | string    | 否		| 输出文件保存路径，默认原始视频所在目录+系统随机生成的文件名，见「注」   |
 
 ** avopts 参数说明 **
 
@@ -526,6 +526,10 @@ southwest     |     south      |     southeast
 |-------------------|-----------|-------|---------------------------------------------------|
 | `/ss/<start_time>`| string    | 否		| 剪辑开始时间，格式为 `HH:MM:SS`，默认视频开始时间   	|
 | `/es/<end_time>`  | string    | 否		| 剪辑结束时间，格式为 `HH:MM:SS`，默认视频结束时间   	|
+
+** 注 **
+
+- 自定义 `save_as` 参数时，后缀名作为输出格式，除了视频格式外，支持 GIF/WebP，可以把剪辑转换成动态 GIF/动态 WebP。
 
 ---------
 

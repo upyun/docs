@@ -27,7 +27,7 @@ Authorization: UPYUN <Operator>:<Signature>
 ** 注 **
 
 - 非必选参数为空时，连同前面的 `&` 一起不参与签名计算。所有计算的 MD5 值，格式均是 32 位小写。
-- HMAC-SHA1 输出的必须是原生的二进制数据。
+- HMAC-SHA1 输出的必须是**原生的二进制数据**。
 - 请求签名有效期为 30 分钟，如果签名超过有效期，需要重新生成签名。
 - 回调签名有效期由用户自行确定，建议设置为 30 分钟。
 
@@ -57,22 +57,22 @@ Signature = Base64 (HMAC-SHA1 (<Password>,
 <Content-MD5>
 ))
 // 内容拼接时，不用换行或空格，上面格式的换行或空格是为了方便阅读
-= Base64 (HMAC-SHA1 (ab296a01090ca2eab5fe5b246999da54,POST&/pretreatment/&Wed, 09 Nov 2016 14:26:58 GMT&a2d75510f7ec654cc24cfa2b5a5a8182))
+= Base64 (HMAC-SHA1 (482c811da5d5b4bc6d497ffa98491e38,POST&/pretreatment/&Wed, 09 Nov 2016 14:26:58 GMT&a2d75510f7ec654cc24cfa2b5a5a8182))
 // HMAC-SHA1 返回的原生二进制数据进行 Base64 编码
-= lSPhJS7LVUkrCMUq3PBZSvhsnqo=
+= 6KGqGX4tFwqnCdSndEmGQsR1jQU=
 ```
 
 Authorization 签名：
 
 ```
-Authorization: UPYUN upyun:e9QV8W8yBDDGyknkwTesxn94jN0=
+Authorization: UPYUN upyun:6KGqGX4tFwqnCdSndEmGQsR1jQU=
 ```
 
 完整的请求：
 
 ```
 POST /pretreatment/ HTTP/1.1
-Authorization: UPYUN upyun:lSPhJS7LVUkrCMUq3PBZSvhsnqo=
+Authorization: UPYUN upyun:6KGqGX4tFwqnCdSndEmGQsR1jQU=
 Content-MD5: a2d75510f7ec654cc24cfa2b5a5a8182
 Date: Wed, 9 Nov 2016 14:26:58 GMT
 Content-Type: application/x-www-form-urlencoded; charset=utf-8
