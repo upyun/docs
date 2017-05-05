@@ -276,6 +276,7 @@ HEAD /<bucket>/path/to/file
     | x-upyun-file-type | 文件为 `file`，文件夹为 `folder`    |
     | x-upyun-file-size | 文件大小                   |
     | x-upyun-file-date | 文件创建时间                  |
+	| Content-Md5 		| 文件的 MD5 值                  |
 
 - 获取失败：返回相应的出错信息，具体请参阅「[API 错误码表](/api/errno/)」。
 
