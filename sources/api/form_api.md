@@ -88,6 +88,7 @@ curl http://v0.api.upyun.com/<bucket> \
 * 若在上传非图片文件时使用 `image-width-range`，`image-height-range`，会返回「不是图片」的错误。
 * 若请求中带有预处理参数（`x-gmkerl-thumb`），图片处理后再保存。
 * 若设置了 `x-gmkerl-type` 参数，则图片上传完成后会返回图片的 meta 信息或主题色。
+* 文件大小超过 50 M 后，请使用[断点续传上传](/api/rest_api/#Multi_upload)。
 
 ---------
 

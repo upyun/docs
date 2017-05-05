@@ -95,16 +95,24 @@ x-gmkerl-thumb: /fw/300/unsharp/true/quality/80/format/png
 
 ** apps 参数结构 **
 
+| 参数 				| 必选      	| 说明                                                     |
+|-------------------|-----------|----------------------------------------------------------|
+| name      		| 是        	| 使用异步图片处理服务，固定值 `thumb`                |
+| x-gmkerl-thumb    | 是      	| 图片处理功能参数或缩略图版本名称                               |
+| x-gmkerl-split   	| 否       	| 图片分块，按 `宽x高` 把图片分成数块，见「注」                  |
+| save_as  	 		| 否        	| 结果图片保存路径                                   |
+| notify_url  	 	| 否     	| 回调地址，不填时使用[上传参数](/api/form_api/#_2)中的  `notify_url` |
+
+** 注 **
+
+- `x-gmkerl-split` 会在 `x-gmkerl-thumb` 的基础上把图片分成数块，用户可以根据回调信息中的行号跟列号来确定分块后的图片在原图中的位置。
+- `x-gmkerl-split` 会输出多个图片，各图片存放路径为 `$save_as-图片序号.文件后缀名`。例如， `save_as` 为 `/upyun/img.jpg`，输出 3 张图片的存放路径为 `/upyun/img.jpg-1.jpg` 、 `/upyun/img.jpg-2.jpg` 、 `/upyun/img.jpg-3.jpg`。
+
+** 举例 **
+
 ```
 apps = [
-	{
-		"name": "thumb",                        // 异步任务名称，必填。thumb 表示异步图片处理服务
-        "x-gmkerl-thumb": "<参数或缩略图版本>",	// 必填
-	    "x-gmkerl-split": "<w>x<h>",				//图片分块，按宽x高把图片分成数块
-        "save_as": "<save_as>",           		// 结果图片保存路径，选填
-		"notify_url": "<notify_url>"     		// 回调地址，不填时使用上传参数中的  notify_url
-  	},
-	{                                              // 举例
+	{                                             
         "name": "thumb",
         "x-gmkerl-thumb": "/fw/300/quality/95",    
         "save_as": "/path/to/fw_300.jpg",          
@@ -113,11 +121,6 @@ apps = [
 	......
 ]
 ```
-
-** 注 **
-
-- `x-gmkerl-split` 会在 `x-gmkerl-thumb` 的基础上把图片分成数块，用户可以根据回调信息中的行号跟列号来确定分块后的图片在原图中的位置。
-- `x-gmkerl-split` 会输出多个图片，各图片存放路径为 `$save_as-图片序号.文件后缀名`。例如， `save_as` 为 `/upyun/img.jpg`，输出 3 张图片的存放路径为 `/upyun/img.jpg-1.jpg` 、 `/upyun/img.jpg-2.jpg` 、 `/upyun/img.jpg-3.jpg`。
 
 ** 回调通知 **
 
@@ -267,6 +270,8 @@ x-gmkerl-thumb: upyun520/fw/500
 
 WebP 演示 DEMO：[让您的图片瘦身 70%](https://www.upyun.com/webp.html)。
 
+转成有损 WebP：/format/webp；转成无损 WebP：/format/webp/lossless/true
+
 JPG 格式图片转成 WebP：www.domain.com/a.jpg!/format/webp
 
 PNG 格式图片转成 WebP：www.domain.com/a.png!/format/webp
@@ -331,11 +336,12 @@ GIF/动态 GIF 格式图片转成 WebP：www.domain.com/a.gif!/format/webp
 
 | 参数        			| 值                          						| 说明                         	|
 |-----------------------|---------------------------------------------------|-------------------------------|
-| `/watermark/url/<url>`| 编码字符串，如 `L3BhdGgvdG8vd2F0ZXJtYXJrLnBuZw==` 	| 水印图片的 URI，示例为 `/path/to/watermark.png` 的 Base64 编码字符串。特别地，水印图片必须放在图片所在服务名下。  |
+| `/watermark/url/<url>`| 编码字符串，如 `L3BhdGgvdG8vd2F0ZXJtYXJrLnBuZw==` 	| 水印图片的 URI，示例为 `/path/to/watermark.png` 的 Base64 编码字符串。特别地，水印图片必须和待处理图片在同一服务名下  |
 | `/align/<align>`     	| 位置，如 north                                   	| 水印图片放置方位，默认 `northwest`，详见[方位说明](#align_gravity)       |
 | `/margin/<x>x<y>`    	| 横偏移x纵偏移，如 15x10                           	| 水印图片横纵相对偏移，默认 `20x20`        |
 | `/opacity/<opacity>`  | 透明度，如 90                                    	| 水印图片透明度，默认 `100`，取值范围 `[0-100]`，值越大越不透明，`0` 完全透明，`100` 完全不透明 |
 | `/percent/<integer>`	| 百分比值，如 50                                    	| 水印图片自适应原图短边的比例，取值范围 `[0-100]`，默认 `0`，`0` 表示不设置该参数 |
+| `/repeat/<boolean>`	| true                                  			| 水印图片是否重复铺满原图，默认 `false` |
 | `/animate/<boolean>`	| true                                            	| 允许对动态图片加水印，默认 `false`  |
 
 
@@ -508,6 +514,7 @@ GIF/动态 GIF 格式图片转成 WebP：www.domain.com/a.gif!/format/webp
 | 参数       				| 值     		 	| 说明            				 |
 |---------------------------|-------------------|--------------------------------|
 | `/format/<format>`      	| 图片格式，如 jpg	| 输出格式，可选值 `jpg`、`png`、`webp`。`webp` 包含动态 WebP      |
+| `/lossless/<boolean>`     | true				| 无损压缩，默认 `false`。仅当输出格式是 `WebP` 时有效     |
 | `/quality/<quality>`     	| 整数值，如 75  		| 设置压缩质量，可选范围`[1-99]`   |
 | `/compress/<boolean>`    	| true          	| JPG 、 PNG 大小压缩优化，默认 `false`      	|
 | `/coalesce/<boolean>`    	| false         	| 是否填充动态 GIF 图像中共同部分，默认 `true`，见「注」  |
