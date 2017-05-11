@@ -152,7 +152,7 @@
 ####5.1 短信模板新增接口
 <b>接口地址</b>
 
-    POST http://sms.upyun.com/api/template
+    POST https://sms.upyun.com/api/template
 
 <b>参数定义</b>
 
@@ -212,7 +212,7 @@
 
 <b>请求示例</b>
 
-    POST http://sms.upyun.com/api/templates HTTP/1.1
+    POST https://sms.upyun.com/api/templates HTTP/1.1
     Authorization: <your token>
     {
       "title": "title",
@@ -226,7 +226,7 @@
 ####5.2 短信模板删除接口
 <b>接口地址</b>
 
-    DELETE http://sms.upyun.com/api/templates/{template_id}
+    DELETE https://sms.upyun.com/api/templates/{template_id}
 
 <b>参数定义</b>
 
@@ -240,7 +240,7 @@
 
 <b>请求示例</b>
 
-    DELETE http://sms.upyun.com/api/templates/4
+    DELETE https://sms.upyun.com/api/templates/4
     Authorization: <your token>
 
 ####5.3 短信模板修改接口
@@ -303,7 +303,7 @@
 
 <b>请求示例</b>
 
-    PATCH http://sms.upyun.com/api/templates/3
+    PATCH https://sms.upyun.com/api/templates/3
     Authorization: <your token>
     {
       "title": "hello"
@@ -312,7 +312,7 @@
 ####5.4 查询模板接口
 <b>接口地址</b>
 
-    GET http://sms.upyun.com/api/templates
+    GET https://sms.upyun.com/api/templates
 
 <b>参数定义</b>
 
@@ -371,13 +371,13 @@
 
 <b>请求示例</b>
 
-    GET http://sms.upyun.com/api/templates?type=industry&report_type=vip
+    GET https://sms.upyun.com/api/templates?type=industry&report_type=vip
     Authorization: <your token>
 
 ####5.5 短信发送接口
 <b>接口地址</b>
 
-    POST http://sms.upyun.com/api/messages
+    POST https://sms.upyun.com/api/messages
 
 <b>参数定义</b>
 
@@ -414,7 +414,7 @@
 
 <b>请求示例</b>
 
-    POST http://sms.upyun.com/api/messages
+    POST https://sms.upyun.com/api/messages
     Authorization: <your token>
     {
       "template_id": 2,
@@ -424,7 +424,7 @@
 ####5.6 短信报表查询接口
 <b>接口地址</b>
 
-    GET http://sms.upyun.com/api/messages
+    GET https://sms.upyun.com/api/messages
 
 <b>参数定义</b>
 
@@ -515,7 +515,7 @@
 
 <b>请求示例</b>
 
-    curl -H "Authorization: <your token>" http://sms.upyun.com/api/messages\?mobile\=15757
+    curl -H "Authorization: <your token>" https://sms.upyun.com/api/messages\?mobile\=15757
 
 ##6. 错误码
 ####6.1 错误码列表
