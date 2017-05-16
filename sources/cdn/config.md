@@ -692,7 +692,52 @@ text/html -- default
 一个引用了如上 URL 的 Demo:
 
     http://upyun-assets.b0.upaiyun.com/jscombo.html
+    
+####6.6 WebP 自适应
 
+WebP 自适应方案是 CDN 平台智能判断客户端浏览器是否支持 WebP 解码，如支持则返回 WebP 格式图片，否则返回原图，客户端以及源站无需任何改动。
+
+**如何实现**
+
+WebP 自适应大致的处理流程如下：
+
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-auto_webp_theory.png"  />
+
+1.CDN 如何判断客户端是否支持 WebP ?
+
+该部分目前是通过 HTTP  Accept 头来判断的，如果支持，则返回 WebP 副本并进行缓存；如果不支持，则返回原图。
+
+2.CDN 如何实现实时图片格式转换？
+ 
+针对用户源站并非 WebP 格式图片的时候，CDN 层需要支持将原图图片的实时转换为 WebP 格式副本，这个在 CDN 层面是无缝支持的。流程是这样的：
+
+ - 客户端浏览器请求一个图片资源，例如：http://webp.example.com/test.png;
+ - CDN 通过 Accept 头已经判断客户端浏览器支持 WebP 格式的图片；
+ - CDN 回用户源站取回原图并将原图实时转为 WebP 格式的图片，并响应给客户端浏览器。
+
+这里值得强调的是，又拍云 CDN 已经无缝兼容了各种作图场景和访问方式，具体包括：
+
+ - 原图访问 ，示例：/a.jpg
+ - 自定义版本号作图，示例：/a.jpg!123
+ - URL 作图 ，示例：/a.jpg!/format/webp
+ - 自定义版本号 + URL 作图：/a.jpg!123/format/webp
+
+**配置引导**
+
+登陆 [CDN 控制台](https://console.upyun.com/login/)，依次进入：服务 > 功能配置 > 高级功能 > WebP 自适应，开启即可。如下图所示：：
+
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-auto_webp.png" height="490" width="800" />
+
+
+**注意事项**
+
+ - CDN 平台会根据请求头 Accept: image/webp 来智能判断客户端是否支持 WebP 解码，不支持的客户端，会默认返回原始图片；
+ - 已经使用了又拍云自定义版本作图、URL 作图、自定义版本作图＋URL 作图的请求也无缝支持该特性；
+ - 在 CDN 节点未缓存 WebP 副本的情况下，CDN 平台会实时生成 WebP 副本并返回。
+
+
+更多了解，请参照：[如何通过 WebP 自适应方案减少图片资源大小](https://blog.upyun.com/?p=1539)
+    
 ----------
 
 ##7. 分段缓存
