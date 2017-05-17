@@ -385,7 +385,7 @@
 | --- | --- | --- |
 | mobile | 手机号，逗号分隔 | ✔️ |
 | template_id | 模板编号 | ✔️ |
-| vars | 短信参数（以 \| 分隔）|  |
+| vars | 短信参数（以 `|` 分隔）|  |
 
 <b>响应</b>
 
@@ -515,7 +515,7 @@
 
 <b>请求示例</b>
 
-    curl -H "Authorization: <your token>" https://sms-api.upyun.com/api/messages\?mobile\=15757
+    curl -H "Authorization: <your token>" https://sms-api.upyun.com/api/messages?mobile=15757654321
 
 ##6. 错误码
 ####6.1 错误码列表
