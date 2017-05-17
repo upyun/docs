@@ -7,9 +7,9 @@
 
               <li class="{% if nav_item.active %}active{% endif %}">
                 <a class="itm-l1" href="{{ nav_item.url }}">{{ nav_item.title }}</a>
-                {% if nav_item == current_page %}
+                {% if nav_item == page %}
                   <ul class="nav">
-                  {% for toc_item in toc %}
+                  {% for toc_item in page.toc %}
                     <li class="{% if toc_item.active %}active {% endif %}"><a href="{{ toc_item.url }}">{{ toc_item.title }}</a></li>
                     {% for toc_item in toc_item.children %}
                       <ul class="nav nav-l2">
