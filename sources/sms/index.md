@@ -515,7 +515,7 @@
 
 <b>请求示例</b>
 
-    curl -H "Authorization: <your token>" https://sms-api.upyun.com/api/messages\?mobile\=15757
+    curl -H "Authorization: <your token>" https://sms-api.upyun.com/api/messages?mobile=15757654321
 
 ##6. 错误码
 ####6.1 错误码列表
