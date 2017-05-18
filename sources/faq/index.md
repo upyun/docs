@@ -508,8 +508,12 @@ curl -T /local_img.jpg http://v0.api.upyun.com/bucket/img.jpg -u operator:operat
 |工具|[ Windows 下 upx 的使用](https://techs.b0.upaiyun.com/videos/cdnpage/winupx.html)|10分23秒|
 |插件|[ueditor的使用](https://techs.b0.upaiyun.com/videos/cdnpage/ueditor.html)|7分55秒|
 | CDN |[分段缓存](https://techs.b0.upaiyun.com/videos/cdnpage/fenduan.html)|8分39秒|
-| SDK |[云处理 - 音视频转码](https://techs.b0.upaiyun.com/videos/cdnpage/format_videos.html)|9分14秒|
+| SDK |[云处理 - 视频转码](https://techs.b0.upaiyun.com/videos/cdnpage/format_videos.html)|9分14秒|
 | SDK   | [ 云处理 - 视频水印](https://techs.b0.upaiyun.com/videos/cdnpage/watermark.html) | 11分37秒  |
+| SDK   | [ 云处理 - 音频转码](https://techs.b0.upaiyun.com/videos/cdnpage/audio.html) | 3分37秒  |
+| SDK   | [ 云处理 - 压缩和解压缩](https://techs.b0.upaiyun.com/videos/cdnpage/yasuo.html) | 3分44秒  |
+| CDN   | [ rewrite 规则详解 ](https://techs.b0.upaiyun.com/videos/cdnpage/rewrite_h.html) | 38分37秒  |
+
 
 ### 直播服务
 
@@ -521,6 +525,7 @@ curl -T /local_img.jpg http://v0.api.upyun.com/bucket/img.jpg -u operator:operat
 | 直播   | [安卓拉流播放器使用指南](https://techs.b0.upaiyun.com/videos/cdnpage/andriod-player-sdk.html) | 3分32秒  |
 | 直播   | [直播防盗链的使用](https://techs.b0.upaiyun.com/videos/cdnpage/live_push_token.html) | 6分54秒  |
 | 直播   | [流管控和流回调](https://techs.b0.upaiyun.com/videos/cdnpage/stream_control.html) | 9分37秒  |
+| 直播   | [直播截图功能](https://techs.b0.upaiyun.com/videos/cdnpage/zbjt.html) | 1分54秒  |
 
 
 ### 故障反馈
