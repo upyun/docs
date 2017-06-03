@@ -307,7 +307,7 @@ rules:
 示例一：匹配 `cookie` 进行跳转
 
 ```
-"rule": "$WHEN($NOT($EQ($_URI, /live.html)), $NOT($_COOKIE_token))$REDIRECT(http://test.example.com/no_token.html，301)",
+"rule": "$WHEN($NOT($EQ($_URI, /live.html)), $NOT($_COOKIE_token))$REDIRECT(http://test.example.com/no_token.html,301)",
 "pattern": ""
 ```
 
