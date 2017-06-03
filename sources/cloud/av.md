@@ -1,8 +1,8 @@
 ## 快速入门
 
-又拍云处理（音视频处理）基于云存储服务，您在使用它之前，请确保您已经注册又拍云账号并完成实名验证，请确保您已经创建[云存储服务](/api/quick_start)。
+又拍云处理（异步音视频处理）基于云存储服务，您在使用它之前，请确保您已经注册又拍云账号并完成实名验证，请确保您已经创建[云存储服务](/api/quick_start/)。
 
-收费方面，见[价格](https://www.upyun.com/price.html)。
+收费方面，见[价格](https://www.upyun.com/products/process#section-pricing)。
 
 ---------
 
@@ -508,6 +508,7 @@ southwest     |     south      |     southeast
 
 - 多张截图时，自定义 `save_as` 参数时只需指定一个保存路径，具体每张图片保存路径根据规则进行类推，例如 `save_as` 为 `/path/to/img.png`，输出文件保存路径第一张为 `/path/to/img1.png`，第二张为 `/path/to/img2.png`......以此类推。
 - 自定义 `f` 和 `save_as` 参数时，使用 `f` 参数指定的格式作为输出格式；仅自定义 `save_as` 参数时，使用 `save_as` 参数指定的后缀名作为输出格式；两者都不自定义时，使用 `f` 参数的默认值 `jpg` 作为输出格式。
+- 支持 m3u8 截图。
 
 ---------
 
