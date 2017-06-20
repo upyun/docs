@@ -88,7 +88,7 @@ W3siYXZvcHRzIjoiL3MvMjQwcCg0OjMpL2FzLzEvci8zMCIsInJldHVybl9pbmZvIjp0cnVlLCJzYXZl
 ---------
 
 <a name="notify_url"></a>
-### 回调通知 
+### 回调通知
 
 任务处理完成后，向 `notify_url` 发送 `HTTP POST` 请求，请求体是回调信息。
 
@@ -144,12 +144,12 @@ apps = [
         "save_as": "<save_as>",                     // 结果音频/视频保存路径，选填
         "notify_url": "<notify_url>"                // 回调地址，不填时使用上传参数中的 notify_url
     },
-	{ 												// 举例			
-	    "name": "naga",                         
-	    "type": "video",                        
-	    "avopts": "/s/240p(4:3)/as/1/r/30",     
-	    "return_info": true,                    
-	    "save_as": "/a/b.mp4",                  
+	{ 												// 举例
+	    "name": "naga",
+	    "type": "video",
+	    "avopts": "/s/240p(4:3)/as/1/r/30",
+	    "return_info": true,
+	    "save_as": "/a/b.mp4",
 	},
     ......
 ]
@@ -277,7 +277,7 @@ curl http://p0.api.upyun.com/result?service=<service>&task_ids=<task_id1>,<task_
 
 | 类型      		| 输入格式       														| 输出格式       	|
 |---------------|-----------------------------------------------------------------------|-------------------|
-| 视频容器格式 	| AVI、MP4、FLV、MOV、3GP、ASF、WMV、MPG、F4V、M4V、MKV、VOB（SVCD/DVD）等 	| MP4、FLV、M3U8(TS) 等| 
+| 视频容器格式 	| AVI、MP4、FLV、MOV、3GP、ASF、WMV、MPG、F4V、M4V、MKV、VOB（SVCD/DVD）等 	| MP4、FLV、M3U8(TS) 等|
 | 音频容器格式 	| MP3、OGG、M4A 等 														| MP4、MP3、OGG 等	|
 | 视频编码格式 	| H.264/AVC 、H.263、H.263+、MPEG-2、MPEG-4、VP8、VP9、Quicktime、RealVideo、Windows Media Video 等 | H.264/AVC、VP8、H.265/HEVC、VP9 等|
 | 音频编码格式 	| MP1、MP2、MP3、AAC、AC-3、Vorbis、PCM、RealAudio、Windows Media Audio 等	| AAC、MP3 等		|
@@ -408,7 +408,7 @@ upyun-operatoracceptjsonbucket_namedemonotify_urlhttp://www.example.com/notify/s
 | `/ar/<audio_sample_rate>` | integer   | 否		| 音频采样率，单位 Hz，默认按照原始采样率处理。可选值：`44100`、`48000`、`32000`、`22050`、`24000`、`16000`、`0`   |
 | `/r/<frame_rate>`         | integer   | 否		| 视频帧率，默认按照原始帧率处理。推荐值：`25`、`30`    					|
 | `/sp/<rotate>`            | string    | 否		| 旋转角度，默认按照原始视频角度处理。可选值：`auto（自动扶正）`、`90`、`180`、`270`        |
-| `/sm/<map_metadata>`      | boolean   | 否		| 是否保留视频元数据，默认 `true`  
+| `/sm/<map_metadata>`      | boolean   | 否		| 是否保留视频元数据，默认 `true`
 | `/acodec/<audio_codec>`   | string    | 否		| 设置音频编码器，默认按照音频原始编码器处理。可选值：`libmp3lame`、`libfdk_aac`、`copy`       |
 | `/vcodec/<video_codec>`   | string    | 否		| 设置视频编码器，默认按照视频原始编码器处理。可选值：`libx264`、`libtheora`、`libx265`、`libvpx-vp9`、`libvpx`、`copy`  |
 | `/an/<disable_audio>`     | boolean   | 否		| 是否禁掉音频，默认 `false`                      		|
@@ -547,12 +547,13 @@ southwest     |     south      |     southeast
 
 | 参数              	| 类型   	| 必选	| 说明                                    			|
 |-------------------|-----------|-------|---------------------------------------------------|
-| `/i/<video>`      | string    | 是		| 需要拼接视频文件的相对路径，需要安全的 Base64 编码 <br /> 多个需要拼接视频按 `/i/<video>/i/<video>/...` 方式进行连接。见「注」 |
+| `/i/<video>`      | string    | 否		| 需要**后置**拼接视频文件的相对路径，需要安全的 Base64 编码 <br /> 多个需要拼接视频按 `/i/<video>/i/<video>/...` 方式进行连接。见「注」 |
+| `/h/<video>`      | string    | 否		| 需要**前置**拼接视频文件的相对路径，需要安全的 Base64 编码 <br /> 多个需要拼接视频按 `/h/<video>/h/<video>/...` 方式进行连接。见「注」 |
 | `/codec/<codec>`  | string    | 否		| 设置视频编码器，默认不需要设置。可选值：`copy`。见「注」 |
 
 ** 注 **
 
-- 视频拼接顺序：需要拼接视频按 `i` 出现顺序，依次拼接在[原始视频（`source`）](#submit_task)后面。
+- 视频拼接顺序：待拼接视频按 `h` 出现顺序，依次拼接在[原始视频（`source`）](#submit_task)前面；待拼接视频按 `i` 出现顺序，依次拼接在[原始视频（`source`）](#submit_task)后面。
 - 如果 `save_as` 参数指定格式跟[原始视频（`source`）](#submit_task)格式、拼接视频格式不一致，系统会自动转码原始视频、拼接视频成  `save_as`  参数指定格式；如果 `save_as` 参数未指定，拼接视频跟原始视频格式不一致，系统会自动转码拼接视频成原始视频格式。
 - 如果拼接视频和原始视频的编码一致，可以设置 `codec` 参数为 `copy`，不对拼接视频进行编解码，提高拼接速度。
 - 各个拼接视频的分辨率（画面宽高）必须跟[原始视频（`source`）](#submit_task)保持一致，否则会拼接失败。
@@ -631,3 +632,42 @@ southwest     |     south      |     southeast
 ---------
 
 如有疑问请 [联系我们](https://www.upyun.com/about_contact.html)
+
+## 链式处理
+
+当 `tasks` 内的子任务为 `array` 格式时，子任务将按照 `array` 中的任务顺序进行链式处理。
+
+```
+tasks = [
+    // 任务 1
+    [
+        // 子任务 1.1
+        {
+            "type": "video",
+            "avopts": "/s/200x150",
+        },
+        // 子任务 1.2
+        {
+            "type": "thumbnail",
+            "avopts": "/o/true/ss/00:00:10"
+            "save_as": "/foo.jpg",
+            "return_info": True
+        }
+    ],
+    // 任务 2
+    {
+        "type": "vconcat",
+        "avopts": "/i/L2EvYi9jLm1wNA==/i/LzEvMi8zLm1wNA==",
+        "save_as": "/concat/a.mp4"
+    },
+    …
+]
+```
+
+上述请求中，任务 1 将与 任务 2 并行处理，任务 1 会顺序执行子任务 1.1 与 1.2，并将任务 1.1 的输出作为任务 1.2 的输入。
+
+** 注 **
+
+- 链式处理中, 只有最后一个子任务的 `save_as` 与 `retrun_info` 参数生效
+- 最多包含 4 个子任务
+- 截图任务, 视频切片任务等不产生视频输出的任务, 仅允许放置在子任务列表的末尾
