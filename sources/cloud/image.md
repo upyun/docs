@@ -4,7 +4,7 @@
 
 收费方面，图片处理完全免费。
 
-WebP 演示 DEMO：[让您的图片瘦身 70%](https://www.upyun.com/webp.html)。
+相关阅读：[演示 WebP 如何让您的图片大小平均减少 70%](https://www.upyun.com/webp)，[WebP 开发专题](#webp)。
 
 ---------
 
@@ -247,7 +247,7 @@ x-gmkerl-thumb: upyun520/fw/500
 | 406       | 非图片获取图片基本信息时数据无效，Not an image    |
 | 409       | 图片大小超出限制，限制为 2 亿像素，Limit Exceeded    |
 | 413       | 请求处理超时，A Big Image!    |
-| 5xx       | 服务端错误。如遇此类错误，请反馈给[售后](https://www.upyun.com/about_contact.html)或您的商务经理 |
+| 5xx       | 服务端错误。如遇此类错误，请反馈给[售后](https://www.upyun.com/contact)或您的商务经理 |
 
 上传预处理的更多错误码，请查询 [API 错误码表](/api/errno/#api)。
 
@@ -268,17 +268,23 @@ x-gmkerl-thumb: upyun520/fw/500
 
 ### WebP 专题
 
-WebP 演示 DEMO：[让您的图片瘦身 70%](https://www.upyun.com/webp.html)。
+** 演示 **：[WebP 如何让您的图片大小平均减少 70%](https://www.upyun.com/webp.html)
 
-转成有损 WebP：/format/webp；转成无损 WebP：/format/webp/lossless/true
+** 转成有损 WebP **：`/format/webp`
 
-JPG 格式图片转成 WebP：www.domain.com/a.jpg!/format/webp
+** 转成无损 WebP **：`/format/webp/lossless/true`
 
-PNG 格式图片转成 WebP：www.domain.com/a.png!/format/webp
+** 示例 **
 
-GIF/动态 GIF 格式图片转成 WebP：www.domain.com/a.gif!/format/webp
+JPG 转成有损 WebP：www.domain.com/a.jpg!/format/webp
 
-`!` 是间隔标识符，具体说明见[间隔标识符](#tag)；`/format/webp` 是格式转换成 WebP，具体说明见[结果输出](#output)。
+PNG 转成无损 WebP：www.domain.com/a.png!/format/webp/lossless/true
+
+GIF/动态 GIF 转成有损 WebP：www.domain.com/a.gif!/format/webp
+
+SVG 转成无损 WebP：www.domain.com/a.svg!/format/webp/lossless/true
+
+`!` 是[间隔标识符](#tag)，`/format/webp`、`/lossless/true` 更多解释见「功能」> [结果输出](#output)。
 
 ---------
 
@@ -562,4 +568,4 @@ GIF/动态 GIF 格式图片转成 WebP：www.domain.com/a.gif!/format/webp
 
 ---------
 
-如有疑问请 [联系我们](https://www.upyun.com/about_contact.html)
+如有疑问请 [联系我们](https://www.upyun.com/contact)

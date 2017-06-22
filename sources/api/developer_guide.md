@@ -118,4 +118,4 @@ FTP/FTPS 怎么使用，[请点这里](/api/developer_tools/#ftpftps)。
 
 ---------
 
-如有疑问请 [联系我们](https://www.upyun.com/about_contact.html)
+如有疑问请 [联系我们](https://www.upyun.com/contact)

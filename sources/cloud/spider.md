@@ -122,7 +122,7 @@ curl -X POST \
 | 200         	| 处理成功    							|
 | 400         	| 参数错误								|
 | 404         	| 拉取的文件不存在    					|
-| 5xx         	| 服务端错误。如遇此类错误，请反馈给[售后](https://www.upyun.com/about_contact.html)或您的商务经理|
+| 5xx         	| 服务端错误。如遇此类错误，请反馈给[售后](https://www.upyun.com/contact)或您的商务经理|
 
 ---------
 
@@ -151,4 +151,4 @@ curl -X POST \
 
 ---------
 
-如有疑问请 [联系我们](https://www.upyun.com/about_contact.html)
+如有疑问请 [联系我们](https://www.upyun.com/contact)
