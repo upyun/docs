@@ -4,6 +4,8 @@
 
 收费方面，见[价格](https://www.upyun.com/products/process#section-pricing)。
 
+相关阅读：[同步视频处理](/cloud/sync_video/)，[同步音频处理](/cloud/sync_audio/)。
+
 ---------
 
 ## 开发者指南
@@ -199,7 +201,7 @@ curl http://p0.api.upyun.com/status?service=<service>&task_ids=<task_id1>,<task_
 }
 ```
 
-`20` 表示任务进度百分比，`100` 表示任务处理完成，`-1` 表示任务处理失败，`null` 表示任务尚未开始。如果长时间是 `null`，请反馈给[售后]((https://www.upyun.com/about_contact.html))或您的商务经理。
+`20` 表示任务进度百分比，`100` 表示任务处理完成，`-1` 表示任务处理失败，`null` 表示任务尚未开始。如果长时间是 `null`，请反馈给[售后]((https://www.upyun.com/contact))或您的商务经理。
 
 - 查询失败：返回相应的出错信息，具体请参阅「[状态码表](#status)」。
 
@@ -269,7 +271,7 @@ curl http://p0.api.upyun.com/result?service=<service>&task_ids=<task_id1>,<task_
 | 400         	| 参数错误    			|
 | 401         	| 参数错误    			|
 | 404         	| 文件不存在    			|
-| 5xx         	| 服务端错误。如遇此类错误，请反馈给[售后](https://www.upyun.com/about_contact.html)或您的商务经理 |
+| 5xx         	| 服务端错误。如遇此类错误，请反馈给[售后](https://www.upyun.com/contact)或您的商务经理 |
 
 ---------
 
@@ -631,11 +633,9 @@ southwest     |     south      |     southeast
 
 ---------
 
-如有疑问请 [联系我们](https://www.upyun.com/about_contact.html)
-
 ### 链式处理
 
-按照提交任务参数的先后顺序，对原文件进行链式处理。
+多个任务按提交任务参数的先后顺序，对原文件进行链式处理。
 
 | 参数              	| 类型   	| 必选  	| 说明                                    					|
 |-------------------|-----------|-------|-----------------------------------------------------------|
@@ -664,5 +664,11 @@ southwest     |     south      |     southeast
 
 ** 注 **
 
-- 最多包含 4 个子任务
-- 截图任务, 视频切片任务等不产生音视频输出的任务, 仅允许放置在子任务列表的末尾
+- 最多包含 4 个子任务。
+- 截图任务、视频切片任务不产生音视频输出的任务, 仅允许放置在子任务列表的末尾。
+
+---------
+
+如有疑问请 [联系我们](https://www.upyun.com/contact)
+
+

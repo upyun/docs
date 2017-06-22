@@ -218,11 +218,16 @@
             <a href="https://github.com/XadillaX/ez-upyun" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
         </div>
     </li>
-
     <li>
         <strong>paperclip-upyun - @jhw</strong>
         <div class="links">
             <a href="https://github.com/jhw-dev/paperclip-upyun" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
+        </div>
+    </li>
+	<li>
+        <strong>UpYun.NETCore - @yangzhongke</strong>
+        <div class="links">
+            <a href="https://github.com/yangzhongke/UpYun.NETCore" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
         </div>
     </li>
 </ul>

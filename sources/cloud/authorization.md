@@ -84,4 +84,4 @@ service=upyun-temp&notify_url=/upyun_notify_url&source=/tmp.mp4&tasks=W3siYXZvcH
 
 ---------
 
-如有疑问请 [联系我们](https://www.upyun.com/about_contact.html)
+如有疑问请 [联系我们](https://www.upyun.com/contact)

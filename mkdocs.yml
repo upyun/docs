@@ -40,7 +40,7 @@ pages:
     - '开发者工具': 'api/developer_tools.md'
     - 'SDK 使用文档': 'api/sdk.md'
     - '融合云存储': 'api/fusion_storage.md'
-    - '分块上传（旧）': 'api/multipart_upload.md'
+    - '分块上传（已弃用）': 'api/multipart_upload.md'
     - 'API 错误码表': 'api/errno.md'
     - '缓存刷新': 'api/purge.md'
     - '微信小程序': 'api/small_program.md'
@@ -51,11 +51,13 @@ pages:
     - '认证鉴权': 'cloud/authorization.md'
     - '图片处理': 'cloud/image.md'
     - '异步音视频处理': 'cloud/av.md'
+    - '同步视频处理': 'cloud/sync_video.md'
+    - '同步音频处理': 'cloud/sync_audio.md'
     - '内容识别': 'cloud/audit.md'
     - '人脸识别': 'cloud/face_detect.md'
     - '压缩解压缩': 'cloud/unzip.md'
     - '文件拉取': 'cloud/spider.md'
-    - '音视频处理（旧）': 'cloud/av_pretreatment.md'
+    - '音视频处理（已弃用）': 'cloud/av_pretreatment.md'
 - '资源下载':
     - '资源下载': 'download/index.md'
 - '常见问题':
