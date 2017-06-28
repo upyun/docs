@@ -15,7 +15,7 @@ API 请求失败时，服务端会返回一个 JSON 格式的响应体。它可�
 
 ## API 错误码表
 
-如遇 5xx 错误，请反馈给[售后](https://www.upyun.com/about_contact.html)或您的商务经理。
+如遇 5xx 错误，请反馈给[售后](https://www.upyun.com/contact)或您的商务经理。
 
 | HTTP 状态码	| 返回代码           | 含义                                            	|
 |---------------|-------------------|--------------------------------------------------|
@@ -198,4 +198,4 @@ API 请求失败时，服务端会返回一个 JSON 格式的响应体。它可�
 
 ---------
 
-如有疑问请 [联系我们](https://www.upyun.com/about_contact.html)
+如有疑问请 [联系我们](https://www.upyun.com/contact)

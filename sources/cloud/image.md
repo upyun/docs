@@ -4,7 +4,7 @@
 
 收费方面，图片处理完全免费。
 
-WebP 演示 DEMO：[让您的图片瘦身 70%](https://www.upyun.com/webp.html)。
+相关阅读：[演示 WebP 如何让您的图片大小平均减少 70%](https://www.upyun.com/webp)，[WebP 开发专题](#webp)。
 
 ---------
 
@@ -249,7 +249,7 @@ x-gmkerl-thumb: upyun520/fw/500
 | 406       | 非图片获取图片基本信息时数据无效，Not an image    |
 | 409       | 图片大小超出限制，限制为 2 亿像素，Limit Exceeded    |
 | 413       | 请求处理超时，A Big Image!    |
-| 5xx       | 服务端错误。如遇此类错误，请反馈给[售后](https://www.upyun.com/about_contact.html)或您的商务经理 |
+| 5xx       | 服务端错误。如遇此类错误，请反馈给[售后](https://www.upyun.com/contact)或您的商务经理 |
 
 上传预处理的更多错误码，请查询 [API 错误码表](/api/errno/#api)。
 
@@ -270,17 +270,23 @@ x-gmkerl-thumb: upyun520/fw/500
 
 ### WebP 专题
 
-WebP 演示 DEMO：[让您的图片瘦身 70%](https://www.upyun.com/webp.html)。
+** 演示 **：[WebP 如何让您的图片大小平均减少 70%](https://www.upyun.com/webp.html)
 
-转成有损 WebP：/format/webp；转成无损 WebP：/format/webp/lossless/true
+** 转成有损 WebP **：`/format/webp`
 
-JPG 格式图片转成 WebP：www.domain.com/a.jpg!/format/webp
+** 转成无损 WebP **：`/format/webp/lossless/true`
 
-PNG 格式图片转成 WebP：www.domain.com/a.png!/format/webp
+** 示例 **
 
-GIF/动态 GIF 格式图片转成 WebP：www.domain.com/a.gif!/format/webp
+JPG 转成有损 WebP：www.domain.com/a.jpg!/format/webp
 
-`!` 是间隔标识符，具体说明见[间隔标识符](#tag)；`/format/webp` 是格式转换成 WebP，具体说明见[结果输出](#output)。
+PNG 转成无损 WebP：www.domain.com/a.png!/format/webp/lossless/true
+
+GIF/动态 GIF 转成有损 WebP：www.domain.com/a.gif!/format/webp
+
+SVG 转成无损 WebP：www.domain.com/a.svg!/format/webp/lossless/true
+
+`!` 是[间隔标识符](#tag)，`/format/webp`、`/lossless/true` 更多解释见「功能」> [结果输出](#output)。
 
 ---------
 
@@ -296,13 +302,14 @@ GIF/动态 GIF 格式图片转成 WebP：www.domain.com/a.gif!/format/webp
 | `/max/<max>`   	 | 最长边，如 200       	| 限定最长边，短边自适应                                 |
 | `/min/<min>`   	 | 最短边，如 200        	| 限定最短边，长边自适应                                   |
 | `/fwfh/<w>x<h>`  	 | 宽x高，如 300x200     | 限定宽度或高度，宽高不足时不缩放  			          |
+| `/fwfh2/<w>x<h>` 	 | 宽x高，如 300x200     | 限定宽度最小值和高度最小值，宽高不足时不缩放               |
 | `/both/<w>x<h>`  	 | 宽x高，如 300x200     | 固定宽度和高度，宽高不足时居中裁剪再缩放 <br /> 特别地，配合 `/force/true` 使用时，宽高不足时只缩放，不裁剪   |
 | `/sq/<w>`          | 宽或高，如 300        	| 图片缩放成正方形，宽高相等                      		|
 | `/scale/<scale>`   | 缩放比例，如 50       	| 宽高等比例缩放，取值范围 `[1-1000]`                  	|
 | `/wscale/<wscale>` | 宽度缩放比例，如 200   | 宽度按比例缩放，高度不变，取值范围 `[1-1000]`         	|
 | `/hscale/<hscale>` | 高度缩放比例，如 200   | 高度按比例缩放，宽度不变，取值范围 `[1-1000]`          	|
-| `/fxfn/<w>x<h>`    | 宽x高，如 300x200     | 限定长边或短边，进行等比缩放，不裁剪               	|
-| `/fxfn2/<w>x<h>`   | 宽x高，如 300x200     | 限定长边或短边的最小值，进行等比缩放，不裁剪               |
+| `/fxfn/<max>x<min>`    | 长边x短边，如 300x200     | 限定长边或短边，进行等比缩放，不裁剪               	|
+| `/fxfn2/<max>x<min>`   | 长边x短边，如 300x200     | 限定长边最小值和短边最小值，进行等比缩放，不裁剪               |
 | `/fp/<integer>`    | 宽高像素积，如 200000 	| 宽高等比例缩放，直到宽高像素积小于但最接近指定值，取值范围 `[1-25000000]` |
 | `/force/<boolean>` | true                 | 不支持放大的参数，指定 `/force/` 为 `true` 进行放大，默认 `false` |
 
@@ -564,4 +571,4 @@ GIF/动态 GIF 格式图片转成 WebP：www.domain.com/a.gif!/format/webp
 
 ---------
 
-如有疑问请 [联系我们](https://www.upyun.com/about_contact.html)
+如有疑问请 [联系我们](https://www.upyun.com/contact)

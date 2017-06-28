@@ -165,7 +165,8 @@ PUT /<bucket>/path/to/file
 | Content-Length    		| 是   	| String  	| 请求内容长度        		|
 | x-upyun-multi-stage   | 是   	| String  	| 值为 `complete`， 表示完成断点续传任务           	|
 | x-upyun-multi-uuid    | 是   	| String  	| 本次上传任务的标识，是初始化断点续传任务时响应信息中的 `x-upyun-multi-uuid`  |
-| x-upyun-multi-md5     | 否   	| String  	| 所上传整个文件的 MD5 值，等效于[签名认证](/api/authorization/#header)中的 `Content-MD5 ` |
+| Content-MD5           | 否   	| String  	| 请求的 MD5 值，等效于[签名认证](/api/authorization/#header)中的 `Content-MD5 ` |
+| x-upyun-multi-md5     | 否   	| String  	| 整个文件的 MD5 值，用于服务端校验 |
 
 
 **响应信息**
@@ -559,4 +560,4 @@ Authorization: UpYun upyun:03db45e2904663c5c9305a9c6ed62af3
 
 ---------
 
-如有疑问请 [联系我们](https://www.upyun.com/about_contact.html)
+如有疑问请 [联系我们](https://www.upyun.com/contact)

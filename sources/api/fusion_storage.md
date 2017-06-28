@@ -174,8 +174,8 @@
 
 ** 使用融合云存储方案后，是否支持使用第三方云存储厂商的云处理服务？ **
 
-仅支持融合七牛云图片处理服务，如有需要，请联系[售后](https://www.upyun.com/about_contact.html)或您的商务经理。
+仅支持融合七牛云图片处理服务，如有需要，请联系[售后](https://www.upyun.com/contact)或您的商务经理。
 
 ---------
 
-如有疑问请 [联系我们](https://www.upyun.com/about_contact.html)
+如有疑问请 [联系我们](https://www.upyun.com/contact)

@@ -508,7 +508,7 @@ curl -X POST \
 | 404         	| 文件不存在/直播流不存在/任务不存在    	|
 | 413         	| 文件大小超过 10M  						|
 | 415         	| 文件不是图片    						|
-| 5xx         	| 服务端错误。如遇此类错误，请反馈给[售后](https://www.upyun.com/about_contact.html)或您的商务经理 |
+| 5xx         	| 服务端错误。如遇此类错误，请反馈给[售后](https://www.upyun.com/contact)或您的商务经理 |
 
 ---------
 
@@ -596,4 +596,4 @@ curl -X POST \
 
 ---------
 
-如有疑问请 [联系我们](https://www.upyun.com/about_contact.html)
+如有疑问请 [联系我们](https://www.upyun.com/contact)

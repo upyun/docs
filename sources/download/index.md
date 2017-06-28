@@ -84,14 +84,6 @@
     </li>
 
     <li>
-        <strong>分块上传 HTML5 SDK</strong>
-        <div class="links">
-            <a href="https://github.com/upyun/js-multipart-upload" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
-            <a href="https://github.com/upyun/js-multipart-upload/archive/master.zip" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
-        </div>
-    </li>
-
-    <li>
         <strong>视频预处理 Node SDK</strong>
         <div class="links">
             <a href="https://github.com/upyun/node-av-pretreatment" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
@@ -218,11 +210,16 @@
             <a href="https://github.com/XadillaX/ez-upyun" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
         </div>
     </li>
-
     <li>
         <strong>paperclip-upyun - @jhw</strong>
         <div class="links">
             <a href="https://github.com/jhw-dev/paperclip-upyun" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
+        </div>
+    </li>
+	<li>
+        <strong>UpYun.NETCore - @yangzhongke</strong>
+        <div class="links">
+            <a href="https://github.com/yangzhongke/UpYun.NETCore" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
         </div>
     </li>
 </ul>
