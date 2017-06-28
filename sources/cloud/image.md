@@ -91,14 +91,16 @@ x-gmkerl-thumb: /fw/300/unsharp/true/quality/80/format/png
 
 支持的 API： [FORM API](/api/form_api/#upload_args)。
 
-参数名是 `apps`，参数值是 JSON 数组。一个 `apps` 最多允许包含 10 个图片处理任务。处理参数见[功能](#function)。
+参数名是 `apps`，参数值是 JSON 数组。一个 `apps` 最多允许包含 10 个图片处理任务。
+
+设置了 `apps` 参数，会创建异步处理任务，否则为同步处理任务
 
 ** apps 参数结构 **
 
 | 参数 				| 必选      	| 说明                                                     |
 |-------------------|-----------|----------------------------------------------------------|
 | name      		| 是        	| 使用异步图片处理服务，固定值 `thumb`                |
-| x-gmkerl-thumb    | 是      	| 图片处理功能参数或缩略图版本名称                               |
+| x-gmkerl-thumb    | 是      	| 图片处理功能参数或缩略图版本名称，处理参数见[功能](#function)     |
 | x-gmkerl-split   	| 否       	| 图片分块，按 `宽x高` 把图片分成数块，见「注」                  |
 | save_as  	 		| 否        	| 结果图片保存路径                                   |
 | notify_url  	 	| 否     	| 回调地址，不填时使用[上传参数](/api/form_api/#_2)中的  `notify_url` |
