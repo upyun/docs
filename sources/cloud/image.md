@@ -266,7 +266,7 @@ x-gmkerl-thumb: upyun520/fw/500
 
 ---------
 
-### WebP 专题
+### WebP 开发专题
 
 ** 演示 **：[WebP 如何让您的图片大小平均减少 70%](https://www.upyun.com/webp.html)
 
@@ -337,6 +337,7 @@ SVG 转成无损 WebP：www.domain.com/a.svg!/format/webp/lossless/true
 
 ---------
 
+<a name="watermark"></a>
 ### 水印
 
 ** 图片水印 **
@@ -441,6 +442,8 @@ SVG 转成无损 WebP：www.domain.com/a.svg!/format/webp/lossless/true
 
 ---------
 
+
+<a name="unsharp"></a>
 ### 锐化
 
 提高图片模糊部位的清晰度或聚焦程度。
@@ -482,6 +485,7 @@ SVG 转成无损 WebP：www.domain.com/a.svg!/format/webp/lossless/true
 
 ---------
 
+<a name="canvas"></a>
 ### 画布
 
 为图片添加画布，相当于把图片放入画布中。
@@ -560,7 +564,7 @@ SVG 转成无损 WebP：www.domain.com/a.svg!/format/webp/lossless/true
 | `/gdori/<orientation>`		| 方向，如 top,down（自上而下）       	| 渐变方向             |
 | `/gdpos/<gdpos>`        		| 开始位置,结束位置，如 10,100        	| 渐变从开始位置至结束位置。单位像素（px）  |
 | `/gdstartcolor/<gdstartcolor>`| RRGGBBAA，如 FF000000（红色不透明） 	| 开始位置颜色及透明度   |
-| `/gdstopcolor/<gdstopcolor>`  | RRGGBBAA，如 FF000000（红色不透明） 	| 开始位置颜色及透明度   |
+| `/gdstopcolor/<gdstopcolor>`  | RRGGBBAA，如 FF000000（红色不透明） 	| 结束位置颜色及透明度   |
 
 ** 注 **
 

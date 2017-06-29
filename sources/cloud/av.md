@@ -134,7 +134,7 @@ curl -X POST \
 
 参数名是 `apps`，参数值是 JSON 数组。一个 `apps` 最多允许包含 10 个音视频处理任务。** 任务参数见[功能](#function) **。
 
-** apps 参数结构 **
+** 举例 **
 
 ```
 apps = [
@@ -146,7 +146,7 @@ apps = [
         "save_as": "<save_as>",                     // 结果音频/视频保存路径，选填
         "notify_url": "<notify_url>"                // 回调地址，不填时使用上传参数中的 notify_url
     },
-	{ 												// 举例
+	{ 												
 	    "name": "naga",
 	    "type": "video",
 	    "avopts": "/s/240p(4:3)/as/1/r/30",
@@ -390,6 +390,7 @@ upyun-operatoracceptjsonbucket_namedemonotify_urlhttp://www.example.com/notify/s
 <a name="function"></a>
 ## 功能
 
+<a name="video_transcode"></a>
 ### 视频转码
 
 | 参数              	| 类型   	| 必选  	| 说明                                    					|
@@ -423,6 +424,7 @@ upyun-operatoracceptjsonbucket_namedemonotify_urlhttp://www.example.com/notify/s
 
 ---------
 
+<a name="hls"></a>
 ### 视频切片
 
 | 参数              	| 类型   	| 必选  	| 说明                                    					|
@@ -449,6 +451,7 @@ upyun-operatoracceptjsonbucket_namedemonotify_urlhttp://www.example.com/notify/s
 
 ---------
 
+<a name="watermark"></a>
 ### 视频水印
 
 | 参数              	| 类型   	| 必选  	| 说明                                    					|
@@ -536,6 +539,7 @@ southwest     |     south      |     southeast
 
 ---------
 
+<a name="vconcat"></a>
 ### 视频拼接
 
 | 参数              	| 类型   	| 必选  	| 说明                                    					|
@@ -562,6 +566,7 @@ southwest     |     south      |     southeast
 
 ---------
 
+<a name="audio_transcode"></a>
 ### 音频转码
 
 | 参数              	| 类型   	| 必选  	| 说明                                    					|
@@ -623,6 +628,7 @@ southwest     |     south      |     southeast
 
 ---------
 
+<a name="probe"></a>
 ### 元数据获取
 
 获取音/视频文件的元信息。
@@ -633,6 +639,7 @@ southwest     |     south      |     southeast
 
 ---------
 
+<a name="chain"></a>
 ### 链式处理
 
 多个任务按提交任务参数的先后顺序，对原文件进行链式处理。
@@ -655,7 +662,7 @@ southwest     |     south      |     southeast
 ```json
 {
     "type": "chain",
-    "avopts": "/video/s/360p(4:3)/thumbnail/o/true",
+    "avopts": "/video/s/480p(16:9)/vb/300/r/25/vcodec/libx264/video/wmImg/L3Rlc3QvbG9nby5wbmc=",
     "save_as": "/foo.jpg"
 }
 ```
