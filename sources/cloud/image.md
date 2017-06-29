@@ -268,7 +268,9 @@ x-gmkerl-thumb: upyun520/fw/500
 
 ### WebP 开发专题
 
-** 演示 **：[WebP 如何让您的图片大小平均减少 70%](https://www.upyun.com/webp.html)
+** 有损 WebP 演示 **：[WebP 如何让您的图片大小平均减少 70%](https://www.upyun.com/webp.html)
+
+** 无损 WebP 指南 **：[无损 WebP 正确的使用姿势](https://blog.upyun.com/?p=1595)
 
 ** 转成有损 WebP **：`/format/webp`
 
