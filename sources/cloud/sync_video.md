@@ -204,7 +204,7 @@ Authorization: UPYUN <operator>:4+Hqjo788qC4v4zHRxnvhpweFQo=
 Content-Length: 96
 Content-Type: application/json
 
-{"service": "<service>", "source": "/tmp/360p.mp4", "save_as": "/foo03.jpg", "point": "00:00:05"}
+{"source": "/tmp/360p.mp4", "save_as": "/foo03.jpg", "point": "00:00:05"}
 ```
 
 ** 响应示例 **
