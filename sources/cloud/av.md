@@ -417,6 +417,8 @@ upyun-operatoracceptjsonbucket_namedemonotify_urlhttp://www.example.com/notify/s
 | `/an/<disable_audio>`     | boolean   | 否		| 是否禁掉音频，默认 `false`                      		|
 | `/vn/<disable_video>`     | boolean   | 否		| 是否禁掉视频，默认 `false`                         	|
 | `/su/<accelerate_factor>` | float     | 否		| 视频加速倍数，默认 `1.0`。取值范围 `[1.0，10.0]`       	|
+| `/sar/<sar>` | string | 否 | [采样长宽比](https://en.wikipedia.org/wiki/Aspect_ratio_(image)#Distinctions)，格式 `w:h`，常用值 `1:1`，`4:3` 或 `16:9` |
+| `/dar/<dar>` | string | 否 | [显示长宽比](https://en.wikipedia.org/wiki/Pixel_aspect_ratio#Introduction)，格式 `w:h`，常用值 `1:1`，`4:3` 或 `16:9` |
 
 ** 注 **
 

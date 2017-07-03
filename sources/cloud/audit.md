@@ -25,7 +25,7 @@
 
 ```
 apps = [
-    {                                               
+    {
         "name": "imgaudit",                         // 异步任务名称，imgaudit 表示图片识别
         "notify_url": "<notify_url>"                // 回调地址，不填时使用上传参数中的 notify_url
     }
@@ -78,7 +78,7 @@ curl -X POST \
 
 ```
 [
-	{							
+	{
 		"source": "/upyun.jpg",     // 需要审核的图片
 	},
 	…
@@ -155,7 +155,7 @@ curl -X POST \
 		"porn": {
 			"label": 0,
 			"rate": 0.9833183288574219,
-	    	"review": false  
+	    	"review": false
 		}
 	},
     "task_id": "7b01610c7fa700b56cd7c80be5e08d5c",
@@ -182,8 +182,8 @@ curl -X POST \
 
 ```
 apps = [
-	{									
-	    "name": "videoaudit",   		// 异步任务名称，videoaudit 表示点播识别                       
+	{
+	    "name": "videoaudit",   		// 异步任务名称，videoaudit 表示点播识别
         "notify_url": "<notify_url>"    // 回调地址，不填时使用上传参数中的 notify_url
 		"interval": "10",   				// 截图间隔周期，非必填
 		"save_as": "/foo_{index}.jpg",  	// 截图保存路径，非必填
@@ -247,8 +247,8 @@ curl -X POST \
 
 ```
 [
-  	{							
-		"source": "/upyun.mp4", 	
+  	{
+		"source": "/upyun.mp4",
 		"save_as": "/foo_{index}.jpg",   // {index} 表示第几张截图，第一张是 /foo_1.jpg，第二张是 /foo_2.jpg
 	},
 	…
@@ -328,7 +328,7 @@ curl -X POST \
 					"porn": {
 					"label": 0,
 					"rate": 0.9833183288574219,
-			    	"review": false  
+			    	"review": false
 				}
             },
             "shot_time": 0,
@@ -389,7 +389,7 @@ curl -X POST \
 		"porn": {
 			"label": 0,
 			"rate": 0.9833183288574219,
-	    	"review": false  
+	    	"review": false
 		}
 	},
     "task_id": "7b01610c7fa700b56cd7c80be5e08d5c"
@@ -446,7 +446,7 @@ curl -X POST \
 		"porn": {
 			"label": 0,
 			"rate": 0.9833183288574219,
-	    	"review": false  
+	    	"review": false
 		}
 	},
     "task_id": "7b01610c7fa700b56cd7c80be5e08d5c"
@@ -467,8 +467,7 @@ curl -X POST \
     -H "Authorization: UPYUN <Operator>:<Signature>" \
     -H "Date: <Wed, 29 Oct 2014 02:26:58 GMT>" \
 	-H "Content-MD5: <Content-MD5>" \
-    -d "service=<service>" \
-    -d "task_id=<task_id>"
+    -d '{"service": <service>, "task_id": <task_id>}'
 ```
 
 ** 认证鉴权 **
