@@ -45,7 +45,7 @@ PUT /<bucket>/path/to/file
 | Content-Type   	| 否   	| String  	| 文件类型，默认使用文件扩展名作为文件类型                         |
 | Content-Secret 	| 否   	| String  	| 文件密钥，用于保护文件，防止文件被直接访问，见 [Content-Secret 参数说明](/api/rest_api/#Content-Secret) |
 | x-upyun-meta-x 	| 否   	| String  	| 文件元信息，见 [Metadata](/api/rest_api/#metadata)           |
-| x-upyun-meta-ttl 	| 否   	| integer  	| 文件元信息, 指定文件的生存时间， 单位天，见 [Metadata](/api/rest_api/#metadata)           |
+| x-upyun-meta-ttl 	| 否   	| Integer  	| 文件元信息, 指定文件的生存时间，单位天，最大支持180天，见 [Metadata](/api/rest_api/#metadata)         |
 | x-gmkerl-thumb 	| 否   	| String  	| 图片预处理参数，见[上传预处理（同步）](/cloud/image/#sync_upload_process)       |
 
 **响应信息**
@@ -110,7 +110,7 @@ PUT /<bucket>/path/to/file
 | x-upyun-multi-length  | 是   	| String  	| 待上传文件大小，整型，单位 Byte   |
 | x-upyun-multi-type    | 否   	| String  	| 待上传文件的 `MIME` 类型，默认 `application/octet-stream`，建议自行设置  |
 | x-upyun-meta-x        | 否   	| String  	| 用于额外指定文件的元信息，详见 [Metadata](/api/rest_api/#metadata)   |
-| x-upyun-meta-ttl      | 否   	| integer  	| 文件元信息, 指定文件的生存时间， 单位天，详见 [Metadata](/api/rest_api/#metadata)   |
+| x-upyun-meta-ttl 	    | 否   	| Integer  	| 文件元信息, 指定文件的生存时间，单位天，最大支持180天，见 [Metadata](/api/rest_api/#metadata)  |
 
 **响应信息**
 
