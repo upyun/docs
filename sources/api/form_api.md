@@ -81,7 +81,7 @@ curl http://v0.api.upyun.com/<bucket> \
 | apps                  | 否   	| 异步预处理，见 [异步预处理](#async_process)            |
 | b64encoded            | 否   	| 对通过 Base64 编码上传的文件进行 Base64 解码，值为 `on`            |
 | ext-param             | 否   	| 额外参数，见 [ext-param](#ext-param)                  |
-| x-upyun-meta-ttl      | 否   	| 文件元信息, 指定文件的生存时间， 单位天                  |
+| x-upyun-meta-ttl      | 否   	| 文件元信息, 指定文件的生存时间， 单位天，最大支持180天            |
 
 **注**
 

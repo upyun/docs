@@ -463,7 +463,7 @@ curl -X POST \
 
 ```
 curl -X POST \
-    http://p1.api.upyun.com/<service>/liveaudit/create \
+    http://p1.api.upyun.com/<service>/liveaudit/cancel \
     -H "Authorization: UPYUN <Operator>:<Signature>" \
     -H "Date: <Wed, 29 Oct 2014 02:26:58 GMT>" \
 	-H "Content-MD5: <Content-MD5>" \
