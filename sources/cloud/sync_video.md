@@ -6,6 +6,7 @@
 
 相关阅读：[异步音视频处理](/cloud/av/)，[同步音频处理](/cloud/sync_audio/)。
 
+<a name="cancat"></a>
 ## M3U8 拼接
 
 多个 M3U8 拼接成一个。
@@ -70,7 +71,7 @@ Date: Thu, 11 May 2017 07:48:00 GMT
 {"status_code": 200, "message": "ok"}
 ```
 
-
+<a name="clip"></a>
 ## M3U8 剪辑
 
 从 M3U8 中剪辑一段，或去掉一段保留前后两段。
@@ -146,6 +147,7 @@ Date: Thu, 11 May 2017 07:49:14 GMT
 {"status_code": 200, "message": "ok"}
 ```
 
+<a name="snapshot"></a>
 ## 视频截图（M3U8 截图）
 
 从 M3U8，MP4 或其他格式视频中获取一张截图。
@@ -202,7 +204,7 @@ Authorization: UPYUN <operator>:4+Hqjo788qC4v4zHRxnvhpweFQo=
 Content-Length: 96
 Content-Type: application/json
 
-{"service": "<service>", "source": "/tmp/360p.mp4", "save_as": "/foo03.jpg", "point": "00:00:05"}
+{"source": "/tmp/360p.mp4", "save_as": "/foo03.jpg", "point": "00:00:05"}
 ```
 
 ** 响应示例 **
@@ -218,9 +220,9 @@ Date: Tue, 20 Jun 2017 10:19:27 GMT
 {"status_code": 200, "message": "ok","content_type":"image/jpeg","content_length":14482,"save_as":"/foo03.jpg"}
 ```
 
-## 获取信息
+## 获取 M3U8 信息
 
-获取 M3U8 的信息。
+获取 M3U8 时长和分片信息。
 
 ### 请求
 

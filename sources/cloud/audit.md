@@ -25,7 +25,7 @@
 
 ```
 apps = [
-    {                                               
+    {
         "name": "imgaudit",                         // 异步任务名称，imgaudit 表示图片识别
         "notify_url": "<notify_url>"                // 回调地址，不填时使用上传参数中的 notify_url
     }
@@ -78,7 +78,7 @@ curl -X POST \
 
 ```
 [
-	{							
+	{
 		"source": "/upyun.jpg",     // 需要审核的图片
 	},
 	…
@@ -155,7 +155,7 @@ curl -X POST \
 		"porn": {
 			"label": 0,
 			"rate": 0.9833183288574219,
-	    	"review": false  
+	    	"review": false
 		}
 	},
     "task_id": "7b01610c7fa700b56cd7c80be5e08d5c",
@@ -182,10 +182,10 @@ curl -X POST \
 
 ```
 apps = [
-	{									
-	    "name": "videoaudit",   		// 异步任务名称，videoaudit 表示点播识别                       
+	{
+	    "name": "videoaudit",   		// 异步任务名称，videoaudit 表示点播识别
         "notify_url": "<notify_url>"    // 回调地址，不填时使用上传参数中的 notify_url
-		"interval": "6",   				// 截图间隔周期，非必填
+		"interval": "10",   				// 截图间隔周期，非必填
 		"save_as": "/foo_{index}.jpg",  	// 截图保存路径，非必填
 		"resize": "640x480",   				// 截图保存尺寸，非必填
 	}
@@ -239,7 +239,7 @@ curl -X POST \
 | 参数       		| 类型       	| 必选  	| 说明                              	|
 |-------------------|---------------|-------|-----------------------------------|
 | source       		| string       	| 是   	| 视频点播的路径         			|
-| interval        	| string       	| 否   	| 截图间隔时间，默认 `6`，单位秒    	|
+| interval        	| string       	| 否   	| 截图间隔时间，默认 `10`，单位秒    	|
 | save_as           | string       	| 否   	| 截图保存路径，默认不保存截图 <br /> 支持[动态参数](/api/form_api/#save-key)和 `{index}`(必填)，后缀作为截图格式，支持 `jpg` 和 `png`	|
 | resize          	| string       	| 否   	| 截图保存尺寸，默认原图大小，格式宽x高，如 `640x480` |
 
@@ -247,8 +247,8 @@ curl -X POST \
 
 ```
 [
-  	{							
-		"source": "/upyun.mp4", 	
+  	{
+		"source": "/upyun.mp4",
 		"save_as": "/foo_{index}.jpg",   // {index} 表示第几张截图，第一张是 /foo_1.jpg，第二张是 /foo_2.jpg
 	},
 	…
@@ -328,7 +328,7 @@ curl -X POST \
 					"porn": {
 					"label": 0,
 					"rate": 0.9833183288574219,
-			    	"review": false  
+			    	"review": false
 				}
             },
             "shot_time": 0,
@@ -347,7 +347,10 @@ curl -X POST \
 <a name="live_create"></a>
 #### 创建任务
 
-以 `POST` 方法向 `http://p1.api.upyun.com/<service>/liveaudit/create` 提交任务。特别地，`<service>` 需替换为具体的服务名。
+
+![直播任务处理流程](https://upyun-assets.b0.upaiyun.com/docs/process/live_audit.png)
+
+以 `POST` 方法向 `http://p1.api.upyun.com/<service>/liveaudit/create` 提交任务，服务收到请求后创建定时任务，获取流最近关键帧，识别并返回结果。特别地，`<service>` 需替换为具体的服务名。
 
 ```
 curl -X POST \
@@ -370,7 +373,7 @@ curl -X POST \
 | source        	| string       	| 是   	| RTMP 流地址，必须以 `rtmp://` 开头  |
 | save_as           | string       	| 是   	| 截图保存地址，支持[动态参数](/api/form_api/#save-key)，后缀作为截图格式，支持 `jpg` 和 `png`  	|
 | notify_url        | string       	| 是   	| 回调通知地址，详见[回调通知](#live_notify_url)    	|
-| interval        	| string       	| 否   	| 截图间隔时间，默认 `6`，单位秒     	|
+| interval        	| string       	| 否   	| 截图间隔时间，默认 `10`，单位秒     	|
 | resize          	| string       	| 否   	| 截图保存尺寸，默认原图大小，格式宽x高，如 `640x480` |
 
 ** 响应信息 **
@@ -386,7 +389,7 @@ curl -X POST \
 		"porn": {
 			"label": 0,
 			"rate": 0.9833183288574219,
-	    	"review": false  
+	    	"review": false
 		}
 	},
     "task_id": "7b01610c7fa700b56cd7c80be5e08d5c"
@@ -443,7 +446,7 @@ curl -X POST \
 		"porn": {
 			"label": 0,
 			"rate": 0.9833183288574219,
-	    	"review": false  
+	    	"review": false
 		}
 	},
     "task_id": "7b01610c7fa700b56cd7c80be5e08d5c"
@@ -460,12 +463,11 @@ curl -X POST \
 
 ```
 curl -X POST \
-    http://p1.api.upyun.com/<service>/liveaudit/create \
+    http://p1.api.upyun.com/<service>/liveaudit/cancel \
     -H "Authorization: UPYUN <Operator>:<Signature>" \
     -H "Date: <Wed, 29 Oct 2014 02:26:58 GMT>" \
 	-H "Content-MD5: <Content-MD5>" \
-    -d "service=<service>" \
-    -d "task_id=<task_id>"
+    -d '{"service": <service>, "task_id": <task_id>}'
 ```
 
 ** 认证鉴权 **

@@ -134,7 +134,7 @@ curl -X POST \
 
 参数名是 `apps`，参数值是 JSON 数组。一个 `apps` 最多允许包含 10 个音视频处理任务。** 任务参数见[功能](#function) **。
 
-** apps 参数结构 **
+** 举例 **
 
 ```
 apps = [
@@ -146,7 +146,7 @@ apps = [
         "save_as": "<save_as>",                     // 结果音频/视频保存路径，选填
         "notify_url": "<notify_url>"                // 回调地址，不填时使用上传参数中的 notify_url
     },
-	{ 												// 举例
+	{ 												
 	    "name": "naga",
 	    "type": "video",
 	    "avopts": "/s/240p(4:3)/as/1/r/30",
@@ -279,12 +279,12 @@ curl http://p0.api.upyun.com/result?service=<service>&task_ids=<task_id1>,<task_
 
 | 类型      		| 输入格式       														| 输出格式       	|
 |---------------|-----------------------------------------------------------------------|-------------------|
-| 视频容器格式 	| AVI、MP4、FLV、MOV、3GP、ASF、WMV、MPG、F4V、M4V、MKV、VOB（SVCD/DVD）等 	| MP4、FLV、M3U8(TS) 等|
+| 视频容器格式 	| AVI、MP4、FLV、MOV、3GP、ASF、WMV、M3U8(TS)、MPG、F4V、M4V、MKV、VOB（SVCD/DVD）等 	| MP4、FLV、M3U8(TS) 等|
 | 音频容器格式 	| MP3、OGG、M4A 等 														| MP4、MP3、OGG 等	|
 | 视频编码格式 	| H.264/AVC 、H.263、H.263+、MPEG-2、MPEG-4、VP8、VP9、Quicktime、RealVideo、Windows Media Video 等 | H.264/AVC、VP8、H.265/HEVC、VP9 等|
 | 音频编码格式 	| MP1、MP2、MP3、AAC、AC-3、Vorbis、PCM、RealAudio、Windows Media Audio 等	| AAC、MP3 等		|
 
-更多的格式请查阅 [ffmpeg 支持格式列表](http://ffmpeg.org/general.html#Supported-File-Formats_002c-Codecs-or-Features)。
+其他更多的格式请查阅 [ffmpeg 支持格式列表](http://ffmpeg.org/general.html#Supported-File-Formats_002c-Codecs-or-Features)。
 
 ---------
 
@@ -390,6 +390,7 @@ upyun-operatoracceptjsonbucket_namedemonotify_urlhttp://www.example.com/notify/s
 <a name="function"></a>
 ## 功能
 
+<a name="video_transcode"></a>
 ### 视频转码
 
 | 参数              	| 类型   	| 必选  	| 说明                                    					|
@@ -416,6 +417,8 @@ upyun-operatoracceptjsonbucket_namedemonotify_urlhttp://www.example.com/notify/s
 | `/an/<disable_audio>`     | boolean   | 否		| 是否禁掉音频，默认 `false`                      		|
 | `/vn/<disable_video>`     | boolean   | 否		| 是否禁掉视频，默认 `false`                         	|
 | `/su/<accelerate_factor>` | float     | 否		| 视频加速倍数，默认 `1.0`。取值范围 `[1.0，10.0]`       	|
+| `/sar/<sar>` | string | 否 | [采样长宽比](https://en.wikipedia.org/wiki/Aspect_ratio_(image)#Distinctions)，格式 `w:h`，常用值 `1:1`，`4:3` 或 `16:9` |
+| `/dar/<dar>` | string | 否 | [显示长宽比](https://en.wikipedia.org/wiki/Pixel_aspect_ratio#Introduction)，格式 `w:h`，常用值 `1:1`，`4:3` 或 `16:9` |
 
 ** 注 **
 
@@ -423,6 +426,7 @@ upyun-operatoracceptjsonbucket_namedemonotify_urlhttp://www.example.com/notify/s
 
 ---------
 
+<a name="hls"></a>
 ### 视频切片
 
 | 参数              	| 类型   	| 必选  	| 说明                                    					|
@@ -449,6 +453,7 @@ upyun-operatoracceptjsonbucket_namedemonotify_urlhttp://www.example.com/notify/s
 
 ---------
 
+<a name="watermark"></a>
 ### 视频水印
 
 | 参数              	| 类型   	| 必选  	| 说明                                    					|
@@ -536,6 +541,7 @@ southwest     |     south      |     southeast
 
 ---------
 
+<a name="vconcat"></a>
 ### 视频拼接
 
 | 参数              	| 类型   	| 必选  	| 说明                                    					|
@@ -562,6 +568,7 @@ southwest     |     south      |     southeast
 
 ---------
 
+<a name="audio_transcode"></a>
 ### 音频转码
 
 | 参数              	| 类型   	| 必选  	| 说明                                    					|
@@ -623,6 +630,7 @@ southwest     |     south      |     southeast
 
 ---------
 
+<a name="probe"></a>
 ### 元数据获取
 
 获取音/视频文件的元信息。
@@ -633,6 +641,7 @@ southwest     |     south      |     southeast
 
 ---------
 
+<a name="chain"></a>
 ### 链式处理
 
 多个任务按提交任务参数的先后顺序，对原文件进行链式处理。
@@ -655,7 +664,7 @@ southwest     |     south      |     southeast
 ```json
 {
     "type": "chain",
-    "avopts": "/video/s/360p(4:3)/thumbnail/o/true",
+    "avopts": "/video/s/480p(16:9)/vb/300/r/25/vcodec/libx264/video/wmImg/L3Rlc3QvbG9nby5wbmc=",
     "save_as": "/foo.jpg"
 }
 ```

@@ -91,14 +91,16 @@ x-gmkerl-thumb: /fw/300/unsharp/true/quality/80/format/png
 
 支持的 API： [FORM API](/api/form_api/#upload_args)。
 
-参数名是 `apps`，参数值是 JSON 数组。一个 `apps` 最多允许包含 10 个图片处理任务。处理参数见[功能](#function)。
+参数名是 `apps`，参数值是 JSON 数组。一个 `apps` 最多允许包含 10 个图片处理任务。
+
+设置了 `apps` 参数，会创建异步处理任务，否则为同步处理任务
 
 ** apps 参数结构 **
 
 | 参数 				| 必选      	| 说明                                                     |
 |-------------------|-----------|----------------------------------------------------------|
 | name      		| 是        	| 使用异步图片处理服务，固定值 `thumb`                |
-| x-gmkerl-thumb    | 是      	| 图片处理功能参数或缩略图版本名称                               |
+| x-gmkerl-thumb    | 是      	| 图片处理功能参数或缩略图版本名称，处理参数见[功能](#function)     |
 | x-gmkerl-split   	| 否       	| 图片分块，按 `宽x高` 把图片分成数块，见「注」                  |
 | save_as  	 		| 否        	| 结果图片保存路径                                   |
 | notify_url  	 	| 否     	| 回调地址，不填时使用[上传参数](/api/form_api/#_2)中的  `notify_url` |
@@ -266,9 +268,11 @@ x-gmkerl-thumb: upyun520/fw/500
 
 ---------
 
-### WebP 专题
+### WebP 开发专题
 
-** 演示 **：[WebP 如何让您的图片大小平均减少 70%](https://www.upyun.com/webp.html)
+** 有损 WebP 演示 **：[WebP 如何让您的图片大小平均减少 70%](https://www.upyun.com/webp.html)
+
+** 无损 WebP 指南 **：[无损 WebP 正确的使用姿势](https://blog.upyun.com/?p=1595)
 
 ** 转成有损 WebP **：`/format/webp`
 
@@ -337,6 +341,7 @@ SVG 转成无损 WebP：www.domain.com/a.svg!/format/webp/lossless/true
 
 ---------
 
+<a name="watermark"></a>
 ### 水印
 
 ** 图片水印 **
@@ -441,6 +446,8 @@ SVG 转成无损 WebP：www.domain.com/a.svg!/format/webp/lossless/true
 
 ---------
 
+
+<a name="unsharp"></a>
 ### 锐化
 
 提高图片模糊部位的清晰度或聚焦程度。
@@ -482,6 +489,7 @@ SVG 转成无损 WebP：www.domain.com/a.svg!/format/webp/lossless/true
 
 ---------
 
+<a name="canvas"></a>
 ### 画布
 
 为图片添加画布，相当于把图片放入画布中。
@@ -560,7 +568,7 @@ SVG 转成无损 WebP：www.domain.com/a.svg!/format/webp/lossless/true
 | `/gdori/<orientation>`		| 方向，如 top,down（自上而下）       	| 渐变方向             |
 | `/gdpos/<gdpos>`        		| 开始位置,结束位置，如 10,100        	| 渐变从开始位置至结束位置。单位像素（px）  |
 | `/gdstartcolor/<gdstartcolor>`| RRGGBBAA，如 FF000000（红色不透明） 	| 开始位置颜色及透明度   |
-| `/gdstopcolor/<gdstopcolor>`  | RRGGBBAA，如 FF000000（红色不透明） 	| 开始位置颜色及透明度   |
+| `/gdstopcolor/<gdstopcolor>`  | RRGGBBAA，如 FF000000（红色不透明） 	| 结束位置颜色及透明度   |
 
 ** 注 **
 
