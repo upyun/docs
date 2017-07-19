@@ -477,67 +477,68 @@ curl -T /local_img.jpg http://v0.api.upyun.com/bucket/img.jpg -u operator:operat
 
 ### CDN 服务
 
-| 视频类别 | 视频名称                                     | 时长     |
-| ---- | ---------------------------------------- | ------ |
-| CDN  | [创建和使用CDN存储服务](https://techs.b0.upaiyun.com/videos/cdnpage/create_cdn_and_use_storage_services.html) | 13分14秒  |
-| CDN  | [创建动态CDN和设置缓存](https://techs.b0.upaiyun.com/videos/cdnpage/create_dynamic_cdn_and_cache_setting.html) | 18分05秒 |
-| CDN  | [创建和使用缩略图](https://techs.b0.upaiyun.com/videos/cdnpage/Picture_processing.html) | 8分03秒  |
-| CDN  | [设置SSL证书](https://techs.b0.upaiyun.com/videos/cdnpage/ssl_setting.html) | 5分54秒  |
-| CDN  | [缓存刷新功能](https://techs.b0.upaiyun.com/videos/cdnpage/chache_Refresh.html) | 3分42秒  |
-| 插件   | [设置 Discuz 插件](https://techs.b0.upaiyun.com/videos/cdnpage/Discuz.html) | 8分29秒  |
-| CDN  | [设置防盗链](https://techs.b0.upaiyun.com/videos/cdnpage/Denyurl.html) | 12分43秒 |
-| CDN  | [融合云配置](https://techs.b0.upaiyun.com/videos/cdnpage/upyun_oss.html) | 5分     |
-| CDN  | [URL动态作图](https://techs.b0.upaiyun.com/videos/cdnpage/Dynamic_mapping.html) | 2分41秒  |
-| SDK  | [HTTP REST API的介绍和JAVA SDK的使用](https://techs.b0.upaiyun.com/videos/cdnpage/http_rest_api_and_javasdk.html) | 10分23秒 |
-| SDK  | [CURL 操作 HTTP](https://techs.b0.upaiyun.com/videos/cdnpage/curl_http_rest_api.html) | 7分15秒  |
-| SDK  | [音视频处理SDK](https://techs.b0.upaiyun.com/videos/cdnpage/av-pretreatment-php-sdk.html) | 6分09秒  |
-| CDN  | [七牛镜像回源功能使用](https://techs.b0.upaiyun.com/videos/cdnpage/qiuniuoraliossmirror.html) | 6分19秒  |
-| CDN  | [CORS 跨域功能使用](https://techs.b0.upaiyun.com/videos/cdnpage/CORS.html) | 3分01秒  |
-| SDK  | [Python SDK的使用 ](https://techs.b0.upaiyun.com/videos/cdnpage/Python_Sdk.html) | 17分25秒 |
-| FTP  | [又拍云资源管理器的使用](https://techs.b0.upaiyun.com/videos/cdnpage/upyun_manager.html) | 2分38秒  |
-| CDN  | [阿里云云盾设置](https://techs.b0.upaiyun.com/videos/cdnpage/yundun.html) | 1分39秒  |
-| 日志   | [日志分析和日志下载](https://techs.b0.upaiyun.com/videos/cdnpage/upyunlog.html)                    | 7分2    |
-| CDN  | [又拍云的统计功能](https://techs.b0.upaiyun.com/videos/cdnpage/upyuncount.html) | 3分35秒  |
-| CDN  | [又拍云监控系统简介](https://techs.b0.upaiyun.com/videos/cdnpage/jiankong.html) | 3分05秒  |
-| CDN  | [ Rewrite 规则的使用](https://techs.b0.upaiyun.com/videos/cdnpage/rewrite.html) | 4分03秒  |
-| 账号   | [实名认证](https://techs.b0.upaiyun.com/videos/cdnpage/gerenrenzheng.html) | 2分     |
-| CDN |[ HTTP2 简介](https://techs.b0.upaiyun.com/videos/cdnpage/HTTP2.html)|2分49秒|
-|工具|[ wireshark 的使用](https://techs.b0.upaiyun.com/videos/cdnpage/wireshark.html)|5分58秒|
-|工具|[ tcpudmp 的使用](https://techs.b0.upaiyun.com/videos/cdnpage/tcpdump.html)|8分56秒|
-|工具|[ Linux 下 upx 的使用](https://techs.b0.upaiyun.com/videos/cdnpage/upx.html)|6分56秒|
-|工具|[ Windows 下 upx 的使用](https://techs.b0.upaiyun.com/videos/cdnpage/winupx.html)|10分23秒|
-|插件|[ueditor的使用](https://techs.b0.upaiyun.com/videos/cdnpage/ueditor.html)|7分55秒|
-| CDN |[分段缓存](https://techs.b0.upaiyun.com/videos/cdnpage/fenduan.html)|8分39秒|
-| SDK |[云处理 - 视频转码](https://techs.b0.upaiyun.com/videos/cdnpage/format_videos.html)|9分14秒|
-| SDK   | [ 云处理 - 视频水印](https://techs.b0.upaiyun.com/videos/cdnpage/watermark.html) | 11分37秒  |
-| SDK   | [ 云处理 - 音频转码](https://techs.b0.upaiyun.com/videos/cdnpage/audio.html) | 3分37秒  |
-| SDK   | [ 云处理 - 压缩和解压缩](https://techs.b0.upaiyun.com/videos/cdnpage/yasuo.html) | 3分44秒  |
-| CDN   | [ rewrite 规则详解 ](https://techs.b0.upaiyun.com/videos/cdnpage/rewrite_h.html) | 38分37秒  |
-| 插件   | [wordpress 插件使用](https://techs.b0.upaiyun.com/videos/cdnpage/wp.html) | 1分54秒  |
+| 视频类别 | 视频名称                                     | 时长     | 更新时间 | 
+| ---- | ---------------------------------------- | ------ |------ |
+| CDN  | [创建和使用CDN存储服务](https://techs.b0.upaiyun.com/videos/cdnpage/create_cdn_and_use_storage_services.html) | 13分14秒  | 2017/04/10|
+| CDN  | [创建动态CDN和设置缓存](https://techs.b0.upaiyun.com/videos/cdnpage/create_dynamic_cdn_and_cache_setting.html) | 18分05秒 | 2017/04/07|
+| CDN  | [创建和使用缩略图](https://techs.b0.upaiyun.com/videos/cdnpage/Picture_processing.html) | 8分03秒  | 2016/09/12|
+| CDN  | [设置SSL证书](https://techs.b0.upaiyun.com/videos/cdnpage/ssl_setting.html) | 5分54秒  | 2017/03/31|
+| CDN  | [缓存刷新功能](https://techs.b0.upaiyun.com/videos/cdnpage/chache_Refresh.html) | 3分42秒  | 2017/05/19|
+| 插件   | [设置 Discuz 插件](https://techs.b0.upaiyun.com/videos/cdnpage/Discuz.html) | 8分29秒  |2016/03/18|
+| CDN  | [设置防盗链](https://techs.b0.upaiyun.com/videos/cdnpage/Denyurl.html) | 12分43秒 | 2016/03/18|
+| CDN  | [融合云配置](https://techs.b0.upaiyun.com/videos/cdnpage/upyun_oss.html) | 5分     |2016/03/18|
+| CDN  | [URL动态作图](https://techs.b0.upaiyun.com/videos/cdnpage/Dynamic_mapping.html) | 2分41秒  | 2016/03/18|
+| SDK  | [HTTP REST API的介绍和JAVA SDK的使用](https://techs.b0.upaiyun.com/videos/cdnpage/http_rest_api_and_javasdk.html) | 10分23秒 |2016/03/19|
+| SDK  | [CURL 操作 HTTP](https://techs.b0.upaiyun.com/videos/cdnpage/curl_http_rest_api.html) | 7分15秒  |2016/03/19 |
+| SDK  | [音视频处理SDK](https://techs.b0.upaiyun.com/videos/cdnpage/av-pretreatment-php-sdk.html) | 6分09秒  | 2016/04/23|
+| CDN  | [七牛镜像回源功能使用](https://techs.b0.upaiyun.com/videos/cdnpage/qiuniuoraliossmirror.html) | 6分19秒  | 2016/04/23|
+| CDN  | [CORS 跨域功能使用](https://techs.b0.upaiyun.com/videos/cdnpage/CORS.html) | 3分01秒  |2016/05/28|
+| SDK  | [Python SDK的使用 ](https://techs.b0.upaiyun.com/videos/cdnpage/Python_Sdk.html) | 17分25秒 | 2016/06/30|
+| FTP  | [又拍云资源管理器的使用](https://techs.b0.upaiyun.com/videos/cdnpage/upyun_manager.html) | 2分38秒  | 2016/03/23|
+| CDN  | [阿里云云盾设置](https://techs.b0.upaiyun.com/videos/cdnpage/yundun.html) | 1分39秒  | 2017/04/12|
+| 日志   | [日志分析和日志下载](https://techs.b0.upaiyun.com/videos/cdnpage/upyunlog.html)| 7分2    | 2017/04/12|
+| CDN  | [又拍云的统计功能](https://techs.b0.upaiyun.com/videos/cdnpage/upyuncount.html) | 3分35秒  | 2016/09/12|
+| CDN  | [又拍云监控系统简介](https://techs.b0.upaiyun.com/videos/cdnpage/jiankong.html) | 3分05秒  | 2016/09/12|
+| CDN  | [ Rewrite 规则的使用](https://techs.b0.upaiyun.com/videos/cdnpage/rewrite.html) | 4分03秒  | 2016/09/12|
+| 账号   | [实名认证](https://techs.b0.upaiyun.com/videos/cdnpage/gerenrenzheng.html) | 2分     |2016/09/12|
+| CDN |[ HTTP2 简介](https://techs.b0.upaiyun.com/videos/cdnpage/HTTP2.html)|2分49秒|2017/06/08|
+|工具|[ wireshark 的使用](https://techs.b0.upaiyun.com/videos/cdnpage/wireshark.html)|5分58秒| 2017/04/21|
+|工具|[ tcpudmp 的使用](https://techs.b0.upaiyun.com/videos/cdnpage/tcpdump.html)|8分56秒|2016/09/14|
+|工具|[ Linux 下 upx 的使用](https://techs.b0.upaiyun.com/videos/cdnpage/upx.html)|6分56秒| 2016/10/15|
+|工具|[ Windows 下 upx 的使用](https://techs.b0.upaiyun.com/videos/cdnpage/winupx.html)|10分23秒| 2017/01/03|
+|插件|[ueditor的使用](https://techs.b0.upaiyun.com/videos/cdnpage/ueditor.html)|7分55秒|2017/10/15| 
+| CDN |[分段缓存](https://techs.b0.upaiyun.com/videos/cdnpage/fenduan.html)|8分39秒| 2017/04/12|
+| SDK |[云处理 - 视频转码](https://techs.b0.upaiyun.com/videos/cdnpage/format_videos.html)|9分14秒| 2017/01/03|
+| SDK   | [ 云处理 - 视频水印](https://techs.b0.upaiyun.com/videos/cdnpage/watermark.html) | 11分37秒  |2017/05/18 |
+| SDK   | [ 云处理 - 音频转码](https://techs.b0.upaiyun.com/videos/cdnpage/audio.html) | 3分37秒  |2017/03/03|
+| SDK   | [ 云处理 - 压缩和解压缩](https://techs.b0.upaiyun.com/videos/cdnpage/yasuo.html) | 3分44秒  | 2017/05/18|
+| CDN   | [ rewrite 规则详解 ](https://techs.b0.upaiyun.com/videos/cdnpage/rewrite_h.html) | 38分37秒  | 2017/05/11|
+| 插件   | [wordpress 插件使用](https://techs.b0.upaiyun.com/videos/cdnpage/wp.html) | 1分54秒  | 2017/05/22|
+|CDN|[图片鉴黄](https://techs.b0.upaiyun.com/videos/cdnpage/nrsh.html)|5分|2017/05/19 |
 
 
 ### 直播服务
 
-| 视频类别 | 视频名称                                     | 时长     |
-| ---- | ---------------------------------------- | ------ |
-| 直播   | [创建和使用又拍云自主源站的直播服务](https://techs.b0.upaiyun.com/videos/cdnpage/upyunzb1.html) | 10分    |
-| 直播   | [创建和使用自主源直播服务](https://techs.b0.upaiyun.com/videos/cdnpage/upyunzzzb.html) | 4分51秒  |
-| 直播   | [直播转码和录制](https://techs.b0.upaiyun.com/videos/cdnpage/zb-format.html) | 10分23秒 |
-| 直播   | [安卓拉流播放器使用指南](https://techs.b0.upaiyun.com/videos/cdnpage/andriod-player-sdk.html) | 3分32秒  |
-| 直播   | [直播防盗链的使用](https://techs.b0.upaiyun.com/videos/cdnpage/live_push_token.html) | 6分54秒  |
-| 直播   | [流管控和流回调](https://techs.b0.upaiyun.com/videos/cdnpage/stream_control.html) | 9分37秒  |
-| 直播   | [直播截图功能](https://techs.b0.upaiyun.com/videos/cdnpage/zbjt.html) | 1分54秒  |
+| 视频类别 | 视频名称                                     | 时长     | 更新时间|
+| ---- | ---------------------------------------- | ------ |------ |
+| 直播   | [创建和使用又拍云自主源站的直播服务](https://techs.b0.upaiyun.com/videos/cdnpage/upyunzb1.html) | 10分    | 2016/08/03|
+| 直播   | [创建和使用自主源直播服务](https://techs.b0.upaiyun.com/videos/cdnpage/upyunzzzb.html) | 4分51秒  | 2016/08/03|
+| 直播   | [直播转码和录制](https://techs.b0.upaiyun.com/videos/cdnpage/zb-format.html) | 10分23秒 | 2016/09/28|
+| 直播   | [安卓拉流播放器使用指南](https://techs.b0.upaiyun.com/videos/cdnpage/andriod-player-sdk.html) | 3分32秒  | 2016/09/29|
+| 直播   | [直播防盗链的使用](https://techs.b0.upaiyun.com/videos/cdnpage/live_push_token.html) | 6分54秒  | 2016/10/15|
+| 直播   | [流管控和流回调](https://techs.b0.upaiyun.com/videos/cdnpage/stream_control.html) | 9分37秒  | 2017/04/14|
+| 直播   | [直播截图功能](https://techs.b0.upaiyun.com/videos/cdnpage/zbjt.html) | 1分54秒  | 2017/05/18|
 
 
 
 ### 故障反馈
 
-| 视频类别 | 视频名称                                     | 时长     |
-| ---- | ---------------------------------------- | ------ |
-| 工具   | [ PC 端故障反馈视频教程](https://techs.b0.upaiyun.com/videos/cdnpage/pc.html) | 10分    |
-| 工具   | [ Android 故障反馈视频教程](https://techs.b0.upaiyun.com/videos/cdnpage/mobile.html) | 4分51秒  |
-| 工具   | [ iOS 故障反馈视频教程](https://techs.b0.upaiyun.com/videos/cdnpage/iphone.html) | 4分51秒  |
-| 工具   | [  DNS 的修改 ](https://techs.b0.upaiyun.com/videos/cdnpage/dns.html) | 11分37秒  |
+| 视频类别 | 视频名称                                     | 时长     | 更新时间| 
+| ---- | ---------------------------------------- | ------ |------ |
+| 工具   | [ PC 端故障反馈视频教程](https://techs.b0.upaiyun.com/videos/cdnpage/pc.html) | 10分    | 2016/10/21|
+| 工具   | [ Android 故障反馈视频教程](https://techs.b0.upaiyun.com/videos/cdnpage/mobile.html) | 4分51秒  | 2016/10/21|
+| 工具   | [ iOS 故障反馈视频教程](https://techs.b0.upaiyun.com/videos/cdnpage/iphone.html) | 4分51秒  | 2017/01/01|
+| 工具   | [  DNS 的修改 ](https://techs.b0.upaiyun.com/videos/cdnpage/dns.html) | 11分37秒  | 2017/04/21|
 
 
 
