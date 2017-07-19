@@ -229,14 +229,12 @@
         <strong>又拍云大文件上传客户端</strong>
         <div class="links">
             <a href="https://github.com/xcuts/upyun-Bigfile-uploadclient" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
-            <a href="https://github.com/xcuts/upyun-Bigfile-uploadclient/archive/master.zip" target="_blank" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
         </div>
     </li>
         <li>
         <strong>又拍云web版工具</strong>
         <div class="links">
             <a href="https://github.com/xcuts/UPYUN-API-Web-Tool" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
-            <a href="https://github.com/xcuts/UPYUN-API-Web-Tool/archive/master.zip" target="_blank" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
         </div>
     </li>
     <li>
