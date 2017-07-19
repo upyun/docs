@@ -506,7 +506,7 @@ curl -T /local_img.jpg http://v0.api.upyun.com/bucket/img.jpg -u operator:operat
 |工具|[ tcpudmp 的使用](https://techs.b0.upaiyun.com/videos/cdnpage/tcpdump.html)|8分56秒|2016/09/14|
 |工具|[ Linux 下 upx 的使用](https://techs.b0.upaiyun.com/videos/cdnpage/upx.html)|6分56秒| 2016/10/15|
 |工具|[ Windows 下 upx 的使用](https://techs.b0.upaiyun.com/videos/cdnpage/winupx.html)|10分23秒| 2017/01/03|
-|插件|[ueditor的使用](https://techs.b0.upaiyun.com/videos/cdnpage/ueditor.html)|7分55秒|2017/10/15| 
+|插件|[ueditor的使用](https://techs.b0.upaiyun.com/videos/cdnpage/ueditor.html)|7分55秒|2016/10/15| 
 | CDN |[分段缓存](https://techs.b0.upaiyun.com/videos/cdnpage/fenduan.html)|8分39秒| 2017/04/12|
 | SDK |[云处理 - 视频转码](https://techs.b0.upaiyun.com/videos/cdnpage/format_videos.html)|9分14秒| 2017/01/03|
 | SDK   | [ 云处理 - 视频水印](https://techs.b0.upaiyun.com/videos/cdnpage/watermark.html) | 11分37秒  |2017/05/18 |
