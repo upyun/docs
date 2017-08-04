@@ -209,7 +209,7 @@
         </div>
     </li>
 	<li>
-        <strong>UpYun.NETCore - @yangzhongke</strong>
+        <strong>.NETCore - @yangzhongke</strong>
         <div class="links">
             <a href="https://github.com/yangzhongke/UpYun.NETCore" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
         </div>
