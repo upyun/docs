@@ -250,9 +250,10 @@
         </div>
     </li>
      <li>
-        <strong>移动端网络检测工具</strong>
+        <strong>又小测:健康监测</strong>
         <div class="links">
-            <a href="https://techs.b0.upaiyun.com/netecho.apk" class="btn btn-xs" target="_blank"><i class="fa fa-question-circle"></i>查看</a>
+            <a href="http://p.upyun.com/app/networkTestTool-debug.apk" class="btn btn-xs" target="_blank"><i class="fa fa-cloud-download"></i>Android</a>
+              <a href="https://itunes.apple.com/us/app/%E5%8F%88%E5%B0%8F%E6%B5%8B/id988693812?mt=8" class="btn btn-xs" target="_blank"><i class="fa fa-cloud-download"></i>iOS</a>
         </div>
     </li>
 	<li>
