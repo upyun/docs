@@ -542,6 +542,7 @@
 | TEMPLATE_FAILED | 模板审核失败，请重新提交 | 409 |
 | ILLEGAL_CONTENT_LENGTH | 模版内容长度不合法，签名+内容必须小于348个字  | 409 |
 | ILLEGAL_REPORT_TYPE | 无效的审核类型  | 409 |
+| ILLEGAL_TEMPLATE_ID | 无效的模板编号 | 422 |
 | SMS_SYSTEM_ERROR | SMS 服务异常 | 500 |
 | SYSTEM_ERROR | 系统错误 | 500 |
 
