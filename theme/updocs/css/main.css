@@ -378,7 +378,8 @@ body {
   margin: 0 1.5%;
   padding-top: 21px;
   float: left;
-  width: 17%;
+  width: 30%;
+  margin-bottom: 50px;
   height: 306px;
   background: #fdfefe;
   border: 1px solid rgba(93, 96, 107, .15);
@@ -443,6 +444,7 @@ body {
 
 .content-home .section ul {
   margin-top: 35px;
+  font-size: 16px;
 }
 
 .content-home .section ul li {

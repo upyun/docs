@@ -61,8 +61,8 @@ API 请求失败时，服务端会返回一个 JSON 格式的响应体。它可�
 | 400 			| 40011056 			| invalid invalid x-upyun-multi-uuid         |
 | 400 			| 40011057 			| invalid UTF8 Key                      |
 | 400 			| 40011058 			| invalid x-upyun-multi-uuid not found    |
-| 400 			| 40011059 			| file md5 not match                   |
-| 400 			| 40011060 			| invalid x-upyun-part-size                 |
+| 400 			| 40011059 			| file already upload                   |
+| 400 			| 40011060 			| file md5 not match                 |
 | 400 			| 40011061 			| part id error                       |
 | 400		 	| 40011062 			| part already complete                  | 
 | 400 			| 40000001 			| need save-key    |

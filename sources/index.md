@@ -27,6 +27,16 @@
             <li><a href="/live/Introduction/">查看更多</a></li>
         </ul>
     </div>
+	<div class="section section-api">
+        <i class="upicon upicon-api"></i>
+        <h3>点播文档</h3>
+        <h4>Video Documents</h4>
+        <ul class="list-unstyled">
+            <li><a href="/video/">短视频简介</a></li>
+            <li><a href="/video/short_video_demo/">短视频 DEMO</a></li>
+            <li><a href="/cloud/">查看更多</a></li>
+        </ul>
+    </div>
     <div class="section section-api">
         <i class="upicon upicon-api"></i>
         <h3>云存储文档</h3>
@@ -51,12 +61,12 @@
     </div>
     <div class="section section-download">
         <i class="upicon upicon-download"></i>
-        <h3>资源下载</h3>
+        <h3>SDK&工具</h3>
         <h4>Download</h4>
         <ul class="list-unstyled">
-            <li><a href="/download/#sdk">SDK </a></li>
-            <li><a href="/download/#plugin">论坛插件</a></li>
-            <li><a href="/download/#third-party">第三方资源</a></li>
+            <li><a href="/download/#sdk">存储&处理 SDK </a></li>
+            <li><a href="/download/#live-sdk">直播 SDK</a></li>
+            <li><a href="/download/#short-video">短视频 SDK</a></li>
             <li><a href="/download/">查看更多</a></li>
         </ul>
     </div>
