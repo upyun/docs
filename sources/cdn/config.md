@@ -736,7 +736,7 @@ WebP 自适应大致的处理流程如下：
  - 在 CDN 节点未缓存 WebP 副本的情况下，CDN 平台会实时生成 WebP 副本并返回。
 
 
-更多了解，请参照：[如何通过 WebP 自适应方案减少图片资源大小](https://blog.upyun.com/?p=1539)
+更多了解，请参照：[如何通过 WebP 自适应方案减少图片资源大小](https://blog.upyun.com/?p=1539)，[移动端如何使用 WebP（上）](https://blog.upyun.com/?p=1252)、[移动端如何使用 WebP（下）](https://blog.upyun.com/?p=1257)。
     
 ----------
 
