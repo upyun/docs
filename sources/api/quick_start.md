@@ -6,13 +6,13 @@
 
 ## 创建服务
 
-登录又拍云控制台，在 「服务」 中，创建 「全网加速」 服务。
+登录又拍云控制台，在 「云产品」 中选择 「云存储」，点击 「创建服务」 。
 
-<a href="http://upyun-assets.b0.upaiyun.com/docs/storage/create_service.png"  target="_blank" title="查看大图"><img src="http://upyun-assets.b0.upaiyun.com/docs/storage/create_service.png" height="490" width="800" alt="创建服务名" /></a>
+<a href="https://upyun-assets.b0.upaiyun.com/docs/cdn/service/upyun-storage-create-service.png"  target="_blank" title="查看大图"><img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/service/upyun-storage-create-service.png" height="490" width="800" alt="创建服务名" /></a>
 
-选择 「源站类型」 为 「又拍云」 ，并为该服务创建或授权操作员。
+输入 「服务名称」，并为该服务创建或授权操作员。
 
-<a href="http://upyun-assets.b0.upaiyun.com/docs/storage/create_service2.png"  target="_blank" title="查看大图"><img src="http://upyun-assets.b0.upaiyun.com/docs/storage/create_service2.png" height="490" width="800" alt="创建服务名" /></a>
+<a href="https://upyun-assets.b0.upaiyun.com/docs/cdn/service/upyun_storage_basic_info.png"  target="_blank" title="查看大图"><img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/service/upyun_storage_basic_info.png" height="490" width="800" alt="创建服务名" /></a>
 
 点击 「创建」，云存储服务创建成功。
 
@@ -33,7 +33,7 @@
 ## 操作员使用
 
 - 在[创建服务](#_2)时，创建或授权操作员。
-- 在「服务」>「配置」>「基础配置」>「已授权操作员」中，创建或授权操作员。
+- 在「配置」>「内容管理」>「操作员授权」中，创建或授权操作员。
 - 在「账号」>「账号管理」>「操作员管理」中，管理操作员。
 - 操作员的解释说明，见[基本概念](/api/#concept)。
 
@@ -41,9 +41,7 @@
 
 ## 删除服务
 
-登录又拍云控制台，从 「服务」 中进入需要删除服务的 「配置」，在 「高级功能」 里面，可以删除服务名。
-
-<a href="http://upyun-assets.b0.upaiyun.com/docs/storage/delete_service.png"  target="_blank" title="查看大图"><img src="http://upyun-assets.b0.upaiyun.com/docs/storage/delete_service.png" height="490" width="800" alt="创建服务名" /></a>
+登录又拍云控制台，选择 「云存储」，先 「关闭」 需要删除的服务，然后点 「删除」，即可以删除服务。
 
 特别地，服务删除前，需要清空服务下的数据；服务删除后，七天内不能创建同名服务。
 

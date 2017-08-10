@@ -8,9 +8,6 @@ copyright: Copyright &copy; 2017, 又拍云
 pages:
 
 - '文档首页': 'index.md'
-- '开发指南':
-    - '开发者指南': 'guide/index.md'
-    - 'REST API 简易指南(PHP)': 'guide/php_rest_guide.md'
 - 'CDN 文档':
     - '内容总览': 'cdn/index.md'
     - '产品介绍': 'cdn/product.md'
@@ -30,6 +27,9 @@ pages:
     - '基础配置': 'live/primary.md'
     - '增值服务': 'live/advanced.md'
     - '移动端 sdk': 'live/mobile-sdk.md'
+- '点播文档':
+    - '短视频简介': 'video/index.md'
+    - '短视频 DEMO': 'video/short_video_demo.md'
 - '云存储文档':
     - '产品简介': 'api/index.md'
     - '快速入门': 'api/quick_start.md'
@@ -58,8 +58,8 @@ pages:
     - '压缩解压缩': 'cloud/unzip.md'
     - '文件拉取': 'cloud/spider.md'
     - '音视频处理（已弃用）': 'cloud/av_pretreatment.md'
-- '资源下载':
-    - '资源下载': 'download/index.md'
+- 'SDK&工具':
+    - 'SDK&工具': 'download/index.md'
 - '常见问题':
     - '常见问题': 'faq/index.md'
 

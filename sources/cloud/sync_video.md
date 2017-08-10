@@ -6,7 +6,7 @@
 
 相关阅读：[异步音视频处理](/cloud/av/)，[同步音频处理](/cloud/sync_audio/)。
 
-<a name="cancat"></a>
+<a name="concat"></a>
 ## M3U8 拼接
 
 多个 M3U8 拼接成一个。
