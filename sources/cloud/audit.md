@@ -497,6 +497,62 @@ curl -X POST \
 
 ---------
 
+### 文本
+
+<a name="text_detect"></a>
+#### 文本检测
+
+以 `POST` 方法向 `http://p1.api.upyun.com/<service>/textaudit/detect` 提交任务。特别地，`<service>` 需替换为具体的服务名。
+
+```
+curl -X POST \
+    http://p1.api.upyun.com/<service>/textaudit/detect \
+    -H "Authorization: UPYUN <Operator>:<Signature>" \
+    -H "Date: <Wed, 29 Oct 2014 02:26:58 GMT>" \
+    -H "Content-MD5: <Content-MD5>" \
+    -d '{"text": "<text>"}' 
+```
+
+** 认证鉴权 **
+
+`Authorization` 详见[签名认证](/cloud/authorization/#_1)。
+
+** 请求参数 **
+
+| 参数       		| 类型       	| 必选  	| 说明                              	|
+|-------------------|---------------|-------|-----------------------------------|
+| text           	| string       	| 是    | 文本内容，最大支持64k     			|
+
+** 响应信息 **
+
+- 任务提交成功：返回 `200`。
+
+响应信息为 JSON 字符串，参数名及说明如下：
+
+| 参数       		| 类型   	| 说明                                                      	|
+|-------------------|-----------|-----------------------------------------------------------|
+| status         	| integer   | 处理结果状态码，`200` 表示成功处理，详见[状态码表](#status)   	|
+| task_id       	| string    | 任务对应的 `task_id`                                    	|
+| label  			| integer  	| 图片被判定的分类，可能值 `0`、`1`、`2`，`0` 表示正常文本，`1` 表示违规文本，`2` 表示可疑文本 |
+| review  			| boolean  	| 是否需要人工复审，`true` 表示需要，`false` 表示不需要 			|
+| spam  			| float   	| 文本被判定为违规的概率，介于 `[0-1]` 之间	 		|
+| normal  			| float   	| 文本被判定为正常的概率，介于 `[0-1]` 之间	 		|
+
+```
+{
+    "status":200,
+    "task_id":"6583350f99b2a2fa569c53081aa91a4f",
+    "label":1,
+    "review":false,
+    "spam":0.99,
+    "normal":0.01
+}
+```
+
+- 任务提交失败：返回相应的出错信息，具体请参阅「[状态码表](#status)」。
+
+---------
+
 <a name="status"></a>
 ### 状态码表
 
@@ -508,6 +564,7 @@ curl -X POST \
 | 400         	| `interval` 参数错误，ErrInterval    	|
 | 403         	| 任务已存在，ErrRepeat   				|
 | 404         	| 文件不存在/直播流不存在/任务不存在    	|
+| 405         	| 请求方法不允许                       	|
 | 413         	| 文件大小超过 10M  						|
 | 415         	| 文件不是图片    						|
 | 5xx         	| 服务端错误。如遇此类错误，请反馈给[售后](https://www.upyun.com/contact)或您的商务经理 |
@@ -561,6 +618,11 @@ curl -X POST \
 - 系统按间隔（`interval`）对直播流进行截图（关键帧提取），然后对截图进行鉴黄。默认间隔是 6s。如果流是高敏内容，间隔可以设置的更小。
 
 - 没有任务查询接口，需要客户端记录直播流与任务（`task_id`）的关系。
+
+### 文本
+
+- 为文本识别服务提供实时接口，包括[检测任务](#text_detect)接口。
+
 
 <!--
 
