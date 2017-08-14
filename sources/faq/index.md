@@ -479,14 +479,14 @@ curl -T /local_img.jpg http://v0.api.upyun.com/bucket/img.jpg -u operator:operat
 
 | 视频类别 | 视频名称                                     | 时长     | 更新时间 | 
 | ---- | ---------------------------------------- | ------ |------ |
-| CDN  | [创建和使用CDN存储服务](https://techs.b0.upaiyun.com/videos/cdnpage/create_cdn_and_use_storage_services.html) | 13分14秒  | 2017/04/10|
-| CDN  | [创建动态CDN和设置缓存](https://techs.b0.upaiyun.com/videos/cdnpage/create_dynamic_cdn_and_cache_setting.html) | 18分05秒 | 2017/04/07|
+| CDN  | [创建和使用CDN存储服务](https://techs.b0.upaiyun.com/videos/cdnpage/create_cdn_and_use_storage_services.html) | 14分41秒  | 2017/08/10|
+| CDN  | [创建动态CDN和设置缓存](https://techs.b0.upaiyun.com/videos/cdnpage/create_dynamic_cdn_and_cache_setting.html) | 6分29秒 | 2017/08/10|
 | CDN  | [创建和使用缩略图](https://techs.b0.upaiyun.com/videos/cdnpage/Picture_processing.html) | 8分03秒  | 2016/09/12|
-| CDN  | [设置SSL证书](https://techs.b0.upaiyun.com/videos/cdnpage/ssl_setting.html) | 5分54秒  | 2017/03/31|
+| CDN  | [设置SSL证书](https://techs.b0.upaiyun.com/videos/cdnpage/ssl_setting.html) | 16分45秒  | 2017/08/10|
 | CDN  | [缓存刷新功能](https://techs.b0.upaiyun.com/videos/cdnpage/chache_Refresh.html) | 3分42秒  | 2017/05/19|
 | 插件   | [设置 Discuz 插件](https://techs.b0.upaiyun.com/videos/cdnpage/Discuz.html) | 8分29秒  |2016/03/18|
 | CDN  | [设置防盗链](https://techs.b0.upaiyun.com/videos/cdnpage/Denyurl.html) | 12分43秒 | 2016/03/18|
-| CDN  | [融合云配置](https://techs.b0.upaiyun.com/videos/cdnpage/upyun_oss.html) | 5分     |2016/03/18|
+| CDN  | [融合云配置](https://techs.b0.upaiyun.com/videos/cdnpage/upyun_oss.html) | 6分57秒     |2016/08/10|
 | CDN  | [URL动态作图](https://techs.b0.upaiyun.com/videos/cdnpage/Dynamic_mapping.html) | 2分41秒  | 2016/03/18|
 | SDK  | [HTTP REST API的介绍和JAVA SDK的使用](https://techs.b0.upaiyun.com/videos/cdnpage/http_rest_api_and_javasdk.html) | 10分23秒 |2016/03/19|
 | SDK  | [CURL 操作 HTTP](https://techs.b0.upaiyun.com/videos/cdnpage/curl_http_rest_api.html) | 7分15秒  |2016/03/19 |
@@ -515,6 +515,8 @@ curl -T /local_img.jpg http://v0.api.upyun.com/bucket/img.jpg -u operator:operat
 | CDN   | [ rewrite 规则详解 ](https://techs.b0.upaiyun.com/videos/cdnpage/rewrite_h.html) | 38分37秒  | 2017/05/11|
 | 插件   | [wordpress 插件使用](https://techs.b0.upaiyun.com/videos/cdnpage/wp.html) | 1分54秒  | 2017/05/22|
 |CDN|[图片鉴黄](https://techs.b0.upaiyun.com/videos/cdnpage/nrsh.html)|5分|2017/05/19 |
+|CDN|[API使用](https://techs.b0.upaiyun.com/videos/cdnpage/upyunapi.html)|15分22秒|2017/08/14 |
+
 
 
 ### 直播服务
