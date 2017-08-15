@@ -97,18 +97,24 @@
 作为一个吃货，怎么少了记录美食呢。通过短视频解决方案，随时随地记录吃美食、制作美食、聚会等的前后过程，让快乐永久。
 
 
+<a name="charges_notes"></a>
 ## 收费说明
 
 解决方案按短视频 SDK、云存储、CDN 收费，上传、播放器 SDK 免费。如果有使用云端处理，云端处理需要收费。
 
 **相关阅读**：[价格](https://www.upyun.com/products/short-video#section-pricing)
 
-短视频 SDK 提供一个免费版和两个收费版，任何版本使用都需要授权（key），收费版可以免费试用一个月。
 
-获取授权，请提供应用名称、申请使用的 SDK 版本、使用的平台（安卓、iOS）、应用 bundleID、包名给您的商务经理，或者[联系我们](https://www.upyun.com/contact)。
+<a name="SDK_Key"></a>
+## SDK 版本 Key 获取
+
+短视频 SDK 提供一个免费版和两个收费版，任何版本使用都需要授权（key）。
+
+免费版的 Key 有效期一年，到期后可以续期。收费版可以免费试用一个月。
+
+获取 Key，请提供应用名称、申请使用的 SDK 版本、使用的平台（安卓、iOS）、应用 bundleID、包名给您的商务经理，或者[联系我们](https://www.upyun.com/contact)。
 
 **相关阅读**：[短视频 SDK 版本](https://www.upyun.com/products/short-video#section-version)
-
 
 
 
