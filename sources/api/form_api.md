@@ -59,7 +59,9 @@ curl http://v0.api.upyun.com/<bucket> \
 ---------
 
 <a name="upload_args"></a>
-## 上传参数
+## 小文件上传
+
+文件大小超过 100M 后，建议使用[大文件上传](#form_big_file_upload)；移动端或者弱网环境上传，推荐使用 [REST API 断点续传上传](/api/rest_api/#Multi_upload)。
 
 | 参数           		| 必选 	| 说明                                           					|
 |-----------------------|-------|-------------------------------------------------------------------|
@@ -89,7 +91,6 @@ curl http://v0.api.upyun.com/<bucket> \
 * 若在上传非图片文件时使用 `image-width-range`，`image-height-range`，会返回「不是图片」的错误。
 * 若请求中带有预处理参数（`x-gmkerl-thumb`），图片处理后再保存。
 * 若设置了 `x-gmkerl-type` 参数，则图片上传完成后会返回图片的 meta 信息或主题色。
-* 文件大小超过 50 M 后，请使用[断点续传上传](/api/rest_api/#Multi_upload)。
 
 ---------
 
@@ -135,6 +136,51 @@ http://yourdomain.com/return/?code=200&message=ok&url=%2F2011%2F12%2Ffd0e30047f8
 
 * 如果没有设置 `notify-url`，不发起异步通知。
 * 如果设置了 `notify-url`，文件上传完成后，向 `notify-url` 发送 `HTTP POST` 请求，请求体是回调信息。回调信息是 JSON 字符串，内容和 `return-url` 中的[结果信息](#notify_return)相同。回调通知签名，见[签名认证](/api/authorization/#header)，它提供给客户端用于验证回调通知的合法性。
+
+---------
+
+<a name="form_big_file_upload"></a>
+## 大文件上传
+
+大文件上传基于数据流式传输的原理，通过降低数据在边缘节点、中转节点的时间开销，让上传速度更快。
+
+相比小文件上传，它有两点约束，具体如下：
+
+1、需要在[小文件上传](#upload_args)的参数中加入 `content-length` 参数，指定文件长度。
+
+2、确保三个字段 `authorization`、`policy`、`file` 中，`file` 处于最后的位置。
+
+**举例说明**
+
+```
+// policy 中加入文件长度 content-length
+
+POLICY = {
+    'bucket': 'bucket1',
+    'expiration': 1509200758,
+    'content-length': 10,
+    'save-key': '/img1.txt',
+}
+```
+
+```
+// file 字段处于最后的位置
+
+POST /bucket1 HTTP/1.1
+Host: v0.api.upyun.com
+Content-Type: multipart/form-data; boundary=xxxxxxx
+Content-Length: 386
+--xxxxxxx.
+Content-Disposition: form-data; name="policy"
+eyJjb250ZW50LWxlbmd0aCI6IDEwLCAiYnVja2V0IjogImJ1Y2tldDEiLCAiZXhwaXJhdGlvbiI6IDE1MDkyMDA3NTgsICJzYXZlLWtleSI6ICIvaW1nMS50eHQifQ==
+--xxxxxxx
+Content-Disposition: form-data; name="signature"
+48f7ccda45cc3a5e25f4eb5eb1d6dbba
+--xxxxxxx
+Content-Disposition: form-data; name="file"; filename=abc.txt.
+d63..`PPq.
+--xxxxxxx--
+```
 
 ---------
 
