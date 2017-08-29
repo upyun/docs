@@ -486,7 +486,7 @@ curl -T /local_img.jpg http://v0.api.upyun.com/bucket/img.jpg -u operator:operat
 | CDN  | [缓存刷新功能](https://techs.upyun.com/videos/cdnpage/chache_Refresh.html) | 3分42秒  | 2017/05/19|
 | 插件   | [设置 Discuz 插件](https://techs.upyun.com/videos/cdnpage/Discuz.html) | 8分29秒  |2016/03/18|
 | CDN  | [设置防盗链](https://techs.upyun.com/videos/cdnpage/Denyurl.html) | 12分43秒 | 2016/03/18|
-| CDN  | [融合云配置](https://techs.upyun.com/videos/cdnpage/upyun_oss.html) | 6分57秒     |2016/08/10|
+| CDN  | [融合云配置](https://techs.upyun.com/videos/cdnpage/upyun_oss.html) | 6分57秒     |2017/08/10|
 | SDK  | [HTTP REST API的介绍和JAVA SDK的使用](https://techs.upyun.com/videos/cdnpage/http_rest_api_and_javasdk.html) | 10分23秒 |2016/03/19|
 | SDK  | [CURL 操作 HTTP](https://techs.upyun.com/videos/cdnpage/curl_http_rest_api.html) | 7分15秒  |2016/03/19 |
 | SDK  | [音视频处理SDK](https://techs.upyun.com/videos/cdnpage/av-pretreatment-php-sdk.html) | 6分09秒  | 2016/04/23|
