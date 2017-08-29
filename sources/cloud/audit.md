@@ -2,7 +2,7 @@
 
 又拍云处理（内容识别）基于 CDN 或云存储服务，您在使用它之前，请确保您已经注册又拍云账号并完成实名验证，请确保您已经创建 [CDN 服务](/cdn/guide/)或[云存储服务](/api/quick_start/)。
 
-收费方面，现在免费公测中，后续会进行收费。
+收费方面，需要收费，详情请[联系商务](https://www.upyun.com/products/audit#section-pricing)。
 
 ---------
 

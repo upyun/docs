@@ -140,7 +140,7 @@ curl -X POST \
 
 ** 注 **
 
-- `sources` 和 `sources_list` 参数指定的压缩文件最大不能超过 10000 个，总文件大小不能超过 1G。
+- `sources` 和 `sources_list` 参数指定的压缩文件最大不能超过 10000 个，总文件大小不能超过 4G。
 - 当需要被压缩的文件或目录很多时，可以把这些信息放到一个文件里，一条一行（不需要 URI encoding），再把文件上传到需要处理的服务名下，通过 `sources_list` 参数提交文件 URI ，代替 `sources` 参数进行大量信息提交。
 - 当 `sources_list` 参数存在时，`sources` 参数可以不存在。
 - 压缩算法: 目前仅支持 `zip`，因此， `save_as` 参数必须以 `.zip` 后缀结尾。

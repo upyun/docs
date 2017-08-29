@@ -538,13 +538,15 @@ SVG 转成无损 WebP：www.domain.com/a.svg!/format/webp/lossless/true
 | `/strip/<boolean>`       	| true          	| 去除图片所有元信息，包括 EXIF 、ICC 等。默认 `false`  |
 | `/gifto/<boolean>`       	| true          	| 多帧 GIF 图片转为单帧 GIF 图片  					|
 | `/exifswitch/<boolean>`  	| true          	| 保留 EXIF 信息 ，默认会删除 EXIF 信息      	|
+| `/ignore-error/<boolean>` | true          	| 是否忽略错误返回原图 ，默认 `false`，返回错误      	|
 
 ** 注 **
 
 - 一般来说，`quality（质量）` 是 `75`，在这个值压缩大小与图片质量损失得到平衡。
-- `/compress/true` 会对 JPG/PNG 进行一次压缩以减少图片体积，同时稍微延长了图片处理时间、降低了图片质量。
-- `/noicc/true` 会导致图片质量轻微的下降。
+- `compress` 会对 JPG/PNG 进行一次压缩以减少图片体积，同时稍微延长了图片处理时间、降低了图片质量。
+- `noicc` 会导致图片质量轻微的下降。
 - 大部分动态 GIF 可以通过省略相邻帧之间共同部分来优化图片体积。如果 `coalesce` 参数为 `false`，当对动态 GIF 做缩略或放大时，可能会导致图片质量下降。 
+- `ignore-error` 只对 405、409、503 状态码有效，并会在响应头中附加 `x-gmkerl-err-code` 字段标记实际错误码。其他错误状态码无效，返回错误。
 
 ---------
 
