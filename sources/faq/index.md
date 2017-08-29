@@ -515,7 +515,7 @@ curl -T /local_img.jpg http://v0.api.upyun.com/bucket/img.jpg -u operator:operat
 | 插件   | [wordpress 插件使用](https://techs.upyun.com/videos/cdnpage/wp.html) | 1分54秒  | 2017/05/22|
 |CDN|[图片鉴黄](https://techs.upyun.com/videos/cdnpage/nrsh.html)|5分|2017/05/19 |
 |CDN|[API使用](https://techs.upyun.com/videos/cdnpage/upyunapi.html)|15分22秒|2017/08/14 |
-|CDN|[删除服务](https://techs.b0.upaiyun.com/videos/cdnpage/delserver.html)|3分39秒| 2017/08/29|
+|CDN|[删除服务](https://techs.upyun.com/videos/cdnpage/delserver.html)|3分39秒| 2017/08/29|
 
 
 
