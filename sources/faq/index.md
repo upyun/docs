@@ -483,15 +483,15 @@ curl -T /local_img.jpg http://v0.api.upyun.com/bucket/img.jpg -u operator:operat
 | CDN  | [创建动态CDN和设置缓存](https://techs.upyun.com/videos/cdnpage/create_dynamic_cdn_and_cache_setting.html) | 6分29秒 | 2017/08/10|
 | CDN  | [创建和使用缩略图](https://techs.upyun.com/videos/cdnpage/Picture_processing.html) | 14分50秒  | 2017/08/29|
 | CDN  | [设置SSL证书](https://techs.upyun.com/videos/cdnpage/ssl_setting.html) | 16分45秒  | 2017/08/10|
-| CDN  | [缓存刷新功能](https://techs.upyun.com/videos/cdnpage/chache_Refresh.html) | 3分42秒  | 2017/05/19|
+| CDN  | [缓存刷新功能](https://techs.upyun.com/videos/cdnpage/chache_Refresh.html) | 7分10秒  | 2017/08/30|
 | 插件   | [设置 Discuz 插件](https://techs.upyun.com/videos/cdnpage/Discuz.html) | 8分29秒  |2016/03/18|
-| CDN  | [设置防盗链](https://techs.upyun.com/videos/cdnpage/Denyurl.html) | 12分43秒 | 2016/03/18|
+| CDN  | [设置防盗链](https://techs.upyun.com/videos/cdnpage/Denyurl.html) | 11分14秒 | 2017/08/30|
 | CDN  | [融合云配置](https://techs.upyun.com/videos/cdnpage/upyun_oss.html) | 6分57秒     |2017/08/10|
 | SDK  | [HTTP REST API的介绍和JAVA SDK的使用](https://techs.upyun.com/videos/cdnpage/http_rest_api_and_javasdk.html) | 10分23秒 |2016/03/19|
 | SDK  | [CURL 操作 HTTP](https://techs.upyun.com/videos/cdnpage/curl_http_rest_api.html) | 7分15秒  |2016/03/19 |
 | SDK  | [音视频处理SDK](https://techs.upyun.com/videos/cdnpage/av-pretreatment-php-sdk.html) | 6分09秒  | 2016/04/23|
 | CDN  | [七牛镜像回源功能使用](https://techs.upyun.com/videos/cdnpage/qiuniuoraliossmirror.html) | 6分19秒  | 2016/04/23|
-| CDN  | [CORS 跨域功能使用](https://techs.upyun.com/videos/cdnpage/CORS.html) | 3分01秒  |2016/05/28|
+| CDN  | [CORS 跨域功能使用](https://techs.upyun.com/videos/cdnpage/CORS.html) | 3分35秒  |2017/08/30|
 | SDK  | [Python SDK的使用 ](https://techs.upyun.com/videos/cdnpage/Python_Sdk.html) | 17分25秒 | 2016/06/30|
 | FTP  | [又拍云资源管理器的使用](https://techs.upyun.com/videos/cdnpage/upyun_manager.html) | 2分38秒  | 2016/03/23|
 | CDN  | [阿里云云盾设置](https://techs.upyun.com/videos/cdnpage/yundun.html) | 1分39秒  | 2017/04/12|
