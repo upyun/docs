@@ -34,7 +34,7 @@
         <ul class="list-unstyled">
             <li><a href="/video/">短视频简介</a></li>
             <li><a href="/video/short_video_demo/">短视频 DEMO</a></li>
-            <li><a href="/cloud/">查看更多</a></li>
+            <li><a href="/video/">查看更多</a></li>
         </ul>
     </div>
     <div class="section section-api">
