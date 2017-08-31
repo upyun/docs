@@ -19,7 +19,7 @@
 POST http://p1.api.upyun.com/<service>/m3u8er/concat HTTP/1.1
 Host: p1.api.upyun.com
 Date: GMT Date
-Authorization: SignatureValue
+Authorization: UPYUN <Operator>:<Signature>
 Content-Type: application/json
 
 {"m3u8s": ["<拼接 M3U8 的存储地址>"], "save_as": "<结果保存地址>"}
@@ -160,7 +160,7 @@ Date: Thu, 11 May 2017 07:49:14 GMT
 POST http://p1.api.upyun.com/<service>/snapshot HTTP/1.1
 Host: p1.api.upyun.com
 Date: GMT Date
-Authorization: SignatureValue
+Authorization: UPYUN <Operator>:<Signature>
 Content-Type: application/json
 
 {"source": "<视频的存储地址>", "point": "<时间点>", "save_as": "<截图保存地址>"}
@@ -232,7 +232,7 @@ Date: Tue, 20 Jun 2017 10:19:27 GMT
 POST http://p1.api.upyun.com/<service>/m3u8er/get_meta HTTP/1.1
 Host: p1.api.upyun.com
 Date: GMT Date
-Authorization: SignatureValue
+Authorization: UPYUN <Operator>:<Signature>
 Content-Type: application/json
 
 {"m3u8": "<M3U8 的存储地址 >"}
