@@ -8,7 +8,7 @@ copyright: Copyright &copy; 2017, 又拍云
 pages:
 
 - '文档首页': 'index.md'
-- 'CDN 文档':
+- 'CDN':
     - '内容总览': 'cdn/index.md'
     - '产品介绍': 'cdn/product.md'
     - '快速入门': 'cdn/guide.md'
@@ -21,16 +21,16 @@ pages:
     - '证书服务': 'cdn/ssl.md'
     - '辅助工具': 'cdn/tools.md'
     - '常见问题': 'cdn/faq.md'
-- '直播文档':
+- '直播':
     - '产品简介': 'live/Introduction.md'
     - '快速入门': 'live/guide.md'
     - '基础配置': 'live/primary.md'
     - '增值服务': 'live/advanced.md'
     - '移动端 sdk': 'live/mobile-sdk.md'
-- '点播文档':
+- '点播&短视频':
     - '短视频简介': 'video/index.md'
     - '短视频 DEMO': 'video/short_video_demo.md'
-- '云存储文档':
+- '云存储':
     - '产品简介': 'api/index.md'
     - '快速入门': 'api/quick_start.md'
     - '开发者指南': 'api/developer_guide.md'
@@ -46,18 +46,19 @@ pages:
     - '微信小程序': 'api/small_program.md'
     - '移动流量': 'mobile-stats/index.md'
     - '短信服务': 'sms/index.md'
-- '云处理文档':
+- '云处理':
     - '产品简介': 'cloud/index.md'
     - '认证鉴权': 'cloud/authorization.md'
     - '图片处理': 'cloud/image.md'
     - '异步音视频处理': 'cloud/av.md'
     - '同步视频处理': 'cloud/sync_video.md'
     - '同步音频处理': 'cloud/sync_audio.md'
-    - '内容识别': 'cloud/audit.md'
-    - '人脸识别': 'cloud/face_detect.md'
     - '压缩解压缩': 'cloud/unzip.md'
     - '文件拉取': 'cloud/spider.md'
     - '音视频处理（已弃用）': 'cloud/av_pretreatment.md'
+- '人工智能':
+    - '内容识别': 'ai/audit.md'
+    - '人脸识别': 'ai/face_detect.md'
 - 'SDK&工具':
     - 'SDK&工具': 'download/index.md'
 - '常见问题':

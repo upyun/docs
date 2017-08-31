@@ -7,7 +7,7 @@
 <div class="minecraft clearfix">
     <div class="section section-api">
         <i class="upicon upicon-api"></i>
-        <h3>CDN 文档</h3>
+        <h3>CDN</h3>
         <h4>CDN Documents</h4>
         <ul class="list-unstyled">
             <li><a href="/cdn/product/">产品简介</a></li>
@@ -18,7 +18,7 @@
     </div>
     <div class="section section-api">
         <i class="upicon upicon-api"></i>
-        <h3>直播文档</h3>
+        <h3>直播</h3>
         <h4>Live Documents</h4>
         <ul class="list-unstyled">
             <li><a href="/live/Introduction/">产品简介</a></li>
@@ -29,8 +29,8 @@
     </div>
 	<div class="section section-api">
         <i class="upicon upicon-api"></i>
-        <h3>点播文档</h3>
-        <h4>Video Documents</h4>
+        <h3>点播&短视频</h3>
+        <h4>Video&Short Video</h4>
         <ul class="list-unstyled">
             <li><a href="/video/">短视频简介</a></li>
             <li><a href="/video/short_video_demo/">短视频 DEMO</a></li>
@@ -39,7 +39,7 @@
     </div>
     <div class="section section-api">
         <i class="upicon upicon-api"></i>
-        <h3>云存储文档</h3>
+        <h3>云存储</h3>
         <h4>API Reference</h4>
         <ul class="list-unstyled">
 			<li><a href="/api/">产品简介</a></li>
@@ -50,13 +50,23 @@
     </div>
     <div class="section section-api">
         <i class="upicon upicon-api"></i>
-        <h3>云处理文档</h3>
+        <h3>云处理</h3>
         <h4>Cloud Processing</h4>
         <ul class="list-unstyled">
             <li><a href="/cloud/">产品简介</a></li>
             <li><a href="/cloud/image/">图片处理</a></li>
             <li><a href="/cloud/av/">异步音视频处理</a></li>
             <li><a href="/cloud/">查看更多</a></li>
+        </ul>
+    </div>
+    <div class="section section-api">
+        <i class="upicon upicon-api"></i>
+        <h3>人工智能</h3>
+        <h4>Artificial Intelligence</h4>
+        <ul class="list-unstyled">
+            <li><a href="/ai/audit">内容识别</a></li>
+            <li><a href="/ai/face-detect">人脸识别</a></li>
+            <li><a href="/ai/">查看更多</a></li>
         </ul>
     </div>
     <div class="section section-download">
