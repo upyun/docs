@@ -84,7 +84,7 @@ Date: Thu, 11 May 2017 07:48:00 GMT
 POST http://p1.api.upyun.com/<service>/m3u8er/clip HTTP/1.1
 Host: p1.api.upyun.com
 Date: GMT Date
-Authorization: SignatureValue
+Authorization: UPYUN <Operator>:<Signature>
 Content-Type: application/json
 
 {"m3u8": "<M3U8 的存储地址>", "include": [<开始时间点>, <结束时间点>], "save_as": "<结果保存地址>"}
