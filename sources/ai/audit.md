@@ -1,8 +1,8 @@
 ## 快速入门
 
-又拍云处理（内容识别）基于 CDN 或云存储服务，您在使用它之前，请确保您已经注册又拍云账号并完成实名验证，请确保您已经创建 [CDN 服务](/cdn/guide/)或[云存储服务](/api/quick_start/)。
+内容识别基于云存储服务，非结构化数据会放在云存储，或直接从云存储上读取数据，您在使用它之前，请确保您已经注册又拍云账号并完成实名验证，请确保您已经创建[云存储服务](/api/quick_start/)。
 
-收费方面，需要收费，详情请[联系商务](https://www.upyun.com/products/audit#section-pricing)。
+收费方面，收费，支持免费试用，详情敬请[联系商务](https://www.upyun.com/products/audit#section-pricing)。
 
 ---------
 
@@ -134,7 +134,7 @@ curl -X POST \
 | source        	| string    | 图片路径                                            		|
 | result 			| json  	| 识别结果集，包含 `porn`										|
 | porn 				| json  	| 鉴黄结果，包含 `label`、`rate`、`review`						|
-| label  			| integer  	| 图片被判定的分类，可能值 `0`、`1`，`0` 表示正常，`1` 表示色情 	|
+| label  			| integer  	| 图片被判定的分类，可能值 `0`、`1`、`2`，`0` 表示正常，`1` 表示色情，`2` 表示性感 	|
 | rate  			| float   	| 图片被判定为某个分类的概率，介于 `[0-1]` 之间	 		|
 | review  			| boolean  	| 是否需要人工复审，`true` 表示需要，`false` 表示不需要 			|
 | task_id       	| string    | 任务对应的 `task_id`                                    	|
@@ -304,7 +304,7 @@ curl -X POST \
 | shot_time        	| string    | 截图时间点                                            		|
 | result 			| json  	| 识别结果集，包含 `porn`										|
 | porn 				| json  	| 鉴黄结果，包含 `label`、`rate`、`review`						|
-| label  			| integer  	| 图片被判定的分类，可能值 `0`、`1`，`0` 表示正常，`1` 表示色情 	|
+| label  			| integer  	| 图片被判定的分类，可能值 `0`、`1`、`2`，`0` 表示正常，`1` 表示色情，`2` 表示性感 	|
 | rate  			| float   	| 图片被判定为某个分类的概率，介于 `[0-1]` 之间	 		|
 | review  			| boolean  	| 是否需要人工复审，`true` 表示需要，`false` 表示不需要 			|
 | task_id       	| string    | 任务对应的 `task_id`                                    	|
@@ -425,7 +425,7 @@ curl -X POST \
 | source        	| string    | 图片路径                                            		|
 | result 			| json  	| 识别结果集，包含 `porn`										|
 | porn 				| json  	| 鉴黄结果，包含 `label`、`rate`、`review`						|
-| label  			| integer  	| 图片被判定的分类，可能值 `0`、`1`，`0` 表示正常，`1` 表示色情 	|
+| label  			| integer  	| 图片被判定的分类，可能值 `0`、`1`、`2`，`0` 表示正常，`1` 表示色情，`2` 表示性感	|
 | rate  			| float   	| 图片被判定为某个分类的概率，介于 `[0-1]` 之间	 		|
 | review  			| boolean  	| 是否需要人工复审，`true` 表示需要，`false` 表示不需要 			|
 | task_id       	| string    | 任务对应的 `task_id`                                    	|
@@ -497,10 +497,8 @@ curl -X POST \
 
 ---------
 
-### 文本
-
 <a name="text_detect"></a>
-#### 文本检测
+### 文本
 
 以 `POST` 方法向 `http://p1.api.upyun.com/<service>/textaudit/detect` 提交任务。特别地，`<service>` 需替换为具体的服务名。
 
@@ -593,7 +591,9 @@ curl -X POST \
 
 ---------
 
-## 智能鉴黄
+## 色情识别
+
+识别色情、性感、正常内容。对于不确定内容，使用 `review：true` 表示。
 
 ### 图片
 
@@ -613,15 +613,19 @@ curl -X POST \
 
 ### 视频直播
 
-- 根据直播特性，为视频直播设计了专门的接口，包括[创建任务](#live_create)接口和[取消任务](#live_cancel)接口。
+- 根据直播的特性，为视频直播设计了专门的接口，包括[创建任务](#live_create)接口和[取消任务](#live_cancel)接口。
 
 - 系统按间隔（`interval`）对直播流进行截图（关键帧提取），然后对截图进行鉴黄。默认间隔是 6s。如果流是高敏内容，间隔可以设置的更小。
 
 - 没有任务查询接口，需要客户端记录直播流与任务（`task_id`）的关系。
 
-### 文本
+---------
 
-- 为文本识别服务提供实时接口，包括[检测任务](#text_detect)接口。
+## 文本识别
+
+识别色情、广告、暴恐等内容，统一标识为违规内容（`label: 1`）。对于不确容，使用 `label: 2` 表示。
+
+根据文本的特性，文本内容放在请求中提交给云端，云端实时进行处理，具体详见[接口](#text_detect)。
 
 
 <!--

@@ -112,7 +112,7 @@
 
 免费版的 Key 有效期一年，到期后可以续期。收费版可以免费试用一个月。
 
-获取 Key，请提供应用名称、申请使用的 SDK 版本、使用的平台（安卓、iOS）、应用 bundleID、包名给您的商务经理，或者[联系我们](https://www.upyun.com/contact)。
+获取 Key，请提供应用名称、申请使用的 SDK 版本、使用的平台（安卓、iOS）、bundleID（iOS）、包名（Android）给您的商务经理，或者[联系我们](https://www.upyun.com/contact)。
 
 **相关阅读**：[短视频 SDK 版本](https://www.upyun.com/products/short-video#section-version)
 

@@ -135,7 +135,7 @@ http://yourdomain.com/return/?code=200&message=ok&url=%2F2011%2F12%2Ffd0e30047f8
 **notify-url 参数说明**
 
 * 如果没有设置 `notify-url`，不发起异步通知。
-* 如果设置了 `notify-url`，文件上传完成后，向 `notify-url` 发送 `HTTP POST` 请求，请求体是回调信息。回调信息是 JSON 字符串，内容和 `return-url` 中的[结果信息](#notify_return)相同。回调通知签名，见[签名认证](/api/authorization/#header)，它提供给客户端用于验证回调通知的合法性。
+* 如果设置了 `notify-url`，文件上传完成后，向 `notify-url` 发送 `HTTP POST` 请求，请求体是回调信息。回调信息是 URL encoding 的字符串，内容和 `return-url` 中的[结果信息](#notify_return)相同。回调通知签名，见[签名认证](/api/authorization/#header)，它提供给客户端用于验证回调通知的合法性。
 
 ---------
 
