@@ -133,11 +133,14 @@
 `$ADD_REQ_HEADER(E1, E2)`   | 添加请求头 `E1` 为 `E2`
 `$DEL_REQ_HEADER(E)`        | 删除请求头 `E`
 `$ADD_RSP_HEADER(E1, E2)`   | 添加响应头 `E1` 为 `E2`
+`$DEL_RSP_HEADER(E)`        | 删除响应头 `E`
 `$DEL_ARG(E)`               | 删除请求参数项 `E`
 `$SET_METHOD(E)`            | 修改当前 HTTP 请求方法为 `E`，`E` 可选值有：`GET`, `HEAD`, `PUT`, `POST`, `DELETE`, `OPTIONS`, `PATCH`; 注 1
 `$SET_BODY(E)`              | 修改当前 HTTP 请求体的内容为 `E`，仅在 `PUT` 或 `POST` 请求下有效
 `$REDIRECT(E1, E2)`         | 重定向地址到 `E1`，状态码为 `E2(301, 302)`
 `$EXIT(E1, E2)`             | 以状态码 `E1` 退出，响应体为 `E2`
+
+> 注: 删除响应头函数不能删除 CDN 自带的一些字段，比如 via、age、server、connection、x-cache、x-request-id、x-source、content-length、transfer-encoding等字段是有保护的。
 
 > 数值计算
 
