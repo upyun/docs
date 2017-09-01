@@ -300,7 +300,7 @@ Date: Thu, 11 May 2017 08:48:05 GMT
 POST http://p1.api.upyun.com/<service>/avmeta/get_meta HTTP/1.1
 Host: p1.api.upyun.com
 Date: GMT Date
-Authorization: SignatureValue
+Authorization: UPYUN <Operator>:<Signature>
 Content-Type: application/json
 
 {"source": "<音视频的存储地址 >"}
