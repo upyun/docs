@@ -140,7 +140,7 @@
 `$REDIRECT(E1, E2)`         | 重定向地址到 `E1`，状态码为 `E2(301, 302)`
 `$EXIT(E1, E2)`             | 以状态码 `E1` 退出，响应体为 `E2`
 
-> 注: 删除响应头函数不能删除 CDN 自带的一些字段，比如 via、age、server、connection、x-cache、x-request-id、x-source、content-length、transfer-encoding等字段是有保护的。
+ 注: 删除响应头函数不能删除 CDN 自带的一些字段，比如 via、age、server、connection、x-cache、x-request-id、x-source、content-length、transfer-encoding等字段是有保护的。
 
 > 数值计算
 
