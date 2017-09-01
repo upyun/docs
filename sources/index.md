@@ -65,7 +65,7 @@
         <h4>Artificial Intelligence</h4>
         <ul class="list-unstyled">
             <li><a href="/ai/audit/">内容识别</a></li>
-            <li><a href="/ai/face-detect/">人脸识别</a></li>
+            <li><a href="/ai/face_detect/">人脸识别</a></li>
             <li><a href="/ai/audit/">查看更多</a></li>
         </ul>
     </div>
