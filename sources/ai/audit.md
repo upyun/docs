@@ -295,20 +295,26 @@ curl -X POST \
 
 回调信息为 JSON 字符串，参数名及说明如下：
 
-| 参数       		| 类型   	| 说明                                                      	|
-|-------------------|-----------|-----------------------------------------------------------|
-| service	   		| string    | 视频点播所在的服务名                                     		|
-| status_code   	| integer   | 处理结果状态码，`200` 表示成功处理，详见[状态码表](#status)   	|
-| filelist        	| json    	| 截图集                                            			|
-| source        	| string    | 截图保存路径，如果请求参数中未设置 `save_as`，不存在      |
-| shot_time        	| string    | 截图时间点                                            		|
-| result 			| json  	| 识别结果集，包含 `porn`										|
-| porn 				| json  	| 鉴黄结果，包含 `label`、`rate`、`review`						|
-| label  			| integer  	| 图片被判定的分类，可能值 `0`、`1`、`2`，`0` 表示正常，`1` 表示色情，`2` 表示性感 	|
-| rate  			| float   	| 图片被判定为某个分类的概率，介于 `[0-1]` 之间	 		|
-| review  			| boolean  	| 是否需要人工复审，`true` 表示需要，`false` 表示不需要 			|
-| task_id       	| string    | 任务对应的 `task_id`                                    	|
-| error       		| string   	| 错误信息，空字符串表示无错误信息   							|
+| 参数       		              | 类型   	| 说明
+|-------------------------------|-----------|-----------------------------------------------------------
+| task_id                    	| string    | 任务对应的 `task_id`
+| status_code   	            | integer   | 处理结果状态码，`200` 表示成功处理，详见[状态码表](#status)
+| service	   		            | string    | 视频点播所在的服务名
+| source        	            | string    | 截图保存路径，如果请求参数中未设置 `save_as`，不存在
+| error       		            | string   	| 错误信息，空字符串表示无错误信息
+| result                        | json      | 识别结果集，包含 `porn`
+| result.porn                   | json      | 鉴黄结果，包含 `label`、`rate`、`review`
+| result.porn.label 	        | integer  	| 图片被判定的分类，可能值 `0`、`1`、`2`，`0` 表示正常，`1` 表示色情，`2` 表示性感
+| result.porn.rate              | float   	| 图片被判定为某个分类的概率，介于 `[0-1]` 之间
+| result.porn.review            | boolean  	| 是否需要人工复审，`true` 表示需要，`false` 表示不需要
+| filelist        	            | json    	| 截图集, 为每个时间点的截图审核结果
+| filelist.result	            | json  	| 识别结果集，包含 `porn`
+| filelist.result.shot_time     | string    | 截图时间点
+| filelist.result.porn 	        | json  	| 鉴黄结果，包含 `label`、`rate`、`review`
+| filelist.result.porn.label 	| integer  	| 图片被判定的分类，可能值 `0`、`1`、`2`，`0` 表示正常，`1` 表示色情，`2` 表示性感
+| filelist.result.porn.rate     | float   	| 图片被判定为某个分类的概率，介于 `[0-1]` 之间
+| filelist.result.porn.review   | boolean  	| 是否需要人工复审，`true` 表示需要，`false` 表示不需要
+
 
 
 ** 回调签名 **
@@ -322,6 +328,13 @@ curl -X POST \
     "service": "upyun-temp",
     "status_code": 200,
     "source": "upyun.mp4",
+    "result": {
+        "porn": {
+            "label": 0,
+            "rate": 0.9833183288574219,
+            "review": false
+        }
+    },
     "filelist": [
         {
             "result": {
@@ -508,7 +521,7 @@ curl -X POST \
     -H "Authorization: UPYUN <Operator>:<Signature>" \
     -H "Date: <Wed, 29 Oct 2014 02:26:58 GMT>" \
     -H "Content-MD5: <Content-MD5>" \
-    -d '{"text": "<text>"}' 
+    -d '{"text": "<text>"}'
 ```
 
 ** 认证鉴权 **

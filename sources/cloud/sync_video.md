@@ -286,6 +286,136 @@ Date: Thu, 11 May 2017 08:48:05 GMT
 {"status_code": 200, "message": "ok", "meta": {"duration": 2850.2974559999984, "points": [11.277933000000001, 23.723700000000001, 34.634599999999999, 42.008632999999996, 50.483765999999996, 64.764698999999993, 70.804065999999992, 82.31556599999999, 92.892798999999997, 100.20009899999999, 114.74796599999999, 123.92379899999999, 131.09763199999998, 140.97416499999997, 158.32483199999996, 160.05989899999994, 172.70586599999996, 181.04753299999996, 191.79159999999996, <后续省略>]}}
 ```
 
+<a name="avmeta"></a>
+
+## 获取音视频元信息
+
+获取音视频的元信息
+
+### 请求
+
+** 请求语法 **
+
+```
+POST http://p1.api.upyun.com/<service>/avmeta/get_meta HTTP/1.1
+Host: p1.api.upyun.com
+Date: GMT Date
+Authorization: UPYUN <Operator>:<Signature>
+Content-Type: application/json
+
+{"source": "<音视频的存储地址 >"}
+```
+
+** 签名验证 **
+
+`Authorization` 详见[签名认证](/cloud/authorization/#_1)。
+
+** 请求参数 **
+
+| 参数       	| 类型       	| 必选  	| 说明                              	|
+|---------------|---------------|-------|-----------------------------------|
+| source   		| string		| 是  	| 音视频的存储地址 	|
+
+### 响应
+
+参数                    | 类型   | 说明
+----------------------- | ------ | -----------
+format                  | json   | 音视频格式信息
+format.bitrate          | int    | 比特率
+format.duration         | float  | 时长
+format.format           | string | 容器格式
+format.fullname         | string | 容器格式全称
+streams                 | list   | stream 列表
+stream.index            | int    | 表示第几路流
+stream.type             | string | 一般情况下, `video` 或 `audio`
+stream.bitrate          | int    | 流码率
+stream.codec            | string | 流编码
+stream.codec_desc       | string | 流编码说明
+stream.duration         | float  | 流时长
+stream.video_fps        | float  | (视频流)视频帧数
+stream.video_height     | int    | (视频流)视频高度
+stream.video_width      | int    | (视频流)视频宽度
+stream.audio_channels   | int    | (音频流)音频通道数
+stream.audio_samplerate | int    | (音频流)音频采样率
+
+
+### 举例
+
+** 请求示例 **
+
+```
+POST /<service>/avmeta/get_meta HTTP/1.1
+Host: p1.api.upyun.com
+User-Agent: python-requests/2.18.2
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+Date: Mon, 21 Aug 2017 05:50:03 GMT
+Authorization: UPYUN <service>:ivoVvndudFq76zpZr/3S5QZGUNg=
+Content-Length: 27
+Content-Type: application/json
+
+{"source": "/tmp/360p.mp4"}
+```
+
+** 响应示例 **
+
+```
+HTTP/1.1 200 OK
+Server: marco/1.6
+Content-Type: application/json
+Transfer-Encoding: chunked
+Connection: keep-alive
+Vary: Accept-Encoding
+X-Request-Id: 6b37641338d5a71cd6306eb7da14448d
+Date: Mon, 21 Aug 2017 05:50:05 GMT
+X-Request-Path: poc-hgh-a-14, 403-zj-fud-206
+Content-Encoding: gzip
+
+{
+    "streams": [
+        {
+            "index": 0,
+            "type": "video",
+            "video_fps": 25,
+            "video_height": 236,
+            "video_width": 426,
+            "codec_desc": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+            "codec": "h264",
+            "bitrate": 99608,
+            "duration": 184.8,
+            "metadata": {
+                "handler_name": "VideoHandler",
+                "language": "und"
+            }
+        },
+        {
+            "index": 1,
+            "type": "audio",
+            "audio_channels": 2,
+            "audio_samplerate": 44100,
+            "codec_desc": "AAC (Advanced Audio Coding)",
+            "codec": "aac",
+            "bitrate": 48005,
+            "duration": 184.855011,
+            "metadata": {
+                "handler_name": "SoundHandler",
+                "language": "und"
+            }
+        }
+    ],
+    "format": {
+        "duration": 184.902,
+        "fullname": "QuickTime / MOV",
+        "bitrate": 154062,
+        "filesize": 3.560797e+06,
+        "format": "mov,mp4,m4a,3gp,3g2,mj2"
+    }
+}
+```
+
+
+
 <a name="status"></a>
 ## 状态码说明
 
