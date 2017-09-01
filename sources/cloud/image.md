@@ -105,10 +105,22 @@ x-gmkerl-thumb: /fw/300/unsharp/true/quality/80/format/png
 | save_as  	 		| 否        	| 结果图片保存路径                                   |
 | notify_url  	 	| 否     	| 回调地址，不填时使用[上传参数](/api/form_api/#_2)中的  `notify_url` |
 
+** save_as 支持的变量 **
+
+|    变量名  |           说明            |
+|------------|---------------------------|
+| {filepath} | 原图在存储中的路径        |
+| {filename} | 原图文件名                |
+| {suffix}   | 原图文件名后缀，不带点    |
+| {row}      | 切割后小图的位置行号，从 0 开始，从左到右依次增大 |
+| {column}   | 切割后小图的位置列号，从 0 开始，从上到下依次增大 |
+| {seq}      | 切割后小图的序列号，从 0 开始，从左到右、从上到下依次增大 |
+
 ** 注 **
 
 - `x-gmkerl-split` 会在 `x-gmkerl-thumb` 的基础上把图片分成数块，用户可以根据回调信息中的行号跟列号来确定分块后的图片在原图中的位置。
-- `x-gmkerl-split` 会输出多个图片，各图片存放路径为 `$save_as-图片序号.文件后缀名`。例如， `save_as` 为 `/upyun/img.jpg`，输出 3 张图片的存放路径为 `/upyun/img.jpg-1.jpg` 、 `/upyun/img.jpg-2.jpg` 、 `/upyun/img.jpg-3.jpg`。
+- `x-gmkerl-split` 会输出多个图片，从左上角开始，往右列号从 0 依次增大，往下行号从 0 依次增大，序列号按行从左往右、从上到下、从 0 依次增大。
+- 图片切割场景下，如果 `save_as` 中没有定义变量来区分小图保存路径的话，默认会将 `save_as` 调整成 `${save_as}-{seq}.{suffix}`。
 
 ** 举例 **
 
