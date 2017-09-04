@@ -19,6 +19,11 @@ API 请求失败时，服务端会返回一个 JSON 格式的响应体。它可�
 
 | HTTP 状态码	| 返回代码           | 含义                                            	|
 |---------------|-------------------|--------------------------------------------------|
+| 400 			| 40010001 			| not enough arguments    |
+| 400 			| 40010002 			| url not allowed    |
+| 400 			| 40010003 			| tasks number error    |
+| 400 			| 40010029 			| only 1~10 tasks supported in get    |
+| 400 			| 40010033 			| decode tasks error    |
 | 400 			| 40011001 			| invalid x-gmkerl-type    |
 | 400 			| 40011002 			| invalid x-gmkerl-value    |
 | 400 			| 40011003 			| invalid x-gmkerl-unsharp    |
@@ -65,6 +70,8 @@ API 请求失败时，服务端会返回一个 JSON 格式的响应体。它可�
 | 400 			| 40011060 			| file md5 not match                 |
 | 400 			| 40011061 			| part id error                       |
 | 400		 	| 40011062 			| part already complete                  | 
+| 400		 	| 40011091 			| invalid app name                  | 
+| 400		 	| 40011092 			| invalid file ttl                  | 
 | 400 			| 40000001 			| need save-key    |
 | 400 			| 40000002 			| need body    |
 | 400 			| 40000003 			| need bucket name    |
@@ -162,6 +169,8 @@ API 请求失败时，服务端会返回一个 JSON 格式的响应体。它可�
 | 415 			| 41500001 			| media type error, need content-type    |
 | 429 			| 42900001 			| too many requests    |
 | 429 			| 42900002 			| too many requests of the same uri    |
+| 429 			| 42900003 			| too many requests of the same bucket    |
+| 429 			| 42900004 			| request banned    |
 | 503 			| 50300000 			| unknown error    |
 | 503 			| 50300001 			| write hub failed    |
 | 503 			| 50300002 			| decode error    |
@@ -195,6 +204,13 @@ API 请求失败时，服务端会返回一个 JSON 格式的响应体。它可�
 | 503 			| 50300033 			| new resource error |
 | 503 			| 50300034 			| get info errors |
 | 503 			| 50300035 			| decode hub body error  |
+| 503 			| 50300036 			| send to message queue error  |
+| 503 			| 50300038 			| failed to new http  |
+| 503 			| 50300039 			| failed to get client body reader  |
+| 503 			| 50300040 			| wrong config  |
+| 503 			| 50300041 			| connect to database error  |
+| 503 			| 50300042 			| delete path error  |
+| 503 			| 50300043 			| put task to message queue error  |
 
 ---------
 
