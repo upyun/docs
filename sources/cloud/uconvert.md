@@ -86,7 +86,7 @@ curl -X POST \
         "density": 100,                    
         "width" : 1024,                 
     },
-	…
+    …
 ]
 ```
 
@@ -98,10 +98,10 @@ curl -X POST \
 
 ```
 [
-	"35f0148d414a688a275bf915ba7cebb2",
-	"98adbaa52b2f63d6d7f327a0ff223348",
-	"c3103189fa906a5354d29bd807e8dc51",
-	…
+    "35f0148d414a688a275bf915ba7cebb2",
+    "98adbaa52b2f63d6d7f327a0ff223348",
+    "c3103189fa906a5354d29bd807e8dc51",
+    …
 ]
 ```
 
