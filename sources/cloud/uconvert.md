@@ -118,12 +118,12 @@ curl -X POST \
 
 | 参数       		| 类型   	| 说明                                                      	|
 |-------------------|-----------|-----------------------------------------------------------|
-| service	   		| string    | 文档所在的服务名                                     		|
-| source        	| string    | 文档路径                                            		|
-| task_id       	| string    | 任务对应的 `task_id`                                    	|
-| save_as 			| string  	| 图片保存的路径										|
-| status         	| integer   | 处理结果状态码，`200` 表示成功处理，详见 [状态码表](#status)   	|
-| error       		| string   	| 错误信息，空字符串表示无错误信息   							|
+| service           | string    | 文档所在的服务名                                     	     |
+| source            | string    | 文档路径                                            	    |
+| task_id           | string    | 任务对应的 `task_id`                                       |
+| save_as           | string    | 图片保存的路径                                              |
+| status            | integer   | 处理结果状态码，`200` 表示成功处理，详见 [状态码表](#status)  |
+| error             | string    | 错误信息，空字符串表示无错误信息                             |
 
 ** 回调签名 **
 
