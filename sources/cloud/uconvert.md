@@ -21,7 +21,7 @@
 apps = [
     {
         "name": "uconvert",                             // 必选，任务名称，`uconvert` 表示文档转换
-        "save_as": "/save_as/2015福师《教育学》作业二",   // 必选，图片保存路径与名字，生成图片自动在文件名后添加 `-<index>.png`
+        "save_as": "/save_as/upyun_file",               // 必选，图片保存路径与名字，生成图片自动在文件名后添加 `-<index>.png`
         "density": 100,                                 // 可选，像素密度，越大图片越清晰
         "width" : 1024,                                 // 可选，宽度，大小随宽度等比例缩放
     }
@@ -48,7 +48,7 @@ curl -X POST \
     -H "Content-MD5: <Content-MD5>" \
     -d "service=<service>" \
     -d "notify_url=<notify_url>" \
-    -d "app_name=<app_name>" \
+    -d "app_name=uconvert" \
     -d "tasks=<base64 编码后的任务字符串>"
 ```
 
@@ -81,8 +81,8 @@ curl -X POST \
 ```
 [
     {
-        "source": "/source/上海.ppt",
-        "save_as": "/save_as/上海",
+        "source": "/source/upyun.ppt",
+        "save_as": "/save_as/upyun",
         "density": 100,                    
         "width" : 1024,                 
     },
@@ -134,9 +134,9 @@ curl -X POST \
 ```
 {
     "error":"",
-    "save_as":"/save_as/mytest",
+    "save_as":"/save_as/upyun",
     "service":"upyun",
-    "source":"/source/mytest.ppt",
+    "source":"/source/upyun.ppt",
     "status":200,
     "task_id":"216fb4f8f9bc03dc6a19c4cf6aa903a4"
 }
