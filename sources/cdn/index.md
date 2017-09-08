@@ -18,7 +18,7 @@
 
 ----------
 
-[域名接入（自有源）](https://docs.upyun.com/cdn/service/#_1) ｜   [域名接入（又拍存储源）](https://docs.upyun.com/cdn/service/#_6)｜ [默认域名](https://docs.upyun.com/cdn/service/#_12)｜[域名绑定](https://docs.upyun.com/cdn/service/#_13)｜[服务删除](https://docs.upyun.com/cdn/service/#_16)｜[海外加速](https://docs.upyun.com/cdn/service/#_19) ｜[操作员](https://docs.upyun.com/cdn/service/#_22) 
+[域名接入（自有源）](https://docs.upyun.com/cdn/service/#_1) ｜  [域名接入（又拍存储源）](https://docs.upyun.com/cdn/service/#_6)｜ [操作管理](https://docs.upyun.com/cdn/service/#_12)
 
 ----------
 
