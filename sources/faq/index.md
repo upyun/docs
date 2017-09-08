@@ -437,7 +437,8 @@ curl -T /local_img.jpg http://v0.api.upyun.com/bucket/img.jpg -u operator:operat
 
 可以在接入之前，将一些静态文件进行预热，可以减少文件的回源压力，提高缓存命中率。
 
-** 回调怎么用 **
+** 回调怎么用 **   
+
 答:  回调的地址必须是公网地址，我们发送回调你可以参考下面的 php 代码接收
 
 	<?php
