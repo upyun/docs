@@ -49,14 +49,12 @@
 <img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/service/upyun-cdn-function-config.png" height="470" width="800" />
 
 
-在功能配置界面，有域名管理、回源管理、缓存配置、性能优化、HTTPS、访问控制、图片处理等功能配置模块，在【域名管理】模块下，您可以针对该服务绑定多个自有域名，详情介绍请点击 [域名绑定](https://docs.upyun.com/cdn/service/#_13
-)，请耐心等待域名配置（约 10 分钟），查看域名对应的状态是否为［正常］，如下图所示：
+在功能配置界面，有域名管理、回源管理、缓存配置、性能优化、HTTPS、访问控制、图片处理等功能配置模块，在【域名管理】模块下，您可以针对该服务绑定多个自有域名，请耐心等待域名配置（约 10 分钟），查看域名对应的状态是否为［正常］，如下图所示：
 
 
 <img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/service/upyun-cdn-service-state.png" height="470" width="800" />
 
-特别地，又拍云为每一个 CDN 服务提供了 [默认域名](https://docs.upyun.com/cdn/service/#_12)，默认域名格式为：
-服务名.upaiyun.com，此默认域名仅供测试使用，正式业务环境请绑定自有域名。
+特别地，又拍云为每一个 CDN 服务提供了默认域名，默认域名格式为：服务名.upaiyun.com，此默认域名仅供测试使用，正式业务环境请绑定自有域名。
 
 ####第五步：CNAME 配置
 
@@ -99,7 +97,7 @@
 
 ####第三步：创建操作员
 
-针对使用又拍云对象存储作为源的 CDN 服务，需要创建操作员来管理存储在又拍对象存储服务上面的非结构化数据，详细介绍请点击 [操作员](https://docs.upyun.com/cdn/service/#_22)，具体配置界面如下截图所示：
+针对使用又拍云对象存储作为源的 CDN 服务，需要创建操作员来管理存储在又拍对象存储服务上面的非结构化数据，详细介绍请点击 [操作员](http://docs.upyun.com/api/#concept)，具体配置界面如下截图所示：
 
 <img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/service/upyun-storage-operator-config.png" height="470" width="800" />
 
@@ -111,11 +109,11 @@
 
 <img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/service/upyun-storage-function-config.png" height="470" width="800" />
 
-在功能配置界面，有域名管理、内容管理、缓存配置、性能优化、HTTPS、访问控制、图片处理等功能配置模块，在【域名管理】模块下，您可以针对该服务绑定多个自有域名，详情介绍请点击 [域名绑定](https://docs.upyun.com/cdn/service/#_13)，请耐心等待域名配置（约 10 分钟），查看域名对应的状态是否为［正常］，如下图所示：
+在功能配置界面，有域名管理、内容管理、缓存配置、性能优化、HTTPS、访问控制、图片处理等功能配置模块，在【域名管理】模块下，您可以针对该服务绑定多个自有域名，请耐心等待域名配置（约 10 分钟），查看域名对应的状态是否为［正常］，如下图所示：
 
 <img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/service/upyun-storage-service-state.png" height="470" width="800" />
 
-特别地，又拍云为每一个云存储服务提供了 [默认域名](https://docs.upyun.com/cdn/service/#_12)，默认域名格式为：
+特别地，又拍云为每一个云存储服务提供了默认域名，默认域名格式为：
 服务名.upaiyun.com，此默认域名仅供测试使用，正式业务环境请绑定自有域名。
 
 ####第五步：资源管理
@@ -138,113 +136,61 @@
 
 <img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/service/upyun-storage-service-cname2.png" height="470" width="800" />
 
-##默认域名
+##操作管理
 
-为了方便用户使用，针对每一个 CDN 服务，又拍云提供了默认域名，该默认域名仅供测试使用，正式业务环境请绑定自主域名。相关声明如下：
+进入 CDN  控制台，在服务管理界面，您可以针对已经创建的 CDN 加速服务进行开启、关闭、删除、全网刷新、统计分析查询等操作。
 
-* 默认域名不收取任何费用，仅供业务功能性测试；
-* 默认域名很容易会被微信、QQ 等平台封禁，请谨慎使用；
-* 使用默认域名测试 CDN 加速，加速质量得不到保障，不建议使用；
-* 已经使用默认域名作为正式业务的用户，建议尽快更换为自主域名；
+###开启加速服务
 
-##域名绑定
+针对已经处于关闭状态的 CDN 加速服务，您可以进行【开启】操作，开启操作会在 1 分钟之内生效，具体操作如下：登陆 [CDN 控制台](https://console.upyun.com/login/)，进入 「 服务管理」相应界面。如下截图所示：
 
-针对同一个服务，如果回源地址相同（也即共用同一个源站），此时可以绑定多个自定义域名。
+<img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/service/upyun-cdn-open-service.png" height="470" width="800" />
 
-####配置引导
+点击需要开启的 CDN 加速服务，选择【开启】按钮，即可开启。
 
-登陆 [CDN 控制台](https://console.upyun.com/login/)，进入「功能配置」界面，选择 「加速域名」 模块，点击 「域名绑定」 按钮。如下截图所示：
+###关闭加速服务
 
-<img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-domains.png" height="300" width="700" />
+针对已经处于开启状态的 CDN 加速服务，您可以进行【关闭】操作，关闭操作会在 1 分钟之内生效，具体操作如下：登陆 [CDN 控制台](https://console.upyun.com/login/)，进入 「 服务管理」相应界面。如下截图所示：
 
-####注意事项
+<img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/service/upyun-cdn-close-service.png" height="470" width="800" />
 
-* 除常规形式的域名外（ 包括顶级域名 ），我们还支持泛域名绑定，比如 `*.yourdomain.com`；特别地，其中 `*` 最多支持匹配 4 层：
+选择需要关闭的 CDN 加速服务，选择【关闭】按钮，即可关闭 CDN 服务。
 
-```
-[v] *.yourdomain.com => foo.yourdomain.com
-[v] *.yourdomain.com => bar.yourdomain.com
-[v] *.yourdomain.com => foo.bar.yourdomain.com
-[v] *.yourdomain.com => foo.bar.baz.yourdomain.com
-[v] *.yourdomain.com => foo.bar.baz.qux.yourdomain.com
-[x] *.yourdomain.com => foo.bar.baz.qux.quxx.yourdomain.com
-
-[v] *.bar.yourdomain.com => foo.bar.yourdomain.com
-[v] *.bar.yourdomain.com => baz.foo.bar.yourdomain.com
-[x] *.bar.yourdomain.com => foo.bar.baz.yourdomain.com
-```
-* 添加域名绑定后，需要到域名服务商的 DNS 解析管理中，将域名的 CNAME 解析到 `<bucket>.b0.aicdn.com`；
-* 特别地，单个服务下面，最多支持绑定 10 个域名，且待绑定的域名需要已备案，否则会无法通过审核。
+注意：服务关闭后，所有资源都将无法访问，并返回 405 状态码，请谨慎操作！
 
 
-##服务删除
+###删除加速服务
 
-如果要删除配置和对应的服务，需要执行“服务删除”操作，该操作不可逆，请谨慎操作。
+针对已经处于关闭状态的 CDN 加速服务，您可以进行服务【删除】操作，删除操作会在 1 分钟之内生效，具体操作如下：登陆 [CDN 控制台](https://console.upyun.com/login/)，进入 「 服务管理」相应界面。如下截图所示：
 
-####配置引导
+<img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/service/upyun-cdn-delete-service.png" height="470" width="800" />
 
-登陆 [CDN 控制台](https://console.upyun.com/login/)，依次进入：功能配置 > 高级功能 > 服务删除，点击「删除」 按钮，出现如下图截图所示：
+选择需要删除的 CDN 加速服务，点击【删除】按钮，即可删除 CDN 服务。
 
-<img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-service-delete.png" height="470" width="800" />
+注意事项：
 
+ - 删除时，确保该服务已不存在任何目录；
+ - 删除后，7天内无法创建同名服务；
+ - 删除不可逆，操作后该服务原有配置均失效。
 
-####注意事项
+###全网缓存刷新
 
-* 服务删除前，需要清空服务下的数据（特针对云存储服务）；
-* 删除后，7天内无法创建同名服务；
-* 删除不可逆，操作后该服务原有配置均失效。
+如需对服务进行全网缓存刷新，可以通过相应入口进行全网刷新操作。具体操作如下：登陆 [CDN 控制台](https://console.upyun.com/login/)，进入 「 服务管理」相应界面。如下截图所示：
 
-##海外加速
+<img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/service/upyun-cdn-purge-service.png" height="470" width="800" />
 
-针对大陆以外地区的最终用户（包括香港、澳门、台湾地区），开启海外加速，会默认解析到又拍云海外的 CDN 加速节点；关闭状态下，会默认解析到国内 CDN 加速节点。
+选择需要进行全网刷新的 CDN 加速服务，点击【刷新】按钮，即可针对该服务进行全网刷新。
 
-####配置引导
+注意：
 
-登陆 [CDN 控制台](https://console.upyun.com/login/)，依次进入：功能配置 > 加速域名 > 海外加速，可以有选择性的开启和关闭（默认为开启状态）。如下图所示：
+ - 同一服务每次刷新间隔至少 10 分钟，一天只能刷新 5 次缓存；
+ - 全网缓存刷新会对源站产生一定压力，请谨慎操作；
 
-<img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-service-oversea.png" height="470" width="800" />
+###统计分析查询
 
-####注意事项
+如需了解 CDN 服务带宽、流量、请求数等维度的数据统计和分析数据，可以通过该入口进行查询。具体操作如下：登陆 [CDN 控制台](https://console.upyun.com/login/)，进入 「 服务管理」相应界面。如下截图所示：
 
-* 海外加速默认为开启状态，只针对该服务下域名生效；
-* 开启状态下，海外请求会默认解析到又拍云海外 CDN 节点，计费按海外地区定价计算；
-* 关闭状态下，海外请求会默认解析到又拍云国内 CDN 节点，计费按国内地区定价计算；
-* 海外特指除了大陆以外的地区，包括香港、澳门、台湾地区；
+<img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/service/upyun-cdn-%20analysis-service.png" height="470" width="800" />
 
-
-##操作员
-
-针对使用又拍云存储服务作为源的 CDN 服务，我们会引入“操作员”的概念，通过操作员，可以去管理您在又拍对象存储上面的非结构化数据，这些操作可能包括：读取、写入、删除。
-
-####基本概念
-
-操作员是您访问对象存储服务的凭证，它由操作员名称和密码组成，操作员名称类似身份标识，密码的作用是签名您的访问请求，以防被篡改。特别地，操作员与服务名是 N:N 的关系，一个服务名可以有多个操作员，一个操作员可以归属于多个服务名。
-
-####操作员权限
-
-操作员权限有 3 种，分别是可读取、可写入、可删除，支持多选。您可以根据需要，为操作员配置合适的权限；也可以创建多个操作员，为不同操作员分配不同权限，供不同级别的人使用。
-
-####配置引导
-
-登陆 [CDN 控制台](https://console.upyun.com/login/)，添加、授权、管理操作员有几个入口，分别是：
-
-1、入口一：在创建服务的过程中，可以创建操作员或授权已有操作员，也可以暂时跳过该步骤，如下截图所示：
-
-<img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-service-operator1.png" height="400" width="700" />
-
-2、入口二：服务创建完毕之后，去对应的服务下面进行配置，依次进入：功能配置 > 基础配置 > 已授权操作员。此处可以授权已创建好的操作员，也可以新创建操作员并授权。如下截图所示：
-
-<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-service-operator2.png" height="300" width="700" />
-
-3、入口三：依次进入：账户管理 > 操作员管理，或者点击 [操作员管理](https://console.upyun.com/account/operators/) 进入管理界面。
-
-<img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-service-operator3.png" height="300" width="700" />
-
-通过以上截图可以看出，该入口可以添加操作员，也可以针对操作员进行编辑、禁用、删除操作。
-
-####注意事项
-
-* 操作员的概念是针对使用又拍对象存储作为存储源的 CDN 服务才会使用到，更详细的使用和介绍，请参考[云存储文档](http://docs.upyun.com/api/)；
-* 特别的，针对使用自主源的 CDN 服务，开启[镜像存储](https://docs.upyun.com/cdn/config/#9)功能之后，也可以使用操作员对存储在又拍对象存储上的非结构化数据进行管理操作。
-
+选择需要进行统计分析查询的 CDN 加速服务，点击【统计】按钮，即可快速进入统计分析页面。
  
