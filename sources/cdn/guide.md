@@ -110,17 +110,17 @@
 
 ----------
 
-##CNAME 解析
+##CNAME 配置
 
-如果步骤三、四测试都正常，则可进行加速域名 CNAME 的切换。
+如果步骤三、四测试都正常，则可进行加速域名 CNAME 的配置，具体步骤如下：
 
-**获取 CNAME 域名**
+**1.获取 CNAME 域名**
 
-打开域名配置，CNAME 地址如下图红框中所示：
+进入 CDN 控制台，选择相应服务，在【功能配置】界面，选择「域名管理」模块，相应区域可查看 CNAME 地址，如图所示：
 
-<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-cname-test1.png" height="490" width="800" />
+<img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/service/upyun-cdn-service-cname2.png" height="470" width="800" />
 
-**修改 CNAME 记录**
+**2.修改 CNAME 记录**
 
 登入域名的 DNS 服务商网站，修改 CNAME 记录，具体配置方法可参见如下链接：
 
@@ -130,7 +130,7 @@
 
 [万网 CNAME 接入 CDN](https://help.aliyun.com/document_detail/29725.html?spm=5176.doc27112.2.15.jhFGwZ)
 
-**验证 CNAME 配置是否生效**
+**3.验证 CNAME 配置是否生效**
 
 因 DNS 解析记录都有缓存时间，CNAME 的生效时间一般是 600s，可通过 ping 所配置的加速域名，检验 CNAME 配置是否生效，如果后缀显示为 aicdn.com，则证明 CNAME 配置已生效，即加速业务正式开始启用。如下图所示：
 
