@@ -55,6 +55,7 @@ pages:
     - '同步音频处理': 'cloud/sync_audio.md'
     - '压缩解压缩': 'cloud/unzip.md'
     - '文件拉取': 'cloud/spider.md'
+    - '异步图片拼接': 'cloud/async_image.md'
     - '音视频处理（已弃用）': 'cloud/av_pretreatment.md'
 - '人工智能':
     - '内容识别': 'ai/audit.md'
