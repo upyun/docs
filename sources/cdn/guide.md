@@ -16,7 +16,7 @@
 
 打开 [注册界面](https://console.upyun.com/register/)或者在 [又拍云官网](http://www.upyun.com) 页面右上角点击「注册」按钮，进入如下界面：
 
-<img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-register.png" height="490" width="800" />
+<img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-register.png" height="470" width="800" />
 
 您可根据自身的情况选择 “企业账号” 或 “个人账号” ，请填写完整的注册信息（ 注意阅读又拍云服务条款 ），并确保电子邮件地址以及手机号码正确，以保障您能够正常接收到服务通知。
     
@@ -26,7 +26,7 @@
 
 注册完毕后，登录 [又拍云管理控制台](https://console.upyun.com/login/)，您需要进行企业或个人认证，认证完成后方可创建服务，否则将无法使用又拍云服务。账户认证可参见如下截图所示：
 
-<img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-identy-Auth.png" height="490" width="800" />
+<img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-identy-Auth.png" height="470" width="800" />
 
 **企业认证**
 
@@ -50,7 +50,7 @@
 
  第一步：创建服务
 
-<img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/service/upyun_cdn_create_service.png" height="s470" width="800" />
+<img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/service/upyun_cdn_create_service.png" height="470" width="800" />
 
  第二步：基本信息填写
 
@@ -78,7 +78,7 @@
 
 假设上述配置已全部完成，您的域名为 `test1.upyun.com`，配置如下图所示：
 
-<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-config-test1.png" height="490" width="800" />
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-config-test1.png" height="470" width="800" />
 
 您可通过 ping 加速域名的 CNAME 地址 ` cptest123.b0.aicdn.com` ，获取 CDN 节点 IP 为 `183.158.35.58` ( 示例 IP 为杭州电信节点出口 IP )。如下图所示：
 
@@ -90,7 +90,7 @@
 
 保存以后，打开 Chrome 浏览器，按 F12 键开始抓包，访问域名测试链接，例如 `http:// test.yourdomain.com/image/123.png`，如果成功访问即可证明上述加速域名配置正确，抓包如下图所示：
 
-<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-config-test4.png" height="490" width="800" />
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-config-test4.png" height="470" width="800" />
 
 ----------
 
@@ -100,11 +100,11 @@
 
 如下图所以，后缀为 PNG 类型的图片，配置的缓存时间为 691200s。
 
-<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-cache-auth.png" height="490" width="800" />
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-cache-auth.png" height="470" width="800" />
 
 在步骤三的基础上，打开 Chrome 浏览器，将要访问的 URL 输入浏览器，点击回车，抓包如下图所示：
 
-<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-cache-auth1.png" height="490" width="800" />
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-cache-auth1.png" height="470" width="800" />
 
 可以看到 `max-age=691200`，进而证明缓存配置策略已经生效。
 
@@ -112,7 +112,7 @@
 
 ##CNAME 配置
 
-如果步骤三、四测试都正常，则可进行加速域名 CNAME 的配置，具体步骤如下：
+如果以上配置测试、缓存验证测试都正常，则可进行加速域名 CNAME 的配置，具体步骤如下：
 
 **1.获取 CNAME 域名**
 
