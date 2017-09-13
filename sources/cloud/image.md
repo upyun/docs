@@ -120,7 +120,6 @@ x-gmkerl-thumb: /fw/300/unsharp/true/quality/80/format/png
 
 - `x-gmkerl-split` 会在 `x-gmkerl-thumb` 的基础上把图片分成数块，用户可以根据回调信息中的行号跟列号来确定分块后的图片在原图中的位置。
 - `x-gmkerl-split` 会输出多个图片，从左上角开始，往右列号从 0 依次增大，往下行号从 0 依次增大，序列号按行从左往右、从上到下、从 0 依次增大。
-- 图片切割场景下，如果 `save_as` 中没有定义变量来区分小图保存路径的话，默认会将 `save_as` 调整成 `${save_as}-{seq}.{suffix}`。
 
 ** 举例 **
 
