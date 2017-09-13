@@ -10,7 +10,7 @@
 
 ----------
 
-[准备工作](https://docs.upyun.com/cdn/guide/#_1) ｜            [创建帐号](https://docs.upyun.com/cdn/guide/#_6)｜ [帐号认证](https://docs.upyun.com/cdn/guide/#_9) ｜[创建服务](https://docs.upyun.com/cdn/guide/#_12) ｜[配置测试](https://docs.upyun.com/cdn/guide/#_15) ｜[缓存验证](https://docs.upyun.com/cdn/guide/#_17) ｜[CNAME 解析](https://docs.upyun.com/cdn/guide/#cname)
+[准备工作](https://docs.upyun.com/cdn/guide/#_1) ｜[帐号注册](https://docs.upyun.com/cdn/guide/#_2)｜ [帐号认证](https://docs.upyun.com/cdn/guide/#_3) ｜[创建服务](https://docs.upyun.com/cdn/guide/#_4) ｜[配置测试](https://docs.upyun.com/cdn/guide/#_5) ｜[缓存验证](https://docs.upyun.com/cdn/guide/#_6) ｜[CNAME 配置](https://docs.upyun.com/cdn/guide/#cname)
 
 ----------
 
@@ -18,7 +18,7 @@
 
 ----------
 
-[域名接入（自有源）](https://docs.upyun.com/cdn/service/#_1) ｜   [域名接入（又拍存储源）](https://docs.upyun.com/cdn/service/#_6)｜ [默认域名](https://docs.upyun.com/cdn/service/#_12)｜[域名绑定](https://docs.upyun.com/cdn/service/#_13)｜[服务删除](https://docs.upyun.com/cdn/service/#_16)｜[海外加速](https://docs.upyun.com/cdn/service/#_19) ｜[操作员](https://docs.upyun.com/cdn/service/#_22) 
+[域名接入（自有源）](https://docs.upyun.com/cdn/service/#_1) ｜  [域名接入（又拍存储源）](https://docs.upyun.com/cdn/service/#_6)｜ [操作管理](https://docs.upyun.com/cdn/service/#_12)
 
 ----------
 
