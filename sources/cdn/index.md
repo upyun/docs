@@ -25,7 +25,7 @@
 **配置指南**
 
 ----------
-[域名管理](https://docs.upyun.com/cdn/config/#1)｜ [回源管理](https://docs.upyun.com/cdn/config/#2)｜ [缓存配置](https://docs.upyun.com/cdn/config/#3) ｜ [性能优化](https://docs.upyun.com/cdn/config/#4) ｜ [HTTPS配置](https://docs.upyun.com/cdn/config/#5) ｜ [访问控制](https://docs.upyun.com/cdn/config/#6) ｜ [图片处理](https://docs.upyun.com/cdn/config/#7) ｜ [其他功能](https://docs.upyun.com/cdn/config/#8) 
+[域名管理](https://docs.upyun.com/cdn/config/#1)｜ [回源管理](https://docs.upyun.com/cdn/config/#2)｜ [缓存配置](https://docs.upyun.com/cdn/config/#3) ｜ [性能优化](https://docs.upyun.com/cdn/config/#4) ｜ [HTTPS配置](https://docs.upyun.com/cdn/config/#5https) ｜ [访问控制](https://docs.upyun.com/cdn/config/#6) ｜ [图片处理](https://docs.upyun.com/cdn/config/#7) ｜ [其他功能](https://docs.upyun.com/cdn/config/#8) 
 
 ----------
 
