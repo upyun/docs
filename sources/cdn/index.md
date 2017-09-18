@@ -25,7 +25,7 @@
 **功能配置**
 
 ----------
-[配置概览](https://docs.upyun.com/cdn/config/#1)｜ [回源配置](https://docs.upyun.com/cdn/config/#2)｜ [缓存配置](https://docs.upyun.com/cdn/config/#3) ｜ [访问控制](https://docs.upyun.com/cdn/config/#4) ｜ [安全防护](https://docs.upyun.com/cdn/config/#5) ｜ [性能优化](https://docs.upyun.com/cdn/config/#6) ｜ [分段缓存](https://docs.upyun.com/cdn/config/#7) ｜ [视频拖拉](https://docs.upyun.com/cdn/config/#8) ｜ [镜像存储](https://docs.upyun.com/cdn/config/#9) ｜ [跨域配置](https://docs.upyun.com/cdn/config/#10) ｜ [HTTPS配置](https://docs.upyun.com/cdn/config/#11-https) ｜ [文件另存为](https://docs.upyun.com/cdn/config/#121) ｜ [传递最终用户IP](https://docs.upyun.com/cdn/config/#122-ip) ｜ [自定义提示图](https://docs.upyun.com/cdn/config/#123) 
+[域名管理](https://docs.upyun.com/cdn/config/#1)｜ [回源管理](https://docs.upyun.com/cdn/config/#2)｜ [缓存配置](https://docs.upyun.com/cdn/config/#3) ｜ [性能优化](https://docs.upyun.com/cdn/config/#4) ｜ [HTTPS配置](https://docs.upyun.com/cdn/config/#5) ｜ [访问控制](https://docs.upyun.com/cdn/config/#6) ｜ [图片处理](https://docs.upyun.com/cdn/config/#7) ｜ [其他功能](https://docs.upyun.com/cdn/config/#8) 
 
 ----------
 
@@ -41,7 +41,7 @@
 
 ----------
 
-[统计分析](https://docs.upyun.com/cdn/analysis/#_1) ｜    [性能监控](https://docs.upyun.com/cdn/analysis/#_2)
+[统计分析](https://docs.upyun.com/cdn/analysis/#_1) ｜ [性能监控](https://docs.upyun.com/cdn/analysis/#_2)
 
 ----------
 
@@ -75,7 +75,6 @@
 [IP检测工具](https://docs.upyun.com/cdn/tools/#ip)｜[CDN健康检测](https://docs.upyun.com/cdn/tools/#cdn)
 
 ----------
-
 
 **常见问题**
 
