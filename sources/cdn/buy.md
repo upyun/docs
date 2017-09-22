@@ -74,3 +74,24 @@ CDN 每日带宽统计点共 288 个，从当月 1 号起，每一个有效日�
 
 详细报价以及计费配置，请咨询您的商务经理。
 
+##流量包购买
+
+**CDN 流量包购买**
+
+流量包优惠活动火热进行中，可[点击购买](https://console.upyun.com/billing/resources/buy/)。
+
+第一步：登陆 [CDN 控制台](https://console.upyun.com/login/)，进入「费用中心」功能模块，选择「流量包管理」模块，点击【购买流量包】按钮即可开始购买，如截图所示：
+
+<img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/buy/upyun-cdn-buy-resources.png" height="470" width="800" />
+
+第二步：进入【流量包】购买界面，选择需要购买的流量包规格：
+
+<img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/buy/upyun-cdn-buy-resources2.png" height="470" width="800" />
+
+
+第三步：进入产品购买信息核对页面，点击【确认购买】即可。
+
+<img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/buy/upyun-cdn-buy-resource3.png" height="470" width="800" />
+
+依次走完接下来的购买流程即可。
+
