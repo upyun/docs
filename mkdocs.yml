@@ -12,6 +12,7 @@ pages:
     - '内容总览': 'cdn/index.md'
     - '产品介绍': 'cdn/product.md'
     - '快速入门': 'cdn/guide.md'
+    - '购买指南': 'cdn/buy.md'
     - '服务管理': 'cdn/service.md'
     - '功能配置': 'cdn/config.md'
     - '简单编程': 'cdn/rewrite.md'
