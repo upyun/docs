@@ -60,7 +60,9 @@ pages:
     - '异步图片拼接': 'cloud/async_image.md'
     - '音视频处理（已弃用）': 'cloud/av_pretreatment.md'
 - '人工智能':
-    - '内容识别': 'ai/audit.md'
+    - '内容识别(有存储)': 'ai/audit.md'
+    - '内容识别(无存储)': 'ai/audit_nostorage.md'
+    - '认证鉴权': 'ai/authorization.md'
     - '人脸识别': 'ai/face_detect.md'
 - 'SDK&工具':
     - 'SDK&工具': 'download/index.md'
