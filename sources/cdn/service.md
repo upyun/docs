@@ -54,7 +54,7 @@
 
 <img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/service/upyun-cdn-service-state.png" height="470" width="800" />
 
-特别地，又拍云为每一个 CDN 服务提供了默认域名，默认域名格式为：服务名.upaiyun.com，此默认域名仅供测试使用，正式业务环境请绑定自有域名。
+特别地，又拍云为每一个 CDN 服务提供了测试域名，测试域名格式为：服务名称.test.upcdn.net，此测试域名仅供测试使用，正式业务环境请绑定自有域名。
 
 ####第五步：CNAME 配置
 
@@ -113,8 +113,8 @@
 
 <img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/service/upyun-storage-service-state.png" height="470" width="800" />
 
-特别地，又拍云为每一个云存储服务提供了默认域名，默认域名格式为：
-服务名.upaiyun.com，此默认域名仅供测试使用，正式业务环境请绑定自有域名。
+特别地，又拍云为每一个云存储服务提供了测试域名，默认域名格式为：
+服务名称.test.upcdn.net，此测试域名仅供测试使用，正式业务环境请绑定自有域名。
 
 ####第五步：资源管理
 
