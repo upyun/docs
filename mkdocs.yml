@@ -62,6 +62,7 @@ pages:
 - '人工智能':
     - '内容识别(有存储)': 'ai/audit.md'
     - '内容识别(无存储)': 'ai/audit_nostorage.md'
+    - '内容处理': 'ai/api_console.md'
     - '认证鉴权': 'ai/authorization.md'
     - '人脸识别': 'ai/face_detect.md'
 - 'SDK&工具':
