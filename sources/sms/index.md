@@ -37,13 +37,13 @@
 每条短信内容（包括但不限于标点符号、英文字符、汉字等）长度为70个字符（包含签名）如发送短信内容超出 70 个字符，将以每 67 字符（包括但不限于标点符号、英文字符、汉字等）为一条短信进行累计计费。单条短信字符数最大值为 350 个字。短信服务的付费方式为短信资源包计费，按照短信发送成功量进行短信条数的扣除，发送多少即扣除短信资源包内对应的条数。
 
 #### 1.6 购买流程
-进入管理后台中【工具箱】-【短信服务】-【账号充值】查看，线下充值购买。
+进入总管理后台中【云产品】-【短信服务】-【充值】-【短信包管理】中进行充值购买。
 
 <br>
 ## 2. 短信接入
 
 #### 2.1 接入说明
-短信服务属于收费功能，用户可根据自身需求通过线下购买短信资源包进行使用，不支持自选短信包。
+短信服务属于收费功能，用户可根据自身需求通过购买短信资源包进行使用，不支持自选短信包。
 
 #### 2.2 接入步骤
 1.&nbsp;注册又拍云账号（已有又拍云账号无需注册）
@@ -57,33 +57,33 @@
 #### 2.3 注册又拍云账号
 用户若需开通短信服务，需先在官网注册又拍云账号，官网地址如下: <https://www.upyun.com/>,创建完成后完成实名认证，即可申请开通。（已有账号需完成实名认证后即可开通短信服务）
 
-<img src="http://upyun-assets.b0.upaiyun.com/docs/sms/%E6%B3%A8%E5%86%8C%E7%95%8C%E9%9D%A2.png" width="830" />
+<img src="https://upyun-assets.b0.upaiyun.com/docs/sms/%E7%99%BB%E5%BD%95%E7%95%8C%E9%9D%A2.png" width="830" />
 
 #### 2.4 实名认证
-注册成功又拍云账号之后，即可通过后台的【工具箱】-【短信服务】入口进入短信服务界面。短信服务需完成实名认证后才可开通，个人用户需完成个人实名认证，企业用户需完成企业实名认证。
+注册成功又拍云账号之后，即可通过后台的【云产品】-【短信服务】入口进入短信服务界面。短信服务需完成实名认证后才可开通，个人用户需完成个人实名认证，企业用户需完成企业实名认证。
 
-<img src="http://upyun-assets.b0.upaiyun.com/docs/sms/%E7%9F%AD%E4%BF%A1%E5%85%A5%E5%8F%A3%E7%95%8C%E9%9D%A2.png" width="830" />
+<img src="https://upyun-assets.b0.upaiyun.com/docs/sms/短信入口.png" width="830" />
 
 实名认证界面
 
-<img src="http://upyun-assets.b0.upaiyun.com/docs/sms/%E5%AE%9E%E5%90%8D%E8%AE%A4%E8%AF%81%E7%95%8C%E9%9D%A2.png" width="830" />
+<img src="https://upyun-assets.b0.upaiyun.com/docs/sms/%E5%AE%9E%E5%90%8D%E4%BF%A1%E6%81%AF.png" width="830" />
 
 #### 2.5 创建模板
 创建模板可分别创建普通签名通道与免审签名通道的模板，模板类型分为行业短信与营销短信，<span style="color:red">特别注意的是营销短信尾部须添加“退订回T、退订回TD或退订回N”字样，否则会发送失败。</span>
-用户点击管理后台的【工具箱】-【短信服务】-【模板】-【创建模板】进行模板创建。
+用户点击管理后台的【云产品】-【短信服务】-【模板】-【创建模板】进行模板创建。
 
-<img src="http://upyun-assets.b0.upaiyun.com/docs/sms/%E6%A8%A1%E6%9D%BF%E5%88%97%E8%A1%A8%E7%95%8C%E9%9D%A2.png" width="830" />
+<img src="https://upyun-assets.b0.upaiyun.com/docs/sms/创建模板入口.png" width="830" />
 
 用户创建好模板之后，管理员进行审核（免签通道无需报备签名，只需审核模板，非特殊情况下，审核时间为工作日内的 1-3 小时；普通通道非特殊情况下审核时间为 1-3 个工作日，若签名已报备过，则也是工作日内的 1-3 小时），审核通过后用户可以使用后台导入界面或调用发送短信接口进行发送。
 
-<img src="http://upyun-assets.b0.upaiyun.com/docs/sms/%E5%88%9B%E5%BB%BA%E6%A8%A1%E6%9D%BF%E7%95%8C%E9%9D%A2.png" width="830" />
+<img src="https://upyun-assets.b0.upaiyun.com/docs/sms/创建模板.png" width="830" />
 
 #### 2.6 发送短信
 在模板审核通过之后，就可以通过后台导入界面或调用接口（具体接口使用方式见接口文档）进行短信发送。
 
 用户通过点击管理后台的【导入】-【搜索】-【导入文件】-【提交】进行短信发送。
 
-<img src="http://upyun-assets.b0.upaiyun.com/docs/sms/%E9%80%89%E6%8B%A9%E6%A8%A1%E6%9D%BF%E7%95%8C%E9%9D%A2.png" width="830" />
+<img src="https://upyun-assets.b0.upaiyun.com/docs/sms/模板导入.png" width="830" />
 
 选择具体所需的通道、短信类型以及模板之后，就可以通过导入 txt 或者 csv 格式的文本文件进行发送。文本格式第一列为手机号，2-5 列填变量参数，无变量参数留空，txt 与 csv 需用英文“,”分隔各列。文本格式如下图：
 
@@ -91,19 +91,19 @@
 
 导入完文件后，点提交即可完成短信发送。
 
-<img src="http://upyun-assets.b0.upaiyun.com/docs/sms/%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1%E7%95%8C%E9%9D%A2.png" width="830" />
+<img src="https://upyun-assets.b0.upaiyun.com/docs/sms/导入发送.png" width="830" />
 
 <br>
 ## 3. 数据统计
 #### 3.1 短信资源包
 又拍云短信服务属于预付费服务，需提前购买短信资源包之后方可使用。购买短信资源包之后，金额会自动转化为短信可使用条数。在统计用户短信条数时，若短信发送失败，则不扣除使用条数。
 
-<img src="http://upyun-assets.b0.upaiyun.com/docs/sms/%E7%9F%AD%E4%BF%A1%E6%80%BB%E8%A7%88%E7%95%8C%E9%9D%A2.png" width="830" />
+<img src="https://upyun-assets.b0.upaiyun.com/docs/sms/总览.png" width="830" />
 
 #### 3.2 报表统计
 在发送明细中，可以根据所发送短信的手机号、发送状态、时间，查询所有短信的发送状态。
 
-<img src="http://upyun-assets.b0.upaiyun.com/docs/sms/%E6%8A%A5%E8%A1%A8%E6%98%8E%E7%BB%86%E7%95%8C%E9%9D%A2.png" width="830" />
+<img src="https://upyun-assets.b0.upaiyun.com/docs/sms/报表.png" width="830" />
 
 <br>
 ## 4. 常见问题
