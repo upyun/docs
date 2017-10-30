@@ -510,60 +510,6 @@ curl -X POST \
 
 ---------
 
-<a name="text_detect"></a>
-### 文本
-
-以 `POST` 方法向 `http://p1.api.upyun.com/<service>/textaudit/detect` 提交任务。特别地，`<service>` 需替换为具体的服务名。
-
-```
-curl -X POST \
-    http://p1.api.upyun.com/<service>/textaudit/detect \
-    -H "Authorization: UPYUN <Operator>:<Signature>" \
-    -H "Date: <Wed, 29 Oct 2014 02:26:58 GMT>" \
-    -H "Content-MD5: <Content-MD5>" \
-    -d '{"text": "<text>"}'
-```
-
-** 认证鉴权 **
-
-`Authorization` 详见[签名认证](/cloud/authorization/#_1)。
-
-** 请求参数 **
-
-| 参数       		| 类型       	| 必选  	| 说明                              	|
-|-------------------|---------------|-------|-----------------------------------|
-| text           	| string       	| 是    | 文本内容，有效的 `json` 字符串，最大支持64k |
-
-** 响应信息 **
-
-- 任务提交成功：返回 `200`。
-
-响应信息为 JSON 字符串，参数名及说明如下：
-
-| 参数       		| 类型   	| 说明                                                      	|
-|-------------------|-----------|-----------------------------------------------------------|
-| status         	| integer   | 处理结果状态码，`200` 表示成功处理，详见[状态码表](#status)   	|
-| task_id       	| string    | 任务对应的 `task_id`                                    	|
-| label  			| integer  	| 文本被判定的分类，可能值 `0`、`1`、`2`，`0` 表示正常文本，`1` 表示违规文本，`2` 表示可疑文本 |
-| review  			| boolean  	| 是否需要人工复审，`true` 表示需要，`false` 表示不需要 			|
-| spam  			| float   	| 文本被判定为违规的概率，介于 `[0-1]` 之间	 		|
-| normal  			| float   	| 文本被判定为正常的概率，介于 `[0-1]` 之间	 		|
-
-```
-{
-    "status":200,
-    "task_id":"6583350f99b2a2fa569c53081aa91a4f",
-    "label":1,
-    "review":false,
-    "spam":0.99,
-    "normal":0.01
-}
-```
-
-- 任务提交失败：返回相应的出错信息，具体请参阅「[状态码表](#status)」。
-
----------
-
 <a name="status"></a>
 ### 状态码表
 
@@ -632,13 +578,6 @@ curl -X POST \
 
 - 没有任务查询接口，需要客户端记录直播流与任务（`task_id`）的关系。
 
----------
-
-## 文本识别
-
-识别色情、广告、暴恐等内容，统一标识为违规内容（`label: 1`）。对于不确容，使用 `label: 2` 表示。
-
-根据文本的特性，文本内容放在请求中提交给云端，云端实时进行处理，具体详见[接口](#text_detect)。
 
 
 <!--
