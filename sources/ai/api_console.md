@@ -91,6 +91,8 @@ Date: Thu, 12 Oct 2017 07:32:29 GMT
 
 获取指定内容是否被屏蔽及屏蔽密钥
 
+### 请求
+
 **请求语法**
 
 ```
@@ -147,7 +149,9 @@ Date: Thu, 12 Oct 2017 07:32:29 GMT
 
 # 示例代码
 
-使用时，`secret_id` 和 `secret_key` 替换为内容识别控制台上的密钥
+使用时，`client_key` 和 `client_secret` 替换为内容识别控制台上的密钥
+
+请求信息根据请求参数要求填写
 
 ```py
 # python
@@ -159,41 +163,85 @@ import hmac
 
 import requests
 
-
 def b64(s):
     return base64.b64encode(s.encode()).decode()
 
-
+# 时间格式化
 def httpdate_rfc1123(dt=None):
     dt = dt or datetime.datetime.utcnow()
     return datetime.datetime.utcnow().strftime('%a, %d %b %Y %H:%M:%S GMT')
 
 
-def sign(secret_id, secret_key, method, uri, date):
+# 签名
+def sign(client_key, client_secret, method, uri, date):
     signarr = [method, uri, date]
     signstr = '&'.join(signarr)
     signstr = base64.b64encode(
-        hmac.new(secret_key.encode(), signstr.encode(), digestmod=hashlib.sha1).digest()
+        hmac.new(client_secret.encode(), signstr.encode(), digestmod=hashlib.sha1).digest()
     ).decode()
-    return 'UPYUN %s:%s' % (secret_id, signstr)
+    return 'UPYUN %s:%s' % (client_key, signstr)
 
+# 密钥
+client_key = 'GO7K6NCPInWZqvJewohbDH5jmt'
+client_secret = 'KQrAn5OjgG3HVlkJo78DbyiuL'
 
-secret_id = 'fvkr12341478LcwsxcdHWlDYQM9phq'
-secret_key = 'L3UTW98wsdkA7J45y543wsddfcQiOmrP'
-
-def main():
+# 内容屏蔽
+def shield():
     headers = {}
     headers['Date'] = httpdate_rfc1123()
-    headers['Authorization'] = sign(secret_id, secret_key, 'POST', '/console/identify?act=shield', headers['Date'])
+    headers['Authorization'] = sign(client_key, client_secret, 'POST', '/console/identify?act=shield', headers['Date'])
     data = {
         "service":"upyun",
         "tasks": [{
         'kind':1,
-        'path': '/test3.jpg',
+        'path': '/test.jpg',
     }]}
-    print(headers)
     resp = requests.post('http://banma.api.upyun.com/console/identify?act=shield', headers=headers, json=data)
     print(resp.status_code, resp.text)
+
+# 内容取消屏蔽
+def cancel_shield():
+    headers = {}
+    headers['Date'] = httpdate_rfc1123()
+    headers['Authorization'] = sign(client_key, client_secret, 'POST', '/console/identify?act=cancel_shield', headers['Date'])
+    data = {
+        "service":"upyun",
+        "tasks": [{
+        'kind':1,
+        'path': '/test.jpg',
+    }]}
+    resp = requests.post('http://banma.api.upyun.com/console/identify?act=cancel_shield', headers=headers, json=data)
+    print(resp.status_code, resp.text)
+
+# 内容删除
+def delete():
+    headers = {}
+    headers['Date'] = httpdate_rfc1123()
+    headers['Authorization'] = sign(client_key, client_secret, 'POST', '/console/identify?act=delete', headers['Date'])
+    data = {
+        "service":"upyun",
+        "tasks": [{
+        'kind':1,
+        'path': '/test.jpg',
+    }]}
+    resp = requests.post('http://banma.api.upyun.com/console/identify?act=delete', headers=headers, json=data)
+    print(resp.status_code, resp.text)
+
+# 获取内容屏蔽信息
+def get_info():
+    headers = {}
+    headers['Date'] = httpdate_rfc1123()
+    headers['Authorization'] = sign(client_key, client_secret, 'GET', '/console/shield_info?service=upyun&path=/test.jpg', headers['Date'])
+
+    resp = requests.get('http://banma.api.upyun.com/console/shield_info?service=upyun&path=/test.jpg', headers=headers)
+    print(resp.status_code, resp.text)
+
+
+def main():
+    shield()
+    cancel_shield()
+    delete()
+    get_info()
 
 if __name__ == '__main__':
     main()
