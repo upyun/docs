@@ -44,45 +44,46 @@ ClientSecret = KuGnZUD17aN9oyRkjSixBqlwQcH
 
 // 参数
 Method = POST							
-URI = /pretreatment/
-Date = Wed, 09 Nov 2016 14:26:58 GMT
-Content-MD5 = MD5(service=upyun-temp&notify_url=/upyun_notify_url&source=/tmp.mp4&tasks=W3siYXZvcHRzIjoiL3MvMjQwcCg0OjMpL2FzLzEvci8zMCIsInJldHVybl9pbmZvIjp0cnVlLCJzYXZlX2FzIjoiL2EvYi5tcDQiLCJ0eXBlIjoidmlkZW8ifSx7ImF2b3B0cyI6Ii9pL0wyRXZZaTlqTG0xd05BPT0vaS9MekV2TWk4ekxtMXdOQT09Iiwic2F2ZV9hcyI6Ii9jb25jYXQvYS5tcDQiLCJ0eXBlIjoidmNvbmNhdCJ9XQ==&accept=json)
-            = a2d75510f7ec654cc24cfa2b5a5a8182
+URI = /image/url/check
+Date = Thu, 12 Oct 2017 06:57:50 GMT
+Body = {'url': 'http://uprocess.b0.upaiyun.com/demo.jpg'}
+Content-MD5 = MD5(Body)
+            = DD0F8A735A45323A32EE4D6154E9985B
 ```
 
 ** 生成 Signature **
 
 ```
-Signature = Base64 (HMAC-SHA1 (<Password>,
+Signature = Base64 (HMAC-SHA1 (<ClientSecret>,
 <Method>&
 <URI>&
 <Date>&
 <Content-MD5>
 ))
-// 内容拼接时，不用换行或空格，上面格式的换行或空格是为了方便阅读
-= Base64 (HMAC-SHA1 (482c811da5d5b4bc6d497ffa98491e38,POST&/pretreatment/&Wed, 09 Nov 2016 14:26:58 GMT&a2d75510f7ec654cc24cfa2b5a5a8182))
+// 不用换行或空格，上面格式的换行或空格是为了方便阅读
+= Base64 (HMAC-SHA1 (ClientSecret, Method&URI&Date&Content-MD5))
 // HMAC-SHA1 返回的原生二进制数据进行 Base64 编码
-= 6KGqGX4tFwqnCdSndEmGQsR1jQU=
+= CKhrW8SSU0ctnmavfnRs1s1NFBY=
 ```
 
 ** 签名 **
 
 ```
-Authorization: UPYUN upyun:6KGqGX4tFwqnCdSndEmGQsR1jQU=
+Authorization: UPYUN TSzF4Cd9JPt6Qcm3WqfDiuUpoAH1:CKhrW8SSU0ctnmavfnRs1s1NFBY=
 ```
 
 ** 完整请求 **
 
 ```
-POST /pretreatment/ HTTP/1.1
-Authorization: UPYUN upyun:6KGqGX4tFwqnCdSndEmGQsR1jQU=
-Content-MD5: a2d75510f7ec654cc24cfa2b5a5a8182
-Date: Wed, 9 Nov 2016 14:26:58 GMT
-Content-Type: application/x-www-form-urlencoded; charset=utf-8
-Host: p0.api.upyun.com
-Content-Length: 668
+POST /image/url/check HTTP/1.1
+Host: banma.api.upyun.com
+Date: Thu, 12 Oct 2017 06:57:50 GMT
+Content-MD5: DD0F8A735A45323A32EE4D6154E9985B
+Authorization: UPYUN TSzF4Cd9JPt6Qcm3WqfDiuUpoAH1:CKhrW8SSU0ctnmavfnRs1s1NFBY=
+Content-Length: 50
+Content-Type: application/json
 
-service=upyun-temp&notify_url=/upyun_notify_url&source=/tmp.mp4&tasks=W3siYXZvcHRzIjoiL3MvMjQwcCg0OjMpL2FzLzEvci8zMCIsInJldHVybl9pbmZvIjp0cnVlLCJzYXZlX2FzIjoiL2EvYi5tcDQiLCJ0eXBlIjoidmlkZW8ifSx7ImF2b3B0cyI6Ii9pL0wyRXZZaTlqTG0xd05BPT0vaS9MekV2TWk4ekxtMXdOQT09Iiwic2F2ZV9hcyI6Ii9jb25jYXQvYS5tcDQiLCJ0eXBlIjoidmNvbmNhdCJ9XQ==&accept=json
+{"url": "http://uprocess.b0.upaiyun.com/demo.jpg"}
 ```
 
 ---------
