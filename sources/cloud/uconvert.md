@@ -20,8 +20,9 @@
 ```
 apps = [
     {
-        "name": "uconvert",                             // 必选，任务名称，`uconvert` 表示文档转换
-        "save_as": "/save_as/upyun_file",               // 必选，图片保存路径与名字，生成图片自动在文件名后添加 `-<index>.png`
+        "name": "uconvert",                             // 必选，任务名称，uconvert 表示文档转换
+        "save_as": "/save_as/upyun_file",               // 必选，图片保存路径与名字，生成图片自动在文件名后添加 -<index>.png
+        "notify_url": "http://uconvert.upyun.com"       // 可选，回调地址，不填时使用上传参数中的 notify-url
         "density": 100,                                 // 可选，像素密度，越大图片越清晰
         "width" : 1024,                                 // 可选，宽度，大小随宽度等比例缩放
     }
@@ -110,7 +111,17 @@ curl -X POST \
 <a name="notify_url"></a>
 ** 回调通知 **
 
-任务处理完成后，向 `notify_url` 地址发送回调通知。
+任务处理完成后，向 `notify_url` 发送 `HTTP POST` 请求，请求体是回调信息。
+
+```
+curl -X POST \
+    <notify_url> \
+    -H "Authorization: UPYUN <Operator>:<Signature>" \
+    -H "Date: <Wed, 29 Oct 2014 02:26:58 GMT>" \
+	-H "Content-MD5: <Content-MD5>" \
+    -d "service=<service>" \
+	# 其他参数...
+```
 
 ** 回调信息 **
 
