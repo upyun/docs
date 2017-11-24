@@ -419,7 +419,7 @@ upyun-operatoracceptjsonbucket_namedemonotify_urlhttp://www.example.com/notify/s
 | `/su/<accelerate_factor>` | float     | 否		| 视频加速倍数，默认 `1.0`。取值范围 `[1.0，10.0]`       	|
 | `/sar/<sar>` | string | 否 | [采样长宽比](https://en.wikipedia.org/wiki/Aspect_ratio_(image)#Distinctions)，格式 `w:h`，常用值 `1:1`，`4:3` 或 `16:9` |
 | `/dar/<dar>` | string | 否 | [显示长宽比](https://en.wikipedia.org/wiki/Pixel_aspect_ratio#Introduction)，格式 `w:h`，常用值 `1:1`，`4:3` 或 `16:9` |
-| `/cr/<concat_reverse>` | boolean | 否 | 向视频结尾添加倒序播放的原视频，支持 `gif` 与 `webm` 输出格式 |
+| `/cr/<concat_reverse>` | boolean | 否 | 向视频结尾添加倒序播放的完成处理的视频，支持 `gif` 与 `webm` 输出格式 |
 
 ** 注 **
 
