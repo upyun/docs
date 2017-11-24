@@ -146,7 +146,7 @@ apps = [
         "save_as": "<save_as>",                     // 结果音频/视频保存路径，选填
         "notify_url": "<notify_url>"                // 回调地址，不填时使用上传参数中的 notify_url
     },
-	{ 												
+	{
 	    "name": "naga",
 	    "type": "video",
 	    "avopts": "/s/240p(4:3)/as/1/r/30",
@@ -280,7 +280,7 @@ curl http://p0.api.upyun.com/result?service=<service>&task_ids=<task_id1>,<task_
 | 类型      		| 输入格式       														| 输出格式       	|
 |---------------|-----------------------------------------------------------------------|-------------------|
 | 视频容器格式 	| AVI、MP4、FLV、MOV、3GP、ASF、WMV、M3U8(TS)、MPG、F4V、M4V、MKV、VOB（SVCD/DVD）等 	| MP4、FLV、M3U8(TS) 等|
-| 音频容器格式 	| MP3、OGG、M4A 等 														| MP4、MP3、OGG 等	|
+| 音频容器格式 	| MP3、OGG、M4A、SILK 等 														| MP4、MP3、OGG 等	|
 | 视频编码格式 	| H.264/AVC 、H.263、H.263+、MPEG-2、MPEG-4、VP8、VP9、Quicktime、RealVideo、Windows Media Video 等 | H.264/AVC、VP8、H.265/HEVC、VP9 等|
 | 音频编码格式 	| MP1、MP2、MP3、AAC、AC-3、Vorbis、PCM、RealAudio、Windows Media Audio 等	| AAC、MP3 等		|
 
@@ -419,6 +419,7 @@ upyun-operatoracceptjsonbucket_namedemonotify_urlhttp://www.example.com/notify/s
 | `/su/<accelerate_factor>` | float     | 否		| 视频加速倍数，默认 `1.0`。取值范围 `[1.0，10.0]`       	|
 | `/sar/<sar>` | string | 否 | [采样长宽比](https://en.wikipedia.org/wiki/Aspect_ratio_(image)#Distinctions)，格式 `w:h`，常用值 `1:1`，`4:3` 或 `16:9` |
 | `/dar/<dar>` | string | 否 | [显示长宽比](https://en.wikipedia.org/wiki/Pixel_aspect_ratio#Introduction)，格式 `w:h`，常用值 `1:1`，`4:3` 或 `16:9` |
+| `/cr/<concat_reverse>` | boolean | 否 | 向视频结尾添加倒序播放的原视频，支持 `gif` 与 `webm` 输出格式 |
 
 ** 注 **
 
