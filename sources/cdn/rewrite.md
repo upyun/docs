@@ -86,20 +86,6 @@
 
 这样经过调试，确定该 rewrite 过程符合预期后，即可将 `调试模式` 关闭，此时该 rewrite 过程会对所有命中的请求生效。
 
-####注意事项
-
-特别地，调试模式目前仅针对 URI 和 ARGS 修改以及一些函数有效，受 `调试模式` 开关影响的 rewrite 操作有：
-
-```
- - $LIMIT_RATE_AFTER()
- - $LIMIT_RATE
- - $DEL_REQ_HEADER(E)
- - $REDIRECT(E1,E2)
- - $DEL_ARG(E)
- - $EXIT(E1,E2)
- - $ADD_REQ_HEADER
- - 修改 URI 和 ARGS 的操作
-```
 
 ##语法规则
 
