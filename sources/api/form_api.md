@@ -23,6 +23,8 @@ curl http://v0.api.upyun.com/<bucket> \
 
 详见[签名认证](/api/authorization/#body)。
 
+`代码实现` 详见[代码示例](/authorization/authorization/)。
+
 **推荐上传流程**
 
 ```
