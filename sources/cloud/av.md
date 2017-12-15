@@ -34,7 +34,7 @@ curl -X POST \
 
 `Authorization` 详见[签名认证](/cloud/authorization/#_1)。
 
-`代码实现` 详见[代码示例](/api/auth_examples/)。
+`代码实现` 详见[代码示例](/api/authorization/#_3)。
 
 ** 请求参数 **
 
@@ -124,7 +124,7 @@ curl -X POST \
 
 `Authorization` 详见[签名认证](/cloud/authorization/#_1)，它提供给客户端，用于验证回调通知的合法性。
 
-`代码实现` 详见[代码示例](/api/auth_examples/)。
+`代码实现` 详见[代码示例](/api/authorization/#_3)。
 
 ---------
 
@@ -182,7 +182,7 @@ curl http://p0.api.upyun.com/status?service=<service>&task_ids=<task_id1>,<task_
 
 `Authorization` 详见[签名认证](/cloud/authorization/#_1)。
 
-`代码实现` 详见[代码示例](/api/auth_examples/)。
+`代码实现` 详见[代码示例](/api/authorization/#_3)。
 
 ** 查询参数 **
 
@@ -228,7 +228,7 @@ curl http://p0.api.upyun.com/result?service=<service>&task_ids=<task_id1>,<task_
 
 `Authorization` 详见[签名认证](/cloud/authorization/#_1)。
 
-`代码实现` 详见[代码示例](/api/auth_examples/)。
+`代码实现` 详见[代码示例](/api/authorization/#_3)。
 
 ** 查询参数 **
 

@@ -29,7 +29,7 @@ Content-Type: application/json
 
 `Authorization` 详见[签名认证](/cloud/authorization/#_1)。
 
-`代码实现` 详见[代码示例](/api/auth_examples/)。
+`代码实现` 详见[代码示例](/api/authorization/#_3)。
 
 ** 请求参数 **
 
@@ -96,7 +96,7 @@ Content-Type: application/json
 
 `Authorization` 详见[签名认证](/cloud/authorization/#_1)。
 
-`代码实现` 详见[代码示例](/api/auth_examples/)。
+`代码实现` 详见[代码示例](/api/authorization/#_3)。
 
 ** 请求参数 **
 
@@ -174,7 +174,7 @@ Content-Type: application/json
 
 `Authorization` 详见[签名认证](/cloud/authorization/#_1)。
 
-`代码实现` 详见[代码示例](/api/auth_examples/)。
+`代码实现` 详见[代码示例](/api/authorization/#_3)。
 
 ** 请求参数 **
 
@@ -248,7 +248,7 @@ Content-Type: application/json
 
 `Authorization` 详见[签名认证](/cloud/authorization/#_1)。
 
-`代码实现` 详见[代码示例](/api/auth_examples/)。
+`代码实现` 详见[代码示例](/api/authorization/#_3)。
 
 ** 请求参数 **
 
@@ -318,7 +318,7 @@ Content-Type: application/json
 
 `Authorization` 详见[签名认证](/cloud/authorization/#_1)。
 
-`代码实现` 详见[代码示例](/api/auth_examples/)。
+`代码实现` 详见[代码示例](/api/authorization/#_3)。
 
 ** 请求参数 **
 
