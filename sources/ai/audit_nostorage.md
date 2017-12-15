@@ -28,6 +28,8 @@ Content-Type: <图片内容类型，必填>
 
 `Authorization` 详见[签名认证](/ai/authorization/#_1)。
 
+`代码实现` 详见[代码示例](/authorization/authorization/)。
+
 ### 响应
 
 响应参数是 JSON 字符串，参数名及说明如下：
@@ -91,6 +93,8 @@ Content-Type: application/json
 ** 签名认证 **
 
 `Authorization` 详见[签名认证](/ai/authorization/#_1)。
+
+`代码实现` 详见[代码示例](/authorization/authorization/)。
 
 **请求参数**
 
@@ -161,6 +165,8 @@ Content-Type: application/json
 ** 签名认证 **
 
 `Authorization` 详见[签名认证](/ai/authorization/#_1)。
+
+`代码实现` 详见[代码示例](/authorization/authorization/)。
 
 **请求参数**
 
@@ -280,6 +286,8 @@ Content-Type: application/json
 ** 签名认证 **
 
 `Authorization` 详见[签名认证](/ai/authorization/#_1)。
+
+`代码实现` 详见[代码示例](/authorization/authorization/)。
 
 **请求参数**
 
