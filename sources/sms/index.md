@@ -558,3 +558,74 @@
 | --- | --- | --- |
 | error_code | 仅出现在错误码列表中 |
 | message | 额外的描述，不与错误码列表中的说明相匹配 |
+
+##7. 发送失败原因查询
+
+因运营商各个网关针对错误码定义不同, 返回的含义也不尽相同所以该错原因查询均为经验值, 仅供参考。
+
+如需了解详细原因，请联系客服。
+
+附件：[发送原因查询列表](http://up-static.b0.upaiyun.com/sms/发送失败原因查询.xlsx)
+
+##8. 常用语言示例代码
+
+PHP 发送示例代码
+
+```php
+<?php
+// 注意：需要替换这里的请求参数和 $options['http']['header'] 中的 token
+$msg['mobile']='135xxxxxxxx'; // 必填参数，多个手机号使用逗号分隔
+$msg['template_id'] = 1;  // 必填参数，短信模板 ID
+$msg['vars'] = 'a|b'; // 选填参数，模板变量
+
+$url = 'https://sms-api.upyun.com/api/messages';
+
+$options = array(
+    'http' => array(
+        'header'  => "Content-type: application/x-www-form-urlencoded\r\nAuthorization: <YOUR_TOKEN>",
+        'method'  => 'POST',
+        'content' => http_build_query($msg)
+    )
+);
+$context  = stream_context_create($options);
+$result = file_get_contents($url, false, $context);
+```
+
+JAVA 发送示例代码
+
+```java
+URL url = new URL("https://sms-api.upyun.com/api/messages");
+
+//设置 JSON 参数
+JSONObject object = new JSONObject();
+object.put("template_id", 1);
+object.put("mobile", "135xxxxxxxx");
+
+HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+// 设置必要参数
+conn.setConnectTimeout(10000);
+conn.setUseCaches(false);
+conn.setDoOutput(true);
+conn.setRequestMethod("POST");
+conn.setRequestProperty("Connection", "Keep-Alive");
+conn.setRequestProperty("Authorization", "<YOUR_TOKEN>");
+conn.setRequestProperty("Content-type", "application/json");
+
+// 创建链接
+conn.connect();
+OutputStream os = conn.getOutputStream();
+os.write(object.toString().getBytes("UTF-8"));
+
+//Gets the status code from an HTTP response message
+int code = conn.getResponseCode();
+
+InputStreamReader reader = new InputStreamReader(conn.getInputStream());
+BufferedReader br = new BufferedReader(reader);
+char[] chars = new char[1024];
+int length = 0;
+StringBuilder result = new StringBuilder();
+while ((length = br.read(chars)) != -1) {
+    result.append(chars, 0, length);
+}
+System.out.println("code:" + code + "::" + result.toString());
+```
