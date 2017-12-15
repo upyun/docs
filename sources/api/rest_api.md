@@ -24,7 +24,7 @@ curl -X GET \
 
 详见[签名认证](/api/authorization/#header)。
 
-`代码实现` 详见[代码示例](/authorization/authorization/)。
+`代码实现` 详见[代码示例](/api/auth_examples/)。
 
 ---------
 

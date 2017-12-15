@@ -38,7 +38,7 @@ curl -X POST \
 
 `Authorization` 详见[签名认证](/cloud/authorization/#_1)。
 
-`代码实现` 详见[代码示例](/authorization/authorization/)。
+`代码实现` 详见[代码示例](/api/auth_examples/)。
 
 ** 请求参数 **
 
@@ -116,7 +116,7 @@ curl -X POST \
 
 `Authorization` 详见[签名认证](/cloud/authorization/#_1)。
 
-`代码实现` 详见[代码示例](/authorization/authorization/)。
+`代码实现` 详见[代码示例](/api/auth_examples/)。
 
 ---------
 

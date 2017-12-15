@@ -28,7 +28,7 @@ Content-Type: <图片内容类型，必填>
 
 `Authorization` 详见[签名认证](/ai/authorization/#_1)。
 
-`代码实现` 详见[代码示例](/authorization/authorization/)。
+`代码实现` 详见[代码示例](/api/auth_examples/)。
 
 ### 响应
 
@@ -94,7 +94,7 @@ Content-Type: application/json
 
 `Authorization` 详见[签名认证](/ai/authorization/#_1)。
 
-`代码实现` 详见[代码示例](/authorization/authorization/)。
+`代码实现` 详见[代码示例](/api/auth_examples/)。
 
 **请求参数**
 
@@ -166,7 +166,7 @@ Content-Type: application/json
 
 `Authorization` 详见[签名认证](/ai/authorization/#_1)。
 
-`代码实现` 详见[代码示例](/authorization/authorization/)。
+`代码实现` 详见[代码示例](/api/auth_examples/)。
 
 **请求参数**
 
@@ -287,7 +287,7 @@ Content-Type: application/json
 
 `Authorization` 详见[签名认证](/ai/authorization/#_1)。
 
-`代码实现` 详见[代码示例](/authorization/authorization/)。
+`代码实现` 详见[代码示例](/api/auth_examples/)。
 
 **请求参数**
 
