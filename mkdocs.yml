@@ -36,6 +36,7 @@ pages:
     - '快速入门': 'api/quick_start.md'
     - '开发者指南': 'api/developer_guide.md'
     - '认证鉴权': 'api/authorization.md'
+    - '认证鉴权代码实现': 'api/auth_examples.md'
     - 'REST API': 'api/rest_api.md'
     - 'FORM API': 'api/form_api.md'
     - '开发者工具': 'api/developer_tools.md'
