@@ -280,7 +280,7 @@ UPYUN operator123:DTGOeaCa1yk1JWG4G3DH+u5sI5M=
 1. 本示例适用于云存储，云处理，内容识别，容器云服务。
 2. 使用 `form` `API` 上传时，需要用户生成 `policy`，本示例不提供生成 `policy` 的使用实例。
 3. 使用时，根据自己的需求，配置，修改对应参数: `key`，`secret`，`uri`，`method`，`policy`，`md5`。
-4. 本示例使用的 `key`，`secret` 在不同服务中的含义不一样，云存储，云处理，内容识别(有存储) 表示操作员和密钥的 `MD5` 值，
+4. 本示例使用的 `key`，`secret` 在不同服务中的含义不一样，云存储，云处理，内容识别(有存储) 表示操作员和密钥，
 内容识别(无存储)，容器云表示各自服务提供的 `client_key`，`client_secret`。
 5. 根据又拍云文档说明，把认证信息，填入相应的 `http` 请求信息中。
 6. 认证鉴权的详细信息请查看又拍云文档
@@ -294,6 +294,7 @@ package main
 
 import (
 	"crypto/hmac"
+	"crypto/md5"
 	"crypto/sha1"
 	"encoding/base64"
 	"fmt"
@@ -303,10 +304,14 @@ import (
 
 var (
 	key    = "upyun"
-	secret = "secret"
+	secret = "secret" // 对于上传，处理，跟内容识别需要MD5加密
 	uri    = "/v1/apps/"
 	method = "GET"
 )
+
+func md5Str(s string) string {
+	return fmt.Sprintf("%x", md5.Sum([]byte(s)))
+}
 
 func makeRFC1123Date(d time.Time) string {
 	utc := d.UTC().Format(time.RFC1123)
@@ -334,6 +339,12 @@ func sign(key, secret, method, uri, date, policy, md5 string) string {
 func main() {
 	date := makeRFC1123Date(time.Now())
 	fmt.Println(date)
+	fmt.Println(md5Str(secret))
+
+	// 上传，处理，内容识别有存储
+	fmt.Println(sign(key, md5Str(secret), method, uri, date, "", ""))
+
+	// 容器云，内容识别无存储
 	fmt.Println(sign(key, secret, method, uri, date, "", ""))
 }
 
@@ -360,6 +371,8 @@ def httpdate_rfc1123(dt=None):
     dt = dt or datetime.datetime.utcnow()
     return dt.strftime('%a, %d %b %Y %H:%M:%S GMT')
 
+def md5(value):
+    return hashlib.md5(value.encode()).hexdigest()
 
 def sign(client_key, client_secret, method, uri, date, policy=None, md5=None):
     # Tip 4
@@ -379,14 +392,20 @@ def sign(client_key, client_secret, method, uri, date, policy=None, md5=None):
 def main():
     # Tip 2
     # 时间需要与 http 头 Date 信息保持一致
-    date = httpdate_rfc1123()
-    # date = 'Thu, 14 Dec 2017 06:03:27 GMT'
+    # date = httpdate_rfc1123()
+    date = 'Thu, 14 Dec 2017 06:03:27 GMT'
 
     # Tip 3
     # sign 函数返回的值填入 http 头 Authorization 信息中
     print date
-    print sign(key, secret, method, uri, date)
 
+    print md5(secret)
+    
+    # 上传，处理，内容识别有存储
+    print sign(key, md5(secret), method, uri, date)
+
+    # 内容识别无存储，容器云
+    print sign(key, secret, method, uri, date)
 
 if __name__ == '__main__':
     main()
@@ -395,7 +414,7 @@ if __name__ == '__main__':
 #### js 代码演示
 
 ```js
-var hmacsha1 = require('hmacsha1')
+var crypto = require('crypto');
 
 function sign(key, secret, method, uri, date, policy=null, md5=null) {
     elems = [];
@@ -405,13 +424,33 @@ function sign(key, secret, method, uri, date, policy=null, md5=null) {
         }
     })
     value = elems.join('&');
-    sign = hmacsha1(secret, value);
-    return `UPYUN ${key}:${sign}`;
+    auth = hmacsha1(secret, value);
+    return `UPYUN ${key}:${auth}`;
+}
+
+function MD5(value) {
+    return crypto.createHash('md5').update(value).digest('hex');
+}
+
+function hmacsha1(secret, value) {
+    return crypto.createHmac('sha1', secret).update(value, 'utf-8').digest().toString('base64');
 }
 
 date = new Date().toGMTString();
 console.log(date);
-console.log(sign('upyun', 'secret', 'GET', '/v1/apps/', date));
+
+key = 'upyun';
+secret = 'secret';
+method = 'GET';
+uri = '/v1/apps/';
+
+console.log(MD5('secret'));
+
+// 上传，处理，内容识别有存储
+console.log(sign(key, MD5(secret), method, uri, date));
+
+// 内容识别无存储，容器云
+console.log(sign(key, secret, method, uri, date));
 ```
 
 #### java 代码演示
@@ -430,8 +469,28 @@ import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.TimeZone;
 
+import java.security.*;
+import java.io.*;
+
 public class auth {
     private static final String HMAC_SHA1_ALGORITHM = "HmacSHA1";
+
+    public static String md5(String string) {
+        byte[] hash;
+        try {
+            hash = MessageDigest.getInstance("MD5").digest(string.getBytes("UTF-8"));
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException("UTF-8 is unsupported", e);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException("MessageDigest不支持MD5Util", e);
+        }
+        StringBuilder hex = new StringBuilder(hash.length * 2);
+        for (byte b : hash) {
+            if ((b & 0xFF) < 0x10) hex.append("0");
+            hex.append(Integer.toHexString(b & 0xFF));
+        }
+        return hex.toString();
+    }
 
     public static byte[] hashHmac(String data, String key)
             throws SignatureException, NoSuchAlgorithmException, InvalidKeyException {
@@ -466,10 +525,22 @@ public class auth {
     }
 
     public static void main(String[] args) throws Exception {
+        String key = "upyun";
+        String secret = "secret";
+        String method = "GET";
+        String uri = "/v1/apps/";
+
         String date = getRfc1123Time();
-        String hmac = sign("upyun", "secret", "GET", "/v1/apps/", date, "", "");
+    
         System.out.println(date);
-        System.out.println(hmac);
+
+        System.out.println(md5(secret));
+
+        // 上传，处理，内容识别有存储
+        System.out.println(sign(key, md5(secret), method, uri, date, "", ""));
+        
+        // 内容识别无存储，容器云
+        System.out.println(sign(key, secret, method, uri, date, "", ""));
     }
 }
 ```
@@ -502,7 +573,16 @@ function main()
     $method = 'GET';
     $date = gmdate('D, d M Y H:i:s \G\M\T');
 
+    $md = md5($secret);
+
+    echo $md . "\n";
+
     echo $date . "\n";
+
+    // 上传，处理，内容识别有存储
+    echo sign($key, md5($secret), $method, $uri, $date) . "\n";
+
+    // 内容识别无存储，容器云
     echo sign($key, $secret, $method, $uri, $date);
 }
 
