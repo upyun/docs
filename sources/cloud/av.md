@@ -426,7 +426,8 @@ upyun-operatoracceptjsonbucket_namedemonotify_urlhttp://www.example.com/notify/s
 | `/su/<accelerate_factor>` | float     | 否		| 视频加速倍数，默认 `1.0`。取值范围 `[1.0，10.0]`       	|
 | `/sar/<sar>` | string | 否 | [采样长宽比](https://en.wikipedia.org/wiki/Aspect_ratio_(image)#Distinctions)，格式 `w:h`，常用值 `1:1`，`4:3` 或 `16:9` |
 | `/dar/<dar>` | string | 否 | [显示长宽比](https://en.wikipedia.org/wiki/Pixel_aspect_ratio#Introduction)，格式 `w:h`，常用值 `1:1`，`4:3` 或 `16:9` |
-| `/cr/<concat_reverse>` | boolean | 否 | 向视频结尾添加倒序播放的完成处理的视频，支持 `gif` 与 `webp` 输出格式 |
+| `/pv/<pv>` | string | 否 | H264 Profile，常用值 `baseline `，`main`，`high` 等 |
+| `/level/<level>` | float | 否 | H264 Level，常用值 `3.0`，`3.1`，`4.0`，`4.1`，`4.2` 等 |
 
 ** 注 **
 
