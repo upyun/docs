@@ -15,7 +15,7 @@ pages:
     - '购买指南': 'cdn/buy.md'
     - '服务管理': 'cdn/service.md'
     - '功能配置': 'cdn/config.md'
-    - '简单编程': 'cdn/rewrite.md'
+    - '边缘规则': 'cdn/edgerules.md'
     - '统计分析': 'cdn/analysis.md'
     - '刷新预热': 'cdn/refresh.md'
     - '日志管理': 'cdn/log.md'
