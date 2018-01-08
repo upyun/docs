@@ -1557,6 +1557,48 @@ HTTP/2 优势如下：
 
 声明：运行在 Windows XP 上的所有版本的 Internet Explorer 都不支持 SNI ，详细请参考[这里](http://serverfault.com/questions/109800/multiple-ssl-domains-on-the-same-ip-address-and-same-port)。
 
+###5.5 TLS 1.3
+
+> 功能说明
+
+`TLS 1.3` 是 TLS 协议中最新、最快和最安全的版本，相比旧版的 TLS 协议增加了多项新功能。通过简化 SSL 握手，提高了建连速度，减少了延迟。并通过移除有安全隐患的加密算法，提高了用户访问的性能、效率和安全性等等。目前 `TLS 1.3` 还在草案阶段，还没有任何主流浏览器在其稳定版中默认启用 `TLS 1.3`，故我们只在部分节点部署了 `TLS 1.3`，计划根据协议发展会逐步推进全网部署。您可以通过 ping 域名 `tls13.upaiyun.com` 获得节点 ip ，如下列表所示：
+
+     ping tls13.upaiyun.com
+
+> 如何使用？
+
+**1、如何在浏览器（客户端）中开启 TLS 1.3 ？**
+
+目前最新版本的 Chrome 和 Firefox 都支持 `TLS 1.3`，但是都需要手动开启，主要原因是 `TLS 1.3` 还在草案阶段。
+
+1) 如何在 Firefox 中手动启用 `TLS 1.3` ？
+
+<img src="https://blog.upyun.com/wp-content/uploads/2017/12/firefix.jpg" height="243" width="800" />
+
+Mozilla Firefox 用户可以通过以下方式在 Firefox 中启用 `TLS 1.3` 支持（ 请注意，Nightly 默认支持 `TLS 1.3`，而 Firefox Stable 需要专门配置以支持 TLS 1.3 ）。
+
+ - 在 Firefox 地址栏中加载 `about:config`。如果显示警告屏幕，请确认您要小心，请忽略安全提示；
+ - 在搜索区域搜索 `security.tls.version.max`；
+ - 通过双击它将首选项的值更改为 4，默认为 3，如上图所示。
+
+2）如何在 Chrome 中手动启动 `TLS 1.3` ？
+
+<img src="https://blog.upyun.com/wp-content/uploads/2017/12/chrome_tls13.jpg" height="329" width="800" />
+
+Google Chrome 用户可以通过以下方式在 Chrome 中启用 `TLS 1.3` 支持（ 注意：`Chrome 62`  之前的版本需要将 ` Maximum TLS version enabled`  改为 `TLS 1.3` ）
+
+ - 在浏览器的地址栏中加载 `chrome://flags/`。这将打开 Web 浏览器的实验页面；
+ - 在搜索区域搜索 TLS 或者 tls ，找到 `TLS 1.3`  选项，默认为 Default；
+ - 需要将  `TLS 1.3` 改为 `Enabled (Draft)`；
+ - 重新启动 Web 浏览器。
+ 
+
+**2、如何在又拍云 CDN （服务端）控制台开启 `TLS 1.3` ？**
+
+登陆 [CDN 控制台](https://console.upyun.com/login/)，依次进入：服务管理 > 功能配置 > HTTPS > TLS 1.3, 滑动开关即可开启功能。如下图所示：
+
+<img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/config/upyun-cdn-config-https-tls13.jpg" height="470" width="800" />
+
 ----------
 
 ##6.访问控制
