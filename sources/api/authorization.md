@@ -22,7 +22,7 @@ curl -X GET \
 
 ### 放在 HTTP Header 中
 
-Authorization 放在 Header 中，REST API 、FORM API 的回调通知使用这种方式。
+认证信息 Authorization 放在 Header 中，在云存储的 API 中，REST API 以及 FORM API 的回调通知使用这种方式。
 
 ** 签名计算方法 **
 
@@ -50,9 +50,9 @@ Authorization: UPYUN <Operator>:<Signature>
 
 ** 注 **
 
-- 非必选参数为空时，连同前面的 `&` 一起不参与签名计算。所有计算的 MD5 值，格式均是 32 位小写。
+- 非必选参数为空时，连同后面的 `&` 一起不参与签名计算。所有计算的 MD5 值，格式均是 32 位小写。
 - HMAC-SHA1 输出的必须是**原生的二进制数据**。
-- REST API 签名有效期为 30 分钟；FORM API 回调通知签名有效期由用户自行确定，建议设置为 30 分钟。
+- `Date` 用于验证该签名是否有效，REST API 签名有效时间为请求时间起的 30 分钟内；FORM API 回调通知签名有效期由用户自行确定，建议设置为 30 分钟。
 
 ** 举例 **
 
@@ -155,7 +155,7 @@ Content-Length: 192
 
 ### 放在 HTTP Body 中
 
-Authorization 放在 Body 中，FORM API 上传文件使用这种方式。
+认证信息 Authorization 放在 Body 中，在云存储的 API 中，FORM API 的上传文件使用这种方式。
 
 ** 签名计算方法 **
 
@@ -185,7 +185,7 @@ authorization=UPYUN <Operator>:<Signature>
 
 ** 注 **
 
-- 非必选参数为空时，连同前面的 `&` 一起不参与签名计算。所有计算的 MD5 值，格式均是 32 位小写。
+- 非必选参数为空时，连同后面的 `&` 一起不参与签名计算。所有计算的 MD5 值，格式均是 32 位小写。
 - HMAC-SHA1 输出的必须是**原生的二进制数据**。
 - 自定义签名有效期，建议为 30 分钟。如果签名超过有效期，需要重新生成签名。
 
@@ -273,17 +273,114 @@ UPYUN operator123:DTGOeaCa1yk1JWG4G3DH+u5sI5M=
 ----WebKitFormBoundaryE19zNvXGzXaLvS5C
 ```
 
+## token 认证
+
+游戏、物联网等行业，为了区分不同终端，提升认证安全性，在 REST API 上添加了 token 认证，使用 token 认证可以为每个终端签发**一个独立的有过期时间的**“密码”。
+
+### token 认证的生成逻辑
+
+![token 认证的生成逻辑](http://upyun-assets.b0.upaiyun.com/docs/storage/token_auth.png)
+
+1. 使用终端上传文件的标识信息，计算 token。
+2. Server 端生成 token。
+3. 终端缓存 token，在有效期内的上传文件请求，都可以使用该 token。
+4. 终端上传文件，请求中附带 token。如果 token 正确且在有效期内，验证通过，允许上传文件；否则，拒绝上传，返回错误码 `401`。
+
+### token 认证生成
+
+** 准备工作 **
+
+1. 准备用于运行 token 生成程序的 Server。
+2. 准备 Operator、Password，即操作员信息。
+
+** token 认证计算方法 **
+
+```
+Authorization: UPYUN <Operator>:<token>
+
+<token> = Base64 (HMAC-SHA1 (<Password>,
+<Method>&
+<X-Upyun-Uri-Prefix>&
+<X-Upyun-Uri-Postfix>&
+<X-Upyun-Expire>
+))
+```
+
+相关参数说明：
+
+| 参数      				| 必选 	| 说明                                           	|
+|-----------------------|-------|---------------------------------------------------|
+| Operator      		| 是  	| 服务的操作员名称                            		|
+| Method        		| 是  	| 请求方式，如：GET、POST、PUT、HEAD 等               	|
+| X-Upyun-Uri-Prefix   	| 否  	| 使用请求路径中前面部分计算 token，和下一个参数是一组，两个必须填一个，允许两个都填	 |
+| X-Upyun-Uri-Postfix  	| 否  	| 使用请求路径中后面部分计算 token，和上一个参数是一组，两个必须填一个，允许两个都填	 |
+| X-Upyun-Expire       	| 是  	| token 的过期时间，UNIX UTC 时间戳，单位秒，建议 3 个月	 |
+| Password      		| 是  	| 服务的操作员密码的 MD5 值               				|
+
+** 注 **
+
+- 非必选参数为空时，连同后面的 `&` 一起不参与签名计算。所有计算的 MD5 值，格式均是 32 位小写。
+- HMAC-SHA1 输出的必须是**原生的二进制数据**。
+
+** 举例 **
+
+```
+// 操作员信息
+Operator = operator123			
+Password = MD5(password123) = 482c811da5d5b4bc6d497ffa98491e38
+
+// 参数信息
+Method = PUT							
+X-Upyun-Uri-Prefix = /bucket/client_37ascii 	// 终端设备的标识前缀 （也可以是存储上的一个目录，如 /client_37ascii/ ）
+X-Upyun-Expire = 1528531186  // 过期时间：2018/6/9 15:59:46
+```
+
+生成 Token：
+
+```
+Token = Base64 (HMAC-SHA1 (<Password>,
+<Method>&
+<X-Upyun-Uri-Prefix>&
+<X-Upyun-Expire>
+))
+= Base64 (HMAC-SHA1 (482c811da5d5b4bc6d497ffa98491e38,PUT&/bucket/client_37ascii&1528531186))
+// HMAC-SHA1 返回的原生二进制数据进行 Base64 编码
+= P2UZNhjF+wB4MPq8ONSFU2aVW+8=
+```
+
+Authorization 签名：
+
+```
+Authorization: UPYUN operator123:P2UZNhjF+wB4MPq8ONSFU2aVW+8=
+```
+
+终端上传文件请求 Header：
+
+```
+PUT /bucket/client_37ascii_xxx.jpg HTTP/1.1
+Authorization: UPYUN operator123:P2UZNhjF+wB4MPq8ONSFU2aVW+8=
+X-Upyun-Uri-Prefix = /bucket/client_37ascii
+X-Upyun-Expire = 1528531186
+Content-MD5: 7ac66c0f148de9519b8bd264312c4d64  	// 用于验证文件的完整性，详见 REST API 上传文件
+Date: Tue, 09 Jan 2018 15:39:40 GMT		
+Content-Type: image/jpeg
+Host: v0.api.upyun.com
+Content-Length: 33456
+```
+
+
+---------
+
 ## 代码演示
 
 ### 注意事项
 
 1. 本示例适用于云存储，云处理，内容识别，容器云服务。
-2. 使用 `form` `API` 上传时，需要用户生成 `policy`，本示例不提供生成 `policy` 的使用实例。
-3. 使用时，根据自己的需求，配置，修改对应参数: `key`，`secret`，`uri`，`method`，`policy`，`md5`。
-4. 本示例使用的 `key`，`secret` 在不同服务中的含义不一样，云存储，云处理，内容识别(有存储) 表示操作员和密钥，
-内容识别(无存储)，容器云表示各自服务提供的 `client_key`，`client_secret`。
-5. 根据又拍云文档说明，把认证信息，填入相应的 `http` 请求信息中。
-6. 认证鉴权的详细信息请查看又拍云文档
+2. 使用时，根据自己的需求和配置，修改对应参数: `key`，`secret`，`uri`，`method`，`policy`，`md5`。
+3. 本示例使用的 `key` 和 `secret` 在不同服务中的含义不一样，云存储、云处理、内容识别(有存储) 中表示 `Operator` 和 `Password`，
+内容识别(无存储)、容器云表示各自服务提供的 `ClientKey` 和 `ClientSecret`。
+4. 根据对应 API 文档说明，把认证信息，填入相应的 `http` 请求信息中。
+5. 使用 `form API` 上传时，需要用户生成 `policy`，本示例不提供生成 `policy` 的使用实例。
 
 ### 常用语言代码示例
 
