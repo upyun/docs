@@ -8,14 +8,14 @@
 
 ## 图片识别(图片内容)
 
-上传图片内容，进行识别。`act=porn` 表示色情识别。
+上传图片内容，进行识别。`act=porn` 表示色情识别，`act=political` 表示涉政识别。
 
 ### 请求
 
 **请求语法**
 
 ```
-POST /image/bin/check?act=porn HTTP/1.1
+POST /image/bin/check?act=<act> HTTP/1.1
 Host: banma.api.upyun.com
 Date: GMT Date
 Authorization: UPYUN <ClientKey>:<Signature>
@@ -43,6 +43,10 @@ Content-Type: <图片内容类型，必填>
 | porn.label   		| integer   | 推荐分类，可能值 `0`、`1`、`2`，`0` 表示正常，`1` 表示色情，`2` 表示性感  |
 | porn.rate       	| float    	| 推荐分类的概率                                            		|
 | porn.review 		| bool  	| 是否需要人工审核									|
+| political         | json      | 涉政识别结果 |
+| political.label   | integer   | 分类, 可能值 `100`, `101`, `100` 表示正常, `101` 表示涉政 |
+| political.name    | string    | 图片中出现的政治人物姓名 |
+| political.similarity | float  | 相似度 |
 
 
 ### 举例
@@ -50,8 +54,8 @@ Content-Type: <图片内容类型，必填>
 **请求示例**
 
 ```
-POST /image/bin/check HTTP/1.1
-Host: banma.api.upyun.com 
+POST /image/bin/check?act=porn HTTP/1.1
+Host: banma.api.upyun.com
 Date: Thu, 12 Oct 2017 07:32:34 GMT
 Content-Type: image/jpeg
 Authorization: UPYUN 2GO7K6NCPInWZqvJewohbDH5jmtaBY0x:mW7gtK0PRvhR0Mzn/x6RSAbh3cg=
@@ -74,14 +78,14 @@ Date: Thu, 12 Oct 2017 07:32:29 GMT
 
 ## 图片识别(图片 URL)
 
-提交图片 URL，进行识别。`act=porn` 表示色情识别。
+提交图片 URL，进行识别。`act=porn` 表示色情识别，`act=political` 表示涉政识别。
 
 ### 请求
 
 **请求语法**
 
 ```
-POST /image/url/check?act=porn HTTP/1.1
+POST /image/url/check?act=<act> HTTP/1.1
 Host: banma.api.upyun.com
 Date: GMT Date
 Authorization: UPYUN <ClientKey>:<Signature>
@@ -115,13 +119,17 @@ Content-Type: application/json
 | porn.label   		| integer   | 推荐分类，可能值 `0`、`1`、`2`，`0` 表示正常，`1` 表示色情，`2` 表示性感  |
 | porn.rate       	| float    	| 推荐分类的概率                                            		|
 | porn.review 		| bool  	| 是否需要人工审核									|
+| political         | json      | 涉政识别结果 |
+| political.label   | integer   | 分类, 可能值 `100`, `101`, `100` 表示正常, `101` 表示涉政 |
+| political.name    | string    | 图片中出现的政治人物姓名 |
+| political.similarity | float  | 相似度 |
 
 ### 举例
 
 **请求示例**
 
 ```
-POST /image/url/check HTTP/1.1
+POST /image/url/check?act=porn HTTP/1.1
 Host: banma.api.upyun.com
 Date: Thu, 12 Oct 2017 06:57:50 GMT
 Authorization: UPYUN 2GO7K6NCPInWZqvJewohbDH5jmtaBY0x:CKhrW8SSU0ctnmavfnRs1s1NFBY=
@@ -255,10 +263,10 @@ Date: Thu, 12 Oct 2017 06:57:45 GMT
 
 ```
 POST <notify_url> HTTP/1.1
-Content-Type: application/json 
-Date: Thu, 12 Oct 2017 04:06:43 GMT 
-Content-Md5: d2acd6c01e1de9afa203b585f614c0cf 
-Content-Length: 1775 
+Content-Type: application/json
+Date: Thu, 12 Oct 2017 04:06:43 GMT
+Content-Md5: d2acd6c01e1de9afa203b585f614c0cf
+Content-Length: 1775
 Authorization: UPYUN 2GO7K6NCPInWZqvJewohbDH5jmtaBY0x:P8qmASfkbtM/6CMo1WlqW59W9+g=
 
 {"error":"","filelist":[{"result":{"porn":{"label":0,"rate":0.9995450377464294,"review":false}},"shot_time":0},{"result":{"porn":{"label":0,"rate":0.9990586638450623,"review":false}},"shot_time":10},{"result":{"porn":{"label":0,"rate":0.9997151494026184,"review":false}},"shot_time":20},{"result":{"porn":{"label":0,"rate":0.9990173578262329,"review":false}},"shot_time":30},{"result":{"porn":{"label":0,"rate":0.9789921641349792,"review":false}},"shot_time":40},{"result":{"porn":{"label":0,"rate":0.9992973804473877,"review":false}},"shot_time":50},{"result":{"porn":{"label":0,"rate":0.9562959671020508,"review":false}},"shot_time":60},{"result":{"porn":{"label":0,"rate":0.9989614486694336,"review":false}},"shot_time":70}],"result":{"porn":{"label":0,"rate":0.9931503997908698,"review":false}},"service":"","source":"","status_code":200,"task_id":"rDt7IaxKeQMGWVvX8YZ5MbwJtT0WuQbh"}
@@ -303,7 +311,7 @@ Content-Type: application/json
 |-------------------|-----------|-----------------------------------------------------------|
 | status_code	    | integer   | 处理结果状态码，`200` 表示成功处理 |
 | error	         	| string   	| 错误信息，空字符串表示无错误信息 |
-| spam 				| json  	| 文本识别结果	|	
+| spam 				| json  	| 文本识别结果	|
 | spam.task_id   	| string   	| 任务 ID  |
 | spam.scores	   	| list    	| 各个分类及概率, 从左至右依次是 `正常概率`、`违规概率` |
 | spam.label   		| integer   | 推荐分类，可能值 `0`、`1`、`2`，`0` 表示正常，`1` 表示违规，`2` 表示疑似  |
@@ -382,7 +390,7 @@ def sign(client_key, client_secret, method, uri, date):
 client_key = '2GO7K6NCPInWZqvJewohbDH5jmt'
 client_secret = 'BKQrAn5OjgG3HVlkJo78DbyiuL'
 
-# 图片 URL 进行色情识别 
+# 图片 URL 进行色情识别
 def image_check():
     headers = {}
     headers['Date'] = httpdate_rfc1123()
