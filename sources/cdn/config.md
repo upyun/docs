@@ -161,6 +161,11 @@
 
 合理设置最大失败次数和静默时间，有助于在源站异常的情况下最大程度减少对线上请求的影响。这里实际上跟 Nginx 核心的 upstream 模块实现机制类似，进一步了解可参考 [链接](http://nginx.org/en/docs/http/ngx_http_upstream_module.html#server) 。
 
+**注意事项**
+
+ - 关于主、备回源，当主源出现错误时，POST 以及带 BODY 的 GET 方法的请求不会回备源进行重试操作。
+
+
 ###2.2 回源 Host
 
 **功能说明**
