@@ -361,7 +361,6 @@ PUT /bucket/client_37ascii_xxx.jpg HTTP/1.1
 Authorization: UPYUN operator123:P2UZNhjF+wB4MPq8ONSFU2aVW+8=
 X-Upyun-Uri-Prefix = /bucket/client_37ascii
 X-Upyun-Expire = 1528531186
-Content-MD5: 7ac66c0f148de9519b8bd264312c4d64  	// 用于验证文件的完整性，详见 REST API 上传文件
 Date: Tue, 09 Jan 2018 15:39:40 GMT		
 Content-Type: image/jpeg
 Host: v0.api.upyun.com
