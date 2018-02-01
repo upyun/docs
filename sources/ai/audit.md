@@ -189,7 +189,7 @@ apps = [
 	{
 	    "name": "videoaudit",   		// 异步任务名称，videoaudit 表示点播识别
         "notify_url": "<notify_url>"    // 回调地址，不填时使用上传参数中的 notify_url
-		"interval": "10",   				// 截图间隔周期，非必填
+		"interval": 10,   				// 截图间隔周期，非必填
 		"save_as": "/foo_{index}.jpg",  	// 截图保存路径，非必填
 		"resize": "640x480",   				// 截图保存尺寸，非必填
 	}
@@ -245,7 +245,7 @@ curl -X POST \
 | 参数       		| 类型       	| 必选  	| 说明                              	|
 |-------------------|---------------|-------|-----------------------------------|
 | source       		| string       	| 是   	| 视频点播的路径         			|
-| interval        	| string       	| 否   	| 截图间隔时间，默认 `10`，单位秒    	|
+| interval        	| integer      	| 否   	| 截图间隔时间，默认 `10`，单位秒    	|
 | save_as           | string       	| 否   	| 截图保存路径，默认不保存截图 <br /> 支持[动态参数](/api/form_api/#save-key)和 `{index}`(必填)，后缀作为截图格式，支持 `jpg` 和 `png`	|
 | resize          	| string       	| 否   	| 截图保存尺寸，默认原图大小，格式宽x高，如 `640x480` |
 
