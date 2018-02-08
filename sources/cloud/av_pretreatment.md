@@ -31,7 +31,7 @@ Authorization: UPYUN <operator>:<signature>
 
 其中 `operator` 为操作员名称，`signature` 为根据参数计算出来的签名。
 
-### 签名算法
+### 请求签名
 
 授权认证过程中的 `signature` 参数通过下面的方式获得：
 
@@ -84,6 +84,15 @@ operator_testerbucket_nameimtesternotify_urlhttp://www.example.com/notify/source
 将得到的字符串进行 md5 计算，得到最终的 `signature` 值为 `ad91a9ab81ecc34e973844a6723ce354`
 
 特别地，`signature` 参数不参与签名计算。
+
+<a name="old_notify_url"></a>
+### 回调签名
+
+signature 的计算方法：
+
+```
+md5(<operator_name><md5_operator_password><task_id><timestamp>), 并取中间 16 位。
+```
 
 ## 视频处理
 提交视频处理请求到处理队列，处理完成之后异步回调通知用户

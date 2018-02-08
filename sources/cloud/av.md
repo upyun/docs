@@ -34,8 +34,6 @@ curl -X POST \
 
 `Authorization` 详见[签名认证](/cloud/authorization/#_1)。
 
-`代码实现` 详见[代码示例](/api/authorization/#_3)。
-
 ** 请求参数 **
 
 | 参数       		| 类型       	| 必选  	| 说明                              	|
@@ -60,7 +58,7 @@ curl -X POST \
         "save_as": "/a/b.mp4"                   // 保存路径
     },
     {
-        "type": "vconcat",                                     	// 视频拼接
+        "type": "video",                                     	// 视频拼接
         "avopts": "/i/L2EvYi9jLm1wNA==/i/LzEvMi8zLm1wNA==",    	// 参数
         "save_as": "/concat/a.mp4"								// 保存路径
     },
@@ -123,8 +121,6 @@ curl -X POST \
 ** 回调签名 **
 
 `Authorization` 详见[签名认证](/cloud/authorization/#_1)，它提供给客户端，用于验证回调通知的合法性。
-
-`代码实现` 详见[代码示例](/api/authorization/#_3)。
 
 ---------
 
@@ -291,131 +287,56 @@ curl http://p0.api.upyun.com/result?service=<service>&task_ids=<task_id1>,<task_
 | 视频编码格式 	| H.264/AVC 、H.263、H.263+、MPEG-2、MPEG-4、VP8、VP9、Quicktime、RealVideo、Windows Media Video 等 | H.264/AVC、VP8、H.265/HEVC、VP9 等|
 | 音频编码格式 	| MP1、MP2、MP3、AAC、AC-3、Vorbis、PCM、RealAudio、Windows Media Audio 等	| AAC、MP3 等		|
 
-其他更多的格式请查阅 [ffmpeg 支持格式列表](http://ffmpeg.org/general.html#Supported-File-Formats_002c-Codecs-or-Features)。
-
 ---------
 
 <a name="preset_mode"></a>
 ### 预置模板
 
-同等清晰度下，建议优先使用 16:9 的宽高比。特别地，支持 4K 视频处理。
+同等清晰度下，建议优先使用 16:9 的宽高比。特别地，窄带高清也可以使用。
 
-| 清晰度     	| 参数名         	| 分辨率            	| 码率     		|
+| 清晰度     	| 模板名         	| 分辨率            	| 码率     		|
 |---------------|-------------------|-------------------|---------------|
-| 全高清      	| 1080p(16:9)     	| 1920x1080,16:9    | 2560Kbps    	|
-| 高清        	| 720p(16:9)      	| 1280x720,16:9     | 1152kbps    	|
-| 高清        	| 720p(4:3)       	| 960x720,4:3     	| 1152kbps    	|
-| 标清        	| 540p(16:9)      	| 960x540,16:9      | 768kbps    	|
-| 标清        	| 480p(16:9)      	| 854x480,16:9      | 512kbps    	|
-| 标清        	| 480p(4:3)       	| 640x480,4:3       | 512kbps    	|
-| 标清        	| 480p(3:2)       	| 720x480,3:2       | 512kbps    	|
-| 流畅（低清）  	| 360p(16:9)       	| 640x360,16:9      | 384kbps    	|
-| 流畅（低清）  	| 360p(4:3)        	| 480x360,4:3       | 384kbps    	|
-| 流畅（低清）  	| 240p(4:3)        	| 320x240,4:3       | 256kbps    	|
+| 4K      		| 2160p(16:9)     	| 3840x2160,16:9    | ≤ 8000Kbps    |
+| 2K        	| 1440p(16:9)      	| 2560x1440,16:9    | ≤ 4000Kbps    |
+| FHD/全高清    	| 1080p(16:9)     	| 1920x1080,16:9    | ≤ 2560Kbps    |
+| HD/高清       	| 720p(16:9)      	| 1280x720,16:9     | ≤ 1500kbps    |
+| HD/高清       	| 720p(4:3)       	| 960x720,4:3     	| ≤ 1500kbps    |
+| LD/标清       	| 540p(16:9)      	| 960x540,16:9      | ≤ 800kbps    	|
+| LD/标清       	| 480p(16:9)      	| 854x480,16:9      | ≤ 800kbps   	|
+| SD/流畅       	| 480p(4:3)       	| 640x480,4:3       | ≤ 500kbps    	|
+| SD/流畅  		| 360p(16:9)       	| 640x360,16:9      | ≤ 500kbps    	|
+| SD/流畅  		| 240p(4:3)        	| 320x240,4:3       | ≤ 300kbps    	|
 
----------
 
-### 签名认证（旧）
-
-详见「音视频处理（旧）」> 「[授权认证](/cloud/av_pretreatment/#_2)」。
-
-<a name="old_notify_url"></a>
-** 回调签名（旧） **
-
-signature 的计算方法：
-
-```
-md5(<operator_name><md5_operator_password><task_id><timestamp>), 并取中间 16 位。
-```
-
-<!--
-请求的授权认证是通过在 HTTP 请求头中添加 `Authorization` 进行验证：
-```
-Authorization:　UPYUN　<operator>:<signature>
-```
-
-其中，`operator` 是操作员名称，`signature` 是根据参数计算出来的签名。
-
-`signature` 参数通过下面的方式获得：
-
-1\. 将参数按照 **[参数名称的字典序](https://zh.wikipedia.org/wiki/%E5%AD%97%E5%85%B8%E5%BA%8F)** 排序后，将参数键值对连接成一个字符串。
-
-2\. 将第一步生成的字符串按照下面的规则进行连接，获取待签名字符串：
-
-```
-<operator_name><signature_string><md5_operator_password>
-```
-
-> 其中，`operator_name` 为用于认证授权的操作员名，`signature_string` 为第一步生成的字符串，
-> `md5_operator_password` 为对操作员密码进行 md5 计算之后得到的字符串。
-
-3\. 对第二步生成的字符串做 md5 计算，得到最终的 `signature` 值。
-
-> 特别地，参数字符串都必须使用 `utf-8` 编码处理。
-
-以下是一个计算 `signature` 的例子：
-
-假设接口提交如下参数：
-
-```
-bucket_name: "demo"
-tasks: "W3siYXZvcHRzIjoiL3MvMjQwcCg0OjMpL2FzLzEvci8zMCIsInJldHVybl9pbmZvIjp0cnVlLCJzYXZlX2FzIjoiL2EvYi5tcDQiLCJ0eXBlIjoidmlkZW8ifSx7ImF2b3B0cyI6Ii9pL0wyRXZZaTlqTG0xd05BPT0vaS9MekV2TWk4ekxtMXdOQT09Iiwic2F2ZV9hcyI6Ii9jb25jYXQvYS5tcDQiLCJ0eXBlIjoidmNvbmNhdCJ9XQ=="
-notify_url: "http://www.example.com/notify/"
-source: "/video/upyun.mp4"
-accept: "json"
-```
-
-用于授权验证的操作员名为 `upyun-operator` ，操作员密码为 `onepiece`。
-
-首先根据参数名称的字典序进行排序：
-
-```
-accept: "json"
-bucket_name: "demo"
-notify_url: "http://www.example.com/notify/"
-source: "/video/upyun.mp4"
-tasks: "W3siYXZvcHRzIjoiL3MvMjQwcCg0OjMpL2FzLzEvci8zMCIsInJldHVybl9pbmZvIjp0cnVlLCJzYXZlX2FzIjoiL2EvYi5tcDQiLCJ0eXBlIjoidmlkZW8ifSx7ImF2b3B0cyI6Ii9pL0wyRXZZaTlqTG0xd05BPT0vaS9MekV2TWk4ekxtMXdOQT09Iiwic2F2ZV9hcyI6Ii9jb25jYXQvYS5tcDQiLCJ0eXBlIjoidmNvbmNhdCJ9XQ=="
-```
-
-将排序后的参数键值对连接成一个字符串，得到：
-
-```
-acceptjsonbucket_namedemonotify_urlhttp://www.example.com/notify/source/35000_38720_mp4.tstasksW3siYXZvcHRzIjoiL3MvMjQwcCg0OjMpL2FzLzEvci8zMCIsInJldHVybl9pbmZvIjp0cnVlLCJzYXZlX2FzIjoiL2EvYi5tcDQiLCJ0eXBlIjoidmlkZW8ifSx7ImF2b3B0cyI6Ii9pL0wyRXZZaTlqTG0xd05BPT0vaS9MekV2TWk4ekxtMXdOQT09Iiwic2F2ZV9hcyI6Ii9jb25jYXQvYS5tcDQiLCJ0eXBlIjoidmNvbmNhdCJ9XQ==
-```
-
-连接操作员名和进行 md5 计算之后的操作员密码：
-
-```
-upyun-operatoracceptjsonbucket_namedemonotify_urlhttp://www.example.com/notify/source/35000_38720_mp4.tstasksW3siYXZvcHRzIjoiL3MvMjQwcCg0OjMpL2FzLzEvci8zMCIsInJldHVybl9pbmZvIjp0cnVlLCJzYXZlX2FzIjoiL2EvYi5tcDQiLCJ0eXBlIjoidmlkZW8ifSx7ImF2b3B0cyI6Ii9pL0wyRXZZaTlqTG0xd05BPT0vaS9MekV2TWk4ekxtMXdOQT09Iiwic2F2ZV9hcyI6Ii9jb25jYXQvYS5tcDQiLCJ0eXBlIjoidmNvbmNhdCJ9XQ==e81502a921e78c4ddb017a555586664c
-```
-
-将得到的字符串进行 md5 计算，得到最终的 `signature` 值为 `c6f1aa91e24241debe80858aec299862`。
+<!--   旧的
+| LD/标清       	| 480p(3:2)      	| 720x480,3:2      | ≤ 800kbps   	|
+| SD/流畅  		| 360p(4:3)        	| 480x360,4:3       | ≤ 500kbps    	|
 -->
 
 ---------
 
 <a name="function"></a>
-## 功能
-
 <a name="video_transcode"></a>
-### 视频转码
+## 视频转码
 
 | 参数              	| 类型   	| 必选  	| 说明                                    					|
 |-------------------|-----------|-------|-----------------------------------------------------------|
-| `type`            | string    | 是		| 固定值，`video`                                 			|
-| `avopts`          | string    | 是		| 视频转码参数，格式为 `/key1/value1/key2/value2/...`，见「avopts 参数说明」|
+| `type`            | string    | 是		| 固定值，`video`，表示标准转码                 		|
+| `avopts`          | string    | 是		| 视频转码参数，格式为 `/key1/value1/key2/value2/...`，参数见「参数」|
+| `save_as`         | string    | 否		| 输出文件保存路径，默认使用原始视频所在目录+系统随机生成的文件名+原始视频后缀   |
 | `return_info`		| boolean   | 否		| 回调信息是否包含输出文件的元数据，元数据格式为 JSON，默认 `false` 		|
-| `save_as`         | string    | 否		| 输出文件保存路径，默认原始视频所在目录+系统随机生成的文件名   |
 
-** avopts 参数说明 **
+** 注 **
+
+- `save_as` 的后缀名默认当作输出封装格式。格式除视频格式外，还支持 GIF/WebP，可以实现把视频转码成动态 GIF/动态 WebP。
+
+### 常用参数
 
 | 参数              			| 类型   	| 必选	| 说明                                    			|
 |---------------------------|-----------|-------|---------------------------------------------------|
-| `/f/<format>`             | string    | 否		| 视频格式。当输出文件没有后缀时，需要指定，其余时候根据输出文件后缀名自动判定           	|
 | `/vb/<bitrate>`           | integer   | 否		| 视频比特率，单位 kbps，默认按照视频原始比特率处理       	|
 | `/s/<scale>`              | string    | 否		| 视频分辨率，默认按照原始分辨率处理。见「注」				|
 | `/as/<auto_scale>`        | boolean   | 否		| 是否根据分辨率自动调整视频的比例，默认 `false`。仅当传递了 `s` 参数时有效    |
-| `/ar/<audio_sample_rate>` | integer   | 否		| 音频采样率，单位 Hz，默认按照原始采样率处理。可选值：`44100`、`48000`、`32000`、`22050`、`24000`、`16000`、`0`   |
 | `/r/<frame_rate>`         | integer   | 否		| 视频帧率，默认按照原始帧率处理。推荐值：`25`、`30`    					|
 | `/sp/<rotate>`            | string    | 否		| 旋转角度，默认按照原始视频角度处理。可选值：`auto（自动扶正）`、`90`、`180`、`270`        |
 | `/sm/<map_metadata>`      | boolean   | 否		| 是否保留视频元数据，默认 `true`
@@ -424,17 +345,288 @@ upyun-operatoracceptjsonbucket_namedemonotify_urlhttp://www.example.com/notify/s
 | `/an/<disable_audio>`     | boolean   | 否		| 是否禁掉音频，默认 `false`                      		|
 | `/vn/<disable_video>`     | boolean   | 否		| 是否禁掉视频，默认 `false`                         	|
 | `/su/<accelerate_factor>` | float     | 否		| 视频加速倍数，默认 `1.0`。取值范围 `[1.0，10.0]`       	|
+| `/ar/<audio_sample_rate>` | integer   | 否		| 音频采样率，单位 Hz，默认按照原始采样率处理。可选值：`44100`、`48000`、`32000`、`22050`、`24000`、`16000`、`0`   |
 | `/sar/<sar>` | string | 否 | [采样长宽比](https://en.wikipedia.org/wiki/Aspect_ratio_(image)#Distinctions)，格式 `w:h`，常用值 `1:1`，`4:3` 或 `16:9` |
 | `/dar/<dar>` | string | 否 | [显示长宽比](https://en.wikipedia.org/wiki/Pixel_aspect_ratio#Introduction)，格式 `w:h`，常用值 `1:1`，`4:3` 或 `16:9` |
 | `/pv/<pv>` | string | 否 | H264 Profile，常用值 `baseline `，`main`，`high` 等 |
 | `/level/<level>` | float | 否 | H264 Level，常用值 `3.0`，`3.1`，`4.0`，`4.1`，`4.2` 等 |
-| `/cr/<concat_reverse>` | boolean | 否 | 向视频结尾添加倒序播放的完成处理的视频，支持 `gif` 与 `webp` 输出格式 |
+| `/f/<format>`             | string    | 否		| 视频格式。当输出文件没有后缀时，需要指定，其余时候根据输出文件后缀名自动判定 |
 
 ** 注 **
 
-- `s` 参数有两种设置方法：1）使用[预置模板](#preset_mode)，值是预置模板的参数名，如 `720p(16:9)`；2）自定义，值是 `宽x高`，如 `1280x720`。
+- `s` 参数有两种设置方法：1）使用[预置模板](#preset_mode)，值是预置模板的`模板名`，如 `720p(16:9)`；2）自定义，值是 `宽x高`，如 `1280x720`。
+
+### 切片参数 
+
+| 参数              	| 类型   	| 必选	| 说明                                    			|
+|-------------------|-----------|-------|---------------------------------------------------|
+| `/ht/<hls_time>`  | string    | 否		| 每片时长，单位 s（秒），默认 `10`              		|
+
+** 注 **
+
+- 使用 `ht` 参数时，`save_as` 参数必须以 `.m3u8` 后缀结尾。
+
+### 水印参数
+
+| 参数              			| 类型   	| 必选	| 说明                                    			|
+|---------------------------|-----------|-------|---------------------------------------------------|
+| `/wmImg/<watermark_img>`  | string    | 是		| 水印图片相对路径，需要安全的 Base64 编码。图片格式支持 `png` 和 `webp`  |
+| `/wmGravity/<wmGravity>`  | string    | 否		| 水印图片放置方位，默认 `northeast`。见「注」                              |
+| `/wmDx/<watermark_dx>`    | integer   | 否		| 水印图片横偏移量，单位 px，当 `wmGravity` 为 `northeast` 时，默认 `-20` <br /> 横偏移量取值正负的依据：往 `east` 方向偏移，为正；往 `west` 方向偏移，为负       |
+| `/wmDy/<watermark_dy>`    | integer   | 否		| 水印图片纵偏移量，单位 px，当 `wmGravity` 为 `northeast` 时，默认 `15` <br /> 纵偏移量取值正负的依据：往 `south` 方向偏移，为正；往 `north` 方向偏移，为负      |
+
+** 注 **
+
+- 9 个方位：
+```
+northwest     |     north      |     northeast
+              |                |
+              |                |
+--------------+----------------+--------------
+              |                |
+west          |     center     |          east
+              |                |
+--------------+----------------+--------------
+              |                |
+              |                |
+southwest     |     south      |     southeast
+```
+
+### 剪辑参数
+
+| 参数              	| 类型   	| 必选	| 说明                                    			|
+|-------------------|-----------|-------|---------------------------------------------------|
+| `/ss/<start_time>`| string    | 否		| 剪辑开始时间，格式为 `HH:MM:SS`，默认视频开始时间   	|
+| `/es/<end_time>`  | string    | 否		| 剪辑结束时间，格式为 `HH:MM:SS`，默认视频结束时间   	|
+
+### 动图参数
+
+把 `save_as` 的后缀名指定为 `gif` 或 `webp`，实现视频转码成动态图片。
+
+| 参数              			| 类型   	| 必选	| 说明                                    			|
+|---------------------------|-----------|-------|---------------------------------------------------|
+| `/cr/<concat_reverse>` 	| boolean 	| 否 	| 向视频结尾处添加倒序的内容。功能效果是，正序内容+倒序内容 |
+
+### 拼接参数
+
+拼接的视频分辨率需要保持一致，拼接参数不能与其他参数混用。如果要混用，请分做两个任务，使用[链式处理](#chain)。
+
+| 参数              	| 类型   	| 必选	| 说明                                    			|
+|-------------------|-----------|-------|---------------------------------------------------|
+| `/i/<video>`      | string    | 否		| 需要**后置**拼接视频文件的相对路径，需要安全的 Base64 编码 <br /> 多个需要拼接视频按 `/i/<video>/i/<video>/...` 方式进行连接。见「注」 |
+| `/h/<video>`      | string    | 否		| 需要**前置**拼接视频文件的相对路径，需要安全的 Base64 编码 <br /> 多个需要拼接视频按 `/h/<video>/h/<video>/...` 方式进行连接。见「注」 |
+| `/codec/<codec>`  | string    | 否		| 设置视频编码器，默认不需要设置。可选值：`copy`。见「注」 |
+
+** 注 **
+
+- 视频拼接顺序：待拼接视频按 `h` 出现顺序，依次拼接在[原始视频（`source`）](#submit_task)前面；待拼接视频按 `i` 出现顺序，依次拼接在[原始视频（`source`）](#submit_task)后面。
+- 如果 `save_as` 参数指定格式跟[原始视频（`source`）](#submit_task)格式、拼接视频格式不一致，系统会**自动转码**原始视频、拼接视频成  `save_as`  参数指定格式；如果 `save_as` 参数未指定，拼接视频跟原始视频格式不一致，系统会自动转码拼接视频成原始视频格式。
+- 如果拼接视频和原始视频的编码一致，可以设置 `codec` 参数为 `copy`，不对拼接视频进行编解码，提高拼接速度。
 
 ---------
+
+<a name="nbhd"></a>
+## 窄带高清
+
+通过对视频的编码进行优化，平均降低视频大小 50%。特别地，输出视频编码格式是 H.264。
+
+| 参数              	| 类型   	| 必选  	| 说明                                    					|
+|-------------------|-----------|-------|-----------------------------------------------------------|
+| `type`            | string    | 是		| 固定值，`nbhd`，表示窄带高清                 		|
+| `avopts`          | string    | 是		| 视频转码参数，格式为 `/key1/value1/key2/value2/...`，参数见「参数」|
+| `return_info`		| boolean   | 否		| 回调信息是否包含输出文件的元数据，元数据格式为 JSON，默认 `false` 		|
+| `save_as`         | string    | 否		| 输出文件保存路径，默认原始视频所在目录+系统随机生成的文件名   |
+
+### 常用参数
+
+| 参数              			| 类型   	| 必选	| 说明                                    			|
+|---------------------------|-----------|-------|---------------------------------------------------|
+| `/scene/<scene>`          | string   	| 否		| 视频内容场景，默认 `auto`，服务根据视频内容智能选择。场景参数见「注」  |
+| `/s/<scale>`              | string    | 否		| 视频分辨率，默认按照原始分辨率处理。见「注」				|
+| `/as/<auto_scale>`        | boolean   | 否		| 是否根据分辨率自动调整视频的比例，默认 `false`。仅当传递了 `s` 参数时有效    |
+| `/r/<frame_rate>`         | integer   | 否		| 视频帧率，默认按照原始帧率处理。推荐值：`25`、`30`    					|
+| `/sp/<rotate>`            | string    | 否		| 旋转角度，默认按照原始视频角度处理。可选值：`auto（自动扶正）`、`90`、`180`、`270`   |
+| `/sm/<map_metadata>`      | boolean   | 否		| 是否保留视频元数据，默认 `true`
+| `/su/<accelerate_factor>` | float     | 否		| 视频加速倍数，默认 `1.0`。取值范围 `[1.0，10.0]`       	|
+| `/ar/<audio_sample_rate>` | integer   | 否		| 音频采样率，单位 Hz，默认按照原始采样率处理。可选值：`44100`、`48000`、`32000`、`22050`、`24000`、`16000`、`0`   |
+| `/f/<format>`             | string    | 否		| 视频格式。当输出文件没有后缀时，需要指定，其余时候根据输出文件后缀名自动判定 |
+
+** 注 **
+
+- `scene` 可选参数：`auto`，表示智能选择；`self_portrait`，表示自拍；`animation`，表示动画；`film_calm`，表示电视剧，包括综艺、访谈、在线教育等；`film_dramatic`，表示电影。
+- `s` 参数有两种设置方法：1）使用[预置模板](#preset_mode)，值是预置模板的`模板名`，如 `720p(16:9)`；2）自定义，值是 `宽x高`，如 `1280x720`。
+
+### 切片参数 
+
+| 参数              	| 类型   	| 必选	| 说明                                    			|
+|-------------------|-----------|-------|---------------------------------------------------|
+| `/ht/<hls_time>`  | string    | 否		| 每片时长，单位 s（秒），默认 `10`              		|
+
+** 注 **
+
+- 使用 `ht` 参数时，`save_as` 参数必须以 `.m3u8` 后缀结尾。
+
+### 水印参数
+
+| 参数              			| 类型   	| 必选	| 说明                                    			|
+|---------------------------|-----------|-------|---------------------------------------------------|
+| `/wmImg/<watermark_img>`  | string    | 是		| 水印图片相对路径，需要安全的 Base64 编码。图片格式支持 `png` 和 `webp`  |
+| `/wmGravity/<wmGravity>`  | string    | 否		| 水印图片放置方位，默认 `northeast`。见「注」                              |
+| `/wmDx/<watermark_dx>`    | integer   | 否		| 水印图片横偏移量，单位 px，当 `wmGravity` 为 `northeast` 时，默认 `-20` <br /> 横偏移量取值正负的依据：往 `east` 方向偏移，为正；往 `west` 方向偏移，为负       |
+| `/wmDy/<watermark_dy>`    | integer   | 否		| 水印图片纵偏移量，单位 px，当 `wmGravity` 为 `northeast` 时，默认 `15` <br /> 纵偏移量取值正负的依据：往 `south` 方向偏移，为正；往 `north` 方向偏移，为负      |
+
+** 注 **
+
+- 9 个方位：
+```
+northwest     |     north      |     northeast
+              |                |
+              |                |
+--------------+----------------+--------------
+              |                |
+west          |     center     |          east
+              |                |
+--------------+----------------+--------------
+              |                |
+              |                |
+southwest     |     south      |     southeast
+```
+
+### 剪辑参数
+
+| 参数              	| 类型   	| 必选	| 说明                                    			|
+|-------------------|-----------|-------|---------------------------------------------------|
+| `/ss/<start_time>`| string    | 否		| 剪辑开始时间，格式为 `HH:MM:SS`，默认视频开始时间   	|
+| `/es/<end_time>`  | string    | 否		| 剪辑结束时间，格式为 `HH:MM:SS`，默认视频结束时间   	|
+
+---------
+
+## 视频截图
+
+| 参数              	| 类型   	| 必选  	| 说明                                    					|
+|-------------------|-----------|-------|-----------------------------------------------------------|
+| `type`            | string    | 是		| 固定值，`thumbnail`                                 			|
+| `avopts`          | string    | 是		| 视频转码参数，格式为 `/key1/value1/key2/value2/...`，参数见「截图参数」  |
+| `return_info`		| boolean   | 否		| 回调信息是否包含输出文件的元数据，元数据格式为 JSON，默认 `false`      	|
+| `save_as`         | string    | 否		| 输出文件保存路径，默认原始视频所在目录+系统随机生成的文件名。见「注」   |
+
+** 截图参数 **
+
+| 参数              		| 类型   	| 必选	| 说明                                    			|
+|-----------------------|-----------|-------|---------------------------------------------------|
+| `/o/<thumb_single>` 	| boolean   | 是		| 是否单张截图，单张截图为 `true`，多张截图为 `false`   	|
+| `/n/<thumb_amount>` 	| integer   | 是		| 截图数量。当 `o` 参数为 `false` 时，有效；当 `o` 参数为 `true` 时，无效     |
+| `/ss/<thumb_start>` 	| string    | 否		| 截图开始时间，格式为 `HH:MM:SS`，默认 `00:00:00`                  |
+| `/es/<thumb_end>`   	| string    | 否		| 截图结束时间，格式为  `HH:MM:SS`，默认视频结束时间。当 `o` 参数为 `true` 时，无效     |
+| `/s/<thumb_scale>`  	| string    | 否		| 截图尺寸，格式为 `宽:高`，默认视频原始尺寸                   |
+| `/f/<thumb_format>` 	| string    | 否		| 截图输出格式，默认 `jpg`。图片格式支持 `png` 和 `jpg`。见「注」  |
+
+** 注 **
+
+- 多张截图时，自定义 `save_as` 参数时只需指定一个保存路径，具体每张图片保存路径根据规则进行类推，例如 `save_as` 为 `/path/to/img.png`，输出文件保存路径第一张为 `/path/to/img1.png`，第二张为 `/path/to/img2.png`......以此类推。
+- 自定义 `f` 和 `save_as` 参数时，使用 `f` 参数指定的格式作为输出格式；仅自定义 `save_as` 参数时，使用 `save_as` 参数指定的后缀名作为输出格式；两者都不自定义时，使用 `f` 参数的默认值 `jpg` 作为输出格式。
+- 支持 m3u8 截图。
+
+---------
+
+<a name="audio_transcode"></a>
+## 音频转码
+
+| 参数              	| 类型   	| 必选  	| 说明                                    					|
+|-------------------|-----------|-------|-----------------------------------------------------------|
+| `type`            | string    | 是		| 固定值，`audio`                                 			|
+| `avopts`          | string    | 是		| 视频转码参数，格式为 `/key1/value1/key2/value2/...`，参数见「参数」 |
+| `return_info`		| boolean   | 否		| 回调信息是否包含输出文件的元数据，元数据格式为 JSON，默认 `false`    	|
+| `save_as`         | string    | 否		| 输出文件保存路径，默认原始音频所在目录+系统随机生成的文件名	   |
+
+** 注 **
+
+- `save_as` 的后缀名作为输出封装格式。
+
+### 常用参数
+
+| 参数              		| 类型   	| 必选	| 说明                                    			|
+|-----------------------|-----------|-------|---------------------------------------------------|
+| `/f/<format>`         | string    | 否		| 音频格式，当输出文件没有后缀时，需要指定，其余时候根据输出文件后缀名自动判定        |
+| `/ac/<audio_channel>` | integer   | 否		| 声道，默认 `2`                                         |
+| `/ab/<audio_bitrate>` | integer   | 否		| 比特率，单位 kbps，默认按照音频原始比特率处理        |
+| `/vbr/<audio_vbr>`    | integer   | 否		| Variable bitrate, 默认按照音频原始 VBR 处理。取值范围 `[0-9]`   |
+| `/sm/<map_metadata>`  | boolean   | 否		| 是否保留音频 metadata，默认 `true`                  |
+
+### 剪辑参数
+
+拼接参数不能与其他参数混用，请注意。如果要混用，请分做两个任务，使用[链式处理](#chain)。
+
+| 参数              	| 类型   	| 必选	| 说明                                    			|
+|-------------------|-----------|-------|---------------------------------------------------|
+| `/ss/<start_time>`| string    | 否		| 剪辑开始时间，格式为 `HH:MM:SS`，默认视频开始时间   |
+| `/es/<end_time>`  | string    | 否		| 剪辑结束时间，格式为 `HH:MM:SS`，默认视频结束时间   |
+
+### 拼接参数
+
+拼接参数不能与其他参数混用。如果要混用，请分做两个任务，使用[链式处理](#chain)。
+
+| 参数              	| 类型   	| 必选	| 说明                                    			|
+|-------------------|-----------|-------|---------------------------------------------------|
+| `/i/<audio>`      | string    | 是		| 需要拼接音频文件的相对路径，需要安全的 Base64 编码  <br /> 多个需要拼接音频文件按 `/i/<audio>/i/<audio>/...` 方式进行连接   |
+
+** 注 **
+
+- 音频拼接顺序：需要拼接音频按 `i` 出现顺序，依次拼接在[原始音频（`source`）](#submit_task)后面。
+- 如果 `save_as` 参数指定格式跟[原始音频（`source`）](#submit_task)格式、拼接音频格式不一致，系统会**自动转码**原始音频、拼接音频成 `save_as` 参数指定格式；如果 `save_as` 参数未指定，拼接音频跟原始音频格式不一致，系统会自动转码拼接音频成原始音频格式。
+
+---------
+
+<a name="probe"></a>
+## 元数据获取
+
+获取音/视频文件的元信息。
+
+| 参数              	| 类型   	| 必选  	| 说明                                    					|
+|-------------------|-----------|-------|-----------------------------------------------------------|
+| `type`            | string    | 是		| 固定值，`probe`                                 			|
+
+---------
+
+<a name="chain"></a>
+## 链式处理
+
+多个任务按提交任务参数的先后顺序，对原文件进行链式处理。
+
+| 参数              	| 类型   	| 必选  	| 说明                                    					|
+|-------------------|-----------|-------|-----------------------------------------------------------|
+| `type`            | string    | 是		| 固定值，`chain`                                 			|
+| `avopts`          | string    | 是		| 链式处理参数，格式为 `/type1/key1/value1/type2/key2/value2...`，参数见「参数」 |
+| `return_info`		| boolean   | 否		| 回调信息是否包含输出文件的元数据，元数据格式为 JSON，默认 `false`  	|
+| `save_as`         | string    | 否		| 输出文件保存路径，默认原始音频所在目录+系统随机生成的文件名   |
+
+** 链式处理参数 **
+
+| 参数              	| 类型   	| 必选	| 说明                                    			|
+|-------------------|-----------|-------|---------------------------------------------------|
+| `/<type>/<avopts>`| string    | 是		| 多个功能标识 `type` 以及其对应的处理参数 `avopts` |
+
+** 请求样例 **
+
+```json
+{
+    "type": "chain",
+    "avopts": "/video/i/Zm9vLm1wNA==/video/s/480p(16:9)/wmImg/L3Rlc3QvbG9nby5wbmc=",
+    "save_as": "/foo.jpg"
+}
+```
+
+上述任务先解析 `/video/i/Zm9vLm1wNA==` 部分，和源视频进行拼接；之后解析 `/video/s/480p(16:9)/vb/300/r/25/vcodec/libx264/wmImg/L3Rlc3QvbG9nby5wbmc=`，将上一步输出的视频的分辨率转码成 480p(16:9) 并同时加上水印；最后输出文件保存至 `/foo.mp4`。
+
+** 注 **
+
+- 最多包含 4 个子任务。
+- 截图任务、视频切片任务不产生音视频输出的任务，仅允许放置在子任务列表的末尾。
+
+<!--
+
+<a name="function"></a>
+## 功能
 
 <a name="hls"></a>
 ### 视频切片
@@ -685,6 +877,8 @@ southwest     |     south      |     southeast
 
 - 最多包含 4 个子任务。
 - 截图任务、视频切片任务不产生音视频输出的任务, 仅允许放置在子任务列表的末尾。
+
+-->
 
 ---------
 
