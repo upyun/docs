@@ -135,7 +135,7 @@ Symantec、GeoTrust、TrustAsia 的各类付费 DV SSL、OV SSL、EV SSL 证书�
 
 **价格列表：**
 
-<img src="http://upyun-assets.b0.upaiyun.com/docs/ssl/certificate/price1.png" height="830" width="750" />
+<img src="http://upyun-assets.b0.upaiyun.com/docs/ssl/certificate/price1.png" height="671" width="788" />
 
 **说明：**
 
