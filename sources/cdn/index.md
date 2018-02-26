@@ -37,11 +37,11 @@
 
 ----------
 
-**简单编程**
+**边缘规则**
 
 ----------
 
-[功能介绍](https://docs.upyun.com/cdn/rewrite/#_1)｜ [应用场景](https://docs.upyun.com/cdn/rewrite/#_2) ｜ [规则说明](https://docs.upyun.com/cdn/rewrite/#_6) ｜ [语法规则](https://docs.upyun.com/cdn/rewrite/#_10) ｜ [配置引导](https://docs.upyun.com/cdn/rewrite/#_14) ｜ [经典案例](https://docs.upyun.com/cdn/rewrite/#_15) 
+[功能概述](https://docs.upyun.com/cdn/edgerules/#_1)｜ [语法规则](https://docs.upyun.com/cdn/edgerules/#_6)｜[配置指南](https://docs.upyun.com/cdn/edgerules/#_10) ｜ [经典案例](https://docs.upyun.com/cdn/edgerules/#_16) 
 
 ----------
 
