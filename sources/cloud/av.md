@@ -399,6 +399,7 @@ southwest     |     south      |     southeast
 | `/ss/<start_time>`| string    | 否		| 剪辑开始时间，格式为 `HH:MM:SS`，默认视频开始时间   	|
 | `/es/<end_time>`  | string    | 否		| 剪辑结束时间，格式为 `HH:MM:SS`，默认视频结束时间   	|
 
+<a name="video_image"></a>
 ### 动图参数
 
 把 `save_as` 的后缀名指定为 `gif` 或 `webp`，实现视频转码成动态图片。
@@ -501,6 +502,7 @@ southwest     |     south      |     southeast
 
 ---------
 
+<a name="thumbnail"></a>
 ## 视频截图
 
 | 参数              	| 类型   	| 必选  	| 说明                                    					|
