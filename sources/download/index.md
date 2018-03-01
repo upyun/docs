@@ -261,7 +261,7 @@
 <h2 id="third-party-plugin">第三方工具和插件</h2>
 <ul class="list-unstyled list-inline clearfix">
     <li>
-        <strong>又拍云存储管理客户端</strong>
+        <strong>又拍云存储管理客户端</strong>
         <div class="links">
             <a href="https://github.com/aniiantt/updrive" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
             <a href="https://github.com/aniiantt/updrive/releases" target="_blank" class="btn btn-xs"><i class="fa fa-cloud-download"></i>下载</a>
