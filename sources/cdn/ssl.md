@@ -317,7 +317,7 @@ Symantec、GeoTrust、TrustAsia 的各类付费 DV SSL、OV SSL、EV SSL 证书�
 
 ####DV SSL证书验证
 
-当申购的证书为 TrustAsia DV SSL 多域名、泛域名证书时，需要通过以下方式进行域名所有权验证。
+当申购的证书为 TrustAsia DV SSL 单域名（只针对 www 开头的主域名，例如 `www.upyun.com`）、多域名、泛域名证书时，需要通过以下方式进行域名所有权验证。
 
 **1、DNS 验证**
 
