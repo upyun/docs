@@ -22,7 +22,7 @@
 | 参数       			| 类型       	| 必选  	| 说明                              	|
 |-----------------------|---------------|-------|-----------------------------------|
 | /ab/<audio_bitrate>   | integer		| 是  	| 音频码率，单位 kbps，默认值 44  		|
-| /ac/<audio_channel>	| integer		| 是  	| 音频声道，默认值 2          		|
+| /ac/<audio_channel>	| integer		| 是  	| 音频声道，默认值 2。可选值 1、2          		|
 | /f/<audio_format>   	| string		| 是  	| 音频格式，默认值 mp3 。可选值  mp3 、ogg 	|
 
 ** 注 **
@@ -41,7 +41,7 @@
 ```
 // FORM API 附加上传参数
 
-x-audio-avopts: /ab/48/ac/5/f/ogg
+x-audio-avopts: /ab/48/ac/1/f/ogg
 ```
 
 ** 响应示例 **
