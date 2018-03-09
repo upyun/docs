@@ -43,7 +43,7 @@ pages:
     - '融合云存储': 'api/fusion_storage.md'
     - '分块上传（已弃用）': 'api/multipart_upload.md'
     - 'API 错误码表': 'api/errno.md'
-    - '缓存刷新（已弃用）': 'api/purge.md'
+    - '缓存刷新': 'api/purge.md'
     - '微信小程序': 'api/small_program.md'
     - '移动流量': 'mobile-stats/index.md'
     - '短信服务': 'sms/index.md'
