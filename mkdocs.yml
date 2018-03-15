@@ -6,7 +6,7 @@ theme_dir: theme/updocs
 copyright: Copyright &copy; 2017, 又拍云
 
 pages:
-
+- '张朋张朋': 'zp.md'
 - '文档首页': 'index.md'
 - 'CDN':
     - '内容总览': 'cdn/index.md'
