@@ -356,7 +356,7 @@ pip install upyun
 
 ```
 # 配置参数
-export UPYUN_BUCKET=<bucket>
+export UPYUN_SERVICE=<service>
 export UPYUN_USERNAME=<username>
 export UPYUN_PASSWORD=<password>
 
