@@ -569,7 +569,7 @@ rules:
    "pattern": ""
 }, 
 {
-  "rule": "$WHEN(($MATCH($_URI, '.ts$'),$NOT($EQ($MD5('abc'$_GET_t$_URI),$LOWER($_GET_key))))$EXIT(403)",
+  "rule": "$WHEN($MATCH($_URI, '.ts$'),$NOT($EQ($MD5('abc'$_GET_t$_URI),$LOWER($_GET_key))))$EXIT(403)",
   "pattern": ""
 }
 ```
