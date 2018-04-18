@@ -1195,25 +1195,94 @@ HSTS（HTTP Strict Transport Security，HTTP 严格传输安全)，是一套由�
 
 根据要求填写好配置规则，点击【保持】按钮即可。更多关于 HSTS 配置项信息，请参见 [HSTS 助力网站更安全](https://blog.upyun.com/?p=1583) 。
 
-###5.3 HTTP/2 支持
+###5.3 HTTP/2 配置
 
-> 功能说明
+**功能说明**
 
-HTTP/2 即超文本传输协议 2.0，是下一代 HTTP 协议。它由国际互联网工程任务组 （IETF）的 Hypertext Transfer Protocol Bis (httpbis) 工作小组进行开发，以 SPDY 为原型，经过两年多的讨论和完善最终确定。
 
-HTTP/2 优势如下：
+HTTP/2 即超文本传输协议 2.0，是下一代 HTTP 协议，在 CDN 控制台您可以灵活进行 HTTP/2 特性的开启和关闭。
 
-1）HTTP/2 采用二进制格式传输数据，其在协议的解析和优化扩展上带来更多的优势和可能。
+又拍云 CDN 服务当前已全平台支持 HTTP/2。HTTP/2 是在 HTTPS 协议的基础上实现的，只要使用又拍云 HTTPS 加速服务的域名，都可免费享受 HTTP/2 服务。又拍云控制台关于 HTTP/2 的配置支持三种模式的设置，分别是：
 
-2）HTTP/2 对消息头采用 HPACK 进行压缩传输，能够节省消息头占用的网络的流量。
+* 开启 HTTP/2 
 
-3）多路复用，简单说就是所有的请求可以通过一个 TCP 连接并发完成。
+默认开启 HTTP/2 特性，包括采用二进制格式传输数据、对消息头采用 HPACK 进行压缩传输、多路复用 等特性，但不包括 Server Push 特性。
 
-4）Server Push：服务端能够更快的把资源推送给客户端。
+* 关闭 HTTP/2 
 
-又拍云 CDN 当前已全平台支持 HTTP/2，并已默认开启。又因 HTTP/2 是在 HTTPS 协议的基础上实现的，所以只要使用又拍云 HTTPS 加速服务的域名，都可免费享受 HTTP/2 服务，无需做任何特殊配置，如下图所示：
+如需关闭 HTTP/2 特性，可以选择关闭，请根据要求合理关闭。
 
-<img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-https4.png" height="470" width="800" />
+* 开启 HTTP/2 + Server Push 
+
+该模式下，支持 HTTP/2 的所有特性，其中 Server Push 特性需要根据业务需求合理配置。
+
+特别强调的是，Server Push 是 HTTP/2 规范中引入的一种新技术，也即服务端在没有被客户端明确的询问下，抢先的 “推送” 一些网站资源给客户端。该特性只要被正确的使用，可以达到很好的页面访问效果。
+
+**配置引导**
+
+登陆 [CDN 控制台](https://console.upyun.com/login/)，依次进入：服务管理 > 功能配置 > HTTPS > HTTP/2 配置，点击【管理】按钮即可开始配置。如下图所示：
+
+1）开启 HTTP/2 
+
+默认已经开启，如截图所示：
+
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/config/upyun-cdn-config-open-http2.png" height="400" width="800" />
+
+注意：当且仅当开启 HTTPS 加速时，HTTP/2 特性才会生效。
+
+2）关闭 HTTP/2 
+
+如需关闭 HTTP/2 特性，可以在控制台关闭，点击【关闭 HTTP/2】按钮，然后点击【确定】即可保存配置。如截图所示：
+
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/config/upyun-cdn-config-close-http2.png" height="400" width="800" />
+
+3）开启 HTTP/2 + Server Push 
+
+如下截图所示，点击【 开启 HTTP/2 + Server Push 】按钮，配置匹配路径以及推送资源，然后点击【确定】即可保存配置。
+
+
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/config/upyun-cdn-config-http2-server-push.png" height="400" width="800" />
+
+
+其中，在配置项里面，【匹配路径】是必填项，【推送资源】是非必填项。
+
+匹配路径：也即 Server Push 特性仅针对匹配的 URI  生效，示例为：
+
+```
+/index.html
+/admin.html
+
+```
+
+推送资源：表示匹配 URI 后将要推送的资源的 PATH（不包括 HOST 部分），示例为：
+
+
+```
+/style/index.css
+/dyn/index.js
+
+```
+
+需要注意的是当源站有设置 [Link 首部](https://www.w3.org/TR/2017/CR-preload-20171026/#server-push-http-2)时，即使【推送资源】在 CDN 端没有进行自定义设置，也会生效，其中 Link 首部的示例为：
+
+```
+Link: </css/styles.css>; rel=preload; as=style
+
+```
+
+
+**注意事项**
+
+* HTTP/2 特性是在 HTTPS 协议的基础上实现，需要加速域名支持 HTTPS 访问方可支持该特性；
+* 使用 Server Push 特性，通常会在源站设置 Link 首部，例如：
+
+```
+Link: </css/styles.css>; rel=preload; as=style
+
+```
+如果在 CDN 端进行自定义 Server Push 配置，优先级会高于源站设置的 Link 首部。
+
+
 
 ###5.4 兼容性说明
 
@@ -1227,11 +1296,7 @@ HTTP/2 优势如下：
 
 > 功能说明
 
-`TLS 1.3` 是 TLS 协议中最新、最快和最安全的版本，相比旧版的 TLS 协议增加了多项新功能。通过简化 SSL 握手，提高了建连速度，减少了延迟。并通过移除有安全隐患的加密算法，提高了用户访问的性能、效率和安全性等等。
-
-目前 `TLS 1.3` 还在草案阶段，还没有任何主流浏览器在其稳定版中默认启用 `TLS 1.3`，故我们只在部分节点部署了 `TLS 1.3`，计划根据协议发展会逐步推进全网部署。您可以通过 ping 域名 `tls13.upyun.com` 获得生效节点 ip ，如下列表所示：
-
-     ping tls13.upyun.com
+`TLS 1.3` 是 TLS 协议中最新、最快和最安全的版本，相比旧版的 TLS 协议增加了多项新功能。通过简化 SSL 握手，提高了建连速度，减少了延迟。并通过移除有安全隐患的加密算法，提高了用户访问的性能、效率和安全性等等。目前 `TLS 1.3` 已在 CDN 全平台支持，您可以根据业务需求合理关闭和开启。
 
 > 如何使用？
 
