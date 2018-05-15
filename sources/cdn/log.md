@@ -35,7 +35,7 @@
 | 8   | $querystring	   |  请求参数    |
 | 9   | $server_protocol	        | HTTP 协议版本  |
 | 10  | $status	         | 返回状态码     |
-| 11  | $body_bytes_send	  | 发送 body 字节数|
+| 11  | $body_bytes_sent	  | 发送 body 字节数|
 | 12  | $http_referer	     | 请求来源 referer	 |
 | 13  | $http_user_agent	 | 客户端信息 |
 | 14  | $content_type	 | 内容类型|
