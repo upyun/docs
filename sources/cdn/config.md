@@ -2141,3 +2141,134 @@ $ curl http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-architecture.png?_u
 3、在选择使用 `X-Forwarded-For` 进行最终用户 IP 传递时  ，`X-Real-IP`、`Client-IP`也是同时传递的；
 
 ----------
+
+##9.默认错误码
+
+**默认错误码介绍**
+
+
+针对错误状态（这里特指 CDN 业务端以及回源站相关错误），CDN 默认返回 JSON 串的形式，格式为：
+
+```
+
+{
+	"code": "xxxxxxxx",
+	"msg": "xxxxxxxxxxxxxxx"
+}
+
+```
+
+其中 ` code`  代表错误码，为 8 位数字组成，例如：` 40310012` 代表触发了 IP 黑名单规则；` msg`  代表错误描述，例如：` remote address is forbidden` ，也即客户端 IP 被禁止访问。您可以根据 CDN 返回的错误码和描述来判断触发了何种规则，进而更方便的定位问题。
+
+
+**默认错误码一览表**
+
+
+现将 CDN 平台部分可开放的错误码进行如下归类：
+
+**1.访问控制相关**
+
+
+| 序号 | 错误码（code）     |    错误描述(msg)     |  发生了什么 | 
+|---------------------|------------------------|------------------|------------|
+|  1  |  40310001   | invalid url |  URL  被禁止访问  | 
+|  2  |  40310002  | region is forbidden |  触发了地区访问限制规则  | 
+|  3  |  40310003   | too many requests |  触发了 IP 频率限制规则  | 
+|  4  |  40310011   | invalid User-Agent header |  触发了 User-Agent 防盗链规则  | 
+|  5  |  40310012   | remote address is forbidden |  触发了 IP 黑白名单规则  | 
+|  6  |  40310013   | invalid user token |  触发了 Token 防盗链规则  | 
+|  7  |  40310014   | invalid Referer header |  触发了 Referer 防盗链规则  | 
+|  8  |  40310015   | referer uri is forbidden |  触发了 Referer URI 防盗链规则  | 
+|  9  |  40310020   | invalid authentication response body |  鉴权服务器返回的 body 内容不合法，导致鉴权失败  | 
+|  10  |  40310021   | invalid authentication response status |  鉴权服务器返回的状态码不合法，导致鉴权失败  | 
+|  11  |  40310022   | cyclic authentication requests |  鉴权服务器地址在又拍云进行了 CDN 加速，导致了循环请求  | 
+|  12  |  50310020   | authentication service unavailable |  鉴权服务器不可用  | 
+|  13  |  40110910   | authentication fails |  回源鉴权失败  | 
+|  14  |  40310006   | (api) request body too large |  通过 API 接口上传的文件 body 太大  | 
+|  15  |  41310001   | request body too large |  请求的 body 大小超过限制  | 
+|  16  |  40010030   | multiple Content-Type header |  触发了 WAF 规则，请求头中含有多个 Content-Type 头部 | 
+|  17  |  40310031   | too large form |  触发了 WAF 规则，form 表单太大  | 
+|  18  |  40310032   | waf protection rules triggered |  触发了 WAF 规则  | 
+|  19  |  xxx10999   | edge rule triggered |  触发边缘规则，xxx 特指状态码 | 
+|  20  |  40510004   | invisible domain |  域名触发了敏感信息被禁止访问  | 
+
+
+
+**2.HTTP 及平台规范相关**
+
+
+| 序号 | 错误码（code）     |    错误描述(msg)     |  发生 | 
+|---------------------|------------------------|------------------|------------|
+|  1  |  41610001   | multiple Range header |  多个 Range 头  | 
+|  2  |  41610002   | multiple sections in Range header |  Range 请求中存在多段请求范围  | 
+|  3  |  41610003   | illegal range portion |  Range 请求范围非法  | 
+|  4  |  40010040   | absent Host header |  请求中缺少 Host 头部，返回工信部错误页面 | 
+|  5  |  40010041   | bucket not found |  未绑定加速域名或者服务不存在，返回工信部错误页面  | 
+|  6  |  40510001   | invisible bucket |  服务（空间）为关闭状态  | 
+|  7  |  41210001   | last-modified or Etag illegal |  Last-Modified 头部或者 ETag 头部非法  | 
+|  8  |  40310007   | cyclic request |  触发了循环请求限制策略  | 
+|  9 |  50310000   | unknown error |  其他未知的错误 | 
+
+
+
+**3.常见回源错误**
+
+
+| 序号 | 错误码（code）     |    错误描述(msg)     |  发生了什么 | 
+|---------------------|------------------------|------------------|------------|
+|  1  |  40300002  | response body too large |  回源响应体太大  | 
+|  2  |  50200001   | no valid source address |  没有合法的回源地址  | 
+|  3  |  50200002   | can't connect to upyun fs |  无法连接 upyun 存储  | 
+|  4  |  50300001   | resolve domain failed |  域名解析错误 | 
+|  5  |  50300002   | resolve domain timeout |  域名解析超时  | 
+|  6  |  50300004   | connection refused |  连接被拒绝  | 
+|  7  |  50300005   | connection reset by peer |  连接被源站重置  | 
+|  8  |  50300006   | handshake failed|  握手失败  | 
+|  9  |  50300007   | client abort|  客户端取消连接 | 
+|  10  |  50300008   | closed |  连接被关闭 | 
+|  11  |  50300009   | broken pipe|  读取数据出现问题 | 
+|  12  |  50300010   | unexpect end of stream|  未知的源站响应结束 | 
+|  13  |  50300015   | certificate host mismatch|  SSL 证书头不匹配 | 
+|  14  |  50300016   | self signed certificate|  SSL 证书为自签名证书 | 
+|  15  |  50300017   | certificate has expired|  SSL 证书过期 | 
+|  16  |  50400001   | connection timed out|  回源连接超时 | 
+|  17  |  50400002   | connection timeout|  连接超时 | 
+|  18  |  50400003   | read timeout|  读取数据超时 | 
+|  19  |  50400004   | send timeout|  发送请求超时 | 
+
+
+
+**如何辨别**
+
+
+**方式一**
+
+如果您通过浏览器访问，您可以通过浏览器页面查看到一段错误代码，例如：
+
+
+```
+{"code":"40310002","msg":"region is forbidden"}
+```
+
+如上错误代码及描述则说明用户在 CDN 侧配置了地区访问限制策略。
+
+**方式二**
+
+通过 curl 命令可以看到 `X-Error-Code`响应字段，则可以看出触发了何种错误。
+
+```
+
+< HTTP/1.1 403 Forbidden
+< Server: marco/2.2
+< Date: Fri, 18 May 2018 06:39:47 GMT
+< Content-Type: application/json
+< Connection: keep-alive
+< X-Error-Code: 40310002
+< X-Request-Id: 6b947a5e14a252909acab1e55df121c2
+< Content-Length: 47
+< Via: M.pcw-cn-hkg-166
+```
+
+通过查看 `X-Error-Code: 40310002`，可以看出触发了地区访问限制规则。
+
+----------
