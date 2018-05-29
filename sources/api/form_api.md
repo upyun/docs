@@ -253,8 +253,16 @@ apps = [
 ]
 
 apps = [
-    {                                               // 异步内容审核任务
-        "name": "imgaudit",                         // 异步任务名称，必填。imgaudit 表示异步内容审核服务
+    {                                               // 异步图片审核任务
+        "name": "imgaudit",                         // 异步任务名称，必填。imgaudit 表示异步图片审核服务
+        "notify_url": "<notify_url>"                // 回调地址，不填时使用上传参数中的 notify_url
+    },
+	......
+]
+
+apps = [
+    {                                               // 异步文本审核任务
+        "name": "textjudge",                        // 异步任务名称，必填。textjudge 表示异步文本审核服务
         "notify_url": "<notify_url>"                // 回调地址，不填时使用上传参数中的 notify_url
     },
 	......
