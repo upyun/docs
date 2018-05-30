@@ -289,7 +289,7 @@
     <li>
         <strong>又拍云命令行工具</strong>
         <div class="links">
-            <a href="https://github.com/polym/upx" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
+            <a href="https://github.com/upyun/upx" class="btn btn-xs" target="_blank"><i class="fa fa-github"></i>GitHub</a>
         </div>
     </li>
     <li>
