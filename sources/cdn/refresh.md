@@ -26,9 +26,9 @@
 
 规则示例：
 
-    http://example.com/image/＊
-    http://example.com/image/＊.jpg
-    http://example.com/image/＊!upyun（ 适用于自定义缩略图版本 ）
+    http://example.com/image/*
+    http://example.com/image/*.jpg
+    http://example.com/image/*!upyun（ 适用于自定义缩略图版本 ）
 
 
 注意事项：
