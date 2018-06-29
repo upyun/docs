@@ -2419,25 +2419,27 @@ $ curl http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-architecture.png?_u
 
 | 序号 | 错误码（code）     |    错误描述(msg)     |  发生了什么 | 
 |---------------------|------------------------|------------------|------------|
-|  1  |  40300002  | response body too large |  回源响应体太大  | 
-|  2  |  50200001   | no valid source address |  没有合法的回源地址  | 
-|  3  |  50200002   | can't connect to upyun fs |  无法连接 upyun 存储  | 
-|  4  |  50300001   | resolve domain failed |  域名解析错误 | 
-|  5  |  50300002   | resolve domain timeout |  域名解析超时  | 
-|  6  |  50300004   | connection refused |  连接被拒绝  | 
-|  7  |  50300005   | connection reset by peer |  连接被源站重置  | 
-|  8  |  50300006   | handshake failed|  握手失败  | 
-|  9  |  50300007   | client abort|  客户端取消连接 | 
-|  10  |  50300008   | closed |  连接被关闭 | 
-|  11  |  50300009   | broken pipe|  读取数据出现问题 | 
-|  12  |  50300010   | unexpect end of stream|  未知的源站响应结束 | 
-|  13  |  50300015   | certificate host mismatch|  SSL 证书头不匹配 | 
-|  14  |  50300016   | self signed certificate|  SSL 证书为自签名证书 | 
-|  15  |  50300017   | certificate has expired|  SSL 证书过期 | 
-|  16  |  50400001   | connection timed out|  回源连接超时 | 
-|  17  |  50400002   | connection timeout|  连接超时 | 
-|  18  |  50400003   | read timeout|  读取数据超时 | 
-|  19  |  50400004   | send timeout|  发送请求超时 | 
+|  1  |  403xx002  | response body too large |  回源响应体太大  | 
+|  2  |  502xx001   | no valid source address |  没有合法的回源地址  | 
+|  3  |  502xx002   | can't connect to upyun fs |  无法连接 upyun 存储  | 
+|  4  |  503xx001   | resolve domain failed |  域名解析错误 | 
+|  5  |  503xx002   | resolve domain timeout |  域名解析超时  | 
+|  6  |  503xx004   | connection refused |  连接被拒绝  | 
+|  7  |  503xx005   | connection reset by peer |  连接被源站重置  | 
+|  8  |  503xx006   | handshake failed|  握手失败  | 
+|  9  |  503xx007   | client abort|  客户端取消连接 | 
+|  10  |  503xx008   | closed |  连接被关闭 | 
+|  11  |  503xx009   | broken pipe|  读取数据出现问题 | 
+|  12  |  503xx010   | unexpect end of stream|  未知的源站响应结束 | 
+|  13  |  503xx015   | certificate host mismatch|  SSL 证书头不匹配 | 
+|  14  |  503xx016   | self signed certificate|  SSL 证书为自签名证书 | 
+|  15  |  503xx017   | certificate has expired|  SSL 证书过期 | 
+|  16  |  504xx001   | connection timed out|  回源连接超时 | 
+|  17  |  504xx002   | connection timeout|  连接超时 | 
+|  18  |  504xx003   | read timeout|  读取数据超时 | 
+|  19  |  504xx004   | send timeout|  发送请求超时 | 
+
+其中 `xx` 可能是 `00`、`01`、`02`、`03`、`04`。`00` 表示 `UNKNOWN`，`01` 表示又拍云存储，`02` 表示用户自主源，`03` 表示 ` CDN 代理层`，`04` 表示 ` 作图服务`。
 
 
 
