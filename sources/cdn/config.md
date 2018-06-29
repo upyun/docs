@@ -231,14 +231,14 @@
 
 登陆 [CDN 控制台](https://console.upyun.com/login/)，进入 「回源管理」配置页面，找到「源站资源迁移」配置项，点击【管理】按钮，进入如下配置界面：
 
-<img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/monitor-storage/upyun-cdn-monitor.png" height="350" width="800" />
+<img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/monitor-storage/upyun-cdn-monitor.png" height="470" width="800" />
 
  - 第一步：配置资源迁移状态
 
 源站资源迁移功能包括三种状态，分别是开启、暂停、关闭，默认为关闭状态。详细描述如下：
 
 
-<img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/monitor-storage/upyun-cdn-monitor-status.png" height="350" width="800" />
+<img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/monitor-storage/upyun-cdn-monitor-status.png" height="470" width="800" />
 
 **开启状态**
 
@@ -257,7 +257,7 @@
 
 在配置的过程中，您需要配置资源路径，指定某些资源进行迁移，例如需要指定 `html`、`mp4`、`flv`、`jpg`、`png` 等资源进行迁移。如截图所示：
 
-<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/monitor-storage/upyun-cdn-monitor-lujing.png" height="350" width="800" />
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/monitor-storage/upyun-cdn-monitor-lujing.png" height="470" width="800" />
 
 配置示例为：
 
@@ -276,7 +276,7 @@
  
 该步骤需要确保您已经创建了一个云存储服务，否则无法配置成功。我们会通过下拉列表的形式展示当前账号下已创建的云存储服务，以供选择。如截图所示：
 
-<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/monitor-storage/upyun-cdn-monitor-storage.png" height="350" width="800" />
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/monitor-storage/upyun-cdn-monitor-storage.png" height="470" width="800" />
 
 确保以上配置正确之后，点击配置界面右下角的【确定】按钮即可。
 
