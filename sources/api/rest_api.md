@@ -299,7 +299,7 @@ GET /<bucket>/path/to/folder
 |--------------- |------|--------|-------------------------------------------------------------|
 | x-list-iter    |  否  | string  | 分页开始位置，通过`x-upyun-list-iter` 响应头返回，所以第一次请求不需要填写      |
 | x-list-limit   |  否  | string  | 获取的文件数量，默认 100，最大 10000                           |
-| x-list-order   |  否  | string  | `asc` 或 `desc`，按时间升序或降序排列。默认 `asc`               |
+| x-list-order   |  否  | string  | `asc` 或 `desc`，按文件名升序或降序排列。默认 `asc`               |
 
 
 **响应信息**
