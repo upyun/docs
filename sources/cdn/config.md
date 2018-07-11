@@ -2125,9 +2125,7 @@ https://www.example.com/custom/error-page.html
 **注意事项**
 
  - 自定义页面属于用户源站托管的资源，同常规页面和资源一样，会按照正常的 CDN 加速分发计费。
- 
- - 在优先级方面，自定义页面的优先级会高于自定义提示图功能。
- 
+  
  - 自定义页面的资源所绑定的域名必须是访问域名，否则不会生效，也即：当客户端请求为：https://www.example.com/index.html ；当触发防盗链规则之后，CDN 会直接返回该页面：https://www.example.com/custom/403.html。此时在 CDN 自定义页面规则的响应地址项填写 /custom/403.html 即可。
  
  - 在优先级方面，自定义页面的优先级会高于自定义提示图功能。
