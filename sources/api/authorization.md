@@ -114,8 +114,8 @@ Password = MD5(password123) = 482c811da5d5b4bc6d497ffa98491e38
 Method = POST							
 URI = /upyun_notify_url
 Date = Wed, 09 Nov 2016 14:26:58 GMT
-Content-MD5 = MD5({"code": 200, "message": "ok", "url": "%2F2011%2F12%2Ffd0e30047f81fa95.mp3", "time": 1478701618})
-	        = ed091459198a814d549701dab1dc4880
+Content-MD5 = MD5(code=200&message=ok&url=%2F2011%2F12%2Ffd0e30047f81fa95.mp3&time=1478701618)
+	        = e861f9f2ccd323df87b975904ccf19bb
 ```
 
 生成 Signature：
@@ -127,28 +127,27 @@ Signature = Base64 (HMAC-SHA1 (<Password>,
 <Date>&
 <Content-MD5>
 ))
-= Base64 (HMAC-SHA1 (482c811da5d5b4bc6d497ffa98491e38,POST&/upyun_notify_url&Wed, 09 Nov 2016 14:26:58 GMT&ed091459198a814d549701dab1dc4880))
+= Base64 (HMAC-SHA1 (482c811da5d5b4bc6d497ffa98491e38,POST&/upyun_notify_url&Wed, 09 Nov 2016 14:26:58 GMT&e861f9f2ccd323df87b975904ccf19bb))
 // HMAC-SHA1 返回的原生二进制数据进行 Base64 编码
-= 3x6z6M9U2Ugi1FxLPhQldiXFzAc=
+= 8wTKBjONUWG+Zwzxo8EpJISy95E=
 ```
 
 Authorization 签名：
 
 ```
-Authorization: UPYUN operator123:3x6z6M9U2Ugi1FxLPhQldiXFzAc=
+Authorization: UPYUN operator123:8wTKBjONUWG+Zwzxo8EpJISy95E=
 ```
 
 完整的请求：
 
 ```
 POST /upyun_notify_url HTTP/1.1
-Authorization: UPYUN operator123:3x6z6M9U2Ugi1FxLPhQldiXFzAc=
-Content-MD5: ed091459198a814d549701dab1dc4880
+Authorization: UPYUN operator123:8wTKBjONUWG+Zwzxo8EpJISy95E=
+Content-MD5: e861f9f2ccd323df87b975904ccf19bb
 Date: Wed, 09 Nov 2016 14:26:58 GMT
-Content-Type: application/json
-Content-Length: 192
+Content-Type: application/x-www-form-urlencoded;charset=utf-8
 
-{"code": 200, "message": "ok", "url": "%2F2011%2F12%2Ffd0e30047f81fa95.mp3", "time": 1478701618}
+code=200&message=ok&url=%2F2011%2F12%2Ffd0e30047f81fa95.mp3&time=1478701618
 ```
 
 ---------
