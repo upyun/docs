@@ -135,6 +135,7 @@ curl -X POST \
 | sources           | array     | 是   	| 需要被压缩的文件或目录的路径，路径不需要 URI encoding。见「注」        	|
 | save_as           | string    | 是   	| 输出文件保存路径     						|
 | home_dir          | string    | 否   	| 文件或目录被压缩时可不包含的父目录。默认包含从根开始的全部目录 |
+| parent_dir        | string    | 否   	| 被压缩文件或目录的新增父目录名。默认为空 |
 | sources_list      | string    | 否   	| 需要被压缩的文件或目录信息的文件路径。见「注」  |
 
 ** 注 **

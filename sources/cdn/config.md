@@ -194,41 +194,91 @@
 
 ###2.3 源站资源迁移
 
-资源迁移功能的场景是无缝将用户源站静态资源迁移到又拍云存储上来，当下次终端用户访问相同资源时，CDN 将直接返回已经迁移到云存储上的资源文件，而无需回用户自主源，可减小自主源压力，也方便进行资源文件的无缝迁移。
+
+**功能说明**
+
+
+源站资源迁移功能的场景是无缝将用户源站静态资源迁移到又拍云存储上来，当下次终端用户访问相同资源时，CDN 将直接返回已经迁移到云存储上的资源文件，而无需回用户自主源，可减小自主源压力，也方便进行资源文件的无缝迁移。
 
 **实现机制**
 
-实现机制可以参照如下流程：
 
-<img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/monitor-storage/upyun-cdn-monitor-storage.png" height="300" width="500" />
+进行资源迁移需要考虑如下两种场景：
 
- - 终端用户向 CDN 请求资源文件；
- - CDN 节点从用户自主源站获取资源文件；
- - CDN 返回资源文件给终端用户，并将资源文件持久化存储到又拍云对象存储上；
+
+**1）某个资源未迁移之前，会优先回存储，其次回自主源，最终进行资源迁移，详细访问流程参见如下图所示：**
+
+<img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/monitor-storage/upyun-cdn-monitor-no-move.png" height="300" width="600" />
+
+大致的访问流程为：
+
+ - 终端用户向 CDN 请求资源文件，CDN 会优先回又拍云存储获取资源；
+ - 此时又拍云存储没有该资源，CDN 节点会从用户自主源站获取资源文件；
+ - 最终 CDN 返回资源文件给终端用户，并将资源文件持久化存储到又拍云对象存储上；
+
+
+**2）某个资源迁移成功之后，直接访问云存储，不再进行资源迁移，访问流程参见如下图所示：**
+
+<img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/monitor-storage/upyun-cdn-monitor-move-success.png" height="300" width="600" />
+
+大致的访问流程是：
+
  - 终端用户再次访问相同资源文件时，将直接从又拍云存储获取资源，不再回用户自主源获取资源；
  - 随着终端用户的不断访问，源站的静态资源将逐步迁移到又拍云存储源上来。
 
+
 **配置引导**
 
-登陆 [CDN 控制台](https://console.upyun.com/login/)，进入 「回源管理」配置页面，找到「源站资源迁移」配置项，滑动右边的开启按钮，如下截图所示：
+登陆 [CDN 控制台](https://console.upyun.com/login/)，进入 「回源管理」配置页面，找到「源站资源迁移」配置项，点击【管理】按钮，进入如下配置界面：
 
-<img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/config/upyun-cdn-config-source-qianyi.png" height="470" width="800" />
+<img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/monitor-storage/upyun-cdn-monitor.png" height="470" width="800" />
 
-如上图所示，点击【确定】按钮，即可开启该功能。
+ - 第一步：配置资源迁移状态
 
-源站资源迁移功能包括三种状态，分别是开启、暂停、关闭，详细描述如下：
+源站资源迁移功能包括三种状态，分别是开启、暂停、关闭，默认为关闭状态。详细描述如下：
+
+
+<img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/monitor-storage/upyun-cdn-monitor-status.png" height="470" width="800" />
 
 **开启状态**
 
-开启之后，当 CDN 节点缓存失效时，会优先回又拍云存储获取资源，如果又拍云存储没有命中资源，则直接回自有源站获取资源并响应给最终用户，与此同时，资源会被扔进资源迁移队列并进行存储，下一个相同的资源请求过来时则会直接由存储命中的资源直接提供服务。
+开启之后，当 CDN 节点缓存失效或未命中时，会优先回又拍云存储获取资源，如果又拍云存储返回 4XX、5XX 状态码时，则直接回自有源站获取资源并响应给最终用户。与此同时，资源会被扔进资源迁移队列并进行存储，下一个相同的资源请求过来时则会直接由存储命中的资源直接提供服务。
 
 **暂停状态**
 
-直接关闭源站资源迁移功能，可能会导致回自主源压力过大，在暂停状态下，不会进行资源迁移动作，访问资源时，仍然先访问又拍云存储，如果存储上没有命中资源，则会访问自主源站。
+直接关闭源站资源迁移功能，可能会导致回自主源压力过大，在暂停状态下，不会进行资源迁移动作，访问资源时，仍然先访问又拍云存储，如果又拍云存储返回 4XX、5XX 状态码时，则会访问自主源站。也即资源访问的流程不变，只不过不会进行资源的迁移操作，起到了一个缓冲的作用。
 
 **关闭状态**
 
 该功能关闭之后，新的请求过来的话，CDN 节点不会回又拍云存储平台获取资源，而会直接回客户源站获取资源。
+
+
+ - 第二步：配置资源路径
+
+在配置的过程中，您需要配置资源路径，指定某些资源进行迁移，例如需要指定 `html`、`mp4`、`flv`、`jpg`、`png` 等资源进行迁移。如截图所示：
+
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/monitor-storage/upyun-cdn-monitor-lujing.png" height="470" width="800" />
+
+配置示例为：
+
+```
+/*.html
+/*.mp4
+/*.flv
+/*.jpg
+/*.png
+
+```
+值得注意的是，该项如未配置，则默认迁移服务下面的所有静态资源文件。
+
+
+ - 第三步：选择云存储服务
+ 
+该步骤需要确保您已经创建了一个云存储服务，否则无法配置成功。我们会通过下拉列表的形式展示当前账号下已创建的云存储服务，以供选择。如截图所示：
+
+<img src="http://upyun-assets.b0.upaiyun.com/docs/cdn/monitor-storage/upyun-cdn-monitor-storage.png" height="470" width="800" />
+
+确保以上配置正确之后，点击配置界面右下角的【确定】按钮即可。
 
 **注意事项**
 
@@ -236,6 +286,7 @@
 
  - 当源站资源迁移功能处于暂停状态时，您可以通过 API
    接口逐步删除又拍云上对应的文件，将回源流量平滑迁移至源站，或调整源站带宽，最后再执行关闭操作。
+ - 资源迁移的生效有一个前提条件，那就是资源文件在 CDN 的缓存过期时间必须大于 24 小时，才会执行迁移动作；
 
 ----------
 
@@ -1929,7 +1980,7 @@ WAF（Web Application Firewall）的中文名称叫做 Web 应用防火墙 ，�
 
 ----------
 
-###6.12 自定义页面(控制台暂未上线)
+###6.12 自定义页面
 
 **功能说明**
 
@@ -1946,7 +1997,7 @@ WAF（Web Application Firewall）的中文名称叫做 Web 应用防火墙 ，�
 
 ```
 
-- 自定义页面：当触发地区访问限制规则时，会自动 302 跳转到自行设计和编辑的页面。
+- 自定义页面：当触发 CDN 防盗链规则时，CDN 会直接返回自行设计和编辑的页面。当触发源站错误码时，会 302 跳转到自行设计的页面。
 
 - 美化页面：又拍云结合业务场景，自行设计的美化页面（暂未开放）。
 
@@ -1954,23 +2005,23 @@ WAF（Web Application Firewall）的中文名称叫做 Web 应用防火墙 ，�
 
 - IP/地区限制
 
-当在又拍云控制台配置了 IP 黑白名单、地区访问限制功能，触发该规则时会 302 跳转到自定义的页面。
+当在又拍云控制台配置了 IP 黑白名单、地区访问限制功能，触发该规则时会直接返回自定义的页面。
 
 - 防盗链
 
-当在又拍云控制台配置了 User-Agent 防盗链、Referer 防盗链、Token 防盗链功能，触发该规则时会 302 跳转到自定义的页面。
+当在又拍云控制台配置了 User-Agent 防盗链、Referer 防盗链、Token 防盗链功能，触发该规则时会直接返回自定义的页面。
 
 - 回源鉴权
 
-当在又拍云控制台配置了回源鉴权功能，触发规则（包括鉴权失败、鉴权错误）时会 302 跳转到自定义的页面。
+当在又拍云控制台配置了回源鉴权功能，触发规则（包括鉴权失败、鉴权错误）时会直接返回自定义的页面。
 
 - 安全防护
 
-当在又拍云控制台配置了 IP 访问限制、WAF 防护、HTTP 请求大小限制功能，触发规则时会 302 跳转到自定义的页面。
+当在又拍云控制台配置了 IP 访问限制、WAF 防护、HTTP 请求大小限制功能，触发规则时会会直接返回自定义的页面。
 
 - 边缘规则
 
-当在又拍云控制台配置了边缘规则访问控制功能，触发规则时会 302 跳转到自定义的页面，当前仅针对 403、404 状态码有效。
+当在又拍云控制台配置了边缘规则访问控制功能，触发规则时会直接返回自定义的页面，当前仅针对 403、404 状态码有效。
 
 - 关闭服务
 
@@ -2041,20 +2092,20 @@ CDN 服务被关闭时，可以根据要求自定义页面。
 
 <img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/config/upyun-cdn-custom-error-page2.png" height="470" width="800" />
 
-在规则配置页面，配置项包括：错误来源、匹配类型、跳转地址。需要注意的是：跳转地址必须要填写 URI，例如：
+在规则配置页面，配置项包括：错误来源、匹配类型、响应地址。需要注意的是：响应地址必须要填写 URI，例如：
 
 ```
 /custom/error-page.html
 
 ```
 
-自定义页面的资源所绑定的域名必须是访问域名，否则会跳转到错误的位置，也即：当客户端请求为：
+自定义页面的资源所绑定的域名必须是访问域名，否则会访问到错误的位置，也即：当客户端请求为：
 
 ```
 https://www.example.com/index.html 
 
 ```
-当触发防盗链规则之后，会 302 跳转到：
+当触发防盗链规则之后，会 302 跳转（仅支持错误来源为源站的情况，错误来源于 CDN 时，会直接去请求错误页面，不会有 302 跳转过程）到：
 
 ```
 https://www.example.com/custom/error-page.html
@@ -2074,10 +2125,12 @@ https://www.example.com/custom/error-page.html
 **注意事项**
 
  - 自定义页面属于用户源站托管的资源，同常规页面和资源一样，会按照正常的 CDN 加速分发计费。
+  
+ - 自定义页面的资源所绑定的域名必须是访问域名，否则不会生效，也即：当客户端请求为：https://www.example.com/index.html ；当触发防盗链规则之后，CDN 会直接返回该页面：https://www.example.com/custom/403.html。此时在 CDN 自定义页面规则的响应地址项填写 /custom/403.html 即可。
  
  - 在优先级方面，自定义页面的优先级会高于自定义提示图功能。
  
- - CDN 控制台目前只开放了部分配置，如需支持更多设置，可以联系我们进行独立配置。
+ - 当错误来源是 CDN 时，此时您的自定义页面是 HTML 页面，需要确保该页面为单页面，如果需要嵌入图片，我们建议将图片通过  base64 的方式将 SVG 图片嵌入到 HTML 网页中。当然，您也可以将图片等资源使用外链的方式来嵌入。
 
 ----------
 
@@ -2368,25 +2421,27 @@ $ curl http://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-architecture.png?_u
 
 | 序号 | 错误码（code）     |    错误描述(msg)     |  发生了什么 | 
 |---------------------|------------------------|------------------|------------|
-|  1  |  40300002  | response body too large |  回源响应体太大  | 
-|  2  |  50200001   | no valid source address |  没有合法的回源地址  | 
-|  3  |  50200002   | can't connect to upyun fs |  无法连接 upyun 存储  | 
-|  4  |  50300001   | resolve domain failed |  域名解析错误 | 
-|  5  |  50300002   | resolve domain timeout |  域名解析超时  | 
-|  6  |  50300004   | connection refused |  连接被拒绝  | 
-|  7  |  50300005   | connection reset by peer |  连接被源站重置  | 
-|  8  |  50300006   | handshake failed|  握手失败  | 
-|  9  |  50300007   | client abort|  客户端取消连接 | 
-|  10  |  50300008   | closed |  连接被关闭 | 
-|  11  |  50300009   | broken pipe|  读取数据出现问题 | 
-|  12  |  50300010   | unexpect end of stream|  未知的源站响应结束 | 
-|  13  |  50300015   | certificate host mismatch|  SSL 证书头不匹配 | 
-|  14  |  50300016   | self signed certificate|  SSL 证书为自签名证书 | 
-|  15  |  50300017   | certificate has expired|  SSL 证书过期 | 
-|  16  |  50400001   | connection timed out|  回源连接超时 | 
-|  17  |  50400002   | connection timeout|  连接超时 | 
-|  18  |  50400003   | read timeout|  读取数据超时 | 
-|  19  |  50400004   | send timeout|  发送请求超时 | 
+|  1  |  403xx002  | response body too large |  回源响应体太大  | 
+|  2  |  502xx001   | no valid source address |  没有合法的回源地址  | 
+|  3  |  502xx002   | can't connect to upyun fs |  无法连接 upyun 存储  | 
+|  4  |  503xx001   | resolve domain failed |  域名解析错误 | 
+|  5  |  503xx002   | resolve domain timeout |  域名解析超时  | 
+|  6  |  503xx004   | connection refused |  连接被拒绝  | 
+|  7  |  503xx005   | connection reset by peer |  连接被源站重置  | 
+|  8  |  503xx006   | handshake failed|  握手失败  | 
+|  9  |  503xx007   | client abort|  客户端取消连接 | 
+|  10  |  503xx008   | closed |  连接被关闭 | 
+|  11  |  503xx009   | broken pipe|  读取数据出现问题 | 
+|  12  |  503xx010   | unexpect end of stream|  未知的源站响应结束 | 
+|  13  |  503xx015   | certificate host mismatch|  SSL 证书头不匹配 | 
+|  14  |  503xx016   | self signed certificate|  SSL 证书为自签名证书 | 
+|  15  |  503xx017   | certificate has expired|  SSL 证书过期 | 
+|  16  |  504xx001   | connection timed out|  回源连接超时 | 
+|  17  |  504xx002   | connection timeout|  连接超时 | 
+|  18  |  504xx003   | read timeout|  读取数据超时 | 
+|  19  |  504xx004   | send timeout|  发送请求超时 | 
+
+其中 `xx` 可能是 `00`、`01`、`02`、`03`、`04`。`00` 表示 `UNKNOWN`，`01` 表示又拍云存储，`02` 表示用户自主源，`03` 表示 ` CDN 代理层`，`04` 表示 ` 作图服务`。
 
 
 
