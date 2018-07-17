@@ -346,6 +346,7 @@ curl http://p0.api.upyun.com/result?service=<service>&task_ids=<task_id1>,<task_
 | `/vn/<disable_video>`     | boolean   | 否		| 是否禁掉视频，默认 `false`                         	|
 | `/su/<accelerate_factor>` | float     | 否		| 视频加速倍数，默认 `1.0`。取值范围 `[1.0，10.0]`       	|
 | `/ar/<audio_sample_rate>` | integer   | 否		| 音频采样率，单位 Hz，默认按照原始采样率处理。可选值：`44100`、`48000`、`32000`、`22050`、`24000`、`16000`、`0`   |
+| `/ac/<audio_channel>`     | float     | 否             | 音频声道数，默认按照原始声道数处理。常用值：`1`表示单声道(mono)，`2`表示立体声(stereo)，`5.1`，`7.1`等    |
 | `/sar/<sar>` | string | 否 | [采样长宽比](https://en.wikipedia.org/wiki/Aspect_ratio_(image)#Distinctions)，格式 `w:h`，常用值 `1:1`，`4:3` 或 `16:9` |
 | `/dar/<dar>` | string | 否 | [显示长宽比](https://en.wikipedia.org/wiki/Pixel_aspect_ratio#Introduction)，格式 `w:h`，常用值 `1:1`，`4:3` 或 `16:9` |
 | `/pv/<pv>` | string | 否 | H264 Profile，常用值 `baseline `，`main`，`high` 等 |
