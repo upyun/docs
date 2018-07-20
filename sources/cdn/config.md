@@ -1224,6 +1224,8 @@ text/html -- default
 
 “强制 HTTPS”：勾选此功能后，又拍云边缘节点收到用户的 HTTP 请求后会将其强制跳转到 HTTPS 进行访问。默认：兼容用户的 HTTP 和 HTTPS 请求。
 
+----------
+
 ###5.2 HSTS 配置
 
 > 功能说明
@@ -1245,6 +1247,8 @@ HSTS（HTTP Strict Transport Security，HTTP 严格传输安全)，是一套由�
 <img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/config/upyun-cdn-config-https-hsts3.png" height="470" width="800" />
 
 根据要求填写好配置规则，点击【保持】按钮即可。更多关于 HSTS 配置项信息，请参见 [HSTS 助力网站更安全](https://blog.upyun.com/?p=1583) 。
+
+----------
 
 ###5.3 HTTP/2 配置
 
@@ -1333,7 +1337,7 @@ Link: </css/styles.css>; rel=preload; as=style
 ```
 如果在 CDN 端进行自定义 Server Push 配置，优先级会高于源站设置的 Link 首部。
 
-
+----------
 
 ###5.4 兼容性说明
 
@@ -1342,6 +1346,8 @@ Link: </css/styles.css>; rel=preload; as=style
 <img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/upyun-cdn-https5.png" height="470" width="800" />
 
 声明：运行在 Windows XP 上的所有版本的 Internet Explorer 都不支持 SNI ，详细请参考[这里](http://serverfault.com/questions/109800/multiple-ssl-domains-on-the-same-ip-address-and-same-port)。
+
+----------
 
 ###5.5 TLS 1.3
 
@@ -1382,6 +1388,76 @@ Google Chrome 用户可以通过以下方式在 Chrome 中启用 `TLS 1.3` 支�
 登陆 [CDN 控制台](https://console.upyun.com/login/)，依次进入：服务管理 > 功能配置 > HTTPS > TLS 1.3, 滑动开关即可开启功能。如下图所示：
 
 <img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/config/upyun-cdn-config-https-tls13.jpg" height="470" width="800" />
+
+----------
+
+###5.6 最低 TLS 版本
+
+
+**功能说明**
+
+
+最低 TLS 版本也即当访问者通过 TLS 访问域名时，被允许访问的最低 TLS 版本。当前默认配置为 TLSv1.0，基于 PCI DSS 安全标准，可以选择最低 TLS 版本为 TLSv1.1。
+
+**应用场景**
+
+PCI DSS 最新合规标准已于 2018 年 6 月 30 日生效，该标准要求禁用低版本 TLS 协议（例如：TLSv1.0），HTTPS 配置应实施更安全的加密协议（TLSv1.1 或更高版本，强烈建议使用 TLS v1.2 ），以满足 PCI DSS 最新合规标准的要求，从而保护支付数据。
+
+
+**配置引导**
+
+登陆 [CDN 控制台](https://console.upyun.com/login/)，进入 「HTTPS」配置页面，找到「最低 TLS 版本」配置项，点击【管理】按钮，进入如下配置界面：
+
+<img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/https/upyun-cdn-config-mini_tls_config.png" height="400" width="800" />
+
+
+**模式一：TLSv1.0**
+
+配置界面如下图所示：
+
+<img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/https/upyun-cdn-config-mini_tls.png" height="400" width="800" />
+
+选择该模式时, TLS 访问可以支持 TLSv1.0、TLSv1.1、TLSv1.2、TLSv1.3（如果该功能已开启），该选项为默认配置项。
+
+
+
+**模式二：TLSv1.1**
+
+配置界面如下图所示：
+
+<img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/https/upyun-cdn-config-mini_tls1.png" height="400" width="800" />
+
+选择该模式时, 则使用 TLSv1.0 连接的访问者将被拒绝，仅支持使用 TLSv1.1、TLSv1.2、TLSv1.3（如果该功能已开启) 连接，请谨慎开启！
+
+
+
+**模式三：TLSv1.2**
+
+配置界面如下图所示：
+
+<img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/https/upyun-cdn-config-mini_tls2.png" height="400" width="800" />
+
+选择该模式时, 则使用 TLSv1.0、TLSv1.1 连接的访问者将被拒绝，仅支持使用 TLSv1.2、TLSv1.3（如果该功能已开启) 连接，请谨慎开启！
+
+
+
+**模式四：TLSv1.3**
+
+
+配置界面如下图所示：
+
+<img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/https/upyun-cdn-config-mini_tls3.png" height="400" width="800" />
+
+选择该模式时, 则使用 TLSv1.0、TLSv1.1、TLSv1.2 连接的访问者将被拒绝，仅支持使用 TLSv1.3（如果该功能已开启) 连接，请谨慎开启！
+
+
+
+**注意事项**
+
+- 默认的最低 TLS 版本为 TLSv1.0，如选择更高版本的 TLS 协议，需要评估兼容性问题（也即某些老的浏览器不支持较新的 TLS 版本）。
+- 为了满足某些测试要求，如需设置最低 TLS  版本为 TLSv1.3，需要提前开启 TLS 1.3 功能。
+  
+
 
 ----------
 
