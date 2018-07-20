@@ -1406,7 +1406,7 @@ PCI DSS 最新合规标准已于 2018 年 6 月 30 日生效，该标准要求�
 
 **配置引导**
 
-登陆 [CDN 控制台](https://console.upyun.com/login/)，进入 「HTTPS」配置页面，找到「最低 TLS 版本」配置项，点击【管理】按钮，进入如下配置界面：
+登陆 [CDN 控制台](https://console.upyun.com/login/)，进入 「HTTPS」配置页面，找到「最低 TLS 版本」配置项，点击【管理】按钮即可进入配置界面。
 
 <img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/https/upyun-cdn-config-mini_tls_config.png" height="400" width="800" />
 
