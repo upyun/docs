@@ -1110,21 +1110,18 @@ http://60.211.204.130/test.example.com/image/1.png?_marco_sum=XXX&_marco_id=XXX&
 关闭状态下，海外请求会解析到国内 CDN 节点，可能会影响到海外地区终端用户的访问体验。
 
 
-###4.9 Gzip 压缩
+###4.9 智能压缩
 
-> 功能说明
+**功能说明**
 
-又拍云 CDN 默认开启了 Gzip 压缩的相关特性，具体对应的 NGINX 配置如下：
+又拍云 CDN 智能压缩功能包括 Gzip 和 Brotli 压缩算法。开启该功能，可对静态文件类型进行压缩，有效减少用户传输内容大小，加速分发效果。为了配置的灵活性，支持压缩等级的设置，关于压缩等级的说明如下：
 
-```
-gzip on;
-gzip_min_length 256;
-gzip_types <见下面的列表>;
-gzip_disable "MSIE [1-6]\.";
-gzip_vary on;
-```
+- 两种压缩算法的压缩等级默认为 1，等级越高，压缩率越大；
+- 考虑到压缩等级越高，压缩速度会降低，实际生产环境，建议压缩等级控制在 3 以内，具体以线上环境实测为准；
 
-触发实际的 GZIP 压缩行为需要同时满足如下条件：
+**满足条件**
+
+触发实际的 Gzip 及 Brotli 压缩行为需要同时满足如下条件：
 
 1、Content-Type 满足以下列表其中之一：
 
@@ -1147,11 +1144,55 @@ image/svg+xml
 image/x-icon
 font/opentype
 
-text/html -- default
 ```
 2、Content-Length 大于 256 字节；
 
-3、客户端请求头带了 `Accept-Encoding: gzip`。
+3、客户端请求头带了 `Accept-Encoding: gzip, br`。
+
+ 
+**配置引导**
+
+登陆 [CDN 控制台](https://console.upyun.com/login/)，进入 「性能优化」配置页面，找到「智能压缩」配置项，点击【管理】按钮，进入如下配置界面：
+
+<img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/optimization/upyun-config-optimization-gzip.png" height="470" width="800" />
+
+结合两种压缩算法，在 CDN 控制台的配置有 4 种状态，相关配置请参考如下截图和说明：
+
+**状态一：同时关闭 Gzip 和 Brotli**
+
+<img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/optimization/upyun-config-optimization-nogzip-nobrotli.png" height="470" width="800" />
+
+该状态下，CDN 不支持 Gzip  和 Brotli 。
+
+**状态二：只开启 Gzip**
+
+<img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/optimization/upyun-config-optimization-onlygzip.png" height="470" width="800" />
+
+该状态下，CDN 仅支持 Gzip 压缩。
+
+**状态三：只开启 Brotli**
+
+<img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/optimization/upyun-config-optimization-only-brotli.png" height="470" width="800" />
+
+该状态下，CDN 仅支持 Brotli 压缩。
+
+**状态四：同时开启 Gzip 和 Brotli**
+
+<img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/optimization/upyun-config-optimization-gzip-brotli.png" height="470" width="800" />
+
+如果客户端同时都支持 Gzip 和 Brotli ，CDN 会优先使用 Brotli 压缩算法。
+
+**关于压缩等级**
+
+<img src="https://upyun-assets.b0.upaiyun.com/docs/cdn/optimization/upyun-config-optimization-gzip-level-custom.png" height="470" width="800" />
+
+Gzip 和 Brotli 默认的压缩等级为 1，压缩等级的范围为 1 ~ 5，压缩等级越高，压缩率越大，但是压缩速度会相对降低，您可以根据要求进行自定义设置，原则上，我们建议在生产环境，压缩等级不要高于 3 。更多关于压缩等级的介绍请参考 [这里](http://www.gstatic.com/b/brotlidocs/brotli-2015-09-22.pdf)
+。
+
+**注意事项**
+
+ - 当客户端同时支持 Gzip 和 Brotli 算法的情况下，Brotli 的优先级高于 Gzip。
+
 
 ###4.10 文件合并
 
