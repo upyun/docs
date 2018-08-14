@@ -199,7 +199,7 @@ Java SDK version 3.0+，需要 Java 版本 >= 6。可以通过 `java -version` �
 <dependency>
   <groupId>com.upyun</groupId>
   <artifactId>java-sdk</artifactId>
-  <version>3.13</version>
+  <version>4.0.1</version>
 </dependency>
 ```
 

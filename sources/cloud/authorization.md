@@ -313,11 +313,11 @@ public class auth {
     public static String sign(String key, String secret, String method, String uri, String date, String policy,
             String md5) throws Exception {
         String value = method + "&" + uri + "&" + date;
-        if (policy != "") {
+        if (policy != null && policy.length() > 0) {
             value = value + "&" + policy;
         }
 
-        if (md5 != "") {
+        if (md5 != null && md5.length() > 0) {
             value = value + "&" + md5;
         }
         byte[] hmac = hashHmac(value, secret);
