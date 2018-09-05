@@ -161,6 +161,7 @@ API 请求失败时，服务端会返回一个 JSON 格式的响应体。它可�
 | 403 			| 40300028 			| request has expired |
 | 403 			| 40300029 			| purge too much items |
 | 403 			| 40300030 			| wrong content-length header |
+| 403           | 40310007          | Binded domain and source domain can't be the same|
 | 404 			| 40400001 			| file or directory not found    |
 | 404 			| 40400002 			| base64 decoded err    |
 | 406 			| 40600001 			| dir not acceptable    |
