@@ -238,7 +238,7 @@ POST /<bucket>/path/to/folder
 |    参数  |  必选  |                    说明                         |
 | -------- | ----- | ----------------------------------------------- |
 | folder   |  是   | 值为 `true`                                     |
- 
+
 
 **响应信息**
 
@@ -300,6 +300,7 @@ GET /<bucket>/path/to/folder
 | x-list-iter    |  否  | string  | 分页开始位置，通过`x-upyun-list-iter` 响应头返回，所以第一次请求不需要填写      |
 | x-list-limit   |  否  | string  | 获取的文件数量，默认 100，最大 10000                           |
 | x-list-order   |  否  | string  | `asc` 或 `desc`，按文件名升序或降序排列。默认 `asc`               |
+| Accept         |  否  | string  | `application/json`,返回json格式 |
 
 
 **响应信息**
@@ -317,6 +318,25 @@ foo.jpg\tN\t4237\t1415096225\nbar\tF\t423404\t1415096260
 
 - `x-upyun-list-iter` 返回下一次分页开始位置。它由一串 Base64 编码的随机数组成，当它是 `g2gCZAAEbmV4dGQAA2VvZg` 时，表示**最后一个分页**。
 - HTTP body 为各个文件/目录的信息，文件/目录之间以 `\n` 分隔，属性按 「文件\t类型\t大小\t最后修改时间」 排列，类型可选值：`N` 表示文件，`F` 表示目录。
+
+若设置了`Accept: application/json`请求头则返回:
+
+```json
+{
+	"files": [{
+		"type": "image/jpeg",
+		"length": 4237,
+		"name": "foo.jpg",
+		"last_modified": 1415096225
+	}, {
+		"type": "folder",
+		"length": 423404,
+		"name": "bar",
+		"last_modified": 1415096260
+	}],
+	"iter": "c2Rmc2Rsamdvc2pnb3dlam9pd2Vmd2Z3Zg=="
+}
+```
 
 ---------
 
