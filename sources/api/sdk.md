@@ -434,7 +434,7 @@ from upyun import print_reporter
 * reporter，表示报告上传进度，默认忽略。print_reporter 只是 print 上传进度，有其他需要的用户可以自行实现
 */
 with open('dd.png', 'rb') as f:
-    res = up.put('/up/dd.png', f, checksum=True, need_resume=True, headers={}, store="memory_store", reporter=print_reporter)
+    res = up.put('/up/dd.png', f, checksum=True, need_resume=True, headers={}, store=None, reporter=print_reporter)
 ```
 
 说明，上传成功，返回空 Python Dict 对象；上传失败，抛出异常。
