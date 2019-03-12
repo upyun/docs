@@ -19,6 +19,43 @@ API 请求失败时，服务端会返回一个 JSON 格式的响应体。它可�
 
 | HTTP 状态码	| 返回代码           | 含义                                            	|
 |---------------|-------------------|--------------------------------------------------|
+| 400 			| 40001000 			| wrong uri    |
+| 400 			| 40001001 			| wrong content-md5    |
+| 400 			| 40001002 			| wrong content-length    |
+| 400 			| 40001003 			| meta invalid    |
+| 400 			| 40001004 			| folder args invalid    |
+| 400 			| 40001005 			| iter args invalid    |
+| 400 			| 40001006 			| type invalid    |
+| 400 			| 40001007 			| block invalid    |
+| 400 			| 40001008 			| list type not support    |
+| 400 			| 40001009 			| invalid update time    |
+| 400 			| 40001011 			| invalid append position    |
+| 400 			| 40001021 			| invalid utf8 key    |
+| 400 			| 40001022 			| wrong multipart action    |
+| 400 			| 40001023 			| wrong multipart uuid    |
+| 400 			| 40001024 			| wrong multipart type    |
+| 400 			| 40001025 			| wrong multipart length    |
+| 400 			| 40001027 			| wrong multipart size    |
+| 400 			| 40001030 			| wrong multipart part id    |
+| 400 			| 40001031 			| duplicate multipart part    |
+| 400 			| 40001032 			| oversize multipart part    |
+| 400 			| 40001033 			| overflow multipart part    |
+| 400 			| 40001034 			| unexpect multipart length    |
+| 400 			| 40001035 			| notfound multipart uuid    |
+| 400 			| 40001036 			| completed multipart    |
+| 400 			| 40001037 			| incomplete multipart parts    |
+| 400 			| 40001038 			| invalid append file    |
+| 400 			| 40001041 			| request wrong type    |
+| 400 			| 40001042 			| request wrong timestamp    |
+| 400 			| 40001043 			| request wrong column    |
+| 400 			| 40001044 			| request wrong list    |
+| 400 			| 40001045 			| not found    |
+| 400 			| 40001046 			| hbase wrong length    |
+| 400 			| 40001047 			| hbase wrong check column    |
+| 400 			| 40001051 			| encode data error    |
+| 400 			| 40001052 			| decode data error    |
+| 400 			| 40001055 			| put and check hbase error    |
+| 400 			| 40001161 			| wrong range    |
 | 400 			| 40010001 			| not enough arguments    |
 | 400 			| 40010002 			| url not allowed    |
 | 400 			| 40010003 			| tasks number error    |
@@ -58,6 +95,8 @@ API 请求失败时，服务端会返回一个 JSON 格式的响应体。它可�
 | 400 			| 40011032 			| invalid x-gmkerl-extract-palette    |
 | 400 			| 40011033 			| invalid x-gmkerl-canvas    |
 | 400 			| 40011034 			| invalid x-gmkerl-canvas-color    |
+| 400 			| 40011035 			| invalid param in thumb    |
+| 400 			| 40011050 			| invalid app name    |
 | 400 			| 40011051 			| invalid x-upyun-part-id                  |
 | 400 			| 40011052 			| invalid x-upyun-multi-length                 |
 | 400 			| 40011053 			| invalid x-upyun-multi-type                 |
@@ -69,9 +108,10 @@ API 请求失败时，服务端会返回一个 JSON 格式的响应体。它可�
 | 400 			| 40011059 			| file already upload                   |
 | 400 			| 40011060 			| file md5 not match                 |
 | 400 			| 40011061 			| part id error                       |
-| 400		 	| 40011062 			| part already complete                  | 
-| 400		 	| 40011091 			| invalid app name                  | 
-| 400		 	| 40011092 			| invalid file ttl                  | 
+| 400		 	| 40011062 			| part already complete                  |
+| 400		 	| 40011091 			| invalid app name                  |
+| 400		 	| 40011092 			| invalid file ttl                  |
+| 400 			| 40000000 			| storage bad request    |
 | 400 			| 40000001 			| need save-key    |
 | 400 			| 40000002 			| need body    |
 | 400 			| 40000003 			| need bucket name    |
@@ -110,6 +150,12 @@ API 请求失败时，服务端会返回一个 JSON 格式的响应体。它可�
 | 400 			| 40000036 			| uri bucket must be same as param bucket    |
 | 400 			| 40000037 			| unknown service    |
 | 400 			| 40000038 			| no boundary defined in Content-Type    |
+| 400 			| 40000039 			| Content-Length is equal to 0    |
+| 400 			| 40000040 			| source bucket not equal target bucket    |
+| 400 			| 40000041 			| source key equals to target key    |
+| 400 			| 40000042 			| source key wrong    |
+| 400 			| 40000043 			| wrong metadata directive    |
+| 400 			| 40000044 			| need metadata    |
 | 401 			| 40100001 			| need date header    |
 | 401 			| 40100002 			| date offset error    |
 | 401 			| 40100003 			| unknown realm in authorization header    |
@@ -131,6 +177,10 @@ API 请求失败时，服务端会返回一个 JSON 格式的响应体。它可�
 | 401 			| 40100019 			| account forbidden    |
 | 401 			| 40100020 			| account reject    |
 | 401 			| 40100021 			| overdue account    |
+| 401 			| 40100022 			| uri prefix error    |
+| 401 			| 40100023 			| uri postfix error    |
+| 401 			| 40100024 			| expire error    |
+| 401 			| 40100025 			| auth error    |
 | 403 			| 40300001 			| file name contains invalid chars (\r\n\t)    |
 | 403 			| 40300002 			| file path too long    |
 | 403 			| 40300003 			| file name too long    |
@@ -161,17 +211,28 @@ API 请求失败时，服务端会返回一个 JSON 格式的响应体。它可�
 | 403 			| 40300028 			| request has expired |
 | 403 			| 40300029 			| purge too much items |
 | 403 			| 40300030 			| wrong content-length header |
+| 403 			| 40300031 			| only support that list flat files by bucket's root folder |
+| 403 			| 40300032 			| start time format error |
+| 403 			| 40300033 			| end time format error |
+| 403 			| 40300034 			| start time bigger than end time |
+| 403 			| 40300035 			| content-length of policy format error |
 | 403           | 40310007          | Binded domain and source domain can't be the same|
 | 404 			| 40400001 			| file or directory not found    |
 | 404 			| 40400002 			| base64 decoded err    |
 | 406 			| 40600001 			| dir not acceptable    |
 | 406 			| 40600002 			| folder already exists    |
+| 406 			| 40600003 			| single-copy bucket not support form api    |
+| 406 			| 40600004 			| single-copy bucket not support breakpoint resume    |
 | 408 			| 40800001 			| read client request timeout |
+| 412 			| 41200001 			| precondition failed |
+| 413 			| 41300001 			| content length too large |
 | 415 			| 41500001 			| media type error, need content-type    |
 | 429 			| 42900001 			| too many requests    |
 | 429 			| 42900002 			| too many requests of the same uri    |
 | 429 			| 42900003 			| too many requests of the same bucket    |
 | 429 			| 42900004 			| request banned    |
+| 429 			| 42900005 			| bandwidth limit    |
+| 429 			| 42900006 			| too many auth check    |
 | 503 			| 50300000 			| unknown error    |
 | 503 			| 50300001 			| write hub failed    |
 | 503 			| 50300002 			| decode error    |
@@ -212,6 +273,7 @@ API 请求失败时，服务端会返回一个 JSON 格式的响应体。它可�
 | 503 			| 50300041 			| connect to database error  |
 | 503 			| 50300042 			| delete path error  |
 | 503 			| 50300043 			| put task to message queue error  |
+| 503 			| 50300044 			| avalon list dir error  |
 
 ---------
 
