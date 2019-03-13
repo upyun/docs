@@ -50,11 +50,11 @@ API 请求失败时，服务端会返回一个 JSON 格式的响应体。它可�
 | 400 			| 40001043 			| request wrong column    |
 | 400 			| 40001044 			| request wrong list    |
 | 400 			| 40001045 			| not found    |
-| 400 			| 40001046 			| hbase wrong length    |
-| 400 			| 40001047 			| hbase wrong check column    |
+| 400 			| 40001046 			| wrong length    |
+| 400 			| 40001047 			| wrong check column    |
 | 400 			| 40001051 			| encode data error    |
 | 400 			| 40001052 			| decode data error    |
-| 400 			| 40001055 			| put and check hbase error    |
+| 400 			| 40001055 			| put and check error    |
 | 400 			| 40001161 			| wrong range    |
 | 400 			| 40010001 			| not enough arguments    |
 | 400 			| 40010002 			| url not allowed    |
